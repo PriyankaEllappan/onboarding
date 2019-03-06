@@ -1,4 +1,6 @@
-/*package com.cts.nw.onboarding.daoImpl;
+package com.cts.nw.onboarding.daoImpl;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -21,4 +23,13 @@ public class EmployeeMasterDAOImpl implements EmployeeMasterDAO {
 		   RowMapper<EmployeeMaster> rowMapper = new EmployeeMasterRowMapper();
 		   return this.jdbcTemplate.queryForObject(sql, rowMapper, id);
 	}
-}*/
+	
+	@Override
+	public List<EmployeeMaster> getAllEmployeeMasterDetails() {
+		   String sql = "SELECT * FROM EmployeeMaster";
+		   RowMapper<EmployeeMaster> rowMapper = new EmployeeMasterRowMapper();
+		   return this.jdbcTemplate.query(sql, rowMapper);
+	}
+
+	
+}

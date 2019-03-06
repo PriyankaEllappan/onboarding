@@ -18,8 +18,9 @@
 </head>
 <body>
 	<jsp:include page="./layouts/header.jsp" />
-	<!-- Load Script Files -->
-	<h1>Welcome to ${message}</h1>
+	<div class="content-style">
+		<h1>Welcome to ${message}</h1>
+	</div>
 	<jsp:include page="./layouts/footer.jsp" />
 </body>
 </html>

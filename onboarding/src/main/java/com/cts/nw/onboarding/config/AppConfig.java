@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
  * @author 656579
@@ -22,6 +23,11 @@ public class AppConfig {
 
 	@Autowired
 	private Environment env;
+	
+	@Bean
+	public JdbcTemplate jdbcTemplate(DataSource dataSource){
+		return new JdbcTemplate(dataSource);
+	}
 
 	@Bean
 	public DataSource getDataSource() {
