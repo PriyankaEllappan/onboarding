@@ -52,3 +52,11 @@ body {
 .button-fixedwidth{
 	width: 100%;
 }
+
+.hideElements {
+	display: none;
+}
+
+.showElements {
+	display: block;
+}

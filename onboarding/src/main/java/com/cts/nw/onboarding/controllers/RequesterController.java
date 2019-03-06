@@ -41,7 +41,7 @@ public class RequesterController {
 	@RequestMapping(value = "/request/check/{empid}", method = RequestMethod.GET)
 	public @ResponseBody EmployeeMaster employeeAvailability(Model model,@PathVariable String empid) {
 		Integer employeeId;
-		EmployeeMaster employee = null;
+		EmployeeMaster employee = new EmployeeMaster();
 		try {
 			employeeId = Integer.parseInt(empid);
 			System.out.println("Employee to be found:" + employeeId);
@@ -51,4 +51,5 @@ public class RequesterController {
 		}
 		return employee;
 	}
+		
 }

@@ -5,6 +5,12 @@ $(document).ready(function() {
     	   console.log(empId);
     	   checkForanEmployee(empId);
        })
+       $("#addResourceLabel").click(function(){
+    	   $("#toggleResource").toggle(); 
+       })
+       $("#addProjectLabel").click(function(){
+    	   $("#toggleProject").toggle(); 
+       })
 })
 
 
@@ -15,9 +21,17 @@ function checkForanEmployee(empID) {
 		url : "/onboarding/request/check/" + empID,
 		dataType : "text",
 		success : function(resultData) {
-			var returnedData = JSON.parse(resultData);
-			console.log("hi ");
-			console.log(JSON.parse(resultData));
+			if (!$.trim(resultData)){   
+				console.log("Empty Response");
+				/*$('#resourceNonAvailable').addClass('showElements');*/
+				$('#resourceAvailable').addClass('showElements');
+			}
+			else{   
+				var returnedData = JSON.parse(resultData);
+				console.log("Response has data");
+				console.log(returnedData);
+			}
+			
 		}
 	});
 }
