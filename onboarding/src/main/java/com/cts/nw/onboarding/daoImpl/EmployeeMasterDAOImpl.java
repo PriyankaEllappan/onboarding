@@ -1,7 +1,9 @@
 package com.cts.nw.onboarding.daoImpl;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -15,21 +17,28 @@ import com.cts.nw.onboarding.mappers.EmployeeMasterRowMapper;
 @Repository
 public class EmployeeMasterDAOImpl implements EmployeeMasterDAO {
 	@Autowired
-    private JdbcTemplate jdbcTemplate;
-	
+	private JdbcTemplate jdbcTemplate;
+
 	@Override
 	public EmployeeMaster getEmployeeMasterDetailsByID(int id) {
-		   String sql = "SELECT * FROM EmployeeMaster where ID = ?";
-		   RowMapper<EmployeeMaster> rowMapper = new EmployeeMasterRowMapper();
-		   return this.jdbcTemplate.queryForObject(sql, rowMapper, id);
-	}
-	
-	@Override
-	public List<EmployeeMaster> getAllEmployeeMasterDetails() {
-		   String sql = "SELECT * FROM EmployeeMaster";
-		   RowMapper<EmployeeMaster> rowMapper = new EmployeeMasterRowMapper();
-		   return this.jdbcTemplate.query(sql, rowMapper);
+		String sql = "SELECT * FROM EmployeeMaster where ID = ?";
+		try {
+			RowMapper<EmployeeMaster> rowMapper = new EmployeeMasterRowMapper();
+			return this.jdbcTemplate.queryForObject(sql, rowMapper, id);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
 	}
 
-	
+	@Override
+	public List<EmployeeMaster> getAllEmployeeMasterDetails() {
+		String sql = "SELECT * FROM EmployeeMaster";
+		try {
+			RowMapper<EmployeeMaster> rowMapper = new EmployeeMasterRowMapper();
+			return this.jdbcTemplate.query(sql, rowMapper);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+
 }

@@ -4,13 +4,13 @@
 </style>
 <head>
 <title>Login Page</title>
-<!-- Load Sytle Sheets -->
+<!-- Load Sytle Sheets 
 <link rel="stylesheet"
 	href="/app/resources/stylesheets/bootstrap.min.css">
 <link rel="stylesheet"
 	href="/app/resources/stylesheets/bootstrap-datepicker.min.css">
-<link rel="stylesheet" href="/app/resources/stylesheets/application.css">
-<script type = "text/javascript" >
+<link rel="stylesheet" href="/app/resources/stylesheets/application.css"> -->
+<script type="text/javascript">
 history.pushState(null, null, location.href);
 window.onpopstate = function () {
     history.go(1);
@@ -18,11 +18,11 @@ window.onpopstate = function () {
     </script>
 
 </head>
-<body onload="autoSubmitLoginForm()">
-	<h3 >App Login Page</h3>
+<body>
+	<h3>App Login Page</h3>
 
 	<form name='loginForm' id="loginFormID"
-		action="<c:url value='login' />" method='POST' >
+		action="<c:url value='login' />" method='POST'>
 
 		<table>
 			<tr>
@@ -41,11 +41,11 @@ window.onpopstate = function () {
 		</table>
 
 	</form>
-	<!-- Load Script Files -->
+	<!-- 
 	<script src="/app/resources/scripts/jquery.min.js"></script>
 	<script src="/app/resources/scripts/bootstrap.min.js"></script>
 	<script src="/app/resources/scripts/application.js"></script>
-	<script src="/app/resources/scripts/bootstrap-datepicker.min.js"></script>
+	<script src="/app/resources/scripts/bootstrap-datepicker.min.js"></script> -->
 
 </body>
 </html>

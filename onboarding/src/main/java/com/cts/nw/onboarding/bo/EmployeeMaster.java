@@ -2,9 +2,15 @@ package com.cts.nw.onboarding.bo;
 
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class EmployeeMaster {
 
 	
+	/**
+	 * 
+	 */
 	/*
 	CREATE TABLE EMPLOYEEMASTER (
 	    ID Int NOT NULL,
