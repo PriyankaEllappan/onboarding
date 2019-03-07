@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -51,5 +52,22 @@ public class RequesterController {
 		}
 		return employee;
 	}
+	
+	
+	@RequestMapping(value = "/request/addResource/", method = RequestMethod.POST)
+	public @ResponseBody String createUser(@RequestBody EmployeeMaster employeeJson) {
+		String message = "";
+		try{
+			Integer rowsAffected;
+			rowsAffected = employeeMasterDAO.addEmployeeMaster(employeeJson);
+			if( rowsAffected > 0){
+				message = "Employee details saved successfully";
+			}
+			return message;
+		}catch(Exception e){
+			message = "Error in iserting Employee Details";
+			return message;
+		}
 		
+	}
 }

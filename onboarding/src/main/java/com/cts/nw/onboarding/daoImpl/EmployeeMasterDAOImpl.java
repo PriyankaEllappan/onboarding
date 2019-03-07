@@ -40,5 +40,12 @@ public class EmployeeMasterDAOImpl implements EmployeeMasterDAO {
 			return null;
 		}
 	}
+	
+	@Override
+	public int addEmployeeMaster(EmployeeMaster employeeMaster) {
+		String sql = "INSERT INTO EmployeeMaster (ID, NAME, FIRSTNAME, LASTNAME, DOB, PASSPORTNUMBER,EMAIL) VALUES (?, ?, ?, ?, ?, ?, ?)";
+		return jdbcTemplate.update(sql, employeeMaster.getID(), employeeMaster.getName(), employeeMaster.getFirstName(),
+				employeeMaster.getLastName(), employeeMaster.getDOB(), employeeMaster.getPassportNumber(), employeeMaster.getEmail());
+	}
 
 }
