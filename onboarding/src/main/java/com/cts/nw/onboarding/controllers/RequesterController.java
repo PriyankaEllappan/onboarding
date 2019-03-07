@@ -54,6 +54,10 @@ public class RequesterController {
 	}
 	
 	
+	/**
+	 * @param employeeJson
+	 * @return
+	 */
 	@RequestMapping(value = "/request/addResource/", method = RequestMethod.POST)
 	public @ResponseBody String createUser(@RequestBody EmployeeMaster employeeJson) {
 		String message = "";
@@ -70,4 +74,27 @@ public class RequesterController {
 		}
 		
 	}
+	
+	/**
+	 * @param employeeJson
+	 * @return
+	 */
+	@RequestMapping(value = "/request/mapProject/", method = RequestMethod.POST)
+	public @ResponseBody String addProject(@RequestBody EmployeeMaster employeeJson) {
+		String message = "";
+		/*try{
+			Integer rowsAffected;
+			rowsAffected = 
+			if( rowsAffected > 0){
+				message = "Project details saved successfully";
+			}
+			return message;
+		}catch(Exception e){
+			message = "Error in iserting Project Details";
+			return message;
+		}*/
+		return message;
+	}
+	
+	
 }

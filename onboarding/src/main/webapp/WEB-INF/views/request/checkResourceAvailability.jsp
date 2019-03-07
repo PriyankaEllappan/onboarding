@@ -1,15 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Resource Availability</title>
-<script src="/onboarding/resources/scripts/jquery.min.js"></script>
-<script src="/onboarding/resources/scripts/requester.js"></script>
+<!-- Load Sytle Sheets -->
+<link rel="stylesheet"
+	href="/onboarding/resources/stylesheets/bootstrap.min.css">
+<link rel="stylesheet"
+	href="/onboarding/resources/stylesheets/bootstrap-datepicker.min.css">
 <link rel="stylesheet"
 	href="/onboarding/resources/stylesheets/application.css">
+<script src="/onboarding/resources/scripts/jquery.min.js"></script>
+<script src="/onboarding/resources/scripts/bootstrap-datepicker.min.js"></script>
+<script src="/onboarding/resources/scripts/bootstrap.min.js"></script>
+<script src="/onboarding/resources/scripts/requester.js"></script>
 </head>
 <body>
+	<jsp:include page="../layouts/header.jsp" />
+	<div class="container-fluid content-style">
 	<h1>Check for User Availability</h1>
 	<label for="checkEmpId"> Search for an existing Employee</label>
 	<input type="text" id="checkEmpId" name="checkEmpId"></input>
@@ -32,7 +41,7 @@
 						</div>
 						<div class="col-md-3">
 							<input class="form-control" name="newEmpID" id="newEmpID"
-								onblur="loadEmployeeDetails()" placeholder="Enter EmployeeID" />
+								placeholder="Enter EmployeeID" />
 							<!-- <span class="has-error"> <span path="empId" class="help-inline" />
 						</span> -->
 						</div>
@@ -88,7 +97,7 @@
 						</div>
 						<div class="col-md-3">
 							<input autocomplete="off" class="form-control" name="newEmpDOB"
-								id="newEmpDOB" placeholder="Enter Date of Birth (MM/DD/YYYY)" />
+								id="newEmpDOB" placeholder="Enter Date of Birth (YYYY-MM-DD)" />
 							<!-- <span class="has-error"> <span path="dateOfBirth" class="help-inline" ></span></span> -->
 						</div>
 					</div>
@@ -111,7 +120,8 @@
 					<div class="row">
 						<br /> <br />
 						<div class="col-md-10" style="text-align: center">
-							<button class="btn btn-info" onclick="registerEmployee()" > Submit </button>
+							<button class="btn btn-info" onclick="registerEmployee()">
+								Submit</button>
 							<input class="btn btn-info" type="reset" value="Cancel" />
 						</div>
 					</div>
@@ -144,5 +154,7 @@
 			</div>
 		</div>
 	</div>
+	</div>
+	<jsp:include page="../layouts/footer.jsp" />
 </body>
 </html>

@@ -1,4 +1,15 @@
 $(document).ready(function() {
+	var dateOfBirth = $('#newEmpDOB');
+	var container = $('.content-style');
+	var options = {
+		format : 'yyyy-mm-dd',
+		container : container,
+		todayHighlight : true,
+		autoclose : true,
+	};
+
+	dateOfBirth.datepicker(options);
+	
 	$("#checkEmpIdSubmit").click(function() {
 		var empId = $("#checkEmpId").val();
 		console.log(empId);
@@ -7,6 +18,22 @@ $(document).ready(function() {
 	$("#addResourceLabel").click(function() {
 		$("#toggleResource").toggle();
 	})
+
+	$("#newEmpID").blur(function() {
+		var empId = $('#newEmpID').val();
+		$.ajax({
+			type : 'GET',
+			url : "/onboarding/resource/getEmployee?empId=" + empId,
+			dataType : "text",
+			success : function(resultData) {
+				var returnedData = JSON.parse(resultData);
+				$('#newEmpName').val(returnedData.name);
+				$('#newEmpEmail').val(returnedData.emailId);
+				$('#newEmpFName').val(returnedData.name.split(" ")[0]);
+				$('#newEmpLName').val(returnedData.name.split(" ")[1]);
+			}
+		});
+	});
 })
 
 function checkForanEmployee(empID) {
@@ -53,9 +80,12 @@ function registerEmployee() {
 		contentType : 'application/json; charset=utf-8',
 		dataType : 'json',
 		async : false,
-		cache: false,
-		processData:false,
-		success : function(msg) {
+		cache : false,
+		processData : false,
+		success : function(response) {
+			if (response.msgtype == "success" || response.msgtype == "fail") {
+				clearconsole();
+			}
 			console.log(msg);
 		}
 	});
