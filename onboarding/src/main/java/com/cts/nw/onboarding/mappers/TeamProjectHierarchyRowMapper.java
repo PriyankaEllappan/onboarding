@@ -19,12 +19,13 @@ public class TeamProjectHierarchyRowMapper implements RowMapper<TeamProjectHiera
 		teamSelect.setRequesterName(rs.getString("REQUESTERNAME"));
 		teamSelect.setProcessorID(rs.getInt("PROCESSORID"));
 		teamSelect.setProcessorName(rs.getString("PROCESSORNAME"));
-		teamSelect.setBsaID(rs.getInt("ID"));
-		teamSelect.setBsa(rs.getString("BSA"));
-		teamSelect.setPplID(rs.getInt("ID"));
+		teamSelect.setBsaID(rs.getInt("BSAID"));
+		teamSelect.setBsa(rs.getString("BSANAME"));
+		teamSelect.setPplID(rs.getInt("PPLID"));
 		teamSelect.setPplName(rs.getString("PPLNAME"));
 		teamSelect.setStatus(rs.getString("STATUS"));
 		teamSelect.setTeamName(rs.getString("TEAMNAME"));
+		teamSelect.setTeamMapID(rs.getInt("TEAMMAPID"));
 		return teamSelect;
 	}
 }

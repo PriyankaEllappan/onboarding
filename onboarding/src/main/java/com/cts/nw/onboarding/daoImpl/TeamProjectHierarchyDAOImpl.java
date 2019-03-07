@@ -24,12 +24,12 @@ public class TeamProjectHierarchyDAOImpl implements TeamProjectHierarchyDAO {
 	 */
 	@Override
 	public List<TeamProjectHierarchy> getSelectedTeamDetails(String teamName) {
-		String teamInfo = "SELECT tt.id,pp.projectid, pp.projectname,r.requesterid,r.requestername, p.processorid, p.processorname, b.id,b.bsa, ppi.id,ppi.pplname,t.teamname,pm.status "
-				+ "FROM requesters r JOIN projectmapping pm ON r.requesterid = pm.requesterid JOIN "
-				+ " processors p ON p.processorid = pm.processorid  JOIN  projectinfo pp ON"
-				+ " pp.projectid = pm.projectid  JOIN  teammapping tt ON tt.projectmapid = pm.id  "
-				+ "JOIN  pplmapping ppm ON ppm.id = tt.pplmapid JOIN bsainfo b ON ppm.bsaid = b.id "
-				+ "JOIN  pplinfo ppi ON ppi.id = ppm.pplid JOIN teams t ON t.id = tt.teamid " + "WHERE t.teamname = ? ";
+		
+		String teamInfo = "select pi.projectid as projectid, pi.projectname as projectname, r.requesterid as requesterid, r.requestername as requestername, p.processorid as processorid,"
+				+ " p.processorname as processorname, bi.id as bsaid, bi.bsa as bsaname, ppli.id as pplid, ppli.pplname as pplname, t.teamname as teamname, pm.status as status, tm.id as teammapid from"
+				+ " requesters r join projectmapping pm on r.requesterid = pm.requesterid join processors p on p.processorid = pm.processorid join projectinfo pi on pi.projectid = pm.projectid join "
+				+ " teammapping tm on tm.projectmapid = pm.id join pplmapping pplm on pplm.id = tm.pplmapid join bsainfo bi on pplm.bsaid = bi.id join pplinfo ppli on ppli.id = pplm.pplid join teams t on t.id = tm.teamid"
+				+ " where t.teamname = ? and tm.status='active' ";
 		try {
 			RowMapper<TeamProjectHierarchy> rowMapper = new TeamProjectHierarchyRowMapper();
 			return this.jdbcTemplate.query(teamInfo, rowMapper, teamName);
@@ -43,15 +43,16 @@ public class TeamProjectHierarchyDAOImpl implements TeamProjectHierarchyDAO {
 	 */
 	@Override
 	public List<TeamProjectHierarchy> getAllTeamDetails() {
-		String teamInfo = "SELECT tt.id,pp.projectid, pp.projectname,r.requesterid,r.requestername, p.processorid, p.processorname, b.id,b.bsa, ppi.id,ppi.pplname,t.teamname,pm.status "
-				+ "FROM requesters r JOIN projectmapping pm ON r.requesterid = pm.requesterid JOIN "
-				+ " processors p ON p.processorid = pm.processorid  JOIN  projectinfo pp ON"
-				+ " pp.projectid = pm.projectid  JOIN  teammapping tt ON tt.projectmapid = pm.id  "
-				+ "JOIN  pplmapping ppm ON ppm.id = tt.pplmapid JOIN bsainfo b ON ppm.bsaid = b.id "
-				+ "JOIN  pplinfo ppi ON ppi.id = ppm.pplid JOIN teams t ON t.id = tt.teamid ";
+		
+		String allTeamsInfo = "select pi.projectid as projectid, pi.projectname as projectname, r.requesterid as requesterid, r.requestername as requestername, p.processorid as processorid,"
+				+ " p.processorname as processorname, bi.id as bsaid, bi.bsa as bsaname, ppli.id as pplid, ppli.pplname as pplname, t.teamname as teamname, pm.status as status, tm.id as teammapid from"
+				+ " requesters r join projectmapping pm on r.requesterid = pm.requesterid join processors p on p.processorid = pm.processorid join projectinfo pi on pi.projectid = pm.projectid join "
+				+ " teammapping tm on tm.projectmapid = pm.id join pplmapping pplm on pplm.id = tm.pplmapid join bsainfo bi on pplm.bsaid = bi.id join pplinfo ppli on ppli.id = pplm.pplid join teams t on t.id = tm.teamid"
+				+ " where tm.status='active' ";
+		
 		try {
 			RowMapper<TeamProjectHierarchy> rowMapper = new TeamProjectHierarchyRowMapper();
-			return this.jdbcTemplate.query(teamInfo, rowMapper);
+			return this.jdbcTemplate.query(allTeamsInfo, rowMapper);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
