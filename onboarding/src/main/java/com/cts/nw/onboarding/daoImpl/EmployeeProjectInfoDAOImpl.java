@@ -24,4 +24,10 @@ public class EmployeeProjectInfoDAOImpl implements EmployeeProjectInfoDAO {
 		   RowMapper<EmployeeProjectInfo> rowMapper = new EmployeeProjectInfoRowMapper();
 		   return this.jdbcTemplate.query(sql, rowMapper);
 	}
+	
+	@Override
+	public int addEmployeeProjectInfo(EmployeeProjectInfo employeeProjectInfo) {
+		String sql = "INSERT INTO EMPLOYEEPROJECTINFO (ID, EMPLOYEEID, TEAM, ROLE, COUNTRY, STARTDATE, NATIOWIDEID, NATIONWIDEIDCREATEDDATE, FGONBOARDINGDATE,MOVEMENTID, WORKFORCEID, ATTACHMENTID, COMMENTS, SKILLSET, SKILLSUMMARY, APPROVALSTATUS, RELEASESTATUS, RELEASEDATE, REASONFOROFFBOARDING) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	    return jdbcTemplate.update(sql, employeeProjectInfo.getId(), employeeProjectInfo.getEmployeeID(), employeeProjectInfo.getTeam(), employeeProjectInfo.getRole(), employeeProjectInfo.getCountry(), employeeProjectInfo.getStartDate(), employeeProjectInfo.getNatiowideID(), employeeProjectInfo.getNationwideidCreatedDate(), employeeProjectInfo.getFgOnboardingDate(), employeeProjectInfo.getMovementID(), employeeProjectInfo.getWorkforceID(), employeeProjectInfo.getAttachmentID(), employeeProjectInfo.getComments(), employeeProjectInfo.getSkillSet(), employeeProjectInfo.getSkillSummary(), employeeProjectInfo.getApprovalStatus(), employeeProjectInfo.getReleaseStatus(), employeeProjectInfo.getReleaseDate(), employeeProjectInfo.getReasonForOffboarding());
+	}
 }

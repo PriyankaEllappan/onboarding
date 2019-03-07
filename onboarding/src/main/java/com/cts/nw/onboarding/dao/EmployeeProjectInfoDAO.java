@@ -7,5 +7,5 @@ import com.cts.nw.onboarding.bo.EmployeeProjectInfo;
 public interface EmployeeProjectInfoDAO {
 
 	List<EmployeeProjectInfo> getAllEmployeeProjectInfo();
-	
+	int addEmployeeProjectInfo(EmployeeProjectInfo employeeProjectInfo);
 }
