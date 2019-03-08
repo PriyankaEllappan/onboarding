@@ -45,6 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/process/**").hasAnyRole("ADMIN", "PROCESSOR")
 		.antMatchers("/request/**").hasAnyRole("ADMIN", "REQUESTER", "PROCESSOR")
 		.antMatchers("/teams/**").hasAnyRole("ADMIN", "REQUESTER", "PROCESSOR")
+		.antMatchers("/roles/**").hasAnyRole("ADMIN", "REQUESTER", "PROCESSOR")
 		.antMatchers("/country/**").hasAnyRole("ADMIN", "REQUESTER", "PROCESSOR")
 		.antMatchers("/resource/**").hasAnyRole("ADMIN", "REQUESTER", "PROCESSOR")
 		.and().formLogin().loginPage("/login").permitAll()

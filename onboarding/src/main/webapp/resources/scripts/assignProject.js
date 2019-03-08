@@ -1,10 +1,14 @@
 var teamHierarchy = {}
 var countryHierarchy = {}
+var roles = {}
+var roleMappings = {}
 
 $(document).ready(function() {
 	document.getElementById("defaultOpen").click();
 	loadTeamHierarchy();
 	loadCountryHierarchy();
+	loadAllRoles();
+	loadRoleMappings();
 	
 	/* DatePicker Options */
 	var dateOfBirth = $('#startDate');
@@ -93,8 +97,32 @@ function loadProjDetails() {
 	});
 }
 
+function loadAllRoles(){
+	$.ajax({
+		type : 'GET',
+		url : "/onboarding/roles/getAllRoles" ,
+		dataType : "text",
+		success : function(resultData) {
+			roles = JSON.parse(resultData);
+			console.log(roles);
+			$.each(roles, function(key,value) {   
+			    
+			});
+		}
+	});
+}
 
-
-function loadRoleHierarchy(){
-	
+function loadRoleMappings(){
+	$.ajax({
+		type : 'GET',
+		url : "/onboarding/roles/getAllRoleMappings" ,
+		dataType : "text",
+		success : function(resultData) {
+			roleMappings = JSON.parse(resultData);
+			console.log(roleMappings);
+			$.each(roleMappings, function(key,value) {   
+			    
+			});
+		}
+	});
 }
