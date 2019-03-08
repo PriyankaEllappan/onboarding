@@ -180,7 +180,7 @@
 								<label for="role">Role</label>
 							</div>
 							<div class="col-md-3">
-								<select class="form-control" name="role" id="role"></select>
+								<select class="form-control" name="role" id="role" onchange="loadRateDetails()"></select>
 							</div>
 							<div class="col-md-1"></div>
 							<div class="col-md-2">
@@ -231,6 +231,12 @@
 						</div>
 					</div>
 				</div>
+			</div>
+			<div class="hideElements">
+				<input type="hidden" id="teamMappingID"/>
+				<input type="hidden" id="roleMappingID"/>
+				<input type="hidden" id="roleID"/>
+				<input type="hidden" id="countryMappingID"/>
 			</div>
 		</form>
 	</div>

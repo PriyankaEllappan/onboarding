@@ -4,6 +4,7 @@
 package com.cts.nw.onboarding.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.cts.nw.onboarding.bo.EmployeeCompleteProjectInfo;
 import com.cts.nw.onboarding.bo.EmployeeMaster;
@@ -15,6 +16,7 @@ import com.cts.nw.onboarding.service.RequesterService;
  * @author 656579
  *
  */
+@Service
 public class RequesterServiceImpl implements RequesterService {
 
 	@Autowired

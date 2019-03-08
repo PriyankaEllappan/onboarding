@@ -1,6 +1,5 @@
 var teamHierarchy = {}
 var countryHierarchy = {}
-var roles = {}
 var roleMappings = {}
 
 $(document).ready(function() {
@@ -60,6 +59,7 @@ function loadLocDetails() {
 	var selectedCountry = $('#country').val();
 	$.each(countryHierarchy, function(key, value) {
 		if (selectedCountry == value.countryName) {
+			$('#countryMappingID').val(value.countryMappingID);
 			$('#location').val(value.locationName);
 		}
 	});
@@ -87,6 +87,7 @@ function loadProjDetails() {
 	var selectedTeam = $('#teamName').val();
 	$.each(teamHierarchy, function(key, value) {
 		if (selectedTeam == value.teamName) {
+			$('#teamMappingID').val(value.teamMapID);
 			$('#projectID').val(value.projectID);
 			$('#projectName').val(value.projectName);
 			$('#requester').val(value.requesterName);
@@ -103,10 +104,13 @@ function loadAllRoles(){
 		url : "/onboarding/roles/getAllRoles" ,
 		dataType : "text",
 		success : function(resultData) {
-			roles = JSON.parse(resultData);
+			var roles = JSON.parse(resultData);
 			console.log(roles);
 			$.each(roles, function(key,value) {   
-			    
+				$('#role')
+		         .append($("<option></option>")
+		                    .attr("value",value.id)
+		                    .text(value.role)); 
 			});
 		}
 	});
@@ -120,9 +124,19 @@ function loadRoleMappings(){
 		success : function(resultData) {
 			roleMappings = JSON.parse(resultData);
 			console.log(roleMappings);
-			$.each(roleMappings, function(key,value) {   
-			    
-			});
+		}
+	});
+}
+
+
+function loadRateDetails(){
+	var selectedRoleID = $('#role').val();
+	var selectedCountryMapID = $('#countryMappingID').val();
+	alert(selectedRoleID);
+	alert(selectedCountryMapID);
+	$.each(roleMappings, function(key,value) {   
+		if (selectedRoleID == value.roleId && selectedCountryMapID == value.countryMappingID) {
+			$('#rate').val(value.rateValue);
 		}
 	});
 }
