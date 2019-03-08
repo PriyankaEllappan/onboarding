@@ -69,22 +69,18 @@ public class RequesterController {
 	 * @return
 	 */
 	@PostMapping(value = "/request/addResource", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public @ResponseBody JsonEmployeeMasterResponse createUser(@RequestBody EmployeeMaster employeeJson) {
-		JsonEmployeeMasterResponse jsonResponse = null;
-		try{
-			Integer rowsAffected;
+	public @ResponseBody EmployeeMaster createUser(@RequestBody EmployeeMaster employeeJson) {
+		Integer rowsAffected = 0;
+		try {
 			rowsAffected = employeeMasterDAO.addEmployeeMaster(employeeJson);
-			rowsAffected = 0;
-			if( rowsAffected > 0){
-				jsonResponse = new JsonEmployeeMasterResponse();
-				jsonResponse.setEmployeeMaster(employeeJson);
-				jsonResponse.setStatus(true);
-				jsonResponse.setStatusMessage("Employee details saved successfully");
+			if (rowsAffected > 0) {
+				return employeeJson;
 			}
-		}catch(Exception e){
+			return null;
+		} catch (Exception e) {
 			e.printStackTrace();
+			return null;
 		}
-		return jsonResponse;
 	}
 	
 	/**

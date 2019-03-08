@@ -62,6 +62,7 @@ $(document).ready(function() {
 				data : JSON.stringify(jsonStr),
 				contentType : 'application/json; charset=utf-8',
 				success : function(resultData) {
+					console.log(resultData);
 					if (!$.trim(resultData)) {
 						$('#resourceNonAvailable').removeClass('showElements');
 						$('#resourceNonAvailable').addClass('hideElements');
