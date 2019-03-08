@@ -1,6 +1,7 @@
 var teamHierarchy = {}
 var countryHierarchy = {}
 var roleMappings = {}
+var jsonRequest = {}
 
 $(document).ready(function() {
 	document.getElementById("defaultOpen").click();
@@ -136,7 +137,53 @@ function loadRateDetails(){
 	alert(selectedCountryMapID);
 	$.each(roleMappings, function(key,value) {   
 		if (selectedRoleID == value.roleId && selectedCountryMapID == value.countryMappingID) {
+			$('#roleMappingID').val(value.roleMappingID);
 			$('#rate').val(value.rateValue);
 		}
 	});
+}
+
+/* Project Register Submit */
+$(function() {
+	$('#projectRegisterFormSubmit').click(function(e) {
+		e.preventDefault();
+		setRequestParams();
+		$.post({
+			url : '/onboarding/request/addproject',
+			type : 'POST',
+			dataType : 'json',
+			data : JSON.stringify(jsonStr),
+			contentType : 'application/json; charset=utf-8',
+			success : function(resultData) {
+				console.log(resultData);
+				if (!$.trim(resultData)) {
+					/*$('#resourceNonAvailable').removeClass('showElements');
+					$('#resourceNonAvailable').addClass('hideElements');
+					$('#registerStatus').text("Resource Not Registered");
+					$('#registerStatus').addClass('showElements');*/
+				} else {
+					/*$('#resourceNonAvailable').removeClass('showElements');
+					$('#resourceNonAvailable').addClass('hideElements');
+					$('#registerStatus').text("Resource Registered");
+					$('#registerStatus').addClass('showElements');*/
+				}
+			},
+			error : function() {
+				/*$('#resourceNonAvailable').removeClass('showElements');
+				$('#resourceNonAvailable').addClass('hideElements');
+				$('#registerStatus').text("Resource Not Registered");
+				$('#registerStatus').addClass('showElements');*/
+			}
+		})
+	});
+});
+
+function setRequestParams(){
+	jsonStr["employeeID"] = $('#newEmpID').val();
+	jsonStr["team"] = $('#teamMappingID').val();
+	jsonStr["role"] = $('#roleMappingID').val();
+	jsonStr["country"] = $('#countryMappingID').val();
+	jsonStr["startDate"] = $('#startDate').val();
+	jsonStr["approvalStatus"] = $('#approvalStatus').val();
+	jsonStr["releaseStatus"] = $('#releaseStatus').val();
 }

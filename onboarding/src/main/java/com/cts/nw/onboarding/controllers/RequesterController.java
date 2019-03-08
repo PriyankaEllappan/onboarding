@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cts.nw.onboarding.bo.EmployeeCompleteProjectInfo;
 import com.cts.nw.onboarding.bo.EmployeeMaster;
+import com.cts.nw.onboarding.bo.EmployeeProjectInfo;
 import com.cts.nw.onboarding.service.RequesterService;
 
 /**
@@ -72,12 +73,26 @@ public class RequesterController {
 	 * @return
 	 */
 	@RequestMapping(value = "/request/mapproject/{empid}", method = RequestMethod.GET)
-	public String generateAddProjForm(@ModelAttribute("employee") EmployeeCompleteProjectInfo employee,
+	public String generateAddProjForm(@ModelAttribute("employee") EmployeeMaster employee,
 			@PathVariable int empid, ModelMap model) {
 		try {
 			requesterService.populateRequesterForm(employee, empid);
 			model.addAttribute("employee", employee);
 			return "request/mapNewProject";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	/**
+	 * @param employeeJson
+	 * @return
+	 */
+	@PostMapping(value = "/request/addproject", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public @ResponseBody EmployeeProjectInfo assignProject(@RequestBody EmployeeProjectInfo employeeProjJson) {
+		try {
+			return requesterService.addNewProject(employeeProjJson);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

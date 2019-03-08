@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.cts.nw.onboarding.bo.EmployeeCompleteProjectInfo;
 import com.cts.nw.onboarding.bo.EmployeeMaster;
+import com.cts.nw.onboarding.bo.EmployeeProjectInfo;
 import com.cts.nw.onboarding.dao.EmployeeMasterDAO;
 import com.cts.nw.onboarding.dao.EmployeeProjectInfoDAO;
 import com.cts.nw.onboarding.service.RequesterService;
@@ -43,17 +44,32 @@ public class RequesterServiceImpl implements RequesterService {
 		return null;
 	}
 
-	@Override
-	public EmployeeCompleteProjectInfo populateRequesterForm(EmployeeCompleteProjectInfo employee, int empid) {
-		EmployeeMaster emp = employeeMasterDAO.getEmployeeMasterDetailsByID(empid);
+	/*@Override
+	public EmployeeCompleteProjectInfo populateRequesterForm(EmployeeMaster employee, int empid) {*/
+		
+		/*EmployeeMaster emp = employeeMasterDAO.getEmployeeMasterDetailsByID(empid);
 		employee.setEmployeeID(emp.getID());
 		employee.setName(emp.getName());
 		employee.setFirstName(emp.getFirstName());
 		employee.setLastName(emp.getLastName());
 		employee.setPassportNumber(emp.getPassportNumber());
 		employee.setEmail(emp.getEmail());
-		employee.setDOB(emp.getDOB());
+		employee.setDOB(emp.getDOB());*/
+	
+	@Override
+	public EmployeeMaster populateRequesterForm(EmployeeMaster employee, int empid) {
+	employee = employeeMasterDAO.getEmployeeMasterDetailsByID(empid);
 		return employee;
+	}
+
+	@Override
+	public EmployeeProjectInfo addNewProject(EmployeeProjectInfo employeeProjJson) {
+		Integer rowsAffected = 0;
+		rowsAffected = employeeProjectInfoDAO.addEmployeeProjectInfo(employeeProjJson);
+		if (rowsAffected > 0) {
+			return employeeProjJson;
+		}
+		return null;
 	}
 
 	

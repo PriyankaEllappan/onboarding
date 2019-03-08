@@ -237,6 +237,8 @@
 				<input type="hidden" id="roleMappingID"/>
 				<input type="hidden" id="roleID"/>
 				<input type="hidden" id="countryMappingID"/>
+				<input type="hidden" id="approvalStatus" value=""/>
+				<input type="hidden" id="releaseStatus" value=""/>
 			</div>
 		</form>
 	</div>
