@@ -6,7 +6,6 @@ package com.cts.nw.onboarding.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,9 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cts.nw.onboarding.bo.EmployeeCompleteProjectInfo;
 import com.cts.nw.onboarding.bo.EmployeeMaster;
-import com.cts.nw.onboarding.bo.EmployeeProjectInfo;
-import com.cts.nw.onboarding.dao.EmployeeMasterDAO;
-import com.cts.nw.onboarding.dao.EmployeeProjectInfoDAO;
+import com.cts.nw.onboarding.service.RequesterService;
 
 /**
  * @author 656579
@@ -30,10 +27,7 @@ import com.cts.nw.onboarding.dao.EmployeeProjectInfoDAO;
 public class RequesterController {
 
 	@Autowired
-	private EmployeeMasterDAO employeeMasterDAO;
-	
-	@Autowired
-	EmployeeProjectInfoDAO employeeProjectInfoDAO; 
+	RequesterService requesterService;
 	
 	/**
 	 * @param model
@@ -44,25 +38,20 @@ public class RequesterController {
 		return "request/checkResourceAvailability";
 	}
 	
-	
 	/**
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value = "/request/check/{empid}", method = RequestMethod.GET)
-	public @ResponseBody EmployeeMaster employeeAvailability(Model model,@PathVariable String empid) {
-		Integer employeeId;
+	public @ResponseBody EmployeeMaster employeeAvailability(@PathVariable String empid) {
 		EmployeeMaster employee = null;
 		try {
-			employeeId = Integer.parseInt(empid);
-			System.out.println("Employee to be found:" + employeeId);
-			return employeeMasterDAO.getEmployeeMasterDetailsByID(employeeId);
+			return requesterService.checkEmployeeAvailability(empid);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return employee;
 	}
-	
 	
 	/**
 	 * @param employeeJson
@@ -70,13 +59,8 @@ public class RequesterController {
 	 */
 	@PostMapping(value = "/request/addresource", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public @ResponseBody EmployeeMaster createUser(@RequestBody EmployeeMaster employeeJson) {
-		Integer rowsAffected = 0;
 		try {
-			rowsAffected = employeeMasterDAO.addEmployeeMaster(employeeJson);
-			if (rowsAffected > 0) {
-				return employeeJson;
-			}
-			return null;
+			return requesterService.addNewResource(employeeJson);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -88,103 +72,16 @@ public class RequesterController {
 	 * @return
 	 */
 	@RequestMapping(value = "/request/mapproject/{empid}", method = RequestMethod.GET)
-	public String generateAddProjForm(@ModelAttribute("employee") EmployeeCompleteProjectInfo employee,@PathVariable int empid,ModelMap model) {
-		System.out.println("In----:" + empid);
-		generateRequesterViewValue(empid,employee);
-		model.addAttribute("employee",employee);
-		/*return new ModelAndView("request/mapNewProject", "employee", employee);*/
-		return "request/mapNewProject";
-	}
-
-
-	/**
-	 * @param empid
-	 * @param employee 
-	 */
-	private void generateRequesterViewValue(int empid, EmployeeCompleteProjectInfo employee) {
-		EmployeeMaster emp = employeeMasterDAO.getEmployeeMasterDetailsByID(empid);
-		employee.setEmployeeID(emp.getID());
-		employee.setName(emp.getName());
-		employee.setFirstName(emp.getFirstName());
-		employee.setLastName(emp.getLastName());
-		employee.setPassportNumber(emp.getPassportNumber());
-		employee.setEmail(emp.getEmail());
-		employee.setDOB(emp.getDOB());
-	}
-	
-	/**
-	 * @param employeeJson
-	 * @return
-	 *//*
-	@PostMapping(value = "/request/mapProject", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public @ResponseBody String addProject(@RequestBody EmployeeCompleteProjectInfo employeeCompDetails) {
-		String message = "";
+	public String generateAddProjForm(@ModelAttribute("employee") EmployeeCompleteProjectInfo employee,
+			@PathVariable int empid, ModelMap model) {
 		try {
-			EmployeeProjectInfo employeeProjectInfo = new EmployeeProjectInfo();
-			Integer rowsAffected;
-			//prepareEmpProjValues(employeeProjectInfo,employeeCompDetails);
-			
-			employeeProjectInfo.setId(3);
-			employeeProjectInfo.setEmployeeID(616550);
-			employeeProjectInfo.setTeam(1);
-			employeeProjectInfo.setRole(1);
-			employeeProjectInfo.setCountry(1);
-			employeeProjectInfo.setStartDate(DateConversionUtil.convertStringToDate("yyyy-MM-dd", "1991-10-06"));
-
-			employeeProjectInfo.setNatiowideID(null);
-			employeeProjectInfo.setNationwideidCreatedDate(null);
-			employeeProjectInfo.setFgOnboardingDate(null);
-			employeeProjectInfo.setMovementID(null);
-			employeeProjectInfo.setWorkforceID(null);
-
-			employeeProjectInfo.setAttachmentID(1);
-			employeeProjectInfo.setComments("616550 comments");
-			employeeProjectInfo.setSkillSet("full stack dev");
-			employeeProjectInfo.setSkillSummary("java & web");
-			employeeProjectInfo.setApprovalStatus(1);
-			employeeProjectInfo.setReleaseStatus(1);
-
-			employeeProjectInfo.setReleaseDate(null);
-			employeeProjectInfo.setReasonForOffboarding(null);
-
-			rowsAffected = employeeProjectInfoDAO.addEmployeeProjectInfo(employeeProjectInfo);
-			if (rowsAffected > 0) {
-				message = "Project details saved successfully";
-			}
-			return message;
-		}catch(Exception e){
-			message = "Error in iserting Project Details";
-			return message;
+			requesterService.populateRequesterForm(employee, empid);
+			model.addAttribute("employee", employee);
+			return "request/mapNewProject";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
 		}
 	}
-*/
-
-	/**
-	 * @param employeeProjectInfo
-	 * @param employeeCompDetails
-	 */
-	private void prepareEmpProjValues(EmployeeProjectInfo employeeProjectInfo, EmployeeCompleteProjectInfo employeeCompDetails) {
-		/*employeeProjectInfo.setEmployeeID();
-		employeeProjectInfo.setId();
-		employeeProjectInfo.setEmployeeID();
-		employeeProjectInfo.setTeam();
-		employeeProjectInfo.setRole();
-		employeeProjectInfo.setCountry();
-		employeeProjectInfo.setStartDate();
-		employeeProjectInfo.setNatiowideID();
-		employeeProjectInfo.setNationwideidCreatedDate();
-		employeeProjectInfo.setFgOnboardingDate();
-		employeeProjectInfo.setMovementID();
-		employeeProjectInfo.setWorkforceID();
-		employeeProjectInfo.setAttachmentID();
-		employeeProjectInfo.setComments();
-		employeeProjectInfo.setSkillSet();
-		employeeProjectInfo.setSkillSummary();
-		employeeProjectInfo.setApprovalStatus();
-		employeeProjectInfo.setReleaseStatus();
-		employeeProjectInfo.setReleaseDate();
-		employeeProjectInfo.setReasonForOffboarding();*/
-	}
-	
 	
 }
