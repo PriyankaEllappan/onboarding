@@ -1,6 +1,5 @@
 package com.cts.nw.onboarding.bo;
 
-import java.util.Arrays;
 import java.util.Date;
 
 import org.springframework.stereotype.Component;
@@ -10,30 +9,17 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Component
 public class EmployeeCompleteProjectInfo {
 
-	/*
-	 * table employeeprojectinfo fields 
-	 */
-	private Integer id;
-	private Integer employeeID;
-	private Integer team;
-	private Integer role;
-	private Integer country;
-	private Date startDate;
-	private String natiowideID;
-	private Date nationwideidCreatedDate;
-	private Date fgOnboardingDate;
-	private Integer movementID;
-	private String workforceID;
-	private Integer attachmentID;
-	private String comments;
-	private String skillSet;
-	private String skillSummary;
-	private Integer approvalStatus;
-	private Integer releaseStatus;
-	private Date releaseDate;
-	private Integer reasonForOffboarding;
 	
-	/*Employee Master*/
+	/*
+	 * table employeemaster fields 
+	 */
+	private Integer employeeMasterID;
+	/*
+	 * private String employeeMasterName; private String employeeMasterFirstName;
+	 * private String employeeMasterLastName; private String
+	 * employeeMasterPassportNumber; private String employeeMasterEmail;
+	 */
+	
 	private String name;
 	private String firstName;
 	private String lastName;
@@ -44,9 +30,94 @@ public class EmployeeCompleteProjectInfo {
 	private Date DOB;
 	
 	/*
+	 * table projectinfo fields 
+	 */
+	
+	private Integer projectInfoProjectID;
+	private String projectInfoProjectName;
+	
+	/*
+	 * table requesters fields 
+	 */	
+	
+	private Integer requestersRequesterID;
+	private String requestersRequesterName;
+	
+	/*
+	 * table processors fields 
+	 */	
+	private Integer processorsProcessorID;
+	private String processorsProcessorName;
+	
+	/*
+	 * table BSAInfo fields 
+	 */	
+	
+	private Integer BSAInfoID;
+	private String BSAInfoName;
+	
+	/*
+	 * table PPLInfo fields 
+	 */	
+	private Integer PPLInfoID;
+	private String PPLInfoName;
+	
+	/*
+	 * table teamMapping fields 
+	 */	
+	private Integer teamMappingID;
+	private Integer teamMappingProjectMapID ;
+	private Integer teamMappingTeamID ;
+	private Integer teamMappingPPLMapID;
+	private String teamMappingStatus;
+	
+	/*
+	 * table roleMapping fields 
+	 */	
+	
+	private Integer roleMappingID ;
+	private Integer roleMappingRoleID;
+	private Integer roleMappingRateID;
+    
+    
+	/*
+	 * table countryMapping fields 
+	 */	
+	
+	private Integer  countryMappingID;
+	private Integer countryMappingCountryID;
+	private Integer countryMappingLocationID;
+	
+	/*
+	 * table employeeprojectinfo fields 
+	 */
+	private Integer id;
+	private Integer employeeID;
+	private Integer team;
+	private Integer role;
+	private Integer country;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	private Date startDate;
+	private String natiowideID;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	private Date nationwideidCreatedDate;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	private Date fgOnboardingDate;
+	private Integer movementID;
+	private String workforceID;
+	private Integer attachmentID;
+	private String comments;
+	private String skillSet;
+	private String skillSummary;
+	private Integer approvalStatus;
+	private Integer releaseStatus;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	private Date releaseDate;
+	private Integer reasonForOffboarding;
+
+	/*
 	 * table APPROVALSTATUS fields
 	 */
-
 
 	private Integer approvalStatusID;
 	private String approvalStatusMessage;
@@ -61,7 +132,7 @@ public class EmployeeCompleteProjectInfo {
 	 * table releaseSummary fields
 	 */
 	private Integer releaseSummaryID;
-	private String releaseSummary;
+	private String releaseSummaryName;
 
 	/*
 	 * table roles fields
@@ -110,7 +181,8 @@ public class EmployeeCompleteProjectInfo {
 
 	private Integer countryID;
 	private String countryName;
-
+	
+	
 	/**
 	 * @return the id
 	 */
@@ -470,20 +542,7 @@ public class EmployeeCompleteProjectInfo {
 		this.releaseSummaryID = releaseSummaryID;
 	}
 
-	/**
-	 * @return the releaseSummary
-	 */
-	public String getReleaseSummary() {
-		return releaseSummary;
-	}
 
-	/**
-	 * @param releaseSummary
-	 *            the releaseSummary to set
-	 */
-	public void setReleaseSummary(String releaseSummary) {
-		this.releaseSummary = releaseSummary;
-	}
 
 	/**
 	 * @return the roleID
@@ -756,6 +815,331 @@ public class EmployeeCompleteProjectInfo {
 	}
 
 	/**
+	 * @return the employeeMasterID
+	 */
+	public Integer getEmployeeMasterID() {
+		return employeeMasterID;
+	}
+
+	/**
+	 * @param employeeMasterID the employeeMasterID to set
+	 */
+	public void setEmployeeMasterID(Integer employeeMasterID) {
+		this.employeeMasterID = employeeMasterID;
+	}
+
+
+
+
+	/**
+	 * @return the projectInfoProjectID
+	 */
+	public Integer getProjectInfoProjectID() {
+		return projectInfoProjectID;
+	}
+
+	/**
+	 * @param projectInfoProjectID the projectInfoProjectID to set
+	 */
+	public void setProjectInfoProjectID(Integer projectInfoProjectID) {
+		this.projectInfoProjectID = projectInfoProjectID;
+	}
+
+	/**
+	 * @return the projectInfoProjectName
+	 */
+	public String getProjectInfoProjectName() {
+		return projectInfoProjectName;
+	}
+
+	/**
+	 * @param projectInfoProjectName the projectInfoProjectName to set
+	 */
+	public void setProjectInfoProjectName(String projectInfoProjectName) {
+		this.projectInfoProjectName = projectInfoProjectName;
+	}
+
+	/**
+	 * @return the requestersRequesterID
+	 */
+	public Integer getRequestersRequesterID() {
+		return requestersRequesterID;
+	}
+
+	/**
+	 * @param requestersRequesterID the requestersRequesterID to set
+	 */
+	public void setRequestersRequesterID(Integer requestersRequesterID) {
+		this.requestersRequesterID = requestersRequesterID;
+	}
+
+	/**
+	 * @return the requestersRequesterName
+	 */
+	public String getRequestersRequesterName() {
+		return requestersRequesterName;
+	}
+
+	/**
+	 * @param requestersRequesterName the requestersRequesterName to set
+	 */
+	public void setRequestersRequesterName(String requestersRequesterName) {
+		this.requestersRequesterName = requestersRequesterName;
+	}
+
+	/**
+	 * @return the processorsProcessorID
+	 */
+	public Integer getProcessorsProcessorID() {
+		return processorsProcessorID;
+	}
+
+	/**
+	 * @param processorsProcessorID the processorsProcessorID to set
+	 */
+	public void setProcessorsProcessorID(Integer processorsProcessorID) {
+		this.processorsProcessorID = processorsProcessorID;
+	}
+
+	/**
+	 * @return the processorsProcessorName
+	 */
+	public String getProcessorsProcessorName() {
+		return processorsProcessorName;
+	}
+
+	/**
+	 * @param processorsProcessorName the processorsProcessorName to set
+	 */
+	public void setProcessorsProcessorName(String processorsProcessorName) {
+		this.processorsProcessorName = processorsProcessorName;
+	}
+
+	/**
+	 * @return the bSAInfoID
+	 */
+	public Integer getBSAInfoID() {
+		return BSAInfoID;
+	}
+
+	/**
+	 * @param bSAInfoID the bSAInfoID to set
+	 */
+	public void setBSAInfoID(Integer bSAInfoID) {
+		BSAInfoID = bSAInfoID;
+	}
+
+	/**
+	 * @return the bSAInfoName
+	 */
+	public String getBSAInfoName() {
+		return BSAInfoName;
+	}
+
+	/**
+	 * @param bSAInfoName the bSAInfoName to set
+	 */
+	public void setBSAInfoName(String bSAInfoName) {
+		BSAInfoName = bSAInfoName;
+	}
+
+	/**
+	 * @return the pPLInfoID
+	 */
+	public Integer getPPLInfoID() {
+		return PPLInfoID;
+	}
+
+	/**
+	 * @param pPLInfoID the pPLInfoID to set
+	 */
+	public void setPPLInfoID(Integer pPLInfoID) {
+		PPLInfoID = pPLInfoID;
+	}
+
+	/**
+	 * @return the pPLInfoName
+	 */
+	public String getPPLInfoName() {
+		return PPLInfoName;
+	}
+
+	/**
+	 * @param pPLInfoName the pPLInfoName to set
+	 */
+	public void setPPLInfoName(String pPLInfoName) {
+		PPLInfoName = pPLInfoName;
+	}
+
+	/**
+	 * @return the teamMappingID
+	 */
+	public Integer getTeamMappingID() {
+		return teamMappingID;
+	}
+
+	/**
+	 * @param teamMappingID the teamMappingID to set
+	 */
+	public void setTeamMappingID(Integer teamMappingID) {
+		this.teamMappingID = teamMappingID;
+	}
+
+	/**
+	 * @return the teamMappingProjectMapID
+	 */
+	public Integer getTeamMappingProjectMapID() {
+		return teamMappingProjectMapID;
+	}
+
+	/**
+	 * @param teamMappingProjectMapID the teamMappingProjectMapID to set
+	 */
+	public void setTeamMappingProjectMapID(Integer teamMappingProjectMapID) {
+		this.teamMappingProjectMapID = teamMappingProjectMapID;
+	}
+
+	/**
+	 * @return the teamMappingTeamID
+	 */
+	public Integer getTeamMappingTeamID() {
+		return teamMappingTeamID;
+	}
+
+	/**
+	 * @param teamMappingTeamID the teamMappingTeamID to set
+	 */
+	public void setTeamMappingTeamID(Integer teamMappingTeamID) {
+		this.teamMappingTeamID = teamMappingTeamID;
+	}
+
+	/**
+	 * @return the teamMappingPPLMapID
+	 */
+	public Integer getTeamMappingPPLMapID() {
+		return teamMappingPPLMapID;
+	}
+
+	/**
+	 * @param teamMappingPPLMapID the teamMappingPPLMapID to set
+	 */
+	public void setTeamMappingPPLMapID(Integer teamMappingPPLMapID) {
+		this.teamMappingPPLMapID = teamMappingPPLMapID;
+	}
+
+	/**
+	 * @return the teamMappingStatus
+	 */
+	public String getTeamMappingStatus() {
+		return teamMappingStatus;
+	}
+
+	/**
+	 * @param teamMappingStatus the teamMappingStatus to set
+	 */
+	public void setTeamMappingStatus(String teamMappingStatus) {
+		this.teamMappingStatus = teamMappingStatus;
+	}
+
+	/**
+	 * @return the countryMappingID
+	 */
+	public Integer getCountryMappingID() {
+		return countryMappingID;
+	}
+
+	/**
+	 * @param countryMappingID the countryMappingID to set
+	 */
+	public void setCountryMappingID(Integer countryMappingID) {
+		this.countryMappingID = countryMappingID;
+	}
+
+	/**
+	 * @return the countryMappingCountryID
+	 */
+	public Integer getCountryMappingCountryID() {
+		return countryMappingCountryID;
+	}
+
+	/**
+	 * @param countryMappingCountryID the countryMappingCountryID to set
+	 */
+	public void setCountryMappingCountryID(Integer countryMappingCountryID) {
+		this.countryMappingCountryID = countryMappingCountryID;
+	}
+
+	/**
+	 * @return the countryMappingLocationID
+	 */
+	public Integer getCountryMappingLocationID() {
+		return countryMappingLocationID;
+	}
+
+	/**
+	 * @param countryMappingLocationID the countryMappingLocationID to set
+	 */
+	public void setCountryMappingLocationID(Integer countryMappingLocationID) {
+		this.countryMappingLocationID = countryMappingLocationID;
+	}
+
+	/**
+	 * @return the roleMappingID
+	 */
+	public Integer getRoleMappingID() {
+		return roleMappingID;
+	}
+
+	/**
+	 * @param roleMappingID the roleMappingID to set
+	 */
+	public void setRoleMappingID(Integer roleMappingID) {
+		this.roleMappingID = roleMappingID;
+	}
+
+	/**
+	 * @return the roleMappingRoleID
+	 */
+	public Integer getRoleMappingRoleID() {
+		return roleMappingRoleID;
+	}
+
+	/**
+	 * @param roleMappingRoleID the roleMappingRoleID to set
+	 */
+	public void setRoleMappingRoleID(Integer roleMappingRoleID) {
+		this.roleMappingRoleID = roleMappingRoleID;
+	}
+
+	/**
+	 * @return the roleMappingRateID
+	 */
+	public Integer getRoleMappingRateID() {
+		return roleMappingRateID;
+	}
+
+	/**
+	 * @param roleMappingRateID the roleMappingRateID to set
+	 */
+	public void setRoleMappingRateID(Integer roleMappingRateID) {
+		this.roleMappingRateID = roleMappingRateID;
+	}
+
+	/**
+	 * @return the releaseSummaryName
+	 */
+	public String getReleaseSummaryName() {
+		return releaseSummaryName;
+	}
+
+	/**
+	 * @param releaseSummaryName the releaseSummaryName to set
+	 */
+	public void setReleaseSummaryName(String releaseSummaryName) {
+		this.releaseSummaryName = releaseSummaryName;
+	}
+
+	/**
 	 * @return the name
 	 */
 	public String getName() {
@@ -824,7 +1208,7 @@ public class EmployeeCompleteProjectInfo {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 	/**
 	 * @return the dOB
 	 */
@@ -839,55 +1223,11 @@ public class EmployeeCompleteProjectInfo {
 		DOB = dOB;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "EmployeeCompleteProjectInfo [id=" + id + ", employeeID=" + employeeID + ", team=" + team + ", role="
-				+ role + ", country=" + country + ", startDate=" + startDate + ", natiowideID=" + natiowideID
-				+ ", nationwideidCreatedDate=" + nationwideidCreatedDate + ", fgOnboardingDate=" + fgOnboardingDate
-				+ ", movementID=" + movementID + ", workforceID=" + workforceID + ", attachmentID=" + attachmentID
-				+ ", comments=" + comments + ", skillSet=" + skillSet + ", skillSummary=" + skillSummary
-				+ ", approvalStatus=" + approvalStatus + ", releaseStatus=" + releaseStatus + ", releaseDate="
-				+ releaseDate + ", reasonForOffboarding=" + reasonForOffboarding + ", name=" + name + ", firstName="
-				+ firstName + ", lastName=" + lastName + ", passportNumber=" + passportNumber + ", email=" + email
-				+ ", approvalStatusID=" + approvalStatusID + ", approvalStatusMessage=" + approvalStatusMessage
-				+ ", releaseStatusID=" + releaseStatusID + ", releaseStatusStatus=" + releaseStatusStatus
-				+ ", releaseSummaryID=" + releaseSummaryID + ", releaseSummary=" + releaseSummary + ", roleID=" + roleID
-				+ ", roleName=" + roleName + ", rateID=" + rateID + ", rateName=" + rateName + ", mailAttachmentid="
-				+ mailAttachmentid + ", mailAttachmentFilename=" + mailAttachmentFilename + ", mailAttachmentFiledata="
-				+ Arrays.toString(mailAttachmentFiledata) + ", projectMappingID=" + projectMappingID
-				+ ", projectMappingProjectID=" + projectMappingProjectID + ", projectMappingProcessorID="
-				+ projectMappingProcessorID + ", projectMappingRequesterID=" + projectMappingRequesterID
-				+ ", projectMappingStatus=" + projectMappingStatus + ", locationID=" + locationID + ", locationName="
-				+ locationName + ", teamid=" + teamid + ", teamName=" + teamName + ", countryID=" + countryID
-				+ ", countryName=" + countryName + ", getId()=" + getId() + ", getEmployeeID()=" + getEmployeeID()
-				+ ", getTeam()=" + getTeam() + ", getRole()=" + getRole() + ", getCountry()=" + getCountry()
-				+ ", getStartDate()=" + getStartDate() + ", getNatiowideID()=" + getNatiowideID()
-				+ ", getNationwideidCreatedDate()=" + getNationwideidCreatedDate() + ", getFgOnboardingDate()="
-				+ getFgOnboardingDate() + ", getMovementID()=" + getMovementID() + ", getWorkforceID()="
-				+ getWorkforceID() + ", getAttachmentID()=" + getAttachmentID() + ", getComments()=" + getComments()
-				+ ", getSkillSet()=" + getSkillSet() + ", getSkillSummary()=" + getSkillSummary()
-				+ ", getApprovalStatus()=" + getApprovalStatus() + ", getReleaseStatus()=" + getReleaseStatus()
-				+ ", getReleaseDate()=" + getReleaseDate() + ", getReasonForOffboarding()=" + getReasonForOffboarding()
-				+ ", getApprovalStatusID()=" + getApprovalStatusID() + ", getApprovalStatusMessage()="
-				+ getApprovalStatusMessage() + ", getReleaseStatusID()=" + getReleaseStatusID()
-				+ ", getReleaseStatusStatus()=" + getReleaseStatusStatus() + ", getReleaseSummaryID()="
-				+ getReleaseSummaryID() + ", getReleaseSummary()=" + getReleaseSummary() + ", getRoleID()="
-				+ getRoleID() + ", getRoleName()=" + getRoleName() + ", getRateID()=" + getRateID() + ", getRateName()="
-				+ getRateName() + ", getMailAttachmentid()=" + getMailAttachmentid() + ", getMailAttachmentFilename()="
-				+ getMailAttachmentFilename() + ", getMailAttachmentFiledata()="
-				+ Arrays.toString(getMailAttachmentFiledata()) + ", getProjectMappingID()=" + getProjectMappingID()
-				+ ", getProjectMappingProjectID()=" + getProjectMappingProjectID() + ", getProjectMappingProcessorID()="
-				+ getProjectMappingProcessorID() + ", getProjectMappingRequesterID()=" + getProjectMappingRequesterID()
-				+ ", getProjectMappingStatus()=" + getProjectMappingStatus() + ", getLocationID()=" + getLocationID()
-				+ ", getLocationName()=" + getLocationName() + ", getTeamid()=" + getTeamid() + ", getTeamName()="
-				+ getTeamName() + ", getCountryID()=" + getCountryID() + ", getCountryName()=" + getCountryName()
-				+ ", getName()=" + getName() + ", getFirstName()=" + getFirstName() + ", getLastName()=" + getLastName()
-				+ ", getPassportNumber()=" + getPassportNumber() + ", getEmail()=" + getEmail() + ", getClass()="
-				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
-	}
+
+	
+	
+
+
 	
 	
 
