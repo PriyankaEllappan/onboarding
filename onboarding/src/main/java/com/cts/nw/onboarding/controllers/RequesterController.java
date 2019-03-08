@@ -34,6 +34,7 @@ public class RequesterController {
 	
 	@Autowired
 	EmployeeProjectInfoDAO employeeProjectInfoDAO; 
+	
 	/**
 	 * @param model
 	 * @return
@@ -87,9 +88,18 @@ public class RequesterController {
 	}
 	
 	/**
-	 * @param employeeJson
+	 * @param model
 	 * @return
 	 */
+	@RequestMapping(value = "/request/mapProject", method = RequestMethod.GET)
+	public String generateAddProjForm() {
+		return "request/mapNewProject";
+	}
+	
+	/**
+	 * @param employeeJson
+	 * @return
+	 *//*
 	@PostMapping(value = "/request/mapProject", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public @ResponseBody String addProject(@RequestBody EmployeeCompleteProjectInfo employeeCompDetails) {
 		String message = "";
@@ -131,7 +141,7 @@ public class RequesterController {
 			return message;
 		}
 	}
-
+*/
 
 	/**
 	 * @param employeeProjectInfo
