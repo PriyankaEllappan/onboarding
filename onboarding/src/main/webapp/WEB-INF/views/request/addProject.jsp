@@ -1,12 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+	pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Resource Availability</title>
+<!-- Load Sytle Sheets -->
+<link rel="stylesheet"
+	href="/onboarding/resources/stylesheets/bootstrap.min.css">
+<link rel="stylesheet"
+	href="/onboarding/resources/stylesheets/bootstrap-datepicker.min.css">
+<link rel="stylesheet"
+	href="/onboarding/resources/stylesheets/application.css">
+<script src="/onboarding/resources/scripts/jquery.min.js"></script>
+<script src="/onboarding/resources/scripts/bootstrap-datepicker.min.js"></script>
+<script src="/onboarding/resources/scripts/bootstrap.min.js"></script>
+<script src="/onboarding/resources/scripts/requester.js"></script>
 </head>
 <body>
-
+	<jsp:include page="../layouts/header.jsp" />
+	<div class="container-fluid content-style">
+	<h1>Assign a project</h1>
+	</div>
+	<jsp:include page="../layouts/footer.jsp" />
 </body>
 </html>

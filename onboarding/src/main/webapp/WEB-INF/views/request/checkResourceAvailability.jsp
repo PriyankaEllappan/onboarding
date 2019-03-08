@@ -26,6 +26,7 @@
 	<br>
 	<br>
 	<br>
+	<span id="registerStatus" class="hideElements"></span>
 	<div id="resourceNonAvailable" class="hideElements">
 		<p>Requested resource is not available in Nationwide Account</p>
 		<div id="addResourceLabel">
@@ -33,7 +34,7 @@
 		</div>
 		<br>
 		<div id="toggleResource" class="hideElements">
-			<form name="resourceRegisterForm">
+			<form name="resourceRegisterForm" method="post">
 				<div class="form-group">
 					<div class="row">
 						<div class="col-md-2">
@@ -120,9 +121,9 @@
 					<div class="row">
 						<br /> <br />
 						<div class="col-md-10" style="text-align: center">
-							<button class="btn btn-info" onclick="registerEmployee()">
+							<button class="btn btn-info" id="resourceRegisterFormSubmit">
 								Submit</button>
-							<input class="btn btn-info" type="reset" value="Cancel" />
+							<input class="btn btn-info" id="resourceRegisterFormReset" type="reset" value="Cancel" />
 						</div>
 					</div>
 				</div>

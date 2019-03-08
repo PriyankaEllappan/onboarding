@@ -4,9 +4,11 @@
 package com.cts.nw.onboarding.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,6 +19,7 @@ import com.cts.nw.onboarding.bo.EmployeeMaster;
 import com.cts.nw.onboarding.bo.EmployeeProjectInfo;
 import com.cts.nw.onboarding.dao.EmployeeMasterDAO;
 import com.cts.nw.onboarding.dao.EmployeeProjectInfoDAO;
+import com.cts.nw.onboarding.responses.JsonEmployeeMasterResponse;
 import com.cts.nw.onboarding.util.DateConversionUtil;
 
 /**
@@ -48,7 +51,7 @@ public class RequesterController {
 	@RequestMapping(value = "/request/check/{empid}", method = RequestMethod.GET)
 	public @ResponseBody EmployeeMaster employeeAvailability(Model model,@PathVariable String empid) {
 		Integer employeeId;
-		EmployeeMaster employee = new EmployeeMaster();
+		EmployeeMaster employee = null;
 		try {
 			employeeId = Integer.parseInt(empid);
 			System.out.println("Employee to be found:" + employeeId);
@@ -64,28 +67,30 @@ public class RequesterController {
 	 * @param employeeJson
 	 * @return
 	 */
-	@RequestMapping(value = "/request/addResource/", method = RequestMethod.POST)
-	public @ResponseBody String createUser(@RequestBody EmployeeMaster employeeJson) {
-		String message = "";
+	@PostMapping(value = "/request/addResource", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public @ResponseBody JsonEmployeeMasterResponse createUser(@RequestBody EmployeeMaster employeeJson) {
+		JsonEmployeeMasterResponse jsonResponse = null;
 		try{
 			Integer rowsAffected;
 			rowsAffected = employeeMasterDAO.addEmployeeMaster(employeeJson);
+			rowsAffected = 0;
 			if( rowsAffected > 0){
-				message = "Employee details saved successfully";
+				jsonResponse = new JsonEmployeeMasterResponse();
+				jsonResponse.setEmployeeMaster(employeeJson);
+				jsonResponse.setStatus(true);
+				jsonResponse.setStatusMessage("Employee details saved successfully");
 			}
-			return message;
 		}catch(Exception e){
-			message = "Error in iserting Employee Details";
-			return message;
+			e.printStackTrace();
 		}
-		
+		return jsonResponse;
 	}
 	
 	/**
 	 * @param employeeJson
 	 * @return
 	 */
-	@RequestMapping(value = "/request/mapProject/", method = RequestMethod.POST)
+	@PostMapping(value = "/request/mapProject", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public @ResponseBody String addProject(@RequestBody EmployeeCompleteProjectInfo employeeCompDetails) {
 		String message = "";
 		try {

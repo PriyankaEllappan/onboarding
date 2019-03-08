@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	/* DatePicker Options */
 	var dateOfBirth = $('#newEmpDOB');
 	var container = $('.content-style');
 	var options = {
@@ -9,16 +10,19 @@ $(document).ready(function() {
 	};
 
 	dateOfBirth.datepicker(options);
-	
+
+	/* Employee Search function */
 	$("#checkEmpIdSubmit").click(function() {
 		var empId = $("#checkEmpId").val();
 		console.log(empId);
 		checkForanEmployee(empId);
 	})
+
 	$("#addResourceLabel").click(function() {
 		$("#toggleResource").toggle();
 	})
 
+	/* Employee details Search */
 	$("#newEmpID").blur(function() {
 		var empId = $('#newEmpID').val();
 		$.ajax({
@@ -26,14 +30,60 @@ $(document).ready(function() {
 			url : "/onboarding/resource/getEmployee?empId=" + empId,
 			dataType : "text",
 			success : function(resultData) {
-				var returnedData = JSON.parse(resultData);
-				$('#newEmpName').val(returnedData.name);
-				$('#newEmpEmail').val(returnedData.emailId);
-				$('#newEmpFName').val(returnedData.name.split(" ")[0]);
-				$('#newEmpLName').val(returnedData.name.split(" ")[1]);
+				if (!$.trim(resultData)) {
+					console.log("Resource not available in directory");
+				} else {
+					var returnedData = JSON.parse(resultData);
+					$('#newEmpName').val(returnedData.name);
+					$('#newEmpEmail').val(returnedData.emailId);
+					$('#newEmpFName').val(returnedData.name.split(" ")[0]);
+					$('#newEmpLName').val(returnedData.name.split(" ")[1]);
+				}
 			}
 		});
 	});
+
+	/* Employee Register Submit */
+	$(function() {
+		$('#resourceRegisterFormSubmit').click(function(e) {
+			e.preventDefault();
+			jsonStr = {}
+			jsonStr["id"] = $('#newEmpID').val();
+			jsonStr["name"] = $('#newEmpName').val();
+			jsonStr["firstName"] = $('#newEmpFName').val();
+			jsonStr["lastName"] = $('#newEmpLName').val();
+			jsonStr["dob"] = $('#newEmpDOB').val();
+			jsonStr["email"] = $('#newEmpEmail').val();
+			jsonStr["passportNumber"] = $('#newEmpPPNo').val();
+			$.post({
+				url : '/onboarding/request/addResource',
+				type : 'POST',
+				dataType : 'json',
+				data : JSON.stringify(jsonStr),
+				contentType : 'application/json; charset=utf-8',
+				success : function(resultData) {
+					if (!$.trim(resultData)) {
+						$('#resourceNonAvailable').removeClass('showElements');
+						$('#resourceNonAvailable').addClass('hideElements');
+						$('#registerStatus').text("Resource Not Registered");
+						$('#registerStatus').addClass('showElements');
+					} else {
+						$('#resourceNonAvailable').removeClass('showElements');
+						$('#resourceNonAvailable').addClass('hideElements');
+						$('#registerStatus').text("Resource Registered");
+						$('#registerStatus').addClass('showElements');
+					}
+				},
+				error : function() {
+					$('#resourceNonAvailable').removeClass('showElements');
+					$('#resourceNonAvailable').addClass('hideElements');
+					$('#registerStatus').text("Resource Not Registered");
+					$('#registerStatus').addClass('showElements');
+				}
+			})
+		});
+	});
+
 })
 
 function checkForanEmployee(empID) {
@@ -58,35 +108,6 @@ function checkForanEmployee(empID) {
 				console.log(returnedData);
 			}
 
-		}
-	});
-}
-
-function registerEmployee() {
-	jsonStr = {}
-	jsonStr["id"] = $('#newEmpID').val();
-	jsonStr["name"] = $('#newEmpName').val();
-	jsonStr["firstName"] = $('#newEmpFName').val();
-	jsonStr["lastName"] = $('#newEmpLName').val();
-	jsonStr["dob"] = $('#newEmpDOB').val();
-	jsonStr["email"] = $('#newEmpEmail').val();
-	jsonStr["passportNumber"] = $('#newEmpPPNo').val();
-	alert(JSON.stringify(jsonStr));
-	console.log(jsonStr);
-	$.ajax({
-		url : '/onboarding/request/addResource/',
-		type : 'POST',
-		data : JSON.stringify(jsonStr),
-		contentType : 'application/json; charset=utf-8',
-		dataType : 'json',
-		async : false,
-		cache : false,
-		processData : false,
-		success : function(response) {
-			if (response.msgtype == "success" || response.msgtype == "fail") {
-				clearconsole();
-			}
-			console.log(msg);
 		}
 	});
 }
