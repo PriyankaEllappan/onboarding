@@ -105,7 +105,7 @@
 								<label for="teamName">Team Name</label>
 							</div>
 							<div class="col-md-3">
-								<select class="form-control" name="teamName" id="teamName"></select>
+								<select class="form-control" name="teamName" id="teamName" onchange="loadProjDetails()"></select>
 							</div>
 							<div class="col-md-1"></div>
 							<div class="col-md-2">
@@ -158,18 +158,19 @@
 					<div class="form-group">
 						<div class="row">
 							<div class="col-md-2">
-								<label for="location">Location</label>
-							</div>
-							<div class="col-md-3">
-								<select class="form-control" name="location" id="location"></select>
-							</div>
-							<div class="col-md-1"></div>
-							<div class="col-md-2">
 								<label for="country">Country</label>
 							</div>
 							<div class="col-md-3">
-								<input class="form-control" name="country" id="country"
-									placeholder="Enter Country Name" readonly autocomplete="off" />
+							<select class="form-control" name="country" id="country" onchange="loadLocDetails()"></select>
+								
+							</div>
+							<div class="col-md-1"></div>
+							<div class="col-md-2">
+								<label for="location">Location</label>
+							</div>
+							<div class="col-md-3">
+								<input class="form-control" name="location" id="location"
+									placeholder="Enter Location" readonly autocomplete="off" />
 							</div>
 						</div>
 					</div>

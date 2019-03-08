@@ -1,5 +1,23 @@
+var teamHierarchy = {}
+var countryHierarchy = {}
+
 $(document).ready(function() {
 	document.getElementById("defaultOpen").click();
+	loadTeamHierarchy();
+	loadCountryHierarchy();
+	
+	/* DatePicker Options */
+	var dateOfBirth = $('#startDate');
+	var container = $('.content-style');
+	var options = {
+		format : 'yyyy-mm-dd',
+		container : container,
+		todayHighlight : true,
+		autoclose : true,
+	};
+
+	dateOfBirth.datepicker(options);
+	
 });
 
 function openSpecificTab(evt, tabName) {
@@ -16,3 +34,67 @@ function openSpecificTab(evt, tabName) {
     evt.currentTarget.className += " active";
 }
 
+function loadCountryHierarchy(){
+	$.ajax({
+		type : 'GET',
+		url : "/onboarding/country/getAllCountryDetails" ,
+		dataType : "text",
+		success : function(resultData) {
+			countryHierarchy = JSON.parse(resultData);
+			console.log(countryHierarchy);
+			$.each(countryHierarchy, function(key,value) {   
+			     $('#country')
+			         .append($("<option></option>")
+			                    .attr("value",value.countryName)
+			                    .text(value.countryName)); 
+			});
+		}
+	});
+}
+
+function loadLocDetails() {
+	var selectedCountry = $('#country').val();
+	$.each(countryHierarchy, function(key, value) {
+		if (selectedCountry == value.countryName) {
+			$('#location').val(value.locationName);
+		}
+	});
+}
+
+function loadTeamHierarchy() {
+	$.ajax({
+		type : 'GET',
+		url : "/onboarding/teams/getAllTeamDetails" ,
+		dataType : "text",
+		success : function(resultData) {
+			teamHierarchy = JSON.parse(resultData);
+			console.log(teamHierarchy);
+			$.each(teamHierarchy, function(key,value) {   
+			     $('#teamName')
+			         .append($("<option></option>")
+			                    .attr("value",value.teamName)
+			                    .text(value.teamName)); 
+			});
+		}
+	});
+}
+
+function loadProjDetails() {
+	var selectedTeam = $('#teamName').val();
+	$.each(teamHierarchy, function(key, value) {
+		if (selectedTeam == value.teamName) {
+			$('#projectID').val(value.projectID);
+			$('#projectName').val(value.projectName);
+			$('#requester').val(value.requesterName);
+			$('#processor').val(value.processorName);
+			$('#bsaInfo').val(value.bsa);
+			$('#pplInfo').val(value.pplName);
+		}
+	});
+}
+
+
+
+function loadRoleHierarchy(){
+	
+}
