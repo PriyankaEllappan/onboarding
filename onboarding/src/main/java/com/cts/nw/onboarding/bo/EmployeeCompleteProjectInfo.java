@@ -5,6 +5,8 @@ import java.util.Date;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Component
 public class EmployeeCompleteProjectInfo {
 
@@ -30,10 +32,21 @@ public class EmployeeCompleteProjectInfo {
 	private Integer releaseStatus;
 	private Date releaseDate;
 	private Integer reasonForOffboarding;
-
+	
+	/*Employee Master*/
+	private String name;
+	private String firstName;
+	private String lastName;
+	private String passportNumber;
+	private String email;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	private Date DOB;
+	
 	/*
 	 * table APPROVALSTATUS fields
 	 */
+
 
 	private Integer approvalStatusID;
 	private String approvalStatusMessage;
@@ -742,9 +755,91 @@ public class EmployeeCompleteProjectInfo {
 		this.countryName = countryName;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * @return the firstName
+	 */
+	public String getFirstName() {
+		return firstName;
+	}
+
+	/**
+	 * @param firstName the firstName to set
+	 */
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	/**
+	 * @return the lastName
+	 */
+	public String getLastName() {
+		return lastName;
+	}
+
+	/**
+	 * @param lastName the lastName to set
+	 */
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	/**
+	 * @return the passportNumber
+	 */
+	public String getPassportNumber() {
+		return passportNumber;
+	}
+
+	/**
+	 * @param passportNumber the passportNumber to set
+	 */
+	public void setPassportNumber(String passportNumber) {
+		this.passportNumber = passportNumber;
+	}
+
+	/**
+	 * @return the email
+	 */
+	public String getEmail() {
+		return email;
+	}
+
+	/**
+	 * @param email the email to set
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	/**
+	 * @return the dOB
+	 */
+	public Date getDOB() {
+		return DOB;
+	}
+
+	/**
+	 * @param dOB the dOB to set
+	 */
+	public void setDOB(Date dOB) {
+		DOB = dOB;
+	}
+
+	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -755,18 +850,45 @@ public class EmployeeCompleteProjectInfo {
 				+ ", movementID=" + movementID + ", workforceID=" + workforceID + ", attachmentID=" + attachmentID
 				+ ", comments=" + comments + ", skillSet=" + skillSet + ", skillSummary=" + skillSummary
 				+ ", approvalStatus=" + approvalStatus + ", releaseStatus=" + releaseStatus + ", releaseDate="
-				+ releaseDate + ", reasonForOffboarding=" + reasonForOffboarding + ", approvalStatusID="
-				+ approvalStatusID + ", approvalStatusMessage=" + approvalStatusMessage + ", releaseStatusID="
-				+ releaseStatusID + ", releaseStatusStatus=" + releaseStatusStatus + ", releaseSummaryID="
-				+ releaseSummaryID + ", releaseSummary=" + releaseSummary + ", roleID=" + roleID + ", roleName="
-				+ roleName + ", rateID=" + rateID + ", rateName=" + rateName + ", mailAttachmentid=" + mailAttachmentid
-				+ ", mailAttachmentFilename=" + mailAttachmentFilename + ", mailAttachmentFiledata="
+				+ releaseDate + ", reasonForOffboarding=" + reasonForOffboarding + ", name=" + name + ", firstName="
+				+ firstName + ", lastName=" + lastName + ", passportNumber=" + passportNumber + ", email=" + email
+				+ ", approvalStatusID=" + approvalStatusID + ", approvalStatusMessage=" + approvalStatusMessage
+				+ ", releaseStatusID=" + releaseStatusID + ", releaseStatusStatus=" + releaseStatusStatus
+				+ ", releaseSummaryID=" + releaseSummaryID + ", releaseSummary=" + releaseSummary + ", roleID=" + roleID
+				+ ", roleName=" + roleName + ", rateID=" + rateID + ", rateName=" + rateName + ", mailAttachmentid="
+				+ mailAttachmentid + ", mailAttachmentFilename=" + mailAttachmentFilename + ", mailAttachmentFiledata="
 				+ Arrays.toString(mailAttachmentFiledata) + ", projectMappingID=" + projectMappingID
 				+ ", projectMappingProjectID=" + projectMappingProjectID + ", projectMappingProcessorID="
 				+ projectMappingProcessorID + ", projectMappingRequesterID=" + projectMappingRequesterID
 				+ ", projectMappingStatus=" + projectMappingStatus + ", locationID=" + locationID + ", locationName="
 				+ locationName + ", teamid=" + teamid + ", teamName=" + teamName + ", countryID=" + countryID
-				+ ", countryName=" + countryName + "]";
+				+ ", countryName=" + countryName + ", getId()=" + getId() + ", getEmployeeID()=" + getEmployeeID()
+				+ ", getTeam()=" + getTeam() + ", getRole()=" + getRole() + ", getCountry()=" + getCountry()
+				+ ", getStartDate()=" + getStartDate() + ", getNatiowideID()=" + getNatiowideID()
+				+ ", getNationwideidCreatedDate()=" + getNationwideidCreatedDate() + ", getFgOnboardingDate()="
+				+ getFgOnboardingDate() + ", getMovementID()=" + getMovementID() + ", getWorkforceID()="
+				+ getWorkforceID() + ", getAttachmentID()=" + getAttachmentID() + ", getComments()=" + getComments()
+				+ ", getSkillSet()=" + getSkillSet() + ", getSkillSummary()=" + getSkillSummary()
+				+ ", getApprovalStatus()=" + getApprovalStatus() + ", getReleaseStatus()=" + getReleaseStatus()
+				+ ", getReleaseDate()=" + getReleaseDate() + ", getReasonForOffboarding()=" + getReasonForOffboarding()
+				+ ", getApprovalStatusID()=" + getApprovalStatusID() + ", getApprovalStatusMessage()="
+				+ getApprovalStatusMessage() + ", getReleaseStatusID()=" + getReleaseStatusID()
+				+ ", getReleaseStatusStatus()=" + getReleaseStatusStatus() + ", getReleaseSummaryID()="
+				+ getReleaseSummaryID() + ", getReleaseSummary()=" + getReleaseSummary() + ", getRoleID()="
+				+ getRoleID() + ", getRoleName()=" + getRoleName() + ", getRateID()=" + getRateID() + ", getRateName()="
+				+ getRateName() + ", getMailAttachmentid()=" + getMailAttachmentid() + ", getMailAttachmentFilename()="
+				+ getMailAttachmentFilename() + ", getMailAttachmentFiledata()="
+				+ Arrays.toString(getMailAttachmentFiledata()) + ", getProjectMappingID()=" + getProjectMappingID()
+				+ ", getProjectMappingProjectID()=" + getProjectMappingProjectID() + ", getProjectMappingProcessorID()="
+				+ getProjectMappingProcessorID() + ", getProjectMappingRequesterID()=" + getProjectMappingRequesterID()
+				+ ", getProjectMappingStatus()=" + getProjectMappingStatus() + ", getLocationID()=" + getLocationID()
+				+ ", getLocationName()=" + getLocationName() + ", getTeamid()=" + getTeamid() + ", getTeamName()="
+				+ getTeamName() + ", getCountryID()=" + getCountryID() + ", getCountryName()=" + getCountryName()
+				+ ", getName()=" + getName() + ", getFirstName()=" + getFirstName() + ", getLastName()=" + getLastName()
+				+ ", getPassportNumber()=" + getPassportNumber() + ", getEmail()=" + getEmail() + ", getClass()="
+				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
+	
+	
 
 }

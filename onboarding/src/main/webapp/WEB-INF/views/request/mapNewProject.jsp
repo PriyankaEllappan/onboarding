@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -40,7 +43,7 @@
 							</div>
 							<div class="col-md-3">
 								<input class="form-control" name="newEmpID" id="newEmpID"
-									placeholder="Enter EmployeeID" readonly autocomplete="off" />
+									placeholder="Enter EmployeeID" value="${employee.employeeID}" readonly autocomplete="off" />
 							</div>
 							<div class="col-md-1"></div>
 							<div class="col-md-2">
@@ -48,7 +51,7 @@
 							</div>
 							<div class="col-md-3">
 								<input class="form-control" id="newEmpEmail" name="newEmpEmail"
-									placeholder="Enter Email Id" readonly autocomplete="off" />
+									placeholder="Enter Email Id" value="${employee.email}" readonly autocomplete="off" />
 							</div>
 						</div>
 					</div>
@@ -59,7 +62,7 @@
 							</div>
 							<div class="col-md-3">
 								<input class="form-control" id="newEmpFName" name="newEmpFName"
-									placeholder="Enter First Name" readonly autocomplete="off" />
+									placeholder="Enter First Name" value="${employee.firstName}" readonly autocomplete="off" />
 							</div>
 							<div class="col-md-1"></div>
 							<div class="col-md-2">
@@ -67,7 +70,7 @@
 							</div>
 							<div class="col-md-3">
 								<input class="form-control" id="newEmpLName" name="newEmpLName"
-									placeholder="Enter Last Name" readonly autocomplete="off" />
+									placeholder="Enter Last Name" value="${employee.lastName}" readonly autocomplete="off" />
 							</div>
 						</div>
 					</div>
@@ -78,7 +81,7 @@
 							</div>
 							<div class="col-md-3">
 								<input autocomplete="off" class="form-control" name="newEmpDOB"
-									id="newEmpDOB" placeholder="Enter Date of Birth (YYYY-MM-DD)"
+									id="newEmpDOB" value="${employee.DOB}" placeholder="Enter Date of Birth (YYYY-MM-DD)"
 									readonly autocomplete="off" />
 							</div>
 							<div class="col-md-1"></div>
@@ -87,7 +90,7 @@
 							</div>
 							<div class="col-md-3">
 								<input class="form-control" name="newEmpPPNo" id="newEmpPPNo"
-									placeholder="Enter Passport No" readonly autocomplete="off" />
+									placeholder="Enter Passport No" value="${employee.passportNumber}" readonly autocomplete="off" />
 							</div>
 						</div>
 					</div>

@@ -18,6 +18,7 @@ public class EmployeeMasterRowMapper implements RowMapper<EmployeeMaster>{
 		employeeMaster.setLastName(rs.getString("LASTNAME"));
 		employeeMaster.setName(rs.getString("NAME"));
 		employeeMaster.setPassportNumber(rs.getString("PASSPORTNUMBER"));
+		employeeMaster.setEmail(rs.getString("EMAIL"));
 		return employeeMaster;
 	}
 }

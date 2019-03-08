@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,8 +21,6 @@ import com.cts.nw.onboarding.bo.EmployeeMaster;
 import com.cts.nw.onboarding.bo.EmployeeProjectInfo;
 import com.cts.nw.onboarding.dao.EmployeeMasterDAO;
 import com.cts.nw.onboarding.dao.EmployeeProjectInfoDAO;
-import com.cts.nw.onboarding.responses.JsonEmployeeMasterResponse;
-import com.cts.nw.onboarding.util.DateConversionUtil;
 
 /**
  * @author 656579
@@ -87,9 +87,29 @@ public class RequesterController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/request/mapproject", method = RequestMethod.GET)
-	public String generateAddProjForm() {
+	@RequestMapping(value = "/request/mapproject/{empid}", method = RequestMethod.GET)
+	public String generateAddProjForm(@ModelAttribute("employee") EmployeeCompleteProjectInfo employee,@PathVariable int empid,ModelMap model) {
+		System.out.println("In----:" + empid);
+		generateRequesterViewValue(empid,employee);
+		model.addAttribute("employee",employee);
+		/*return new ModelAndView("request/mapNewProject", "employee", employee);*/
 		return "request/mapNewProject";
+	}
+
+
+	/**
+	 * @param empid
+	 * @param employee 
+	 */
+	private void generateRequesterViewValue(int empid, EmployeeCompleteProjectInfo employee) {
+		EmployeeMaster emp = employeeMasterDAO.getEmployeeMasterDetailsByID(empid);
+		employee.setEmployeeID(emp.getID());
+		employee.setName(emp.getName());
+		employee.setFirstName(emp.getFirstName());
+		employee.setLastName(emp.getLastName());
+		employee.setPassportNumber(emp.getPassportNumber());
+		employee.setEmail(emp.getEmail());
+		employee.setDOB(emp.getDOB());
 	}
 	
 	/**

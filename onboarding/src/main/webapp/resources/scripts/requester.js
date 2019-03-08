@@ -101,8 +101,8 @@ function checkForanEmployee(empID) {
 				var returnedData = JSON.parse(resultData);
 				$('#availEmpID').text(returnedData.id);
 				$('#availEmpName').text(returnedData.name);
-				$('#availEmpDOB').text(returnedData.dob);
-				$('#availEmpEmail').text(returnedData.firstName);
+				$('#availEmpDOB').text(returnedData.DOB);
+				$('#availEmpEmail').text(returnedData.email);
 				$('#availEmpPPNo').text(returnedData.passportNumber);
 				$('#resourceAvailable').addClass('showElements');
 				console.log("Response has data");
