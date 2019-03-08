@@ -27,7 +27,7 @@ $(document).ready(function() {
 		var empId = $('#newEmpID').val();
 		$.ajax({
 			type : 'GET',
-			url : "/onboarding/resource/getEmployee?empId=" + empId,
+			url : "/onboarding/resource/getemployee?empId=" + empId,
 			dataType : "text",
 			success : function(resultData) {
 				if (!$.trim(resultData)) {
@@ -56,7 +56,7 @@ $(document).ready(function() {
 			jsonStr["email"] = $('#newEmpEmail').val();
 			jsonStr["passportNumber"] = $('#newEmpPPNo').val();
 			$.post({
-				url : '/onboarding/request/addResource',
+				url : '/onboarding/request/addresource',
 				type : 'POST',
 				dataType : 'json',
 				data : JSON.stringify(jsonStr),

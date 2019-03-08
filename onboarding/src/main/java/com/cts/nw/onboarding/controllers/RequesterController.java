@@ -68,7 +68,7 @@ public class RequesterController {
 	 * @param employeeJson
 	 * @return
 	 */
-	@PostMapping(value = "/request/addResource", produces = { MediaType.APPLICATION_JSON_VALUE })
+	@PostMapping(value = "/request/addresource", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public @ResponseBody EmployeeMaster createUser(@RequestBody EmployeeMaster employeeJson) {
 		Integer rowsAffected = 0;
 		try {
@@ -87,7 +87,7 @@ public class RequesterController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/request/mapProject", method = RequestMethod.GET)
+	@RequestMapping(value = "/request/mapproject", method = RequestMethod.GET)
 	public String generateAddProjForm() {
 		return "request/mapNewProject";
 	}

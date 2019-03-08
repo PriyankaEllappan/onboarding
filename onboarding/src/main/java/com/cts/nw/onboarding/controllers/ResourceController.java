@@ -23,7 +23,7 @@ public class ResourceController {
 
 	//private static final Logger logger = Logger.getLogger(ResourceController.class);
 	
-	@RequestMapping(value = "/getEmployee", method = RequestMethod.GET)
+	@RequestMapping(value = "/getemployee", method = RequestMethod.GET)
     public @ResponseBody EmployeeDetails index(@RequestParam("empId") String empId) {
 		EmployeeDetails employee = new LDAPUtil().getEmployee("sAMAccountName", empId);
            return employee;
