@@ -25,4 +25,14 @@ public class ProcessorServiceImpl implements ProcessorService {
 		return processorsInfoDAO.getEmployeeToProcess(processorId, projInfoId);
 	}
 
+	@Override
+	public ProcessorsInfo processAnEmployee(ProcessorsInfo employeeProjJson) {
+		Integer rowsAffected = 0;
+		rowsAffected = processorsInfoDAO.processAnEmployee(employeeProjJson);
+		if (rowsAffected > 0) {
+			return employeeProjJson;
+		}
+		return null;
+	}
+
 }

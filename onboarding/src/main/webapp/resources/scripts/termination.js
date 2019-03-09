@@ -1,3 +1,5 @@
+var jsonRequest = {}
+
 $(document).ready(function() {
 	
 	/* DatePicker Options */
@@ -80,4 +82,50 @@ function loadReleaseReason(){
 			});
 		}
 	});
+}
+
+/* Release Register Submit */
+$(function() {
+	$('#releaseFormSubmit').click(function(e) {
+		e.preventDefault();
+		setRequestParams();
+		$.post({
+			url : '/onboarding/release/requestrelease',
+			type : 'POST',
+			dataType : 'json',
+			data : JSON.stringify(jsonRequest),
+			contentType : 'application/json; charset=utf-8',
+			success : function(resultData) {
+				console.log(resultData);
+				if (!$.trim(resultData)) {
+					$('#messageDiv').removeClass('hideElements');
+					$('#messageDiv').text("Unable to add the project details");
+					$('#messageDiv').addClass('showElements');
+					$('#formDiv').addClass('hideElements');
+				} else {
+					$('#messageDiv').removeClass('hideElements');
+					$('#messageDiv').text("Project details added successfully");
+					$('#messageDiv').addClass('showElements');
+					$('#formDiv').addClass('hideElements');
+				}
+			},
+			error : function() {
+				console.log("error");
+				$('#messageDiv').removeClass('hideElements');
+				$('#messageDiv').text("Unable to add the project details");
+				$('#messageDiv').addClass('showElements');
+				$('#formDiv').addClass('hideElements');
+			}
+		})
+	});
+});
+
+function setRequestParams(){
+	jsonRequest["id"] = $('#empProjId').val();
+	jsonRequest["requesterId"] = $('#requesterID').val();
+	jsonRequest["processorId"] = $('#processorID').val();
+	jsonRequest["releaseDate"] = $('#releaseDate').val();
+	jsonRequest["releaseStatus"] = $('#releaseStatus').val();
+	jsonRequest["releaseSummary"] = $('#releaseReason').val();
+	jsonRequest["approvalStatus"] = $('#approvalStatus').val();
 }

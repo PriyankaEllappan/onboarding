@@ -70,6 +70,27 @@ public class ProcessorsInfo {
 	private Integer processorID;
 	private String processorName;
 
+	private Integer releaseSummary;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	private Date releaseDate;
+	
+	public Integer getReleaseSummary() {
+		return releaseSummary;
+	}
+
+	public void setReleaseSummary(Integer releaseSummary) {
+		this.releaseSummary = releaseSummary;
+	}
+
+	public Date getReleaseDate() {
+		return releaseDate;
+	}
+
+	public void setReleaseDate(Date releaseDate) {
+		this.releaseDate = releaseDate;
+	}
+
 	/**
 	 * @return the employeeMasterID
 	 */
@@ -520,9 +541,6 @@ public class ProcessorsInfo {
 		this.projectId = projectId;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
 		return "ProcessorsInfo [employeeMasterID=" + employeeMasterID + ", name=" + name + ", firstName=" + firstName
@@ -534,8 +552,8 @@ public class ProcessorsInfo {
 				+ releaseStatus + ", roleName=" + roleName + ", rateValue=" + rateValue + ", teamName=" + teamName
 				+ ", locationName=" + locationName + ", countryName=" + countryName + ", projectName=" + projectName
 				+ ", projectId=" + projectId + ", requesterID=" + requesterID + ", requesterName=" + requesterName
-				+ ", processorID=" + processorID + ", processorName=" + processorName + "]";
+				+ ", processorID=" + processorID + ", processorName=" + processorName + ", releaseSummary="
+				+ releaseSummary + ", releaseDate=" + releaseDate + "]";
 	}
-
 
 }

@@ -88,4 +88,18 @@ public class ProcessorsInfoDAOImpl implements ProcessorsInfoDAO{
 		}
 	}
 
+	@Override
+	public Integer processAnEmployee(ProcessorsInfo employeeProjJson) {
+		return null;
+	/*	String sql = "INSERT INTO EmployeeMaster (ID, NAME, FIRSTNAME, LASTNAME, DOB, PASSPORTNUMBER,EMAIL) VALUES (?, ?, ?, ?, ?, ?, ?)";
+		return jdbcTemplate.update(sql, employeeMaster.getID(), employeeMaster.getName(), employeeMaster.getFirstName(),
+				employeeMaster.getLastName(), employeeMaster.getDOB(), employeeMaster.getPassportNumber(), employeeMaster.getEmail());*/
+	}
+
+	@Override
+	public Integer releaseAnEmployee(ProcessorsInfo employeeProjJson) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -313,6 +313,11 @@
 								</div>
 							</div>
 						</div>
+						<div class="hideElements">
+							<input type="hidden" id="requesterID" value="${employee.requesterID}" /> 
+							<input type="hidden" id="processorID" value="${employee.processorID}" />
+							<input type="hidden" id="empProjId" value="${employee.id}" />
+						</div>
 					</div>
 				</div>
 			</form>

@@ -43,5 +43,15 @@ public class ReleaseServiceImpl implements ReleaseService{
 		infoId = Integer.parseInt(projInfoId);
 		return processorsInfoDAO.getEmployeestoReleasebyId(infoId);
 	}
+
+	@Override
+	public ProcessorsInfo releaseAnEmployee(ProcessorsInfo employeeProjJson) {
+		Integer rowsAffected = 0;
+		rowsAffected = processorsInfoDAO.releaseAnEmployee(employeeProjJson);
+		if (rowsAffected > 0) {
+			return employeeProjJson;
+		}
+		return null;
+	}
 	
 }

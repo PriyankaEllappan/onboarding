@@ -13,4 +13,6 @@ public interface ProcessorService {
 
 	ProcessorsInfo getEmployeetoProcess(int processorId,int empProjId);
 
+	ProcessorsInfo processAnEmployee(ProcessorsInfo employeeProjJson);
+
 }

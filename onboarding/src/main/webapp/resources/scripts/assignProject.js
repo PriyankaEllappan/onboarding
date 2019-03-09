@@ -171,6 +171,7 @@ function loadReleaseStatus(){
 		}
 	});
 }
+
 /* Project Register Submit */
 $(function() {
 	$('#projectRegisterFormSubmit').click(function(e) {

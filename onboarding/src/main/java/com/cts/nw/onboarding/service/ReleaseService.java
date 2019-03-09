@@ -14,4 +14,5 @@ public interface ReleaseService {
 	ProcessorsInfo getEmployeetoReleasebyId(String employeeId);
 	List<ProcessorsInfo> getListofEmployeetoRelease(int releaseStatusID);
 	List<ReleaseSummary> getAllReleaseSummary();
+	ProcessorsInfo releaseAnEmployee(ProcessorsInfo employeeProjJson);
 }
