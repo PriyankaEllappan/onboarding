@@ -3,10 +3,13 @@
  */
 package com.cts.nw.onboarding.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cts.nw.onboarding.bo.EmployeeActiveAssignment;
 import com.cts.nw.onboarding.bo.EmployeeMaster;
 import com.cts.nw.onboarding.bo.EmployeeProjectInfo;
 import com.cts.nw.onboarding.service.RequesterService;
@@ -28,7 +32,7 @@ public class RequesterController {
 
 	@Autowired
 	RequesterService requesterService;
-	
+
 	/**
 	 * @param model
 	 * @return
@@ -67,6 +71,20 @@ public class RequesterController {
 		}
 	}
 	
+    /**
+    * @param employeeJson
+    * @return
+    */
+    @GetMapping(value = "/request/checkActiveAssignment/{empid}", produces = { MediaType.APPLICATION_JSON_VALUE })
+    public @ResponseBody List<EmployeeActiveAssignment> checkActiveAssignment(@PathVariable String empid) {
+           try {
+        	    return requesterService.checkforActiveAssignment(empid);
+           } catch (Exception e) {
+                  e.printStackTrace();
+                  return null;
+           }
+    }
+
 	/**
 	 * @param model
 	 * @return

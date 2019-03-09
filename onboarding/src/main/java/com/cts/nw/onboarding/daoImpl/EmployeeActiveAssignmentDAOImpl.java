@@ -29,7 +29,7 @@ public class EmployeeActiveAssignmentDAOImpl implements EmployeeActiveAssignment
 
 	@Override
 
-	public List<EmployeeActiveAssignment> getEmployeeReleaseDetails(int employeeID, String releaseStatus) {
+	public List<EmployeeActiveAssignment> getActiveAssignmentDetails(int employeeID) {
 
 		String employeeReleaseInfo = "SELECT EMPPI.EMPLOYEEID AS EMPLOYEEID ,PM.PROJECTID AS PROJECTID,  "
 				+ "PI.PROJECTNAME AS PROJECTNAME,PM.STATUS AS PROJECTSTATUS,  PM.REQUESTERID AS REQUESTERID, "
@@ -39,10 +39,10 @@ public class EmployeeActiveAssignmentDAOImpl implements EmployeeActiveAssignment
 				+ "JOIN PROJECTMAPPING PM ON PM.ID = TM.PROJECTMAPID  JOIN PROJECTINFO PI ON PI.PROJECTID = PM.PROJECTID "
 				+ "JOIN REQUESTERS R ON R.REQUESTERID = PM.REQUESTERID "
 				+ " JOIN PROCESSORS P ON P.PROCESSORID =PM.PROCESSORID  "
-				+ "WHERE EMPPI.EMPLOYEEID = ? AND RS.STATUS = ? ";
+				+ "WHERE EMPPI.EMPLOYEEID = ? AND RS.STATUS = 'YET TO RELEASE' OR  RS.STATUS = 'RELEASE INITIATED'";
 		try {
 			RowMapper<EmployeeActiveAssignment> rowMapper = new EmployeeActiveAssignmentRowMapper();
-			return this.jdbcTemplate.query(employeeReleaseInfo, rowMapper,employeeID,releaseStatus);
+			return this.jdbcTemplate.query(employeeReleaseInfo, rowMapper,employeeID);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}

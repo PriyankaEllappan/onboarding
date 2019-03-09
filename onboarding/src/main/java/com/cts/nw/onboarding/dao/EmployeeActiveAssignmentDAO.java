@@ -14,6 +14,6 @@ import com.cts.nw.onboarding.bo.EmployeeActiveAssignment;
 public interface EmployeeActiveAssignmentDAO {
 	
 
-		List<EmployeeActiveAssignment> getEmployeeReleaseDetails(int employeeID,String releaseStatus);
+		List<EmployeeActiveAssignment> getActiveAssignmentDetails(int employeeID);
 	}
 
