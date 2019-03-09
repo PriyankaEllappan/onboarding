@@ -94,7 +94,9 @@ function loadProjDetails() {
 			$('#projectID').val(value.projectID);
 			$('#projectName').val(value.projectName);
 			$('#requester').val(value.requesterName);
+			$('#requesterID').val(value.requesterID);
 			$('#processor').val(value.processorName);
+			$('#processorID').val(value.processorID);
 			$('#bsaInfo').val(value.bsa);
 			$('#pplInfo').val(value.pplName);
 		}
@@ -134,8 +136,8 @@ function loadRoleMappings(){
 function loadRateDetails(){
 	var selectedRoleID = $('#role').val();
 	var selectedCountryMapID = $('#countryMappingID').val();
-	alert(selectedRoleID);
-	alert(selectedCountryMapID);
+	/*alert(selectedRoleID);
+	alert(selectedCountryMapID);*/
 	$.each(roleMappings, function(key,value) {   
 		if (selectedRoleID == value.roleId && selectedCountryMapID == value.countryMappingID) {
 			$('#roleMappingID').val(value.roleMappingID);
@@ -215,4 +217,6 @@ function setRequestParams(){
 	jsonRequest["releaseStatus"] = $('#releaseStatus').val();
 	jsonRequest["skillSet"] = $('#skill').val();
 	jsonRequest["skillSummary"] = $('#skillSummary').val();
+	jsonRequest["requesterId"] = $('#requesterID').val();
+	jsonRequest["processorId"] = $('#processorID').val();
 }

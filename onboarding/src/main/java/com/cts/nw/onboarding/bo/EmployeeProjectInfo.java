@@ -81,6 +81,11 @@ table employeeprojectinfo fields
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date releaseDate ;
     private Integer reasonForOffboarding ;
+    
+    /*Additional Params for Mail Option*/
+    private String requesterId;
+    private String processorId;
+    
 	/**
 	 * @return the id
 	 */
@@ -309,6 +314,31 @@ table employeeprojectinfo fields
 	public void setReasonForOffboarding(Integer reasonForOffboarding) {
 		this.reasonForOffboarding = reasonForOffboarding;
 	}
+	
+	/**
+	 * @return the requesterId
+	 */
+	public String getRequesterId() {
+		return requesterId;
+	}
+	/**
+	 * @param requesterId the requesterId to set
+	 */
+	public void setRequesterId(String requesterId) {
+		this.requesterId = requesterId;
+	}
+	/**
+	 * @return the processorId
+	 */
+	public String getProcessorId() {
+		return processorId;
+	}
+	/**
+	 * @param processorId the processorId to set
+	 */
+	public void setProcessorId(String processorId) {
+		this.processorId = processorId;
+	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -320,8 +350,8 @@ table employeeprojectinfo fields
 				+ ", movementID=" + movementID + ", workforceID=" + workforceID + ", attachmentID=" + attachmentID
 				+ ", comments=" + comments + ", skillSet=" + skillSet + ", skillSummary=" + skillSummary
 				+ ", approvalStatus=" + approvalStatus + ", releaseStatus=" + releaseStatus + ", releaseDate="
-				+ releaseDate + ", reasonForOffboarding=" + reasonForOffboarding + "]";
+				+ releaseDate + ", reasonForOffboarding=" + reasonForOffboarding + ", requesterId=" + requesterId
+				+ ", processorId=" + processorId + "]";
 	}
-    
-    
+	
 }

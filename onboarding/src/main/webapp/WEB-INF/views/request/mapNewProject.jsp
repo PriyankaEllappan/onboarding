@@ -266,6 +266,8 @@
 					<input type="hidden" id="roleMappingID" /> 
 					<input type="hidden" id="roleID" /> 
 					<input type="hidden" id="countryMappingID" />
+					<input type="hidden" id="processorID" />
+					<input type="hidden" id="requesterID" />
 					<input type="hidden" id="approvalStatus" />
 					<input type="hidden" id="releaseStatus" />
 				</div>
