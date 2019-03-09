@@ -3,6 +3,8 @@
  */
 package com.cts.nw.onboarding.dao;
 
+import java.util.List;
+
 import com.cts.nw.onboarding.bo.ApprovalStatus;
 
 /**
@@ -10,7 +12,9 @@ import com.cts.nw.onboarding.bo.ApprovalStatus;
  *
  */
 public interface ApprovalStatusDAO {
+	
 	ApprovalStatus getApprovalStatusID(String approvalStatus);
+	List<ApprovalStatus> getAllApprovalStatus();
 
 }
 

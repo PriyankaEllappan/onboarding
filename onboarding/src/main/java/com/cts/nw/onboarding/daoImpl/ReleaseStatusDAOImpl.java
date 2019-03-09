@@ -3,6 +3,8 @@
  */
 package com.cts.nw.onboarding.daoImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -25,14 +27,25 @@ public class ReleaseStatusDAOImpl implements ReleaseStatusDAO {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
+	String allReleaseStatusInfo = "SELECT RS.ID AS RELEASESTATUSID,RS.STATUS AS RELEASESTATUSSTATUS"
+			+ "  FROM RELEASESTATUS RS";
+	
 	@Override
 	public ReleaseStatus getReleaseStatusID(String releaseStatus){
-		String allReleaseStatusInfo = "SELECT RS.ID AS RELEASESTATUSID,RS.STATUS AS RELEASESTATUSSTATUS"
-				+ "  FROM RELEASESTATUS RS WHERE RS.STATUS= ? ";
-		
+		String releaseStatbyId = allReleaseStatusInfo + " WHERE RS.STATUS= ? ";
 		try {
 			RowMapper<ReleaseStatus> rowMapper = new ReleaseStatusRowMapper();
-			return this.jdbcTemplate.queryForObject(allReleaseStatusInfo, rowMapper, releaseStatus);
+			return this.jdbcTemplate.queryForObject(releaseStatbyId, rowMapper, releaseStatus);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+
+	@Override
+	public List<ReleaseStatus> getAllReleaseStatus() {
+		try {
+			RowMapper<ReleaseStatus> rowMapper = new ReleaseStatusRowMapper();
+			return this.jdbcTemplate.query(allReleaseStatusInfo, rowMapper);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}

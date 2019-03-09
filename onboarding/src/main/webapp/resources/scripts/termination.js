@@ -1,8 +1,7 @@
 $(document).ready(function() {
 	
 	/* DatePicker Options */
-	var nwIdCreatedDate = $('#nwIdCreatedDate');
-	var fgOnboardingDate = $('#fgOnboardingDate');
+	var releaseDate = $('#releaseDate');
 	var container = $('.content-style');
 	var options = {
 		format : 'yyyy-mm-dd',
@@ -10,11 +9,12 @@ $(document).ready(function() {
 		todayHighlight : true,
 		autoclose : true,
 	};
-	nwIdCreatedDate.datepicker(options);
-	fgOnboardingDate.datepicker(options);
+	releaseDate.datepicker(options);
 	
 	document.getElementById("defaultOpen").click();
 	loadApprovalStatus();
+	loadReleaseStatus();
+	loadReleaseReason();
 })
 
 function openSpecificTab(evt, tabName) {
@@ -43,6 +43,40 @@ function loadApprovalStatus(){
 		         .append($("<option></option>")
 		                    .attr("value",value.id)
 		                    .text(value.status)); 
+			});
+		}
+	});
+}
+
+function loadReleaseStatus(){
+	$.ajax({
+		type : 'GET',
+		url : "/onboarding/status/getallreleasestatus",
+		dataType : "text",
+		success : function(resultData) {
+			releaseStat = JSON.parse(resultData);
+			$.each(releaseStat, function(key,value) {   
+				$('#releaseStatus')
+		         .append($("<option></option>")
+		                    .attr("value",value.id)
+		                    .text(value.status)); 
+			});
+		}
+	});
+}
+
+function loadReleaseReason(){
+	$.ajax({
+		type : 'GET',
+		url : "/onboarding/release/getreasonsummary",
+		dataType : "text",
+		success : function(resultData) {
+			releaseReason = JSON.parse(resultData);
+			$.each(releaseReason, function(key,value) {   
+				$('#releaseReason')
+		         .append($("<option></option>")
+		                    .attr("value",value.id)
+		                    .text(value.summary)); 
 			});
 		}
 	});

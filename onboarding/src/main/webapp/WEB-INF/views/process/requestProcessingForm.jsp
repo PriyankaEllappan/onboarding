@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Processor Form</title>
+<title>Resource Availability</title>
 <!-- Load Sytle Sheets -->
 <link rel="stylesheet"
 	href="/onboarding/resources/stylesheets/bootstrap.min.css">
@@ -17,7 +17,7 @@
 <script src="/onboarding/resources/scripts/jquery.min.js"></script>
 <script src="/onboarding/resources/scripts/bootstrap-datepicker.min.js"></script>
 <script src="/onboarding/resources/scripts/bootstrap.min.js"></script>
-<script src="/onboarding/resources/scripts/assignProject.js"></script>
+<script src="/onboarding/resources/scripts/processor.js"></script>
 </head>
 <body>
 	<jsp:include page="../layouts/header.jsp" />
@@ -45,7 +45,7 @@
 								</div>
 								<div class="col-md-3">
 									<input class="form-control" name="newEmpID" id="newEmpID"
-										placeholder="Enter EmployeeID" value="${employee.ID}" readonly
+										placeholder="Enter EmployeeID"  readonly
 										autocomplete="off" />
 								</div>
 								<div class="col-md-1"></div>
@@ -54,7 +54,7 @@
 								</div>
 								<div class="col-md-3">
 									<input class="form-control" id="newEmpEmail" name="newEmpEmail"
-										placeholder="Enter Email Id" value="${employee.email}"
+										placeholder="Enter Email Id" 
 										readonly autocomplete="off" />
 								</div>
 							</div>
@@ -66,7 +66,7 @@
 								</div>
 								<div class="col-md-3">
 									<input class="form-control" id="newEmpFName" name="newEmpFName"
-										placeholder="Enter First Name" value="${employee.firstName}"
+										placeholder="Enter First Name" 
 										readonly autocomplete="off" />
 								</div>
 								<div class="col-md-1"></div>
@@ -75,7 +75,7 @@
 								</div>
 								<div class="col-md-3">
 									<input class="form-control" id="newEmpLName" name="newEmpLName"
-										placeholder="Enter Last Name" value="${employee.lastName}"
+										placeholder="Enter Last Name" 
 										readonly autocomplete="off" />
 								</div>
 							</div>
@@ -87,7 +87,7 @@
 								</div>
 								<div class="col-md-3">
 									<input autocomplete="off" class="form-control" name="newEmpDOB"
-										id="newEmpDOB" value="${employee.DOB}"
+										id="newEmpDOB" 
 										placeholder="Enter Date of Birth (YYYY-MM-DD)" readonly
 										autocomplete="off" />
 								</div>
@@ -98,7 +98,7 @@
 								<div class="col-md-3">
 									<input class="form-control" name="newEmpPPNo" id="newEmpPPNo"
 										placeholder="Enter Passport No"
-										value="${employee.passportNumber}" readonly autocomplete="off" />
+										 readonly autocomplete="off" />
 								</div>
 							</div>
 						</div>
@@ -113,8 +113,8 @@
 									<label for="teamName">Team Name</label>
 								</div>
 								<div class="col-md-3">
-									<select class="form-control" name="teamName" id="teamName"
-										onchange="loadProjDetails()"></select>
+									<input class="form-control" id="teamName" name="teamName"
+										placeholder="Enter Team Name" readonly autocomplete="off" />
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
@@ -122,7 +122,7 @@
 								</div>
 								<div class="col-md-3">
 									<input autocomplete="off" class="form-control" name="startDate"
-										id="startDate" placeholder="Enter Start Date (YYYY-MM-DD)" />
+										id="startDate" readonly placeholder="Enter Start Date (YYYY-MM-DD)" />
 								</div>
 							</div>
 						</div>
@@ -170,9 +170,8 @@
 									<label for="country">Country</label>
 								</div>
 								<div class="col-md-3">
-									<select class="form-control" name="country" id="country"
-										onchange="loadLocDetails()"></select>
-
+									<input class="form-control" name="country" id="country"
+										placeholder="Enter Country" readonly autocomplete="off" />
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
@@ -190,8 +189,8 @@
 									<label for="role">Role</label>
 								</div>
 								<div class="col-md-3">
-									<select class="form-control" name="role" id="role"
-										onchange="loadRateDetails()"></select>
+								<input class="form-control" name="role" id="role"
+										placeholder="Enter Role value" readonly autocomplete="off" />
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
@@ -203,9 +202,27 @@
 								</div>
 							</div>
 						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-2">
+									<label for="skill">Skill</label>
+								</div>
+								<div class="col-md-3">
+									<input class="form-control" name="skill" id="skill"
+										placeholder="Enter Skills" readonly autocomplete="off" />
+								</div>
+								<div class="col-md-1"></div>
+								<div class="col-md-2">
+									<label for="skillSummary">Skill Summary</label>
+								</div>
+								<div class="col-md-3">
+									<input class="form-control" name="skillSummary" id="skillSummary"
+										placeholder="Enter Skill Summary" readonly autocomplete="off" />
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
-
 				<div id="customerInfo" class="tabcontent">
 					<div class="resizeTabCont">
 						<br>
@@ -230,13 +247,68 @@
 						</div>
 						<div class="form-group">
 							<div class="row">
+								<div class="col-md-2">
+									<label for="nationwideID">Nationwide ID</label>
+								</div>
+								<div class="col-md-3">
+									<input class="form-control" id="nationwideID" name="nationwideID"
+										placeholder="Enter Nationwide ID" readonly autocomplete="off" />
+								</div>
+								<div class="col-md-1"></div>
+								<div class="col-md-2">
+									<label for="nwIdCreatedDate">Nationwide ID Created Date</label>
+								</div>
+								<div class="col-md-3">
+									<input autocomplete="off" class="form-control" name="nwIdCreatedDate"
+										id="nwIdCreatedDate" placeholder="Enter Nationwide ID Created Date (YYYY-MM-DD)" />
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-2">
+									<label for="approvalStatus">Approval Status</label>
+								</div>
+								<div class="col-md-3">
+									<select class="form-control" name="approvalStatus" id="approvalStatus"></select>
+								</div>
+								<div class="col-md-1"></div>
+								<div class="col-md-2">
+									<label for="fgOnboardingDate">FG Onboarding Date</label>
+								</div>
+								<div class="col-md-3">
+									<input autocomplete="off" class="form-control" name="fgOnboardingDate"
+										id="fgOnboardingDate" placeholder="Enter FG Onboarding Date (YYYY-MM-DD)" />
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-2">
+									<label for="comments">Comments</label>
+								</div>
+								<div class="col-md-3">
+									<textarea rows="3" cols="10" class="form-control" name="comments" id="comments"></textarea>
+								</div>
+								<div class="col-md-1"></div>
+								<div class="col-md-2">
+									<label for="attachment">Attachment</label>
+								</div>
+								<div class="col-md-3">
+									<input class="form-control" id="attachment" name="attachment"
+										placeholder="Enter Attachment" autocomplete="off" />
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="row">
 								<br /> <br />
 								<div class="col-md-6" style="text-align: right">
-									<button class="btn btn-info" id="projectRegisterFormSubmit">
+									<button class="btn btn-info" id="processorFormSubmit">
 										Submit</button>
 								</div>
 								<div class="col-md-2">
-									<input class="btn btn-info" id="projectRegisterFormReset"
+									<input class="btn btn-info" id="processorFormReset"
 										type="reset" value="Cancel" />
 								</div>
 							</div>

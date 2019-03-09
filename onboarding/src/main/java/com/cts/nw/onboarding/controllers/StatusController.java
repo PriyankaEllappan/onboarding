@@ -3,6 +3,8 @@
  */
 package com.cts.nw.onboarding.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,6 +30,7 @@ public class StatusController {
 	
 	@Autowired
 	ReleaseStatusDAO releaseStatusDAO;
+	
 	/**
 	 * @param model
 	 * @return
@@ -48,6 +51,21 @@ public class StatusController {
 	 * @param model
 	 * @return
 	 */
+	@RequestMapping(value = "/getallapprovalstatus", method = RequestMethod.GET)
+	public @ResponseBody List<ApprovalStatus> getAllApprovalStatus() {
+		List<ApprovalStatus> statList = null;
+		try {
+			return approvalStatusDAO.getAllApprovalStatus();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return statList;
+	}
+	
+	/**
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/getreleaseid/{status}", method = RequestMethod.GET)
 	public @ResponseBody ReleaseStatus getReleaseStatusID(@PathVariable String status) {
 		ReleaseStatus stat = null;
@@ -58,5 +76,20 @@ public class StatusController {
 			e.printStackTrace();
 		}
 		return stat;
+	}
+	
+	/**
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/getallreleasestatus", method = RequestMethod.GET)
+	public @ResponseBody List<ReleaseStatus> getAllReleaseStatus() {
+		List<ReleaseStatus> statList = null;
+		try {
+			return releaseStatusDAO.getAllReleaseStatus();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return statList;
 	}
 }

@@ -3,6 +3,8 @@
  */
 package com.cts.nw.onboarding.dao;
 
+import java.util.List;
+
 import com.cts.nw.onboarding.bo.ReleaseStatus;
 
 /**
@@ -12,4 +14,5 @@ import com.cts.nw.onboarding.bo.ReleaseStatus;
 public interface ReleaseStatusDAO {
 
 	ReleaseStatus getReleaseStatusID(String releaseStatus);
+	List<ReleaseStatus> getAllReleaseStatus();
 }
