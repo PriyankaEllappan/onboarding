@@ -2,6 +2,11 @@ package com.cts.nw.onboarding.bo;
 
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+@Component
 public class EmployeeProjectInfo {
 
 	/*
@@ -54,9 +59,15 @@ table employeeprojectinfo fields
 	private Integer team ;
 	private Integer role ;
 	private Integer country;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date startDate;
 	private String natiowideID;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date nationwideidCreatedDate ;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date fgOnboardingDate;
     private Integer movementID ;
     private String workforceID ;
@@ -66,6 +77,8 @@ table employeeprojectinfo fields
     private String skillSummary ;
     private Integer approvalStatus;
     private Integer releaseStatus ;
+   
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date releaseDate ;
     private Integer reasonForOffboarding ;
 	/**

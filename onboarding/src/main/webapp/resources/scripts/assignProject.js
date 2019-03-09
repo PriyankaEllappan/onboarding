@@ -9,6 +9,8 @@ $(document).ready(function() {
 	loadCountryHierarchy();
 	loadAllRoles();
 	loadRoleMappings();
+	loadApprovalStatus();
+	loadReleaseStatus();
 	
 	/* DatePicker Options */
 	var dateOfBirth = $('#startDate');
@@ -129,7 +131,6 @@ function loadRoleMappings(){
 	});
 }
 
-
 function loadRateDetails(){
 	var selectedRoleID = $('#role').val();
 	var selectedCountryMapID = $('#countryMappingID').val();
@@ -143,6 +144,31 @@ function loadRateDetails(){
 	});
 }
 
+function loadApprovalStatus(){
+	var status = "NEW";
+	$.ajax({
+		type : 'GET',
+		url : "/onboarding/status/getapprovalid/" + status,
+		dataType : "text",
+		success : function(resultData) {
+			approvalStat = JSON.parse(resultData);
+			$('#approvalStatus').val(approvalStat.id);
+		}
+	});
+}
+
+function loadReleaseStatus(){
+	var status = "YET TO RELEASE";
+	$.ajax({
+		type : 'GET',
+		url : "/onboarding/status/getreleaseid/" + status,
+		dataType : "text",
+		success : function(resultData) {
+			releaseStat = JSON.parse(resultData);
+			$('#releaseStatus').val(releaseStat.id);
+		}
+	});
+}
 /* Project Register Submit */
 $(function() {
 	$('#projectRegisterFormSubmit').click(function(e) {
@@ -152,38 +178,39 @@ $(function() {
 			url : '/onboarding/request/addproject',
 			type : 'POST',
 			dataType : 'json',
-			data : JSON.stringify(jsonStr),
+			data : JSON.stringify(jsonRequest),
 			contentType : 'application/json; charset=utf-8',
 			success : function(resultData) {
 				console.log(resultData);
 				if (!$.trim(resultData)) {
-					/*$('#resourceNonAvailable').removeClass('showElements');
-					$('#resourceNonAvailable').addClass('hideElements');
-					$('#registerStatus').text("Resource Not Registered");
-					$('#registerStatus').addClass('showElements');*/
+					$('#messageDiv').removeClass('hideElements');
+					$('#messageDiv').text("Unable to add the project details");
+					$('#messageDiv').addClass('showElements');
+					$('#formDiv').addClass('hideElements');
 				} else {
-					/*$('#resourceNonAvailable').removeClass('showElements');
-					$('#resourceNonAvailable').addClass('hideElements');
-					$('#registerStatus').text("Resource Registered");
-					$('#registerStatus').addClass('showElements');*/
+					$('#messageDiv').removeClass('hideElements');
+					$('#messageDiv').text("Project details added successfully");
+					$('#messageDiv').addClass('showElements');
+					$('#formDiv').addClass('hideElements');
 				}
 			},
 			error : function() {
-				/*$('#resourceNonAvailable').removeClass('showElements');
-				$('#resourceNonAvailable').addClass('hideElements');
-				$('#registerStatus').text("Resource Not Registered");
-				$('#registerStatus').addClass('showElements');*/
+				console.log("error");
+				$('#messageDiv').removeClass('hideElements');
+				$('#messageDiv').text("Unable to add the project details");
+				$('#messageDiv').addClass('showElements');
+				$('#formDiv').addClass('hideElements');
 			}
 		})
 	});
 });
 
 function setRequestParams(){
-	jsonStr["employeeID"] = $('#newEmpID').val();
-	jsonStr["team"] = $('#teamMappingID').val();
-	jsonStr["role"] = $('#roleMappingID').val();
-	jsonStr["country"] = $('#countryMappingID').val();
-	jsonStr["startDate"] = $('#startDate').val();
-	jsonStr["approvalStatus"] = $('#approvalStatus').val();
-	jsonStr["releaseStatus"] = $('#releaseStatus').val();
+	jsonRequest["employeeID"] = $('#newEmpID').val();
+	jsonRequest["team"] = $('#teamMappingID').val();
+	jsonRequest["role"] = $('#roleMappingID').val();
+	jsonRequest["country"] = $('#countryMappingID').val();
+	jsonRequest["startDate"] = $('#startDate').val();
+	jsonRequest["approvalStatus"] = $('#approvalStatus').val();
+	jsonRequest["releaseStatus"] = $('#releaseStatus').val();
 }

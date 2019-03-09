@@ -6,7 +6,6 @@ package com.cts.nw.onboarding.serviceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cts.nw.onboarding.bo.EmployeeCompleteProjectInfo;
 import com.cts.nw.onboarding.bo.EmployeeMaster;
 import com.cts.nw.onboarding.bo.EmployeeProjectInfo;
 import com.cts.nw.onboarding.dao.EmployeeMasterDAO;
@@ -57,9 +56,8 @@ public class RequesterServiceImpl implements RequesterService {
 		employee.setDOB(emp.getDOB());*/
 	
 	@Override
-	public EmployeeMaster populateRequesterForm(EmployeeMaster employee, int empid) {
-	employee = employeeMasterDAO.getEmployeeMasterDetailsByID(empid);
-		return employee;
+	public EmployeeMaster populateRequesterForm(int empid) {
+		return employeeMasterDAO.getEmployeeMasterDetailsByID(empid);
 	}
 
 	@Override
