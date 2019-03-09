@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Resource Availability</title>
+<title>Processor Form</title>
 <!-- Load Sytle Sheets -->
 <link rel="stylesheet"
 	href="/onboarding/resources/stylesheets/bootstrap.min.css">
@@ -203,27 +203,9 @@
 								</div>
 							</div>
 						</div>
-						<div class="form-group">
-							<div class="row">
-								<div class="col-md-2">
-									<label for="skill">Skill</label>
-								</div>
-								<div class="col-md-3">
-									<input class="form-control" name="skill" id="skill"
-										placeholder="Enter Skills" autocomplete="off" />
-								</div>
-								<div class="col-md-1"></div>
-								<div class="col-md-2">
-									<label for="skillSummary">Skill Summary</label>
-								</div>
-								<div class="col-md-3">
-									<input class="form-control" name="skillSummary" id="skillSummary"
-										placeholder="Enter Skill Summary" autocomplete="off" />
-								</div>
-							</div>
-						</div>
 					</div>
 				</div>
+
 				<div id="customerInfo" class="tabcontent">
 					<div class="resizeTabCont">
 						<br>
@@ -260,14 +242,6 @@
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="hideElements">
-					<input type="hidden" id="teamMappingID" /> 
-					<input type="hidden" id="roleMappingID" /> 
-					<input type="hidden" id="roleID" /> 
-					<input type="hidden" id="countryMappingID" />
-					<input type="hidden" id="approvalStatus" />
-					<input type="hidden" id="releaseStatus" />
 				</div>
 			</form>
 		</div>

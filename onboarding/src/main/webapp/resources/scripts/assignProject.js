@@ -213,4 +213,6 @@ function setRequestParams(){
 	jsonRequest["startDate"] = $('#startDate').val();
 	jsonRequest["approvalStatus"] = $('#approvalStatus').val();
 	jsonRequest["releaseStatus"] = $('#releaseStatus').val();
+	jsonRequest["skillSet"] = $('#skill').val();
+	jsonRequest["skillSummary"] = $('#skillSummary').val();
 }
