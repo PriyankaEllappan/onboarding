@@ -47,7 +47,7 @@
 									<label for="newEmpID">Employee Id</label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" name="newEmpID" id="newEmpID"
+									<input class="form-control" name="newEmpID" id="newEmpID" value="${employee.employeeMasterID}"
 										placeholder="Enter EmployeeID" readonly autocomplete="off" />
 								</div>
 								<div class="col-md-1"></div>
@@ -55,7 +55,7 @@
 									<label for="newEmpEmail">Email</label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" id="newEmpEmail" name="newEmpEmail"
+									<input class="form-control" id="newEmpEmail" name="newEmpEmail" value="${employee.email}"
 										placeholder="Enter Email Id" readonly autocomplete="off" />
 								</div>
 							</div>
@@ -66,7 +66,7 @@
 									<label for="newEmpFName">First Name</label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" id="newEmpFName" name="newEmpFName"
+									<input class="form-control" id="newEmpFName" name="newEmpFName" value="${employee.firstName}"
 										placeholder="Enter First Name" readonly autocomplete="off" />
 								</div>
 								<div class="col-md-1"></div>
@@ -74,7 +74,7 @@
 									<label for="newEmpLName">Last Name</label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" id="newEmpLName" name="newEmpLName"
+									<input class="form-control" id="newEmpLName" name="newEmpLName" value="${employee.lastName}"
 										placeholder="Enter Last Name" readonly autocomplete="off" />
 								</div>
 							</div>
@@ -85,7 +85,7 @@
 									<label for="newEmpDOB">Date Of Birth</label>
 								</div>
 								<div class="col-md-3">
-									<input autocomplete="off" class="form-control" name="newEmpDOB"
+									<input autocomplete="off" class="form-control" name="newEmpDOB" value="${employee.DOB}"
 										id="newEmpDOB" placeholder="Enter Date of Birth (YYYY-MM-DD)"
 										readonly autocomplete="off" />
 								</div>
@@ -94,7 +94,7 @@
 									<label for="newEmpPPNo">Passport ID No*</label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" name="newEmpPPNo" id="newEmpPPNo"
+									<input class="form-control" name="newEmpPPNo" id="newEmpPPNo" value="${employee.passportNumber}"
 										placeholder="Enter Passport No" readonly autocomplete="off" />
 								</div>
 							</div>
@@ -110,7 +110,7 @@
 									<label for="teamName">Team Name</label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" id="teamName" name="teamName"
+									<input class="form-control" id="teamName" name="teamName" value="${employee.teamName}"
 										placeholder="Enter Team Name" readonly autocomplete="off" />
 								</div>
 								<div class="col-md-1"></div>
@@ -118,7 +118,7 @@
 									<label for="startDate">Start Date</label>
 								</div>
 								<div class="col-md-3">
-									<input autocomplete="off" class="form-control" name="startDate"
+									<input autocomplete="off" class="form-control" name="startDate" value="${employee.startDate}"
 										id="startDate" readonly
 										placeholder="Enter Start Date (YYYY-MM-DD)" />
 								</div>
@@ -130,7 +130,7 @@
 									<label for="projectID">Project ID</label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" id="projectID" name="projectID"
+									<input class="form-control" id="projectID" name="projectID" value="${employee.projectId}"
 										placeholder="Enter Project ID" readonly autocomplete="off" />
 								</div>
 								<div class="col-md-1"></div>
@@ -138,7 +138,7 @@
 									<label for="projectName">Project Name</label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" id="projectName" name="projectName"
+									<input class="form-control" id="projectName" name="projectName" value="${employee.projectName}"
 										placeholder="Enter Project Name" readonly autocomplete="off" />
 								</div>
 							</div>
@@ -149,7 +149,7 @@
 									<label for="requester">Requester</label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" id="requester" name="requester"
+									<input class="form-control" id="requester" name="requester" value="${employee.requesterName}"
 										placeholder="Enter Requester Name" readonly autocomplete="off" />
 								</div>
 								<div class="col-md-1"></div>
@@ -157,7 +157,7 @@
 									<label for="processor">Processor</label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" name="processor" id="processor"
+									<input class="form-control" name="processor" id="processor" value="${employee.processorName}"
 										placeholder="Enter Processor Name" readonly autocomplete="off" />
 								</div>
 							</div>
@@ -168,7 +168,7 @@
 									<label for="country">Country</label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" name="country" id="country"
+									<input class="form-control" name="country" id="country" value="${employee.countryName}"
 										placeholder="Enter Country" readonly autocomplete="off" />
 								</div>
 								<div class="col-md-1"></div>
@@ -176,7 +176,7 @@
 									<label for="location">Location</label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" name="location" id="location"
+									<input class="form-control" name="location" id="location" value="${employee.locationName}"
 										placeholder="Enter Location" readonly autocomplete="off" />
 								</div>
 							</div>
@@ -187,7 +187,7 @@
 									<label for="role">Role</label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" name="role" id="role"
+									<input class="form-control" name="role" id="role" value="${employee.roleName}"
 										placeholder="Enter Role value" readonly autocomplete="off" />
 								</div>
 								<div class="col-md-1"></div>
@@ -195,7 +195,7 @@
 									<label for="rate">Rate</label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" name="rate" id="rate"
+									<input class="form-control" name="rate" id="rate" value="${employee.rateValue}"
 										placeholder="Enter Rate value" readonly autocomplete="off" />
 								</div>
 							</div>
@@ -206,7 +206,7 @@
 									<label for="skill">Skill</label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" name="skill" id="skill"
+									<input class="form-control" name="skill" id="skill" value="${employee.skillSet}"
 										placeholder="Enter Skills" readonly autocomplete="off" />
 								</div>
 								<div class="col-md-1"></div>
@@ -214,7 +214,7 @@
 									<label for="skillSummary">Skill Summary</label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" name="skillSummary"
+									<input class="form-control" name="skillSummary" value="${employee.skillSummary}"
 										id="skillSummary" placeholder="Enter Skill Summary" readonly
 										autocomplete="off" />
 								</div>
@@ -231,7 +231,7 @@
 									<label for="bsaInfo">BSA</label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" id="bsaInfo" name="bsaInfo"
+									<input class="form-control" id="bsaInfo" name="bsaInfo" value="${employee.bsaInfo}"
 										placeholder="Enter BSA Info" readonly autocomplete="off" />
 								</div>
 								<div class="col-md-1"></div>
@@ -239,7 +239,7 @@
 									<label for="pplInfo">Customer PPL</label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" name="pplInfo" id="pplInfo"
+									<input class="form-control" name="pplInfo" id="pplInfo" value="${employee.pplInfo}"
 										placeholder="Enter PPL Info" readonly autocomplete="off" />
 								</div>
 							</div>
@@ -250,7 +250,7 @@
 									<label for="nationwideID">Nationwide ID</label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" id="nationwideID"
+									<input class="form-control" id="nationwideID" value="${employee.natiowideID}"
 										name="nationwideID" placeholder="Enter Nationwide ID" readonly
 										autocomplete="off" />
 								</div>
@@ -260,7 +260,7 @@
 								</div>
 								<div class="col-md-3">
 									<input autocomplete="off" class="form-control"
-										name="nwIdCreatedDate" id="nwIdCreatedDate"
+										name="nwIdCreatedDate" id="nwIdCreatedDate" value="${employee.nationwideidCreatedDate}"
 										readonly placeholder="Enter Nationwide ID Created Date (YYYY-MM-DD)" />
 								</div>
 							</div>
@@ -271,7 +271,7 @@
 									<label for="approvalStatus">Approval Status</label>
 								</div>
 								<div class="col-md-3">
-									<select class="form-control" name="approvalStatus"
+									<select class="form-control" name="approvalStatus" 
 										id="approvalStatus"></select>
 								</div>
 								<div class="col-md-1"></div>
@@ -280,7 +280,7 @@
 								</div>
 								<div class="col-md-3">
 									<input autocomplete="off" class="form-control"
-										name="fgOnboardingDate" id="fgOnboardingDate"
+										name="fgOnboardingDate" id="fgOnboardingDate" value="${employee.fgOnboardingDate}"
 										readonly placeholder="Enter FG Onboarding Date (YYYY-MM-DD)" />
 								</div>
 							</div>
@@ -291,7 +291,7 @@
 									<label for="comments">Comments</label>
 								</div>
 								<div class="col-md-3">
-									<textarea rows="3" cols="10" class="form-control"
+									<textarea rows="3" cols="10" class="form-control" value="${employee.comments}"
 										name="comments" id="comments" readonly></textarea>
 								</div>
 								<div class="col-md-1"></div>
@@ -299,7 +299,7 @@
 									<label for="attachment">Attachment</label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" id="attachment" name="attachment"
+									<input class="form-control" id="attachment" name="attachment" 
 										placeholder="Enter Attachment" readonly autocomplete="off" />
 								</div>
 							</div>

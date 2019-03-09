@@ -11,28 +11,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.cts.nw.onboarding.bo.EmployeeMaster;
-import com.cts.nw.onboarding.bo.ReleaseStatus;
+import com.cts.nw.onboarding.bo.ProcessorsInfo;
 import com.cts.nw.onboarding.bo.ReleaseSummary;
-import com.cts.nw.onboarding.dao.ReleaseSummaryDAO;
+import com.cts.nw.onboarding.service.ReleaseService;
 
 @Controller
 @RequestMapping("/release")
 public class ReleaseController {
 
 	@Autowired
-	ReleaseSummaryDAO releaseSummaryDAO;
+	ReleaseService releaseService;
 	
 	/**
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/processrelease/{empid}", method = RequestMethod.GET)
-	public String generateRequestProcessForm(@ModelAttribute("employee") EmployeeMaster employee,
-			@PathVariable int empid, ModelMap model) {
+	@RequestMapping(value = "/processrelease/{projInfoId}", method = RequestMethod.GET)
+	public String generateReleaseProcessForm(@ModelAttribute("employee") ProcessorsInfo employee,
+			@PathVariable String projInfoId, ModelMap model) {
 		try {
-			employee = new EmployeeMaster();
-		/*	employee = requesterService.populateRequesterForm(empid);*/
+			employee = releaseService.getEmployeetoReleasebyId(projInfoId);
+			System.out.println(employee.toString());
 			model.addAttribute("employee", employee);
 			return "terminate/requestTerminationForm";
 		} catch (Exception e) {
@@ -49,7 +48,7 @@ public class ReleaseController {
 	public @ResponseBody List<ReleaseSummary> getAllReleaseSummary() {
 		List<ReleaseSummary> statList = null;
 		try {
-			return releaseSummaryDAO.getAllReleaseSummary();
+			return releaseService.getAllReleaseSummary();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

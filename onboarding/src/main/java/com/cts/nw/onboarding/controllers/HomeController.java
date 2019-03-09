@@ -4,12 +4,15 @@ package com.cts.nw.onboarding.controllers;
 import java.security.Principal;
 import java.util.Collection;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,6 +25,8 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/")
 public class HomeController {
 
+	public static String APPURL = "";
+	
 	/**
 	 * @return
 	 */
@@ -143,4 +148,14 @@ public class HomeController {
 		return "login";
 	}
 
+	@ModelAttribute
+	public void setUrl(HttpServletRequest request){
+		if(request.getLocalPort() != 0){
+			APPURL = request.getServerName() + ":" + request.getLocalPort() + request.getContextPath();
+		}else{
+			APPURL = request.getServerName() + request.getContextPath();
+		}
+		System.out.println(APPURL);
+	}
+	
 }

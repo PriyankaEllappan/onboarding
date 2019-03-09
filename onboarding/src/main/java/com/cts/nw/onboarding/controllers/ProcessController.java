@@ -3,6 +3,7 @@
  */
 package com.cts.nw.onboarding.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -10,7 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.cts.nw.onboarding.bo.EmployeeMaster;
+import com.cts.nw.onboarding.bo.ProcessorsInfo;
+import com.cts.nw.onboarding.service.ProcessorService;
 
 /**
  * @author 656579
@@ -19,16 +21,20 @@ import com.cts.nw.onboarding.bo.EmployeeMaster;
 @Controller
 public class ProcessController {
 
+	@Autowired
+	ProcessorService processorService;
+	
 	/**
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value = "/process/processrequest/{empid}", method = RequestMethod.GET)
-	public String generateRequestProcessForm(@ModelAttribute("employee") EmployeeMaster employee,
+	public String generateRequestProcessForm(@ModelAttribute("employee") ProcessorsInfo employee,
 			@PathVariable int empid, ModelMap model) {
+		Integer processorId = 429992;
 		try {
-			employee = new EmployeeMaster();
-		/*	employee = requesterService.populateRequesterForm(empid);*/
+			employee = processorService.getEmployeetoProcess(processorId,empid);
+			System.out.println(employee.toString());
 			model.addAttribute("employee", employee);
 			return "process/requestProcessingForm";
 		} catch (Exception e) {
@@ -36,6 +42,5 @@ public class ProcessController {
 			return null;
 		}
 	}
-	
 	
 }
