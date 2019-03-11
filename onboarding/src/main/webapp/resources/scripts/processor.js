@@ -17,6 +17,7 @@ $(document).ready(function() {
 	
 	document.getElementById("defaultOpen").click();
 	loadApprovalStatus();
+	loadReleaseStatus();
 })
 
 function openSpecificTab(evt, tabName) {
@@ -49,6 +50,20 @@ function loadApprovalStatus(){
 		}
 	});
 }
+
+function loadReleaseStatus(){
+	var status = "YET TO RELEASE";
+	$.ajax({
+		type : 'GET',
+		url : "/onboarding/status/getreleaseid/" + status,
+		dataType : "text",
+		success : function(resultData) {
+			releaseStat = JSON.parse(resultData);
+			$('#releaseStatus').val(releaseStat.id);
+		}
+	});
+}
+
 
 /* Processor Register Submit */
 $(function() {

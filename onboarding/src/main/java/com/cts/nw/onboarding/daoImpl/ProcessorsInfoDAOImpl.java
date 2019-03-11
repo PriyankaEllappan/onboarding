@@ -88,18 +88,22 @@ public class ProcessorsInfoDAOImpl implements ProcessorsInfoDAO{
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.cts.nw.onboarding.dao.ProcessorsInfoDAO#processAnEmployee(com.cts.nw.onboarding.bo.ProcessorsInfo)
+	 */
 	@Override
 	public Integer processAnEmployee(ProcessorsInfo employeeProjJson) {
-		return null;
-	/*	String sql = "INSERT INTO EmployeeMaster (ID, NAME, FIRSTNAME, LASTNAME, DOB, PASSPORTNUMBER,EMAIL) VALUES (?, ?, ?, ?, ?, ?, ?)";
-		return jdbcTemplate.update(sql, employeeMaster.getID(), employeeMaster.getName(), employeeMaster.getFirstName(),
-				employeeMaster.getLastName(), employeeMaster.getDOB(), employeeMaster.getPassportNumber(), employeeMaster.getEmail());*/
+		String sql = "UPDATE EMPLOYEEPROJECTINFO SET NATIOWIDEID = ?,NATIONWIDEIDCREATEDDATE = ? WHERE ID= ?";
+		return jdbcTemplate.update(sql,employeeProjJson.getNatiowideID(),employeeProjJson.getNationwideidCreatedDate(),employeeProjJson.getId());
 	}
 
+	/* (non-Javadoc)
+	 * @see com.cts.nw.onboarding.dao.ProcessorsInfoDAO#releaseAnEmployee(com.cts.nw.onboarding.bo.ProcessorsInfo)
+	 */
 	@Override
 	public Integer releaseAnEmployee(ProcessorsInfo employeeProjJson) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "UPDATE EMPLOYEEPROJECTINFO SET REASONFOROFFBOARDING = ? WHERE ID= ?";
+		return jdbcTemplate.update(sql,employeeProjJson.getReleaseStatus(),employeeProjJson.getId());
 	}
 
 }

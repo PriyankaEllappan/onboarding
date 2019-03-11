@@ -26,7 +26,6 @@ import org.springframework.web.servlet.ModelAndView;
 public class HomeController {
 
 	public static String APPURL = "";
-	
 	/**
 	 * @return
 	 */

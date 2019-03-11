@@ -21,8 +21,17 @@ public class ProcessorServiceImpl implements ProcessorService {
 	ProcessorsInfoDAO processorsInfoDAO;
 	
 	@Override
-	public ProcessorsInfo getEmployeetoProcess(int processorId,int projInfoId) {
-		return processorsInfoDAO.getEmployeeToProcess(processorId, projInfoId);
+	public ProcessorsInfo getEmployeetoProcess(String processorId,String projInfoId) {
+		int processor;
+		int projInfo;
+		try{
+			processor = Integer.parseInt(processorId);
+			projInfo = Integer.parseInt(projInfoId);
+			return processorsInfoDAO.getEmployeeToProcess(processor, projInfo);
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override

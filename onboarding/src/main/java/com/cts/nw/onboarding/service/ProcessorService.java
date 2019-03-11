@@ -11,7 +11,7 @@ import com.cts.nw.onboarding.bo.ProcessorsInfo;
  */
 public interface ProcessorService {
 
-	ProcessorsInfo getEmployeetoProcess(int processorId,int empProjId);
+	ProcessorsInfo getEmployeetoProcess(String processorId,String empProjId);
 
 	ProcessorsInfo processAnEmployee(ProcessorsInfo employeeProjJson);
 
