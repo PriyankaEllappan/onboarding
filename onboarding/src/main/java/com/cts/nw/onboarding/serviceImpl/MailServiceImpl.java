@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.cts.nw.onboarding.bo.EmployeeProjectInfo;
 import com.cts.nw.onboarding.bo.MailDetail;
+import com.cts.nw.onboarding.bo.ProcessorsInfo;
 import com.cts.nw.onboarding.controllers.HomeController;
 import com.cts.nw.onboarding.mailers.SendMail;
 import com.cts.nw.onboarding.service.LDAPService;
@@ -53,12 +54,16 @@ public class MailServiceImpl implements MailService {
 	}
 
 	@Override
-	public void sendInProgressEmail(EmployeeProjectInfo resource) {
+	public void sendInProgressEmail(ProcessorsInfo resource) {
 		String emailContent = environment.getRequiredProperty("mail.inprogress");
-		emailContent = emailContent.replaceAll("<<EMPID>>", "656579" );
+		/*emailContent = emailContent.replaceAll("<<EMPID>>", "656579" );
 		emailContent = emailContent.replace("<<EMPNAME>>", "Suresh" );
 		emailContent = emailContent.replace("<<PROJID>>",  "132422");
-		emailContent = emailContent.replace("<<PROJNAME>>",  "Projevt 2");
+		emailContent = emailContent.replace("<<PROJNAME>>",  "Projevt 2");*/
+		emailContent = emailContent.replaceAll("<<EMPID>>", String.valueOf(resource.getEmployeeMasterID()));
+		emailContent = emailContent.replace("<<EMPNAME>>", resource.getName());
+		emailContent = emailContent.replace("<<PROJID>>",  String.valueOf(resource.getProjectId()));
+		emailContent = emailContent.replace("<<PROJNAME>>",  resource.getProjectName());
 		emailContent = emailContent.replace("<<URL>>",  HomeController.APPURL);
 		MailDetail mailDetail = new MailDetail();
 		mailDetail.setReceiver("Priyanka.Ellappan@cognizant.com");
@@ -68,9 +73,10 @@ public class MailServiceImpl implements MailService {
 	}
 
 	@Override
-	public void sendCompletionEmail(EmployeeProjectInfo resource) {
+	public void sendCompletionEmail(ProcessorsInfo resource) {
 		String emailContent = environment.getRequiredProperty("mail.complete");
-		emailContent = emailContent.replace("<<NWID>>", "65657239" );
+		/*emailContent = emailContent.replace("<<NWID>>", "65657239" );*/
+		emailContent = emailContent.replace("<<NWID>>", resource.getNationwideID());
 		emailContent = emailContent.replace("<<URL>>",  HomeController.APPURL);
 		MailDetail mailDetail = new MailDetail();
 		mailDetail.setReceiver("Priyanka.Ellappan@cognizant.com");

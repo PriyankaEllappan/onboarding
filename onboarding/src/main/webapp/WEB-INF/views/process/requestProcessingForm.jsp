@@ -317,6 +317,7 @@
 							<input type="hidden" id="requesterID" value="${employee.requesterID}" /> 
 							<input type="hidden" id="processorID" value="${employee.processorID}" />
 							<input type="hidden" id="empProjId" value="${employee.id}" />
+							<input type="hidden" id="empName" value="${employee.name}" />
 							<input type="hidden" id="releaseStatus" />
 						</div>
 					</div>

@@ -85,11 +85,11 @@
 							</div>
 							<div class="col-md-1"></div>
 							<div class="col-md-2">
-								<label for="newEmpPPNo">Passport ID No*</label>
+								<label for="newEmpPPNo">Passport ID / SSN No</label>
 							</div>
 							<div class="col-md-3">
 								<input class="form-control" name="newEmpPPNo" id="newEmpPPNo"
-									placeholder="Enter Passport No" /> <span
+									placeholder="Enter last 4 digits of Passport/SSN No" /> <span
 									class="has-error hideElements" id="passportNoErr"> </span>
 							</div>
 						</div>

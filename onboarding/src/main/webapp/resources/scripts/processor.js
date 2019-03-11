@@ -103,6 +103,10 @@ $(function() {
 
 function setRequestParams() {
 	jsonRequest["id"] = $('#empProjId').val();
+	jsonRequest["employeeMasterID"] = $('#newEmpID').val();
+	jsonRequest["projectId"] = $('#projectID').val();
+	jsonRequest["name"] = $('#empName').val();
+	jsonRequest["projectName"] = $('#projectName').val();
 	jsonRequest["requesterId"] = $('#requesterID').val();
 	jsonRequest["processorId"] = $('#processorID').val();
 	jsonRequest["releaseDate"] = $('#releaseDate').val();

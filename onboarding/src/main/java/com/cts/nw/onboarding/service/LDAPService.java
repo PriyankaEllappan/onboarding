@@ -10,6 +10,5 @@ import com.cts.nw.onboarding.vo.EmployeeDetails;
  *
  */
 public interface LDAPService {
-
 	EmployeeDetails getEmployee(String empIdtoSearch);
 }
