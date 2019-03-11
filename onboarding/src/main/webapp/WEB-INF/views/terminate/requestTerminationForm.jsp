@@ -250,7 +250,7 @@
 									<label for="nationwideID">Nationwide ID</label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" id="nationwideID" value="${employee.natiowideID}"
+									<input class="form-control" id="nationwideID" value="${employee.nationwideID}"
 										name="nationwideID" placeholder="Enter Nationwide ID" readonly
 										autocomplete="off" />
 								</div>

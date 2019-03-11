@@ -22,7 +22,7 @@ public class ProcessorsInfoDAOImpl implements ProcessorsInfoDAO{
 			+ "EM.FIRSTNAME AS FIRSTNAME, EM.LASTNAME AS LASTNAME, "
 			+ "EM.DOB AS DOB, EM.PASSPORTNUMBER AS PASSPORTNUMBER, "
 			+ "EM.EMAIL AS EMAIL, EMPPI.STARTDATE AS STARTDATE, "
-			+ "EMPPI.RELEASESTATUS AS RELEASESTATUS, EMPPI.NATIOWIDEID AS NATIOWIDEID, EMPPI.NATIONWIDEIDCREATEDDATE AS NATIONWIDEIDCREATEDDATE, "
+			+ "EMPPI.RELEASESTATUS AS RELEASESTATUS, EMPPI.NATIONWIDEID AS NATIONWIDEID, EMPPI.NATIONWIDEIDCREATEDDATE AS NATIONWIDEIDCREATEDDATE, "
 			+ "EMPPI.FGONBOARDINGDATE AS FGONBOARDINGDATE, EMPPI.SKILLSET, EMPPI.COMMENTS, "
 			+ "EMPPI.SKILLSUMMARY AS SKILLSUMMARY, "
 			+ "EMPPI.APPROVALSTATUS AS APPROVALSTATUS, PI.PROJECTNAME AS PROJECTNAME,PI.PROJECTID  AS PROJECTID, P.PROCESSORID AS PROCESSORID, "
@@ -69,10 +69,10 @@ public class ProcessorsInfoDAOImpl implements ProcessorsInfoDAO{
 	
 	
 	@Override
-	public List<ProcessorsInfo> getEmployeesbyReleaseStatusId(int releaseStatusID) {
+	public List<ProcessorsInfo> getEmployeesbyReleaseStatusId(int empProjInfoId) {
 		try {
 			RowMapper<ProcessorsInfo> rowMapper = new ProcessorsInfoRowMapper();
-			return this.jdbcTemplate.query(getReleasedEmployeesSQL, rowMapper, releaseStatusID);
+			return this.jdbcTemplate.query(getReleasedEmployeesSQL, rowMapper, empProjInfoId);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
@@ -93,8 +93,8 @@ public class ProcessorsInfoDAOImpl implements ProcessorsInfoDAO{
 	 */
 	@Override
 	public Integer processAnEmployee(ProcessorsInfo employeeProjJson) {
-		String sql = "UPDATE EMPLOYEEPROJECTINFO SET NATIOWIDEID = ?,NATIONWIDEIDCREATEDDATE = ? WHERE ID= ?";
-		return jdbcTemplate.update(sql,employeeProjJson.getNatiowideID(),employeeProjJson.getNationwideidCreatedDate(),employeeProjJson.getId());
+		String sql = "UPDATE EMPLOYEEPROJECTINFO SET NATIONWIDEID = ?,NATIONWIDEIDCREATEDDATE = ? WHERE ID= ?";
+		return jdbcTemplate.update(sql,employeeProjJson.getNationwideID(),employeeProjJson.getNationwideidCreatedDate(),employeeProjJson.getId());
 	}
 
 	/* (non-Javadoc)

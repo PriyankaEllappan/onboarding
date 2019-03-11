@@ -20,7 +20,7 @@ public class ProcessorsInfoRowMapper implements RowMapper<ProcessorsInfo>{
 		processorsInfo.setPassportNumber(rs.getString("PASSPORTNUMBER"));//EM.PASSPORTNUMBER AS PASSPORTNUMBER, 
 		processorsInfo.setEmail(rs.getString("EMAIL"));//EM.EMAIL AS EMAIL, 
 		processorsInfo.setStartDate(rs.getDate("STARTDATE"));//EMPPI.STARTDATE AS STARTDATE,
-		processorsInfo.setNatiowideID(rs.getString("NATIOWIDEID"));;//EMPPI.NATIOWIDEID AS NATIOWIDEID,
+		processorsInfo.setNationwideID(rs.getString("NATIONWIDEID"));;//EMPPI.NATIOWIDEID AS NATIOWIDEID,
 		processorsInfo.setNationwideidCreatedDate(rs.getDate("NATIONWIDEIDCREATEDDATE"));;//EMPPI.NATIONWIDEIDCREATEDDATE AS NATIONWIDEIDCREATEDDATE,
 		processorsInfo.setFgOnboardingDate(rs.getDate("FGONBOARDINGDATE"));//EMPPI.FGONBOARDINGDATE AS FGONBOARDINGDATE,
 		processorsInfo.setSkillSet(rs.getString("SKILLSET"));//EMPPI.SKILLSET AS SKILLSET, //need to add in query

@@ -112,5 +112,5 @@ function setRequestParams() {
 	jsonRequest["comments"] = $('#comments').val();
 	jsonRequest["fgOnboardingDate"] = $('#fgOnboardingDate').val();
 	jsonRequest["nationwideidCreatedDate"] = $('#nwIdCreatedDate').val();
-	jsonRequest["natiowideID"] = $('#nationwideID').val();
+	jsonRequest["nationwideID"] = $('#nationwideID').val();
 }

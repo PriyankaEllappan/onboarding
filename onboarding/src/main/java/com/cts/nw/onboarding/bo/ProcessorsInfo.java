@@ -34,7 +34,7 @@ public class ProcessorsInfo {
 	private Integer id;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date startDate;
-	private String natiowideID;
+	private String nationwideID;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date nationwideidCreatedDate;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
@@ -226,19 +226,20 @@ public class ProcessorsInfo {
 		this.startDate = startDate;
 	}
 
+	
+
 	/**
-	 * @return the natiowideID
+	 * @return the nationwideID
 	 */
-	public String getNatiowideID() {
-		return natiowideID;
+	public String getNationwideID() {
+		return nationwideID;
 	}
 
 	/**
-	 * @param natiowideID
-	 *            the natiowideID to set
+	 * @param nationwideID the nationwideID to set
 	 */
-	public void setNatiowideID(String natiowideID) {
-		this.natiowideID = natiowideID;
+	public void setNationwideID(String nationwideID) {
+		this.nationwideID = nationwideID;
 	}
 
 	/**
@@ -546,7 +547,7 @@ public class ProcessorsInfo {
 		return "ProcessorsInfo [employeeMasterID=" + employeeMasterID + ", name=" + name + ", firstName=" + firstName
 				+ ", lastName=" + lastName + ", passportNumber=" + passportNumber + ", email=" + email + ", DOB=" + DOB
 				+ ", bsaInfo=" + bsaInfo + ", pplInfo=" + pplInfo + ", id=" + id + ", startDate=" + startDate
-				+ ", natiowideID=" + natiowideID + ", nationwideidCreatedDate=" + nationwideidCreatedDate
+				+ ", nationwideID=" + nationwideID + ", nationwideidCreatedDate=" + nationwideidCreatedDate
 				+ ", fgOnboardingDate=" + fgOnboardingDate + ", comments=" + comments + ", skillSet=" + skillSet
 				+ ", skillSummary=" + skillSummary + ", approvalStatus=" + approvalStatus + ", releaseStatus="
 				+ releaseStatus + ", roleName=" + roleName + ", rateValue=" + rateValue + ", teamName=" + teamName

@@ -26,6 +26,7 @@ public class MailServiceImpl implements MailService {
 	@Override
 	public void sendRequestEmail(EmployeeProjectInfo resource) {
 		String emailContent = environment.getRequiredProperty("mail.request");
+		System.out.println(resource.toString());
 		emailContent = emailContent.replaceAll("<<EMPID>>", "616550" );
 		emailContent = emailContent.replace("<<EMPNAME>>", "Priyanka" );
 		emailContent = emailContent.replace("<<PROJID>>",  "132422");

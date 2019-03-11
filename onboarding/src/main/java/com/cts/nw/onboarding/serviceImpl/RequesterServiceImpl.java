@@ -14,6 +14,7 @@ import com.cts.nw.onboarding.bo.EmployeeProjectInfo;
 import com.cts.nw.onboarding.dao.EmployeeActiveAssignmentDAO;
 import com.cts.nw.onboarding.dao.EmployeeMasterDAO;
 import com.cts.nw.onboarding.dao.EmployeeProjectInfoDAO;
+import com.cts.nw.onboarding.service.MailService;
 import com.cts.nw.onboarding.service.RequesterService;
 
 /**
@@ -31,6 +32,9 @@ public class RequesterServiceImpl implements RequesterService {
 	
 	@Autowired
     EmployeeActiveAssignmentDAO employeeActiveAssignmentDAO;
+	
+	@Autowired
+	MailService mailService;
 	
 	/* (non-Javadoc)
 	 * @see com.cts.nw.onboarding.service.RequesterService#checkEmployeeAvailability(java.lang.String)
@@ -72,6 +76,7 @@ public class RequesterServiceImpl implements RequesterService {
 		Integer rowsAffected = 0;
 		rowsAffected = employeeProjectInfoDAO.addEmployeeProjectInfo(employeeProjJson);
 		if (rowsAffected > 0) {
+			mailService.sendRequestEmail(employeeProjJson);
 			return employeeProjJson;
 		}
 		return null;
