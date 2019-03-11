@@ -17,10 +17,10 @@
 <script src="/onboarding/resources/scripts/bootstrap-datepicker.min.js"></script>
 </head>
 <body>
-	<jsp:include page="./layouts/header.jsp" />
+	<jsp:include page="../layouts/header.jsp" />
 	<div class="content-style">
 		<h1>Welcome to ${message}</h1>
 	</div>
-	<jsp:include page="./layouts/footer.jsp" />
+	<jsp:include page="../layouts/footer.jsp" />
 </body>
 </html>

@@ -34,7 +34,6 @@ public class ReleaseController {
 			@PathVariable String projInfoId, ModelMap model) {
 		try {
 			employee = releaseService.getEmployeetoReleasebyId(projInfoId);
-			System.out.println(employee.toString());
 			model.addAttribute("employee", employee);
 			return "terminate/requestTerminationForm";
 		} catch (Exception e) {

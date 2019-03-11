@@ -47,9 +47,14 @@ public class ProcessController {
 			processor = getLoggedinUserDetails(principal);
 			processor = "429992";
 			employee = processorService.getEmployeetoProcess(processor,empprojid);
-			System.out.println(employee.toString());
-			model.addAttribute("employee", employee);
-			return "process/requestProcessingForm";
+			if(employee != null){
+				System.out.println(employee.toString());
+				model.addAttribute("employee", employee);
+				return "process/requestProcessingForm";
+			}else{
+				model.addAttribute("employee", employee);
+				return "commons/resourceNotAvailable";
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

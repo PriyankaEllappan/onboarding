@@ -32,7 +32,7 @@ public class HomeController {
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView home() {
 		String homepageMessage = "Onboarding Application";
-		return new ModelAndView("index", "message", homepageMessage);
+		return new ModelAndView("commons/index", "message", homepageMessage);
 	}
 
 	/**
@@ -41,7 +41,7 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(ModelMap model) {
-		return "login";
+		return "commons/login";
 	}
 	
 	/**
@@ -51,7 +51,7 @@ public class HomeController {
 	@RequestMapping(value = "/loginError", method = RequestMethod.GET)
 	public String loginError(ModelMap model) {
 		model.addAttribute("error", "true");
-		return "login";
+		return "commons/login";
 	}
 	
 	/**
@@ -62,7 +62,7 @@ public class HomeController {
 	public ModelAndView accesssDenied(Principal user) {
 		ModelAndView model = null;
 		try {
-			model = new ModelAndView("accessDenied");
+			model = new ModelAndView("commons/accessDenied");
 			if (user != null) {
 				model.addObject("msg", "Hi " + user.getName() + ", You do not have access rights to view this page!");
 			} else {
@@ -84,7 +84,7 @@ public class HomeController {
 	public ModelAndView adminIndex(ModelMap model, Principal principal) {
 		String loggedInUserName = null;
 		loggedInUserName = getLoggedinUserDetails(principal, loggedInUserName);
-		return new ModelAndView("homePage", "userName", loggedInUserName);
+		return new ModelAndView("commons/homePage", "userName", loggedInUserName);
 	}
 
 	/**
@@ -96,7 +96,7 @@ public class HomeController {
 	public ModelAndView processIndex(ModelMap model, Principal principal) {
 		String loggedInUserName = null;
 		loggedInUserName = getLoggedinUserDetails(principal, loggedInUserName);
-		return new ModelAndView("homePage", "userName", loggedInUserName);
+		return new ModelAndView("commons/homePage", "userName", loggedInUserName);
 	}
 	
 	/**
@@ -108,7 +108,7 @@ public class HomeController {
 	public ModelAndView requestIndex(ModelMap model, Principal principal) {
 		String loggedInUserName = null;
 		loggedInUserName = getLoggedinUserDetails(principal, loggedInUserName);
-		return new ModelAndView("homePage", "userName", loggedInUserName);
+		return new ModelAndView("commons/homePage", "userName", loggedInUserName);
 	}
 	
 	/**
@@ -144,7 +144,7 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/j_spring_security_logout", method = RequestMethod.GET)
 	public String logout(ModelMap model) {
-		return "login";
+		return "commons/login";
 	}
 
 	@ModelAttribute

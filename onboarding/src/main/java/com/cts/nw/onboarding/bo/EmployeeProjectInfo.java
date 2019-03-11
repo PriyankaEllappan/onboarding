@@ -85,7 +85,48 @@ table employeeprojectinfo fields
     /*Additional Params for Mail Option*/
     private String requesterId;
     private String processorId;
+    private String projectId;
+    private String employeeName;
+    private String projectName;
     
+    /**
+	 * @return the employeeName
+	 */
+	public String getEmployeeName() {
+		return employeeName;
+	}
+	/**
+	 * @param employeeName the employeeName to set
+	 */
+	public void setEmployeeName(String employeeName) {
+		this.employeeName = employeeName;
+	}
+	/**
+	 * @return the projectName
+	 */
+	public String getProjectName() {
+		return projectName;
+	}
+	/**
+	 * @param projectName the projectName to set
+	 */
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
+	}
+	
+    
+	/**
+	 * @return the projectId
+	 */
+	public String getProjectId() {
+		return projectId;
+	}
+	/**
+	 * @param projectId the projectId to set
+	 */
+	public void setProjectId(String projectId) {
+		this.projectId = projectId;
+	}
 	/**
 	 * @return the id
 	 */
@@ -352,7 +393,8 @@ table employeeprojectinfo fields
 				+ ", comments=" + comments + ", skillSet=" + skillSet + ", skillSummary=" + skillSummary
 				+ ", approvalStatus=" + approvalStatus + ", releaseStatus=" + releaseStatus + ", releaseDate="
 				+ releaseDate + ", reasonForOffboarding=" + reasonForOffboarding + ", requesterId=" + requesterId
-				+ ", processorId=" + processorId + "]";
+				+ ", processorId=" + processorId + ", projectId=" + projectId + ", employeeName=" + employeeName
+				+ ", projectName=" + projectName + "]";
 	}
 	
 }

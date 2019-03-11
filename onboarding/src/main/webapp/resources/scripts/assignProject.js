@@ -220,4 +220,7 @@ function setRequestParams(){
 	jsonRequest["skillSummary"] = $('#skillSummary').val();
 	jsonRequest["requesterId"] = $('#requesterID').val();
 	jsonRequest["processorId"] = $('#processorID').val();
+	jsonRequest["projectId"] = $('#projectID').val();
+	jsonRequest["employeeName"] = $('#name').val();
+	jsonRequest["projectName"] = $('#projectName').val();
 }

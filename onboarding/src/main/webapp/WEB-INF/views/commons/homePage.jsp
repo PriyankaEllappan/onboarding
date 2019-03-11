@@ -13,7 +13,7 @@
 	href="/onboarding/resources/stylesheets/application.css">
 </head>
 <body>
-	<jsp:include page="./layouts/header.jsp" />
+	<jsp:include page="../layouts/header.jsp" />
 	<div class="content-style">
 		<div class="row">
 			<div class="col-xs-8">
@@ -92,6 +92,6 @@
 	<script src="/onboarding/resources/scripts/bootstrap.min.js"></script>
 	<script src="/onboarding/resources/scripts/application.js"></script>
 	<script src="/onboarding/resources/scripts/bootstrap-datepicker.min.js"></script>
-	<jsp:include page="./layouts/footer.jsp" />
+	<jsp:include page="../layouts/footer.jsp" />
 </body>
 </html>

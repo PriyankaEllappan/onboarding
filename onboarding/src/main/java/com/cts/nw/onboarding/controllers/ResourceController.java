@@ -3,6 +3,7 @@
  */
 package com.cts.nw.onboarding.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 //import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.cts.nw.onboarding.util.LDAPUtil;
+import com.cts.nw.onboarding.service.LDAPService;
 import com.cts.nw.onboarding.vo.EmployeeDetails;
 
 /**
@@ -21,13 +22,20 @@ import com.cts.nw.onboarding.vo.EmployeeDetails;
 @RequestMapping("/resource")
 public class ResourceController {
 
-	//private static final Logger logger = Logger.getLogger(ResourceController.class);
+	// private static final Logger logger = Logger.getLogger(ResourceController.class);
 	
-	@RequestMapping(value = "/getemployee", method = RequestMethod.GET)
-    public @ResponseBody EmployeeDetails index(@RequestParam("empId") String empId) {
-		EmployeeDetails employee = new LDAPUtil().getEmployee("sAMAccountName", empId);
-           return employee;
-    }
+	@Autowired
+	LDAPService lDAPService;
 
-	
+	@RequestMapping(value = "/getemployee", method = RequestMethod.GET)
+	public @ResponseBody EmployeeDetails index(@RequestParam("empId") String empId) {
+		EmployeeDetails employee = null;
+		try {
+			employee = lDAPService.getEmployee(empId);
+			System.out.println(employee.toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return employee;
+	}
 }

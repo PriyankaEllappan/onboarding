@@ -10,7 +10,9 @@ import com.cts.nw.onboarding.bo.EmployeeProjectInfo;
 import com.cts.nw.onboarding.bo.MailDetail;
 import com.cts.nw.onboarding.controllers.HomeController;
 import com.cts.nw.onboarding.mailers.SendMail;
+import com.cts.nw.onboarding.service.LDAPService;
 import com.cts.nw.onboarding.service.MailService;
+import com.cts.nw.onboarding.vo.EmployeeDetails;
  
 @PropertySource(value = { "classpath:mail.properties" })
  
@@ -23,15 +25,25 @@ public class MailServiceImpl implements MailService {
 	@Autowired
 	private Environment environment;
 	
+	@Autowired
+	LDAPService lDAPService;
+	
 	@Override
 	public void sendRequestEmail(EmployeeProjectInfo resource) {
 		String emailContent = environment.getRequiredProperty("mail.request");
+		EmployeeDetails employeeDetail = new EmployeeDetails();
 		System.out.println(resource.toString());
-		emailContent = emailContent.replaceAll("<<EMPID>>", "616550" );
+		/*emailContent = emailContent.replaceAll("<<EMPID>>", "616550" );
 		emailContent = emailContent.replace("<<EMPNAME>>", "Priyanka" );
 		emailContent = emailContent.replace("<<PROJID>>",  "132422");
-		emailContent = emailContent.replace("<<PROJNAME>>",  "Projevt 1");
+		emailContent = emailContent.replace("<<PROJNAME>>",  "Projevt 1");*/
+		emailContent = emailContent.replaceAll("<<EMPID>>", String.valueOf(resource.getEmployeeID()));
+		emailContent = emailContent.replace("<<EMPNAME>>", resource.getEmployeeName());
+		emailContent = emailContent.replace("<<PROJID>>",  String.valueOf(resource.getProjectId()));
+		emailContent = emailContent.replace("<<PROJNAME>>",  resource.getProjectName());
 		emailContent = emailContent.replace("<<URL>>",  HomeController.APPURL);
+		employeeDetail = lDAPService.getEmployee(String.valueOf(resource.getProcessorId()));
+		System.out.println("-------" + employeeDetail.getEmailId());
 		MailDetail mailDetail = new MailDetail();
 		mailDetail.setReceiver("Priyanka.Ellappan@cognizant.com");
 		System.out.println(emailContent);

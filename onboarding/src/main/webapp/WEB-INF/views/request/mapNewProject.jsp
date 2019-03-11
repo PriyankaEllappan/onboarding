@@ -270,6 +270,8 @@
 					<input type="hidden" id="requesterID" />
 					<input type="hidden" id="approvalStatus" />
 					<input type="hidden" id="releaseStatus" />
+					<input type="hidden" id="name" value="${employee.name}"/>
+					
 				</div>
 			</form>
 		</div>
