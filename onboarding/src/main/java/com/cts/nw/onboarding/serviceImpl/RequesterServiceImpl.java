@@ -92,6 +92,11 @@ public class RequesterServiceImpl implements RequesterService {
 		return employeeActiveAssignmentDAO.getActiveAssignmentDetails(employeeId);
 	}
 
+	@Override
+	public List<EmployeeMaster> getAllEmployees() {
+		return employeeMasterDAO.getAllEmployeeMasterDetails();
+	}
+
 	
 	
 }

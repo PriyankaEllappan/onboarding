@@ -33,6 +33,28 @@ public class RequesterController {
 	@Autowired
 	RequesterService requesterService;
 
+    @GetMapping(value = "/request/resourcelist", produces = { MediaType.APPLICATION_JSON_VALUE })
+    public String getAllEmployees(ModelMap model) {
+           try {
+        	   model.addAttribute("resources", requesterService.getAllEmployees()); 
+        	   return "resourcedetails/resourceList";
+           } catch (Exception e) {
+                  e.printStackTrace();
+                  return null;
+           }
+    }
+    
+	/*
+	 * @RequestMapping(value = "/list", method = RequestMethod.GET) public String
+	 * listAllResources(@ModelAttribute("resources") ResourceDetail resource,
+	 * ModelMap model,HttpServletRequest request) {
+	 * mailService.sendRequestEmail(resource);
+	 * mailService.sendInProgressEmail(resource);
+	 * mailService.sendCompletionEmail(resource); System.out.println("Mail Sent");
+	 * model.addAttribute("resources", requestService.findAllResources(resource));
+	 * return "requestList"; }
+	 */
+    
 	/**
 	 * @param model
 	 * @return

@@ -20,5 +20,6 @@ public interface RequesterService {
 	public EmployeeMaster populateRequesterForm(int empid);
 	public EmployeeProjectInfo addNewProject(EmployeeProjectInfo employeeProjJson);
 	public List<EmployeeActiveAssignment> checkforActiveAssignment(String empid);
+	public List<EmployeeMaster> getAllEmployees();
 	
 }
