@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -70,5 +71,18 @@ public class ReleaseController {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	 @GetMapping(value = "/releaselist", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public String getAllEmployees(ModelMap model) {
+		int releaseStatusID = 1;
+		try {
+			model.addAttribute("resources", releaseService.getEmployeesbyReleaseStatusId(releaseStatusID));
+			return "resourcedetails/releaseList";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+
 	}
 }

@@ -4,16 +4,12 @@
 package com.cts.nw.onboarding.controllers;
 
 import java.security.Principal;
-import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,7 +40,6 @@ public class ProcessController {
 			@PathVariable String empprojid, ModelMap model,Principal principal) {
 		String processor; 
 		try {
-			processor = getLoggedinUserDetails(principal);
 			processor = "429992";
 			employee = processorService.getEmployeetoProcess(processor,empprojid);
 			if(employee != null){
@@ -76,31 +71,15 @@ public class ProcessController {
 		}
 	}
 	
-	/**
-	 * @param principal
-	 * @param loggedInUserName
-	 * @return
-	 */
-	private String getLoggedinUserDetails(Principal principal) {
-		String loggedInUserName = null;
+	@GetMapping(value = "/process/processlist", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public String getAllEmployeestoProcess(ModelMap model) {
+		int processorId = 227822;
 		try {
-			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-			if (!(authentication instanceof AnonymousAuthenticationToken)) {
-				String currentUserName = authentication.getName();
-				Collection<? extends GrantedAuthority> currentUserNameAuthorities = authentication.getAuthorities();
-				System.out.println("Logged in User :" + currentUserName);
-				System.out.println("Logged in Role" + currentUserNameAuthorities.toString());
-				if (principal.getName() != null) {
-					loggedInUserName = principal.getName();
-				} else {
-					System.out.println("principal.getName() is null");
-				}
-			} else {
-				System.out.println("Please login to continue");
-			}
+			model.addAttribute("resources", processorService.getRecordsPerProcessor(processorId));
+			return "resourcedetails/processList";
 		} catch (Exception e) {
 			e.printStackTrace();
+			return null;
 		}
-		return loggedInUserName;
-	}
+	} 
 }

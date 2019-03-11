@@ -25,7 +25,6 @@ public class SendMail {
 	private Environment environment;
 	
 	public void send(MailDetail mailDetail) {
-		String receiver = mailDetail.getReceiver();
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", environment.getRequiredProperty("mail.auth") );
 		props.put("mail.smtp.starttls.enable",environment.getRequiredProperty("mail.starttls") );
@@ -42,7 +41,12 @@ public class SendMail {
 		try {
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(environment.getRequiredProperty("mail.from")));
-			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(receiver));
+			for (String toAddr : mailDetail.getReceiver()) {
+				message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toAddr));
+			}
+			for (String ccAddr : mailDetail.getCc()) {
+				message.setRecipients(Message.RecipientType.CC, InternetAddress.parse(ccAddr));
+			}
 			message.setSubject(mailDetail.getSubject());
 			message.setText("Sent updated message successfully....  ");
 			message.setContent(mailDetail.getContent(), "text/html");

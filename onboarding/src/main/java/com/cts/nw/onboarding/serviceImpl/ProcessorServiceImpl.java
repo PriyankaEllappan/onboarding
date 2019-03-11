@@ -3,6 +3,8 @@
  */
 package com.cts.nw.onboarding.serviceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,6 +54,11 @@ public class ProcessorServiceImpl implements ProcessorService {
 			return employeeProjJson;
 		}
 		return null;
+	}
+
+	@Override
+	public List<ProcessorsInfo> getRecordsPerProcessor(int processorid) {
+		return processorsInfoDAO.getRecordsPerProcessor(processorid);
 	}
 
 }

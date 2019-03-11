@@ -53,5 +53,10 @@ public class ReleaseServiceImpl implements ReleaseService{
 		}
 		return null;
 	}
+
+	@Override
+	public List<ProcessorsInfo> getEmployeesbyReleaseStatusId(int releaseStatusID) {
+		return processorsInfoDAO.getEmployeesbyReleaseStatusId(releaseStatusID);
+	}
 	
 }
