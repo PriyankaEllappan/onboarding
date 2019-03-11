@@ -93,8 +93,9 @@ public class ProcessorsInfoDAOImpl implements ProcessorsInfoDAO{
 	 */
 	@Override
 	public Integer processAnEmployee(ProcessorsInfo employeeProjJson) {
-		String sql = "UPDATE EMPLOYEEPROJECTINFO SET NATIONWIDEID = ?,NATIONWIDEIDCREATEDDATE = ? WHERE ID= ?";
-		return jdbcTemplate.update(sql,employeeProjJson.getNationwideID(),employeeProjJson.getNationwideidCreatedDate(),employeeProjJson.getId());
+		String sql = "UPDATE EMPLOYEEPROJECTINFO SET NATIONWIDEID = ?,NATIONWIDEIDCREATEDDATE = ?, FGONBOARDINGDATE = ?, ATTACHMENTID = ?, COMMENTS = ?, APPROVALSTATUS = ? WHERE ID= ?";
+        return jdbcTemplate.update(sql,employeeProjJson.getNationwideID(),employeeProjJson.getNationwideidCreatedDate(), employeeProjJson.getFgOnboardingDate(), employeeProjJson.getAttachmentID(), employeeProjJson.getComments(), employeeProjJson.getApprovalStatus(), employeeProjJson.getId());
+
 	}
 
 	/* (non-Javadoc)
@@ -102,8 +103,9 @@ public class ProcessorsInfoDAOImpl implements ProcessorsInfoDAO{
 	 */
 	@Override
 	public Integer releaseAnEmployee(ProcessorsInfo employeeProjJson) {
-		String sql = "UPDATE EMPLOYEEPROJECTINFO SET REASONFOROFFBOARDING = ? WHERE ID= ?";
-		return jdbcTemplate.update(sql,employeeProjJson.getReleaseStatus(),employeeProjJson.getId());
+        String sql = "UPDATE EMPLOYEEPROJECTINFO SET REASONFOROFFBOARDING = ?, RELEASESTATUS = ?, RELEASEDATE = ?  WHERE ID= ? ";
+        return jdbcTemplate.update(sql,employeeProjJson.getReleaseSummary(), employeeProjJson.getReleaseStatus(),employeeProjJson.getReleaseDate() , employeeProjJson.getId());
+
 	}
 
 }

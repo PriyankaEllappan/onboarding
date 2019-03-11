@@ -34,6 +34,7 @@ public class MailServiceImpl implements MailService {
 		emailContent = emailContent.replace("<<URL>>",  HomeController.APPURL);
 		MailDetail mailDetail = new MailDetail();
 		mailDetail.setReceiver("Priyanka.Ellappan@cognizant.com");
+		System.out.println(emailContent);
 		mailDetail.setContent(emailContent);
 		mailDetail.setSubject("Request Mail.. !!!");
 		sendMail.send(mailDetail);	

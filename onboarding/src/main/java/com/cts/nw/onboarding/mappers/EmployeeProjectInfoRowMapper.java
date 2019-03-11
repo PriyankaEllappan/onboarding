@@ -18,7 +18,7 @@ public class EmployeeProjectInfoRowMapper implements RowMapper<EmployeeProjectIn
 		employeeProjectInfo.setRole(rs.getInt("ROLE"));
 		employeeProjectInfo.setCountry(rs.getInt("COUNTRY"));
 		employeeProjectInfo.setStartDate(rs.getDate("STARTDATE"));
-		employeeProjectInfo.setNatiowideID(rs.getString("NATIOWIDEID"));
+		employeeProjectInfo.setNationwideID(rs.getString("NATIONWIDEID"));
 		employeeProjectInfo.setNationwideidCreatedDate(rs.getDate("NATIONWIDEIDCREATEDDATE"));
 		employeeProjectInfo.setFgOnboardingDate(rs.getDate("FGONBOARDINGDATE"));
 		employeeProjectInfo.setMovementID(rs.getInt("MOVEMENTID"));

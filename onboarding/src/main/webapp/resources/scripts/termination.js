@@ -99,12 +99,13 @@ $(function() {
 				console.log(resultData);
 				if (!$.trim(resultData)) {
 					$('#messageDiv').removeClass('hideElements');
-					$('#messageDiv').text("Resource Release Initiated");
+					$('#messageDiv').text("Unable to initiate Resource Release");
 					$('#messageDiv').addClass('showElements');
 					$('#formDiv').addClass('hideElements');
+					
 				} else {
 					$('#messageDiv').removeClass('hideElements');
-					$('#messageDiv').text("Unable to initiate Resource Release");
+					$('#messageDiv').text("Resource Release Initiated");
 					$('#messageDiv').addClass('showElements');
 					$('#formDiv').addClass('hideElements');
 				}
@@ -112,7 +113,7 @@ $(function() {
 			error : function() {
 				console.log("error");
 				$('#messageDiv').removeClass('hideElements');
-				$('#messageDiv').text("Resource Release Initiated");
+				$('#messageDiv').text("Unable to initiate Resource Release");
 				$('#messageDiv').addClass('showElements');
 				$('#formDiv').addClass('hideElements');
 			}

@@ -270,7 +270,7 @@
 									<label for="approvalStatus">Approval Status</label>
 								</div>
 								<div class="col-md-3">
-									<select class="form-control" name="approvalStatus" id="approvalStatus"></select>
+									<select class="form-control" name="approvalStatus" id="approvalStatus" value="${employee.approvalStatus}"></select>
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">

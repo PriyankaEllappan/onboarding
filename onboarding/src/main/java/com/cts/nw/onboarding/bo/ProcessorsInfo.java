@@ -49,7 +49,8 @@ public class ProcessorsInfo {
 	private String teamName;
 	private String locationName;
 	private String countryName;
-
+	private Integer attachmentID;
+	
 	/*
 	 * table projectinfo fields
 	 */
@@ -542,6 +543,24 @@ public class ProcessorsInfo {
 		this.projectId = projectId;
 	}
 
+
+	/**
+	 * @return the attachmentID
+	 */
+	public Integer getAttachmentID() {
+		return attachmentID;
+	}
+
+	/**
+	 * @param attachmentID the attachmentID to set
+	 */
+	public void setAttachmentID(Integer attachmentID) {
+		this.attachmentID = attachmentID;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return "ProcessorsInfo [employeeMasterID=" + employeeMasterID + ", name=" + name + ", firstName=" + firstName
@@ -551,10 +570,11 @@ public class ProcessorsInfo {
 				+ ", fgOnboardingDate=" + fgOnboardingDate + ", comments=" + comments + ", skillSet=" + skillSet
 				+ ", skillSummary=" + skillSummary + ", approvalStatus=" + approvalStatus + ", releaseStatus="
 				+ releaseStatus + ", roleName=" + roleName + ", rateValue=" + rateValue + ", teamName=" + teamName
-				+ ", locationName=" + locationName + ", countryName=" + countryName + ", projectName=" + projectName
-				+ ", projectId=" + projectId + ", requesterID=" + requesterID + ", requesterName=" + requesterName
-				+ ", processorID=" + processorID + ", processorName=" + processorName + ", releaseSummary="
-				+ releaseSummary + ", releaseDate=" + releaseDate + "]";
+				+ ", locationName=" + locationName + ", countryName=" + countryName + ", attachmentID=" + attachmentID
+				+ ", projectName=" + projectName + ", projectId=" + projectId + ", requesterID=" + requesterID
+				+ ", requesterName=" + requesterName + ", processorID=" + processorID + ", processorName="
+				+ processorName + ", releaseSummary=" + releaseSummary + ", releaseDate=" + releaseDate + "]";
 	}
+	
 
 }
