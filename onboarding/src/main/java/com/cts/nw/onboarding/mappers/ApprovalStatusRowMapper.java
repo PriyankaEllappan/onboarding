@@ -15,14 +15,17 @@ import com.cts.nw.onboarding.bo.ApprovalStatus;
  *
  */
 
-public class ApprovalStatusRowMapper implements RowMapper<ApprovalStatus>{
+public class ApprovalStatusRowMapper extends AbstractRowMapper implements RowMapper<ApprovalStatus>{
 
-	
 	@Override
 	public ApprovalStatus mapRow(ResultSet rs, int rowNum) throws SQLException {
 		ApprovalStatus approvalStatus = new ApprovalStatus();
-		approvalStatus.setId(rs.getInt("APPROVALSTATUSID"));
-		approvalStatus.setStatus(rs.getString("APPROVALSTATUSSTATUS"));
+		if (hasColumn(rs, "APPROVALSTATUSID") == true) {
+			approvalStatus.setId(rs.getInt("APPROVALSTATUSID"));
+		}
+		if (hasColumn(rs, "APPROVALSTATUSSTATUS") == true) {
+			approvalStatus.setStatus(rs.getString("APPROVALSTATUSSTATUS"));
+		}
 		return approvalStatus;
 	}
 
