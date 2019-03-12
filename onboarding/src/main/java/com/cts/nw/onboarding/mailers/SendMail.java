@@ -42,15 +42,19 @@ public class SendMail {
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(environment.getRequiredProperty("mail.from")));
 			for (String toAddr : mailDetail.getReceiver()) {
-				message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toAddr));
+				message.addRecipient(Message.RecipientType.TO, new InternetAddress(toAddr));
 			}
 			for (String ccAddr : mailDetail.getCc()) {
-				message.setRecipients(Message.RecipientType.CC, InternetAddress.parse(ccAddr));
+				message.addRecipient(Message.RecipientType.CC, new InternetAddress(ccAddr));
 			}
 			message.setSubject(mailDetail.getSubject());
 			message.setText("Sent updated message successfully....  ");
 			message.setContent(mailDetail.getContent(), "text/html");
-			Transport.send(message);
+			
+			Transport transport = session.getTransport(environment.getRequiredProperty("mail.server"));
+			transport.connect(environment.getRequiredProperty("mail.host"), environment.getRequiredProperty("mail.from"), environment.getRequiredProperty("mail.password"));
+			transport.sendMessage(message, message.getAllRecipients());
+			transport.close();
 			System.out.println("Sent message successfully....");
 		} catch (Exception e) {
 			e.printStackTrace();
