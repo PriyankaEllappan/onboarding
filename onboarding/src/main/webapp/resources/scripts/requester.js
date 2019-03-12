@@ -136,7 +136,7 @@ function checkForanActiveAssignment(empID) {
 	console.log("checkForanEmployee");
 	$.ajax({
 		type : 'GET',
-		url : "onboarding/request/checkActiveAssignment/" + empID,
+		url : "/onboarding/request/checkActiveAssignment/" + empID,
 		dataType : "text",
 		success : function(resultData) {
 			if (!$.trim(resultData)) {
@@ -146,7 +146,7 @@ function checkForanActiveAssignment(empID) {
 				var returnedData = JSON.parse(resultData);
 				console.log("Response has data");
 				console.log(returnedData);
-				$('#ActiveAssignment').show();
+				$('#ActiveAssignment').modal('show');
 				/*$('#availEmpID').text(returnedData.id);
 				$('#availEmpName').text(returnedData.name);
 				$('#availEmpDOB').text(returnedData.DOB);

@@ -173,12 +173,12 @@
 					<br>
 					<p>Requested resource is tagged under below project. Do you wish to tag under a new project</p>
 					<br>
-					<!-- <div align="right">
+					<div align="right">
 						<button type="button" class="btn btn-primary"
 							id="confirmAddResource" data-dismiss="modal">OK</button>
 						<button type="button" class="btn btn-secondary"
 							data-dismiss="modal">Cancel</button>
-					</div> -->
+					</div>
 				</div>
 			</div>
 		</div>
