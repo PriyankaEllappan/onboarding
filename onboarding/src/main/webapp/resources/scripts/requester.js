@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	
 	/* DatePicker Options */
 	var dateOfBirth = $('#newEmpDOB');
 	var container = $('.content-style');
@@ -10,17 +11,38 @@ $(document).ready(function() {
 	};
 
 	dateOfBirth.datepicker(options);
-
+	
+	$("#resourceNonAvailable").hide();
+	$("#resourceAvailable").hide();
+	$("#NoActiveAssignment").hide();
+	
 	/* Employee Search function */
 	$("#checkEmpIdSubmit").click(function() {
+		$('#checkEmpIdSubmit').prop('disabled', true);
+		$('#checkEmpIdSubmit').css('cursor', 'not-allowed');
 		var empId = $("#checkEmpId").val();
 		console.log(empId);
 		checkForanEmployee(empId);
 	})
 
+	/* Confirm to add resource function */
+	$("#confirmAddResource").click(function() {
+		$("#resourceNonAvailable").show();
+	})
+	
+	/* Active Assignment check function */
+	$("#activeCheck").click(function() {
+		/*$('#checkForActiveAssignment').css('cursor', 'not-allowed');*/
+		$('#checkForActiveAssignment').hide();
+		var empId = $("#availEmpID").text();
+		console.log(empId);
+		checkForanActiveAssignment(empId);
+	})
+	
+	/*
 	$("#addResourceLabel").click(function() {
 		$("#toggleResource").toggle();
-	})
+	})*/
 
 	/* Employee details Search */
 	$("#newEmpID").blur(function() {
@@ -47,6 +69,7 @@ $(document).ready(function() {
 	$(function() {
 		$('#resourceRegisterFormSubmit').click(function(e) {
 			e.preventDefault();
+			$('#errMessage').text("");
 			var validationStatus = validateForm();
 			if(validationStatus == true){
 				jsonStr = {}
@@ -66,22 +89,16 @@ $(document).ready(function() {
 					success : function(resultData) {
 						console.log(resultData);
 						if (!$.trim(resultData)) {
-							$('#resourceNonAvailable').removeClass('showElements');
-							$('#resourceNonAvailable').addClass('hideElements');
-							$('#registerStatus').text("Resource Not Registered");
-							$('#registerStatus').addClass('showElements');
+							$("#resourceNonAvailable").hide();
+							$('#errMessage').text("Resource Not Registered");
 						} else {
-							$('#resourceNonAvailable').removeClass('showElements');
-							$('#resourceNonAvailable').addClass('hideElements');
-							$('#registerStatus').text("Resource Registered");
-							$('#registerStatus').addClass('showElements');
+							$("#resourceNonAvailable").hide();
+							$('#statusSucessMessage').text("Resource Registered");
 						}
 					},
 					error : function() {
-						$('#resourceNonAvailable').removeClass('showElements');
-						$('#resourceNonAvailable').addClass('hideElements');
-						$('#registerStatus').text("Resource Not Registered");
-						$('#registerStatus').addClass('showElements');
+						$("#resourceNonAvailable").hide();
+						$('#errMessage').text("Resource Not Registered");
 					}
 				})
 			}
@@ -99,43 +116,64 @@ function checkForanEmployee(empID) {
 		success : function(resultData) {
 			if (!$.trim(resultData)) {
 				console.log("Empty Response");
-				$('#resourceNonAvailable').addClass('showElements');
+				$('#NoResourceModal').modal('show');
 			} else {
 				var returnedData = JSON.parse(resultData);
+				console.log("Response has data");
+				console.log(returnedData);
 				$('#availEmpID').text(returnedData.id);
 				$('#availEmpName').text(returnedData.name);
 				$('#availEmpDOB').text(returnedData.DOB);
 				$('#availEmpEmail').text(returnedData.email);
 				$('#availEmpPPNo').text(returnedData.passportNumber);
-				$('#resourceAvailable').addClass('showElements');
+				$("#resourceAvailable").show();
+			}
+		}
+	});
+}
+
+function checkForanActiveAssignment(empID) {
+	console.log("checkForanEmployee");
+	$.ajax({
+		type : 'GET',
+		url : "onboarding/request/checkActiveAssignment/" + empID,
+		dataType : "text",
+		success : function(resultData) {
+			if (!$.trim(resultData)) {
+				console.log("Empty Response");
+				$('#NoActiveAssignment').show();
+			} else {
+				var returnedData = JSON.parse(resultData);
 				console.log("Response has data");
 				console.log(returnedData);
+				$('#ActiveAssignment').show();
+				/*$('#availEmpID').text(returnedData.id);
+				$('#availEmpName').text(returnedData.name);
+				$('#availEmpDOB').text(returnedData.DOB);
+				$('#availEmpEmail').text(returnedData.email);
+				$('#availEmpPPNo').text(returnedData.passportNumber);
+				$("#resourceAvailable").show();*/
 			}
-
 		}
 	});
 }
 
 function validateForm() {
 	if ($('#newEmpID').val() == null || $('#newEmpID').val() == "") {
-		$('#newEmpIDErr').text("Employee ID cannot be null or empty");
+		$('#errMessage').text("Employee ID cannot be null or empty");
 		return false;
-	} else {
-		$('#newEmpIDErr').text("");
-	}
-
+	} 
 	if ($('#newEmpDOB').val() == null || $('#newEmpDOB').val() == "") {
-		$('#dateOfBirthErr').text("Date of Birth cannot be null or empty");
+		$('#errMessage').text("Date of Birth cannot be null or empty");
 		return false;
-	} else {
-		$('#dateOfBirthErr').text("");
-	}
-
+	} 
 	if ($('#newEmpPPNo').val() == null || $('#newEmpPPNo').val() == "") {
-		$('#passportNoErr').text("Passport number cannot be null or empty");
+		$('#errMessage').text("Passport number cannot be null or empty");
 		return false;
-	} else {
-		$('#passportNoErr').text("");
-	}
+	} 
 	return true;
+}
+
+function setRequestValues() {
+	
 }

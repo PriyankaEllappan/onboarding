@@ -43,18 +43,7 @@ public class RequesterController {
                   return null;
            }
     }
-    
-	/*
-	 * @RequestMapping(value = "/list", method = RequestMethod.GET) public String
-	 * listAllResources(@ModelAttribute("resources") ResourceDetail resource,
-	 * ModelMap model,HttpServletRequest request) {
-	 * mailService.sendRequestEmail(resource);
-	 * mailService.sendInProgressEmail(resource);
-	 * mailService.sendCompletionEmail(resource); System.out.println("Mail Sent");
-	 * model.addAttribute("resources", requestService.findAllResources(resource));
-	 * return "requestList"; }
-	 */
-    
+        
 	/**
 	 * @param model
 	 * @return

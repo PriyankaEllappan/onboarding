@@ -32,7 +32,6 @@ public class ResourceController {
 		EmployeeDetails employee = null;
 		try {
 			employee = lDAPService.getEmployee(empId);
-			System.out.println(employee.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -54,6 +54,9 @@ body {
 	color: red
 }
 
+.is-success{
+	color: green
+}
 .button-fixedwidth{
 	width: 100%;
 }
