@@ -15,6 +15,7 @@ $(document).ready(function() {
 	$("#resourceNonAvailable").hide();
 	$("#resourceAvailable").hide();
 	$("#NoActiveAssignment").hide();
+	$("#projTagDiv").hide();
 	
 	/* Employee Search function */
 	$("#checkEmpIdSubmit").click(function() {
@@ -39,11 +40,17 @@ $(document).ready(function() {
 		checkForanActiveAssignment(empId);
 	})
 	
-	/*
-	$("#addResourceLabel").click(function() {
-		$("#toggleResource").toggle();
-	})*/
+	/* Confirm to add resource function */
+	$("#confirmTagging").click(function() {
+		$("#projTagDiv").show();
+		$("#projTagConf").hide();
+	})
 
+	$("#confirmAddProject").click(function() {
+		var selectedValue = $('input[name=projMovement]:checked').val(); 
+		alert(selectedValue);
+	})
+	
 	/* Employee details Search */
 	$("#newEmpID").blur(function() {
 		var empId = $('#newEmpID').val();
@@ -146,6 +153,10 @@ function checkForanActiveAssignment(empID) {
 				var returnedData = JSON.parse(resultData);
 				console.log("Response has data");
 				console.log(returnedData);
+				$.each(returnedData, function(key,value) {   
+				     $('#availableProjects')
+				         .append('<tr><td>'+value.projectID+'</td><td>'+value.projectName+'</td></tr>'); 
+				});
 				$('#ActiveAssignment').modal('show');
 				/*$('#availEmpID').text(returnedData.id);
 				$('#availEmpName').text(returnedData.name);
@@ -172,8 +183,4 @@ function validateForm() {
 		return false;
 	} 
 	return true;
-}
-
-function setRequestValues() {
-	
 }

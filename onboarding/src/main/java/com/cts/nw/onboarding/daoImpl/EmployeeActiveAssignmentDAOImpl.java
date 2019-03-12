@@ -39,7 +39,7 @@ public class EmployeeActiveAssignmentDAOImpl implements EmployeeActiveAssignment
 				+ "JOIN PROJECTMAPPING PM ON PM.ID = TM.PROJECTMAPID  JOIN PROJECTINFO PI ON PI.PROJECTID = PM.PROJECTID "
 				+ "JOIN REQUESTERS R ON R.REQUESTERID = PM.REQUESTERID "
 				+ " JOIN PROCESSORS P ON P.PROCESSORID =PM.PROCESSORID  "
-				+ "WHERE EMPPI.EMPLOYEEID = ? AND RS.STATUS = 'YET TO RELEASE' OR  RS.STATUS = 'RELEASE INITIATED'";
+				+ "WHERE EMPPI.EMPLOYEEID = ? AND RS.STATUS NOT IN ('RELEASED')";
 		try {
 			RowMapper<EmployeeActiveAssignment> rowMapper = new EmployeeActiveAssignmentRowMapper();
 			return this.jdbcTemplate.query(employeeReleaseInfo, rowMapper,employeeID);

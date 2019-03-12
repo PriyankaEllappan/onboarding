@@ -171,13 +171,38 @@
 			<div class="modal-content">
 				<div class="modal-body">
 					<br>
-					<p>Requested resource is tagged under below project. Do you wish to tag under a new project</p>
+					<p>Requested resource is tagged under below project. Do you
+						wish to tag a new project</p>
 					<br>
-					<div align="right">
-						<button type="button" class="btn btn-primary"
-							id="confirmAddResource" data-dismiss="modal">OK</button>
-						<button type="button" class="btn btn-secondary"
-							data-dismiss="modal">Cancel</button>
+					<table class="resizeTabCont table table-striped" id="availableProjects">
+						<thead>
+							<tr>
+								<th>Project ID</th>
+								<th>Project Name</th>
+							</tr>
+						</thead>
+					</table>
+					<div id="projTagConf">
+						<div align="right">
+							<button type="button" class="btn btn-primary" id="confirmTagging">YES</button>
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">No</button>
+						</div>
+					</div>
+					<div id="projTagDiv">
+						<p>Is this an internal project movement?</p>
+						<label class="radio-inline"> <input
+							type="radio" name="projMovement" id="projMovement1" value="yes">
+							Yes
+						</label> <label class="radio-inline"> <input type="radio"
+							name="projMovement" id="projMovement2" value="no"> No
+						</label><br>
+						<div align="right">
+							<button type="button" class="btn btn-primary"
+								id="confirmAddProject" data-dismiss="modal">Submit</button>
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">Cancel</button>
+						</div>
 					</div>
 				</div>
 			</div>

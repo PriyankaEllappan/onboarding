@@ -88,8 +88,14 @@ public class RequesterController {
     */
     @GetMapping(value = "/request/checkActiveAssignment/{empid}", produces = { MediaType.APPLICATION_JSON_VALUE })
     public @ResponseBody List<EmployeeActiveAssignment> checkActiveAssignment(@PathVariable String empid) {
+    		List<EmployeeActiveAssignment> activeAssignment;
            try {
-        	    return requesterService.checkforActiveAssignment(empid);
+        	   activeAssignment = requesterService.checkforActiveAssignment(empid);
+        	   if(activeAssignment != null && !activeAssignment.isEmpty()){
+        		   return activeAssignment;
+        	   }else{
+        		   return null;
+        	   }
            } catch (Exception e) {
                   e.printStackTrace();
                   return null;
