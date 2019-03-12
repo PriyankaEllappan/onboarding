@@ -47,41 +47,44 @@ $(document).ready(function() {
 	$(function() {
 		$('#resourceRegisterFormSubmit').click(function(e) {
 			e.preventDefault();
-			jsonStr = {}
-			jsonStr["id"] = $('#newEmpID').val();
-			jsonStr["name"] = $('#newEmpName').val();
-			jsonStr["firstName"] = $('#newEmpFName').val();
-			jsonStr["lastName"] = $('#newEmpLName').val();
-			jsonStr["dob"] = $('#newEmpDOB').val();
-			jsonStr["email"] = $('#newEmpEmail').val();
-			jsonStr["passportNumber"] = $('#newEmpPPNo').val();
-			$.post({
-				url : '/onboarding/request/addresource',
-				type : 'POST',
-				dataType : 'json',
-				data : JSON.stringify(jsonStr),
-				contentType : 'application/json; charset=utf-8',
-				success : function(resultData) {
-					console.log(resultData);
-					if (!$.trim(resultData)) {
+			var validationStatus = validateForm();
+			if(validationStatus == true){
+				jsonStr = {}
+				jsonStr["id"] = $('#newEmpID').val();
+				jsonStr["name"] = $('#newEmpName').val();
+				jsonStr["firstName"] = $('#newEmpFName').val();
+				jsonStr["lastName"] = $('#newEmpLName').val();
+				jsonStr["dob"] = $('#newEmpDOB').val();
+				jsonStr["email"] = $('#newEmpEmail').val();
+				jsonStr["passportNumber"] = $('#newEmpPPNo').val();
+				$.post({
+					url : '/onboarding/request/addresource',
+					type : 'POST',
+					dataType : 'json',
+					data : JSON.stringify(jsonStr),
+					contentType : 'application/json; charset=utf-8',
+					success : function(resultData) {
+						console.log(resultData);
+						if (!$.trim(resultData)) {
+							$('#resourceNonAvailable').removeClass('showElements');
+							$('#resourceNonAvailable').addClass('hideElements');
+							$('#registerStatus').text("Resource Not Registered");
+							$('#registerStatus').addClass('showElements');
+						} else {
+							$('#resourceNonAvailable').removeClass('showElements');
+							$('#resourceNonAvailable').addClass('hideElements');
+							$('#registerStatus').text("Resource Registered");
+							$('#registerStatus').addClass('showElements');
+						}
+					},
+					error : function() {
 						$('#resourceNonAvailable').removeClass('showElements');
 						$('#resourceNonAvailable').addClass('hideElements');
 						$('#registerStatus').text("Resource Not Registered");
 						$('#registerStatus').addClass('showElements');
-					} else {
-						$('#resourceNonAvailable').removeClass('showElements');
-						$('#resourceNonAvailable').addClass('hideElements');
-						$('#registerStatus').text("Resource Registered");
-						$('#registerStatus').addClass('showElements');
 					}
-				},
-				error : function() {
-					$('#resourceNonAvailable').removeClass('showElements');
-					$('#resourceNonAvailable').addClass('hideElements');
-					$('#registerStatus').text("Resource Not Registered");
-					$('#registerStatus').addClass('showElements');
-				}
-			})
+				})
+			}
 		});
 	});
 
@@ -111,4 +114,28 @@ function checkForanEmployee(empID) {
 
 		}
 	});
+}
+
+function validateForm() {
+	if ($('#newEmpID').val() == null || $('#newEmpID').val() == "") {
+		$('#newEmpIDErr').text("Employee ID cannot be null or empty");
+		return false;
+	} else {
+		$('#newEmpIDErr').text("");
+	}
+
+	if ($('#newEmpDOB').val() == null || $('#newEmpDOB').val() == "") {
+		$('#dateOfBirthErr').text("Date of Birth cannot be null or empty");
+		return false;
+	} else {
+		$('#dateOfBirthErr').text("");
+	}
+
+	if ($('#newEmpPPNo').val() == null || $('#newEmpPPNo').val() == "") {
+		$('#passportNoErr').text("Passport number cannot be null or empty");
+		return false;
+	} else {
+		$('#passportNoErr').text("");
+	}
+	return true;
 }

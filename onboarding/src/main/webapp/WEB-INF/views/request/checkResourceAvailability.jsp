@@ -42,6 +42,7 @@
 							<div class="col-md-3">
 								<input class="form-control" name="newEmpID" id="newEmpID"
 									placeholder="Enter EmployeeID" />
+								<span class="has-error" id="newEmpIDErr"> </span>
 							</div>
 							<div class="col-md-1"></div>
 							<div class="col-md-2">
@@ -80,7 +81,7 @@
 							<div class="col-md-3">
 								<input autocomplete="off" class="form-control" name="newEmpDOB"
 									id="newEmpDOB" placeholder="Enter Date of Birth (YYYY-MM-DD)" />
-								<span class="has-error hideElements" id="dateOfBirthErr">
+								<span class="has-error" id="dateOfBirthErr">
 								</span>
 							</div>
 							<div class="col-md-1"></div>
@@ -89,8 +90,8 @@
 							</div>
 							<div class="col-md-3">
 								<input class="form-control" name="newEmpPPNo" id="newEmpPPNo"
-									placeholder="Enter last 4 digits of Passport/SSN No" /> <span
-									class="has-error hideElements" id="passportNoErr"> </span>
+									placeholder="Enter last 4 digits of Passport/SSN No" />
+								<span class="has-error" id="passportNoErr"> </span>
 							</div>
 						</div>
 					</div>
