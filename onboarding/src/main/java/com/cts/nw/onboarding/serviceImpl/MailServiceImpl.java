@@ -36,7 +36,7 @@ public class MailServiceImpl implements MailService {
 	MailDetail mailDetail;
 
 	@Override
-	public void sendRequestEmail(EmployeeProjHist resource) {
+	public void onBoardingInitiated(EmployeeProjHist resource) {
 		String emailContent = environment.getRequiredProperty("mail.request");
 		employeeDetail = new EmployeeDetails();
 		mailDetail = new MailDetail();
@@ -64,7 +64,7 @@ public class MailServiceImpl implements MailService {
 	}
 
 	@Override
-	public void sendInProgressEmail(EmployeeProjHist resource) {
+	public void onBoardingAcknowledged(EmployeeProjHist resource) {
 		String emailContent = environment.getRequiredProperty("mail.inprogress");
 
 		employeeDetail = new EmployeeDetails();
@@ -89,7 +89,7 @@ public class MailServiceImpl implements MailService {
 	}
 
 	@Override
-	public void sendCompletionEmail(EmployeeProjHist resource) {
+	public void onBoardingCompleted(EmployeeProjHist resource) {
 		String emailContent = environment.getRequiredProperty("mail.complete");
 
 		employeeDetail = new EmployeeDetails();
@@ -112,7 +112,7 @@ public class MailServiceImpl implements MailService {
 	}
 	
 	@Override
-	public void releaseInitiatedEmail(EmployeeProjHist resource) {
+	public void offBoardingInitiated(EmployeeProjHist resource) {
 		String emailContent = environment.getRequiredProperty("mail.releaseinitiated");
 
 		employeeDetail = new EmployeeDetails();
@@ -139,7 +139,7 @@ public class MailServiceImpl implements MailService {
 	}
 
 	@Override
-	public void resourceOffBoardingEmail(EmployeeProjHist resource) {
+	public void offBoardingCompleted(EmployeeProjHist resource) {
 		String emailContent = environment.getRequiredProperty("mail.released");
 
 		employeeDetail = new EmployeeDetails();

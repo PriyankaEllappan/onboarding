@@ -13,6 +13,6 @@ import com.cts.nw.onboarding.bo.ProjectMapping;
  */
 public interface ProjectMappingDAO {
 
-	List<ProjectMapping> getAllActiveTeamDetails();
+	List<ProjectMapping> getAllActiveProjectDetails();
 	
 }

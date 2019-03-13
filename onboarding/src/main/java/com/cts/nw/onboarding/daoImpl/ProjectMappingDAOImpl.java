@@ -29,7 +29,7 @@ public class ProjectMappingDAOImpl implements ProjectMappingDAO {
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
-	public List<ProjectMapping> getAllActiveTeamDetails() {
+	public List<ProjectMapping> getAllActiveProjectDetails() {
 		String whereClause = " WHERE PM.STATUS = 'ACTIVE' ";
 		String query = QueryConstants.PROJECTHIERARCHY_SELECT + whereClause;
 		try {

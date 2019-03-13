@@ -8,9 +8,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cts.nw.onboarding.bo.EmployeeProjHist;
 import com.cts.nw.onboarding.bo.ReleaseSummary;
 import com.cts.nw.onboarding.dao.EmployeeProjHistDAO;
 import com.cts.nw.onboarding.dao.ReleaseSummaryDAO;
+import com.cts.nw.onboarding.service.MailService;
 import com.cts.nw.onboarding.service.ReleaseService;
 
 /**
@@ -21,41 +23,43 @@ import com.cts.nw.onboarding.service.ReleaseService;
 public class ReleaseServiceImpl implements ReleaseService{
 
 	@Autowired
+	EmployeeProjHistDAO employeeProjHistDAO;
+
+	@Autowired
 	ReleaseSummaryDAO releaseSummaryDAO;
 	
 	@Autowired
-	EmployeeProjHistDAO processorsInfoDAO;
+	MailService mailService;
 	
-	/*@Override
-	public List<ProcessorsInfo> getListofEmployeetoRelease(int releaseStatusID) {
-		return processorsInfoDAO.getEmployeesbyReleaseStatusId(releaseStatusID);
+	@Override
+	public List<EmployeeProjHist> getEmployeestobeReleased(){
+		return employeeProjHistDAO.getEmployeestobeReleased();
 	}
+	
+	@Override
+	public EmployeeProjHist getEmployeetoRelease(int empProjHistId) {
+		return employeeProjHistDAO.getSpecificEmployeeProjectHist(empProjHistId);
+	}
+	
+	@Override
+	public EmployeeProjHist releaseAnEmployee(EmployeeProjHist employeeProjHist) {
+		Integer rowsAffected = 0;
+		rowsAffected = employeeProjHistDAO.updateSpecificEmployeeProjectHist(employeeProjHist);
+		if(rowsAffected > 0){
+			if (employeeProjHist.getReleaseStatusId() == 2) {
+				mailService.offBoardingInitiated(employeeProjHist);
+			} else if (employeeProjHist.getReleaseStatusId() == 3) {
+				mailService.offBoardingCompleted(employeeProjHist);
+			}
+			return employeeProjHist;
+		}
+		return null;
 
+	}
+	
 	@Override
 	public List<ReleaseSummary> getAllReleaseSummary() {
 		return releaseSummaryDAO.getAllReleaseSummary();
 	}
-
-	@Override
-	public ProcessorsInfo getEmployeetoReleasebyId(String projInfoId) {
-		int infoId;
-		infoId = Integer.parseInt(projInfoId);
-		return processorsInfoDAO.getEmployeestoReleasebyId(infoId);
-	}
-
-	@Override
-	public ProcessorsInfo releaseAnEmployee(ProcessorsInfo employeeProjJson) {
-		Integer rowsAffected = 0;
-		rowsAffected = processorsInfoDAO.releaseAnEmployee(employeeProjJson);
-		if (rowsAffected > 0) {
-			return employeeProjJson;
-		}
-		return null;
-	}
-
-	@Override
-	public List<ProcessorsInfo> getEmployeesbyReleaseStatusId(int releaseStatusID) {
-		return processorsInfoDAO.getEmployeesbyReleaseStatusId(releaseStatusID);
-	}*/
 	
 }

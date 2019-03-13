@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cts.nw.onboarding.bo.CountryMapping;
-import com.cts.nw.onboarding.dao.CountryMappingDAO;
+import com.cts.nw.onboarding.service.CountryService;
 
 /**
  * @author 656579
@@ -23,14 +23,27 @@ import com.cts.nw.onboarding.dao.CountryMappingDAO;
 public class CountryController {
 
 	@Autowired
-	CountryMappingDAO countryMappingDAO;
+	CountryService countryService;
+
 	/**
 	 * @param teamname
 	 * @return
 	 */
-	@RequestMapping(value = "/getAllCountryDetails", method = RequestMethod.GET)
+	@RequestMapping(value = "/getcountries", method = RequestMethod.GET)
 	public @ResponseBody List<CountryMapping> getAllCountryDetails() {
-		return countryMappingDAO.getAllCountryMapping();
+		List<CountryMapping> countryList;
+		try {
+			countryList = countryService.getAllCountryDetails();
+			if (countryList.size() > 0) {
+				return countryList;
+			} else {
+				return null;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
-	
+
 }

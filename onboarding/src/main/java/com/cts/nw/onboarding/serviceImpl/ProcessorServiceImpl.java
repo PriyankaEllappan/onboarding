@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cts.nw.onboarding.bo.EmployeeProjHist;
 import com.cts.nw.onboarding.dao.EmployeeProjHistDAO;
 import com.cts.nw.onboarding.service.MailService;
 import com.cts.nw.onboarding.service.ProcessorService;
@@ -19,45 +20,35 @@ import com.cts.nw.onboarding.service.ProcessorService;
 @Service
 public class ProcessorServiceImpl implements ProcessorService {
 
-	/*@Autowired
-	EmployeeProjHistDAO processorsInfoDAO;
-	
+	@Autowired
+	EmployeeProjHistDAO employeeProjHistDAO;
+
 	@Autowired
 	MailService mailService;
 	
 	@Override
-	public EmployeeProjHistDAO getEmployeetoProcess(String processorId,String projInfoId) {
-		int processor;
-		int projInfo;
-		try{
-			processor = Integer.parseInt(processorId);
-			projInfo = Integer.parseInt(projInfoId);
-			return processorsInfoDAO.getEmployeeToProcess(processor, projInfo);
-		}catch(Exception e){
-			e.printStackTrace();
-			return null;
-		}
+	public List<EmployeeProjHist> getRecordsPerProcessor(int processorid) {
+		return employeeProjHistDAO.getRecordsPerProcessor(processorid);
 	}
-
+	
 	@Override
-	public EmployeeProjHistDAO processAnEmployee(EmployeeProjHistDAO employeeProjJson) {
+	public EmployeeProjHist getEmployeetoProcess(int empProjHistId) {
+		return employeeProjHistDAO.getSpecificEmployeeProjectHist(empProjHistId);
+	}
+	
+	@Override
+	public EmployeeProjHist processAnEmployee(EmployeeProjHist employeeProjHist) {
 		Integer rowsAffected = 0;
-		rowsAffected = processorsInfoDAO.processAnEmployee(employeeProjJson);
-		if (rowsAffected > 0) {
-			if (employeeProjJson.getApprovalStatus() == 2) {
-				System.out.println("Mail Serv" + employeeProjJson);
-				mailService.sendInProgressEmail(employeeProjJson);
-			} else if (employeeProjJson.getApprovalStatus() == 3) {
-				mailService.sendCompletionEmail(employeeProjJson);
+		rowsAffected = employeeProjHistDAO.updateSpecificEmployeeProjectHist(employeeProjHist);
+		if(rowsAffected > 0){
+			if (employeeProjHist.getApprovalStatusId() == 2) {
+				mailService.onBoardingAcknowledged(employeeProjHist);
+			} else if (employeeProjHist.getApprovalStatusId() == 3) {
+				mailService.onBoardingCompleted(employeeProjHist);
 			}
-			return employeeProjJson;
+			return employeeProjHist;
 		}
 		return null;
+
 	}
-
-	@Override
-	public List<EmployeeProjHistDAO> getRecordsPerProcessor(int processorid) {
-		return processorsInfoDAO.getRecordsPerProcessor(processorid);
-	}*/
-
 }
