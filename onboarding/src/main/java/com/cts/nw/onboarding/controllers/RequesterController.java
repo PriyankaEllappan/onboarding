@@ -1,6 +1,6 @@
 /**
  * 
- */
+ *//*
 package com.cts.nw.onboarding.controllers;
 
 import java.util.List;
@@ -23,10 +23,10 @@ import com.cts.nw.onboarding.bo.EmployeeMaster;
 import com.cts.nw.onboarding.bo.EmployeeProjectInfo;
 import com.cts.nw.onboarding.service.RequesterService;
 
-/**
+*//**
  * @author 656579
  *
- */
+ *//*
 @Controller
 public class RequesterController {
 
@@ -44,19 +44,19 @@ public class RequesterController {
            }
     }
         
-	/**
+	*//**
 	 * @param model
 	 * @return
-	 */
+	 *//*
 	@RequestMapping(value = "/request/check", method = RequestMethod.GET)
 	public String index() {
 		return "request/checkResourceAvailability";
 	}
 	
-	/**
+	*//**
 	 * @param model
 	 * @return
-	 */
+	 *//*
 	@RequestMapping(value = "/request/check/{empid}", method = RequestMethod.GET)
 	public @ResponseBody EmployeeMaster employeeAvailability(@PathVariable String empid) {
 		EmployeeMaster employee = null;
@@ -68,10 +68,10 @@ public class RequesterController {
 		return employee;
 	}
 	
-	/**
+	*//**
 	 * @param employeeJson
 	 * @return
-	 */
+	 *//*
 	@PostMapping(value = "/request/addresource", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public @ResponseBody EmployeeMaster createUser(@RequestBody EmployeeMaster employeeJson) {
 		try {
@@ -82,10 +82,10 @@ public class RequesterController {
 		}
 	}
 	
-    /**
+    *//**
     * @param employeeJson
     * @return
-    */
+    *//*
     @GetMapping(value = "/request/checkActiveAssignment/{empid}", produces = { MediaType.APPLICATION_JSON_VALUE })
     public @ResponseBody List<EmployeeActiveAssignment> checkActiveAssignment(@PathVariable String empid) {
     		List<EmployeeActiveAssignment> activeAssignment;
@@ -102,10 +102,10 @@ public class RequesterController {
            }
     }
 
-	/**
+	*//**
 	 * @param model
 	 * @return
-	 */
+	 *//*
 	@RequestMapping(value = "/request/mapproject/{empid}", method = RequestMethod.GET)
 	public String generateAddProjForm(@ModelAttribute("employee") EmployeeMaster employee,
 			@PathVariable int empid, ModelMap model) {
@@ -119,10 +119,10 @@ public class RequesterController {
 		}
 	}
 	
-	/**
+	*//**
 	 * @param employeeJson
 	 * @return
-	 */
+	 *//*
 	@PostMapping(value = "/request/addproject", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public @ResponseBody EmployeeProjectInfo assignProject(@RequestBody EmployeeProjectInfo employeeProjJson) {
 		try {
@@ -135,3 +135,4 @@ public class RequesterController {
 	}
 	
 }
+*/

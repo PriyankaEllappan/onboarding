@@ -1,6 +1,6 @@
 /**
  * 
- */
+ *//*
 package com.cts.nw.onboarding.controllers;
 
 import java.util.List;
@@ -17,10 +17,10 @@ import com.cts.nw.onboarding.bo.ReleaseStatus;
 import com.cts.nw.onboarding.dao.ApprovalStatusDAO;
 import com.cts.nw.onboarding.dao.ReleaseStatusDAO;
 
-/**
+*//**
  * @author 656579
  *
- */
+ *//*
 @Controller
 @RequestMapping("/status")
 public class StatusController {
@@ -31,10 +31,10 @@ public class StatusController {
 	@Autowired
 	ReleaseStatusDAO releaseStatusDAO;
 	
-	/**
+	*//**
 	 * @param model
 	 * @return
-	 */
+	 *//*
 	@RequestMapping(value = "/getapprovalid/{status}", method = RequestMethod.GET)
 	public @ResponseBody ApprovalStatus getApprovalStatusId(@PathVariable String status) {
 		ApprovalStatus stat = null;
@@ -47,10 +47,10 @@ public class StatusController {
 		return stat;
 	}
 	
-	/**
+	*//**
 	 * @param model
 	 * @return
-	 */
+	 *//*
 	@RequestMapping(value = "/getallapprovalstatus", method = RequestMethod.GET)
 	public @ResponseBody List<ApprovalStatus> getAllApprovalStatus() {
 		List<ApprovalStatus> statList = null;
@@ -62,10 +62,10 @@ public class StatusController {
 		return statList;
 	}
 	
-	/**
+	*//**
 	 * @param model
 	 * @return
-	 */
+	 *//*
 	@RequestMapping(value = "/getreleaseid/{status}", method = RequestMethod.GET)
 	public @ResponseBody ReleaseStatus getReleaseStatusID(@PathVariable String status) {
 		ReleaseStatus stat = null;
@@ -78,10 +78,10 @@ public class StatusController {
 		return stat;
 	}
 	
-	/**
+	*//**
 	 * @param model
 	 * @return
-	 */
+	 *//*
 	@RequestMapping(value = "/getallreleasestatus", method = RequestMethod.GET)
 	public @ResponseBody List<ReleaseStatus> getAllReleaseStatus() {
 		List<ReleaseStatus> statList = null;
@@ -93,3 +93,4 @@ public class StatusController {
 		return statList;
 	}
 }
+*/

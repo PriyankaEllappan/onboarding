@@ -3,17 +3,11 @@
  */
 package com.cts.nw.onboarding.serviceImpl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cts.nw.onboarding.bo.EmployeeActiveAssignment;
-import com.cts.nw.onboarding.bo.EmployeeMaster;
-import com.cts.nw.onboarding.bo.EmployeeProjectInfo;
-import com.cts.nw.onboarding.dao.EmployeeActiveAssignmentDAO;
 import com.cts.nw.onboarding.dao.EmployeeMasterDAO;
-import com.cts.nw.onboarding.dao.EmployeeProjectInfoDAO;
+import com.cts.nw.onboarding.dao.EmployeeProjHistDAO;
 import com.cts.nw.onboarding.service.MailService;
 import com.cts.nw.onboarding.service.RequesterService;
 
@@ -28,17 +22,14 @@ public class RequesterServiceImpl implements RequesterService {
 	private EmployeeMasterDAO employeeMasterDAO;
 	
 	@Autowired
-	EmployeeProjectInfoDAO employeeProjectInfoDAO; 
-	
-	@Autowired
-    EmployeeActiveAssignmentDAO employeeActiveAssignmentDAO;
+	EmployeeProjHistDAO employeeProjectInfoDAO; 
 	
 	@Autowired
 	MailService mailService;
 	
 	/* (non-Javadoc)
 	 * @see com.cts.nw.onboarding.service.RequesterService#checkEmployeeAvailability(java.lang.String)
-	 */
+	 
 	@Override
 	public EmployeeMaster checkEmployeeAvailability(String empid) {
 		Integer employeeId;
@@ -47,9 +38,9 @@ public class RequesterServiceImpl implements RequesterService {
 		return employeeMasterDAO.getEmployeeMasterDetailsByID(employeeId);
 	}
 
-	/* (non-Javadoc)
+	 (non-Javadoc)
 	 * @see com.cts.nw.onboarding.service.RequesterService#addNewResource(com.cts.nw.onboarding.bo.EmployeeMaster)
-	 */
+	 
 	@Override
 	public EmployeeMaster addNewResource(EmployeeMaster employee) {
 		Integer rowsAffected = 0;
@@ -60,17 +51,17 @@ public class RequesterServiceImpl implements RequesterService {
 		return null;
 	}
 	
-	/* (non-Javadoc)
+	 (non-Javadoc)
 	 * @see com.cts.nw.onboarding.service.RequesterService#populateRequesterForm(int)
-	 */
+	 
 	@Override
 	public EmployeeMaster populateRequesterForm(int empid) {
 		return employeeMasterDAO.getEmployeeMasterDetailsByID(empid);
 	}
 
-	/* (non-Javadoc)
+	 (non-Javadoc)
 	 * @see com.cts.nw.onboarding.service.RequesterService#addNewProject(com.cts.nw.onboarding.bo.EmployeeProjectInfo)
-	 */
+	 
 	@Override
 	public EmployeeProjectInfo addNewProject(EmployeeProjectInfo employeeProjJson) {
 		Integer rowsAffected = 0;
@@ -82,9 +73,9 @@ public class RequesterServiceImpl implements RequesterService {
 		return null;
 	}
 
-	/* (non-Javadoc)
+	 (non-Javadoc)
 	 * @see com.cts.nw.onboarding.service.RequesterService#checkforActiveAssignment(java.lang.String)
-	 */
+	 
 	@Override
 	public List<EmployeeActiveAssignment> checkforActiveAssignment(String empid) {
 		Integer employeeId;
@@ -95,7 +86,7 @@ public class RequesterServiceImpl implements RequesterService {
 	@Override
 	public List<EmployeeMaster> getAllEmployees() {
 		return employeeMasterDAO.getAllEmployeeMasterDetails();
-	}
+	}*/
 
 	
 	

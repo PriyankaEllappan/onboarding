@@ -8,9 +8,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cts.nw.onboarding.bo.ProcessorsInfo;
 import com.cts.nw.onboarding.bo.ReleaseSummary;
-import com.cts.nw.onboarding.dao.ProcessorsInfoDAO;
+import com.cts.nw.onboarding.dao.EmployeeProjHistDAO;
 import com.cts.nw.onboarding.dao.ReleaseSummaryDAO;
 import com.cts.nw.onboarding.service.ReleaseService;
 
@@ -25,9 +24,9 @@ public class ReleaseServiceImpl implements ReleaseService{
 	ReleaseSummaryDAO releaseSummaryDAO;
 	
 	@Autowired
-	ProcessorsInfoDAO processorsInfoDAO;
+	EmployeeProjHistDAO processorsInfoDAO;
 	
-	@Override
+	/*@Override
 	public List<ProcessorsInfo> getListofEmployeetoRelease(int releaseStatusID) {
 		return processorsInfoDAO.getEmployeesbyReleaseStatusId(releaseStatusID);
 	}
@@ -57,6 +56,6 @@ public class ReleaseServiceImpl implements ReleaseService{
 	@Override
 	public List<ProcessorsInfo> getEmployeesbyReleaseStatusId(int releaseStatusID) {
 		return processorsInfoDAO.getEmployeesbyReleaseStatusId(releaseStatusID);
-	}
+	}*/
 	
 }

@@ -8,8 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cts.nw.onboarding.bo.ProcessorsInfo;
-import com.cts.nw.onboarding.dao.ProcessorsInfoDAO;
+import com.cts.nw.onboarding.dao.EmployeeProjHistDAO;
 import com.cts.nw.onboarding.service.MailService;
 import com.cts.nw.onboarding.service.ProcessorService;
 
@@ -20,14 +19,14 @@ import com.cts.nw.onboarding.service.ProcessorService;
 @Service
 public class ProcessorServiceImpl implements ProcessorService {
 
-	@Autowired
-	ProcessorsInfoDAO processorsInfoDAO;
+	/*@Autowired
+	EmployeeProjHistDAO processorsInfoDAO;
 	
 	@Autowired
 	MailService mailService;
 	
 	@Override
-	public ProcessorsInfo getEmployeetoProcess(String processorId,String projInfoId) {
+	public EmployeeProjHistDAO getEmployeetoProcess(String processorId,String projInfoId) {
 		int processor;
 		int projInfo;
 		try{
@@ -41,7 +40,7 @@ public class ProcessorServiceImpl implements ProcessorService {
 	}
 
 	@Override
-	public ProcessorsInfo processAnEmployee(ProcessorsInfo employeeProjJson) {
+	public EmployeeProjHistDAO processAnEmployee(EmployeeProjHistDAO employeeProjJson) {
 		Integer rowsAffected = 0;
 		rowsAffected = processorsInfoDAO.processAnEmployee(employeeProjJson);
 		if (rowsAffected > 0) {
@@ -57,8 +56,8 @@ public class ProcessorServiceImpl implements ProcessorService {
 	}
 
 	@Override
-	public List<ProcessorsInfo> getRecordsPerProcessor(int processorid) {
+	public List<EmployeeProjHistDAO> getRecordsPerProcessor(int processorid) {
 		return processorsInfoDAO.getRecordsPerProcessor(processorid);
-	}
+	}*/
 
 }

@@ -1,4 +1,4 @@
-package com.cts.nw.onboarding.controllers;
+/*package com.cts.nw.onboarding.controllers;
 
 import java.util.List;
 
@@ -26,10 +26,10 @@ public class ReleaseController {
 	@Autowired
 	ReleaseService releaseService;
 	
-	/**
+	*//**
 	 * @param model
 	 * @return
-	 */
+	 *//*
 	@RequestMapping(value = "/processrelease/{projInfoId}", method = RequestMethod.GET)
 	public String generateReleaseProcessForm(@ModelAttribute("employee") ProcessorsInfo employee,
 			@PathVariable String projInfoId, ModelMap model) {
@@ -43,10 +43,10 @@ public class ReleaseController {
 		}
 	}
 	
-	/**
+	*//**
 	 * @param model
 	 * @return
-	 */
+	 *//*
 	@RequestMapping(value = "/getreasonsummary", method = RequestMethod.GET)
 	public @ResponseBody List<ReleaseSummary> getAllReleaseSummary() {
 		List<ReleaseSummary> statList = null;
@@ -58,10 +58,10 @@ public class ReleaseController {
 		return statList;
 	}
 	
-	/**
+	*//**
 	 * @param employeeJson
 	 * @return
-	 */
+	 *//*
 	@PostMapping(value = "/requestrelease", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public @ResponseBody ProcessorsInfo requestRelease(@RequestBody ProcessorsInfo employeeProjJson) {
 		try {
@@ -86,3 +86,4 @@ public class ReleaseController {
 
 	}
 }
+*/

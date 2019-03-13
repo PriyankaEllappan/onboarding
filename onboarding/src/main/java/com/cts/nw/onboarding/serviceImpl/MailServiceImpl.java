@@ -8,9 +8,8 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
-import com.cts.nw.onboarding.bo.EmployeeProjectInfo;
+import com.cts.nw.onboarding.bo.EmployeeProjHist;
 import com.cts.nw.onboarding.bo.MailDetail;
-import com.cts.nw.onboarding.bo.ProcessorsInfo;
 import com.cts.nw.onboarding.controllers.HomeController;
 import com.cts.nw.onboarding.mailers.SendMail;
 import com.cts.nw.onboarding.service.LDAPService;
@@ -37,7 +36,7 @@ public class MailServiceImpl implements MailService {
 	MailDetail mailDetail;
 
 	@Override
-	public void sendRequestEmail(EmployeeProjectInfo resource) {
+	public void sendRequestEmail(EmployeeProjHist resource) {
 		String emailContent = environment.getRequiredProperty("mail.request");
 		employeeDetail = new EmployeeDetails();
 		mailDetail = new MailDetail();
@@ -50,8 +49,8 @@ public class MailServiceImpl implements MailService {
 		ccList.add("Priyanka.Ellappan@cognizant.com");
 		mailDetail.setCc(ccList);
 
-		emailContent = emailContent.replaceAll("<<EMPID>>", String.valueOf(resource.getEmployeeID()));
-		emailContent = emailContent.replace("<<EMPNAME>>", resource.getEmployeeName());
+		emailContent = emailContent.replaceAll("<<EMPID>>", String.valueOf(resource.getEmployeeId()));
+		emailContent = emailContent.replace("<<EMPNAME>>", resource.getName());
 		emailContent = emailContent.replace("<<PROJID>>", String.valueOf(resource.getProjectId()));
 		emailContent = emailContent.replace("<<PROJNAME>>", resource.getProjectName());
 		emailContent = emailContent.replace("<<URL>>", HomeController.APPURL);
@@ -65,7 +64,7 @@ public class MailServiceImpl implements MailService {
 	}
 
 	@Override
-	public void sendInProgressEmail(ProcessorsInfo resource) {
+	public void sendInProgressEmail(EmployeeProjHist resource) {
 		String emailContent = environment.getRequiredProperty("mail.inprogress");
 
 		employeeDetail = new EmployeeDetails();
@@ -79,7 +78,7 @@ public class MailServiceImpl implements MailService {
 		ccList.add("Priyanka.Ellappan@cognizant.com");
 		mailDetail.setCc(ccList);
 
-		emailContent = emailContent.replaceAll("<<EMPID>>", String.valueOf(resource.getEmployeeMasterID()));
+		emailContent = emailContent.replaceAll("<<EMPID>>", String.valueOf(resource.getEmployeeId()));
 		emailContent = emailContent.replace("<<EMPNAME>>", resource.getName());
 		emailContent = emailContent.replace("<<PROJID>>", String.valueOf(resource.getProjectId()));
 		emailContent = emailContent.replace("<<PROJNAME>>", resource.getProjectName());
@@ -90,7 +89,7 @@ public class MailServiceImpl implements MailService {
 	}
 
 	@Override
-	public void sendCompletionEmail(ProcessorsInfo resource) {
+	public void sendCompletionEmail(EmployeeProjHist resource) {
 		String emailContent = environment.getRequiredProperty("mail.complete");
 
 		employeeDetail = new EmployeeDetails();
@@ -104,7 +103,7 @@ public class MailServiceImpl implements MailService {
 		ccList.add("Priyanka.Ellappan@cognizant.com");
 		mailDetail.setCc(ccList);
 
-		emailContent = emailContent.replace("<<NWID>>", resource.getNationwideID());
+		emailContent = emailContent.replace("<<NWID>>", resource.getNationwideId());
 		emailContent = emailContent.replace("<<URL>>", HomeController.APPURL);
 
 		mailDetail.setContent(emailContent);
@@ -113,7 +112,7 @@ public class MailServiceImpl implements MailService {
 	}
 	
 	@Override
-	public void releaseInitiatedEmail(ProcessorsInfo resource) {
+	public void releaseInitiatedEmail(EmployeeProjHist resource) {
 		String emailContent = environment.getRequiredProperty("mail.releaseinitiated");
 
 		employeeDetail = new EmployeeDetails();
@@ -128,7 +127,7 @@ public class MailServiceImpl implements MailService {
 		ccList.add("Jambulingam.S@cognizant.com");
 		mailDetail.setCc(ccList);
 
-		emailContent = emailContent.replaceAll("<<EMPID>>", String.valueOf(resource.getEmployeeMasterID()));
+		emailContent = emailContent.replaceAll("<<EMPID>>", String.valueOf(resource.getEmployeeId()));
 		emailContent = emailContent.replace("<<EMPNAME>>", resource.getName());
 		emailContent = emailContent.replace("<<PROJID>>", String.valueOf(resource.getProjectId()));
 		emailContent = emailContent.replace("<<PROJNAME>>", resource.getProjectName());
@@ -140,7 +139,7 @@ public class MailServiceImpl implements MailService {
 	}
 
 	@Override
-	public void resourceOffBoardingEmail(ProcessorsInfo resource) {
+	public void resourceOffBoardingEmail(EmployeeProjHist resource) {
 		String emailContent = environment.getRequiredProperty("mail.released");
 
 		employeeDetail = new EmployeeDetails();
@@ -155,7 +154,7 @@ public class MailServiceImpl implements MailService {
 		ccList.add("Jambulingam.S@cognizant.com");
 		mailDetail.setCc(ccList);
 
-		emailContent = emailContent.replaceAll("<<EMPID>>", String.valueOf(resource.getEmployeeMasterID()));
+		emailContent = emailContent.replaceAll("<<EMPID>>", String.valueOf(resource.getEmployeeId()));
 		emailContent = emailContent.replace("<<EMPNAME>>", resource.getName());
 		emailContent = emailContent.replace("<<PROJID>>", String.valueOf(resource.getProjectId()));
 		emailContent = emailContent.replace("<<PROJNAME>>", resource.getProjectName());
