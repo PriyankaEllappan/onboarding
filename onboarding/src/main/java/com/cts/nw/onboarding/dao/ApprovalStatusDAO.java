@@ -12,7 +12,7 @@ import com.cts.nw.onboarding.bo.ApprovalStatus;
  *
  */
 public interface ApprovalStatusDAO {
-	public ApprovalStatus getApprovalStatusbyID(int id);
+	public ApprovalStatus getApprovalStatusbyID(String id);
 	public ApprovalStatus getApprovalStatus(String status);
 	public List<ApprovalStatus> getAllApprovalStatus();
 }

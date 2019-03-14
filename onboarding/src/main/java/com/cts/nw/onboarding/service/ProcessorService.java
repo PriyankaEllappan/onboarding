@@ -13,9 +13,9 @@ import com.cts.nw.onboarding.bo.EmployeeProjHist;
  */
 public interface ProcessorService {
 
-	List<EmployeeProjHist> getRecordsPerProcessor(int processorid);
+	List<EmployeeProjHist> getRecordsPerProcessor(String processorid);
 
-	EmployeeProjHist getEmployeetoProcess(int empProjHistId);
+	EmployeeProjHist getEmployeetoProcess(String empProjHistId);
 
 	EmployeeProjHist processAnEmployee(EmployeeProjHist employeeProjHist);
 

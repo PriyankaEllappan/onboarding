@@ -14,7 +14,7 @@ import com.cts.nw.onboarding.bo.EmployeeMaster;
 public interface EmployeeMasterDAO {
 
 	List<EmployeeMaster> getAllEmployeeMasterDetails();
-	EmployeeMaster getEmployeeMasterDetailsByID(int id);
-	int addNewResource(EmployeeMaster employeeMaster);
+	EmployeeMaster getEmployeeMasterDetailsByID(String id);
+	Integer addNewResource(EmployeeMaster employeeMaster);
 	
 }

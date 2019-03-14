@@ -14,5 +14,5 @@ import com.cts.nw.onboarding.bo.Teams;
 public interface TeamsDAO {
 
 	List<Teams> getAllActiveTeams();
-	int insertNewTeam(Teams team);
+	Integer insertNewTeam(Teams team);
 }

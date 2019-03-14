@@ -28,7 +28,7 @@ public class ApprovalStatusDAOImpl implements ApprovalStatusDAO {
 	private JdbcTemplate jdbcTemplate;
 	
 	@Override
-	public ApprovalStatus getApprovalStatusbyID(int id) {
+	public ApprovalStatus getApprovalStatusbyID(String id) {
 		String whereClause=" WHERE APS.ID = ?";
 		String query = QueryConstants.APPROVALSTATUS_SELECT + whereClause;
 		try {

@@ -39,7 +39,7 @@ public class TeamsDAOImpl implements TeamsDAO{
 	}
 
 	@Override
-	public int insertNewTeam(Teams team) {
+	public Integer insertNewTeam(Teams team) {
 		return jdbcTemplate.update(QueryConstants.TEAMS_INSERT,team.getId(),team.getTeamName(),team.getProjMapId(),team.getStatus());
 	}
 

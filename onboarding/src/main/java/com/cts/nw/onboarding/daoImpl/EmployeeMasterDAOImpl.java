@@ -39,7 +39,7 @@ public class EmployeeMasterDAOImpl implements EmployeeMasterDAO {
 	}
 
 	@Override
-	public EmployeeMaster getEmployeeMasterDetailsByID(int id) {
+	public EmployeeMaster getEmployeeMasterDetailsByID(String id) {
 		String whereClause = " WHERE ID = ? ";
 		String query = QueryConstants.EMPLOYEEMASTER_SELECT + whereClause;
 		try {
@@ -51,7 +51,7 @@ public class EmployeeMasterDAOImpl implements EmployeeMasterDAO {
 	}
 
 	@Override
-	public int addNewResource(EmployeeMaster employeeMaster) {
+	public Integer addNewResource(EmployeeMaster employeeMaster) {
 		return jdbcTemplate.update(QueryConstants.EMPLOYEEMASTER_INSERT, employeeMaster.getEmployeeId(), employeeMaster.getName(), employeeMaster.getFirstName(),
 				employeeMaster.getLastName(), employeeMaster.getDateOfBirth(), employeeMaster.getPassportNumber(), employeeMaster.getEmail());
 	}

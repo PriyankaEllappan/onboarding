@@ -37,7 +37,7 @@ public class ReleaseServiceImpl implements ReleaseService{
 	}
 	
 	@Override
-	public EmployeeProjHist getEmployeetoRelease(int empProjHistId) {
+	public EmployeeProjHist getEmployeetoRelease(String empProjHistId) {
 		return employeeProjHistDAO.getSpecificEmployeeProjectHist(empProjHistId);
 	}
 	

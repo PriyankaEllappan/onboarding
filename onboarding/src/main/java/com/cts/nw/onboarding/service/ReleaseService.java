@@ -13,7 +13,7 @@ public interface ReleaseService {
 
 	List<EmployeeProjHist> getEmployeestobeReleased();
 
-	EmployeeProjHist getEmployeetoRelease(int empProjHistId);
+	EmployeeProjHist getEmployeetoRelease(String empProjHistId);
 
 	EmployeeProjHist releaseAnEmployee(EmployeeProjHist employeeProjHist);
 

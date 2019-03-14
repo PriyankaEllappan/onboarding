@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cts.nw.onboarding.bo.EmployeeMaster;
+import com.cts.nw.onboarding.bo.EmployeeProjHist;
 import com.cts.nw.onboarding.dao.EmployeeMasterDAO;
 import com.cts.nw.onboarding.dao.EmployeeProjHistDAO;
 import com.cts.nw.onboarding.service.MailService;
@@ -24,12 +25,16 @@ public class RequesterServiceImpl implements RequesterService {
 	@Autowired
 	private EmployeeMasterDAO employeeMasterDAO;
 
+	@Autowired
+	EmployeeProjHistDAO employeeProjHistDAO;
+
+	@Autowired
+	MailService mailService;
+	
 	@Override
 	public EmployeeMaster getResourceByID(String employeeid) {
-		int empId; 
 		try{
-			empId = Integer.parseInt(employeeid);
-			return employeeMasterDAO.getEmployeeMasterDetailsByID(empId);
+			return employeeMasterDAO.getEmployeeMasterDetailsByID(employeeid);
 		}catch(Exception e){
 			e.printStackTrace();
 			return null;
@@ -60,37 +65,32 @@ public class RequesterServiceImpl implements RequesterService {
 		return null;
 	}
 	
-	 
-	
-
-	/* (non-Javadoc)
-	 * @see com.cts.nw.onboarding.service.RequesterService#addNewProject(com.cts.nw.onboarding.bo.EmployeeProjectInfo)
-	 
 	@Override
-	public EmployeeProjectInfo addNewProject(EmployeeProjectInfo employeeProjJson) {
-		Integer rowsAffected = 0;
-		rowsAffected = employeeProjectInfoDAO.addEmployeeProjectInfo(employeeProjJson);
-		if (rowsAffected > 0) {
-			mailService.sendRequestEmail(employeeProjJson);
-			return employeeProjJson;
+	public EmployeeProjHist addNewProject(EmployeeProjHist employeeProjJson) {
+		try {
+			Integer rowsAffected = 0;
+			rowsAffected = employeeProjHistDAO.addEmployeeProjectInfo(employeeProjJson);
+			if (rowsAffected > 0) {
+				mailService.onBoardingInitiated(employeeProjJson);
+				return employeeProjJson;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return null;
 	}
 
-	 (non-Javadoc)
-	 * @see com.cts.nw.onboarding.service.RequesterService#checkforActiveAssignment(java.lang.String)
-	 
+	
 	@Override
-	public List<EmployeeActiveAssignment> checkforActiveAssignment(String empid) {
-		Integer employeeId;
-		employeeId = Integer.parseInt(empid);
-		return employeeActiveAssignmentDAO.getActiveAssignmentDetails(employeeId);
+	public List<EmployeeProjHist> checkActiveAssignments(String employeeid) {
+		try {
+			return employeeProjHistDAO.checkActiveAssignments(employeeid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
-	@Override
-	public List<EmployeeMaster> getAllEmployees() {
-		return employeeMasterDAO.getAllEmployeeMasterDetails();
-	}*/
 
 	
 	

@@ -27,12 +27,12 @@ public class ProcessorServiceImpl implements ProcessorService {
 	MailService mailService;
 	
 	@Override
-	public List<EmployeeProjHist> getRecordsPerProcessor(int processorid) {
+	public List<EmployeeProjHist> getRecordsPerProcessor(String processorid) {
 		return employeeProjHistDAO.getRecordsPerProcessor(processorid);
 	}
 	
 	@Override
-	public EmployeeProjHist getEmployeetoProcess(int empProjHistId) {
+	public EmployeeProjHist getEmployeetoProcess(String empProjHistId) {
 		return employeeProjHistDAO.getSpecificEmployeeProjectHist(empProjHistId);
 	}
 	

@@ -39,7 +39,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	}
 
 	@Override
-	public int addEmployeeProjectInfo(EmployeeProjHist employeeProjectHist) {
+	public Integer addEmployeeProjectInfo(EmployeeProjHist employeeProjectHist) {
 		try{
 			return jdbcTemplate.update(QueryConstants.EMPPROJHIST_INSERT,employeeProjectHist.getId(),employeeProjectHist.getEmployeeId(),employeeProjectHist.getProjectId(),employeeProjectHist.getTeamId(),employeeProjectHist.getRoleId(),
 					employeeProjectHist.getCountryId(),employeeProjectHist.getStartDate(),employeeProjectHist.getNationwideId(),employeeProjectHist.getNationwideIdCreatedDate(),
@@ -54,7 +54,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	}
 
 	@Override
-	public List<EmployeeProjHist> getRecordsPerProcessor(int processorid) {
+	public List<EmployeeProjHist> getRecordsPerProcessor(String processorid) {
 		try {
 			String whereClause = " WHERE PR.PROCESSORID = ? AND EPH.APPROVALSTATUS IN (1,2)";
 			String query = QueryConstants.EMPPROJHIST_SELECT + whereClause;
@@ -66,7 +66,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	}
 
 	@Override
-	public EmployeeProjHist getSpecificEmployeeProjectHist(int empProjHistId) {
+	public EmployeeProjHist getSpecificEmployeeProjectHist(String empProjHistId) {
 		try {
 			String whereClause = " WHERE EPH.ID = ?";
 			String query = QueryConstants.EMPPROJHIST_SELECT + whereClause;

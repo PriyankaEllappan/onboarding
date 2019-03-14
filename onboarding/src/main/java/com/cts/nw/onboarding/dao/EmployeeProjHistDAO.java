@@ -14,17 +14,17 @@ import com.cts.nw.onboarding.bo.EmployeeProjHist;
 public interface EmployeeProjHistDAO {
 
 	/*Requester Operations*/
-	int addEmployeeProjectInfo(EmployeeProjHist employeeProjectHist);
+	Integer addEmployeeProjectInfo(EmployeeProjHist employeeProjectHist);
 	List<EmployeeProjHist> checkActiveAssignments(String empid);
 	
 	/*Processor Operations*/
-	List<EmployeeProjHist> getRecordsPerProcessor(int processorid);
+	List<EmployeeProjHist> getRecordsPerProcessor(String processorid);
 	
 	/*Release Operations*/
 	List<EmployeeProjHist> getEmployeestobeReleased();
 	
 	/*Common Operations*/
-	EmployeeProjHist getSpecificEmployeeProjectHist(int empProjHistId);
+	EmployeeProjHist getSpecificEmployeeProjectHist(String empProjHistId);
 	Integer updateSpecificEmployeeProjectHist(EmployeeProjHist employeeProjectHist);
 	List<EmployeeProjHist> getAllEmployeeProjectInfo();
 }
