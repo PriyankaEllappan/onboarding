@@ -19,12 +19,14 @@ public class ReleaseStatusRowMapper extends AbstractRowMapper implements RowMapp
 	@Override
 	public ReleaseStatus mapRow(ResultSet rs, int rowNum) throws SQLException {
 		ReleaseStatus releaseStatus = new ReleaseStatus();
-		if (hasColumn(rs, "ID") == true) {
+		/*if (hasColumn(rs, "ID") == true) {
 			releaseStatus.setId(rs.getInt("ID"));
 		}
 		if (hasColumn(rs, "STATUS") == true) {
 			releaseStatus.setStatus(rs.getString("STATUS"));
-		}
+		}*/
+		releaseStatus.setId(rs.getInt("ID"));
+		releaseStatus.setStatus(rs.getString("STATUS"));
 		return releaseStatus;
 	}
 }

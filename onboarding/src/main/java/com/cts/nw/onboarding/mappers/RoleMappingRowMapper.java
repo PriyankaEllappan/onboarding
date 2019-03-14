@@ -19,7 +19,7 @@ public class RoleMappingRowMapper extends AbstractRowMapper implements RowMapper
 	@Override
 	public RoleMapping mapRow(ResultSet rs, int rowNum) throws SQLException {
 		RoleMapping roleMapping = new RoleMapping();
-		if (hasColumn(rs, "ID") == true) {
+		/*if (hasColumn(rs, "ID") == true) {
 			roleMapping.setId(rs.getInt("ID"));
 		}
 		if (hasColumn(rs, "ROLEID") == true) {
@@ -34,6 +34,15 @@ public class RoleMappingRowMapper extends AbstractRowMapper implements RowMapper
 		if (hasColumn(rs, "COUNTRYID") == true) {
 			roleMapping.setCountryId(rs.getInt("COUNTRYID"));
 		}
+		if (hasColumn(rs, "ROLENAME") == true) {
+			roleMapping.setRole(rs.getString("ROLENAME"));
+		}*/
+		roleMapping.setId(rs.getInt("ID"));
+		roleMapping.setRoleId(rs.getInt("ROLEID"));
+		roleMapping.setRole(rs.getString("ROLENAME"));
+		roleMapping.setRateId(rs.getInt("RATEID"));
+		roleMapping.setRate(rs.getString("RATE"));
+		roleMapping.setCountryId(rs.getInt("COUNTRYID"));
 		return roleMapping;
 	}
 

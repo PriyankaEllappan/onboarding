@@ -19,8 +19,8 @@ import com.cts.nw.onboarding.service.RoleService;
  *
  */
 @Controller
-@RequestMapping("/roles")
-public class RolesController {
+@RequestMapping("/role")
+public class RoleController {
 
 	@Autowired
 	RoleService roleService;
@@ -29,9 +29,21 @@ public class RolesController {
 	 * @param 
 	 * @return
 	 */
-	@RequestMapping(value = "/getallrolemappings", method = RequestMethod.GET)
+	@RequestMapping(value = "/getroles", method = RequestMethod.GET)
 	public @ResponseBody List<RoleMapping> getAllRoleMappings() {
-		return roleService.getAllRoleMappings();
+		List<RoleMapping> countryList;
+		try {
+			countryList = roleService.getAllRoleMappings();
+			if (countryList.size() > 0) {
+				return countryList;
+			} else {
+				return null;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }

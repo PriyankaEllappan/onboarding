@@ -19,7 +19,7 @@ import com.cts.nw.onboarding.service.TeamService;
  *
  */
 @Controller
-@RequestMapping("/teams")
+@RequestMapping("/team")
 public class TeamController {
 
 	@Autowired

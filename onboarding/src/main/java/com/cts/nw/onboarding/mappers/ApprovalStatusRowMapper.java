@@ -20,12 +20,14 @@ public class ApprovalStatusRowMapper extends AbstractRowMapper implements RowMap
 	@Override
 	public ApprovalStatus mapRow(ResultSet rs, int rowNum) throws SQLException {
 		ApprovalStatus approvalStatus = new ApprovalStatus();
-		if (hasColumn(rs, "APPROVALSTATUSID") == true) {
-			approvalStatus.setId(rs.getInt("APPROVALSTATUSID"));
+		/*if (hasColumn(rs, "ID") == true) {
+			approvalStatus.setId(rs.getInt("ID"));
 		}
-		if (hasColumn(rs, "APPROVALSTATUSSTATUS") == true) {
-			approvalStatus.setStatus(rs.getString("APPROVALSTATUSSTATUS"));
-		}
+		if (hasColumn(rs, "STATUS") == true) {
+			approvalStatus.setStatus(rs.getString("STATUS"));
+		}*/
+		approvalStatus.setId(rs.getInt("ID"));
+		approvalStatus.setStatus(rs.getString("STATUS"));
 		return approvalStatus;
 	}
 

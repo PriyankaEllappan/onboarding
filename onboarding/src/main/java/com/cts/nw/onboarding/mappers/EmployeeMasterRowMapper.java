@@ -20,7 +20,7 @@ public class EmployeeMasterRowMapper extends AbstractRowMapper implements RowMap
 	public EmployeeMaster mapRow(ResultSet rs, int rowNum) throws SQLException {
 		EmployeeMaster employeeMaster = new EmployeeMaster();
 		
-		if (hasColumn(rs, "ID") == true) {
+		/*if (hasColumn(rs, "ID") == true) {
 			employeeMaster.setEmployeeId(rs.getInt("ID"));
 		}
 		if (hasColumn(rs, "DOB") == true) {
@@ -40,7 +40,15 @@ public class EmployeeMasterRowMapper extends AbstractRowMapper implements RowMap
 		}
 		if (hasColumn(rs, "EMAIL") == true) {
 			employeeMaster.setEmail(rs.getString("EMAIL"));
-		}
+		}*/
+		employeeMaster.setEmployeeId(rs.getInt("ID"));
+		employeeMaster.setName(rs.getString("NAME"));
+		employeeMaster.setFirstName(rs.getString("FIRSTNAME"));
+		employeeMaster.setLastName(rs.getString("LASTNAME"));
+		employeeMaster.setEmail(rs.getString("EMAIL"));
+		employeeMaster.setDateOfBirth(rs.getDate("DOB"));
+		employeeMaster.setPassportNumber(rs.getString("PASSPORTNUMBER"));
+		
 		return employeeMaster;
 	}
 

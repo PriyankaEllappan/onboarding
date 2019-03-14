@@ -31,7 +31,7 @@ public class EmployeeProjHist {
 	private String scrumMaster;
 	private String apm;
 	private String pplManager;
-	private Integer Experience;
+	private Integer experience;
 	private String comments;
 	private String skillSet;
 	private String skillSummary;
@@ -263,13 +263,13 @@ public class EmployeeProjHist {
 	 * @return the experience
 	 */
 	public Integer getExperience() {
-		return Experience;
+		return experience;
 	}
 	/**
 	 * @param experience the experience to set
 	 */
 	public void setExperience(Integer experience) {
-		Experience = experience;
+		this.experience = experience;
 	}
 	/**
 	 * @return the comments
@@ -663,7 +663,7 @@ public class EmployeeProjHist {
 		return "EmployeeProjHist [id=" + id + ", nationwideId=" + nationwideId + ", startDate=" + startDate
 				+ ", nationwideIdCreatedDate=" + nationwideIdCreatedDate + ", fgOnBoardingDate=" + fgOnBoardingDate
 				+ ", movementId=" + movementId + ", workForceId=" + workForceId + ", scrumMaster=" + scrumMaster
-				+ ", apm=" + apm + ", pplManager=" + pplManager + ", Experience=" + Experience + ", comments="
+				+ ", apm=" + apm + ", pplManager=" + pplManager + ", Experience=" + experience + ", comments="
 				+ comments + ", skillSet=" + skillSet + ", skillSummary=" + skillSummary + ", releaseDate="
 				+ releaseDate + ", approvalStatusId=" + approvalStatusId + ", approvalStatus=" + approvalStatus
 				+ ", releaseStatusId=" + releaseStatusId + ", releaseStatus=" + releaseStatus

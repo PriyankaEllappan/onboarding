@@ -18,7 +18,7 @@ public class ProjectMappingRowMapper extends AbstractRowMapper implements RowMap
 	public ProjectMapping mapRow(ResultSet rs, int rowNum) throws SQLException {
 		ProjectMapping teamMapping = new ProjectMapping();
 		
-		if (hasColumn(rs, "PROJECTID") == true) {
+		/*if (hasColumn(rs, "PROJECTID") == true) {
 			teamMapping.setProjectId(rs.getLong("PROJECTID"));
 		}
 		if (hasColumn(rs, "PROJECTNAME") == true) {
@@ -44,7 +44,18 @@ public class ProjectMappingRowMapper extends AbstractRowMapper implements RowMap
 		}
 		if (hasColumn(rs, "PROJSTATUS") == true) {
 			teamMapping.setProjStatus(rs.getString("PROJSTATUS"));
-		}
+		}*/
+		
+		teamMapping.setProjectId(rs.getLong("PROJECTID"));
+		teamMapping.setProjectName(rs.getString("PROJECTNAME"));
+		teamMapping.setRequesterId(rs.getInt("REQUESTERID"));
+		teamMapping.setRequesterName(rs.getString("REQUESTERNAME"));
+		teamMapping.setProcessorId(rs.getInt("PROCESSORID"));
+		teamMapping.setProcessorName(rs.getString("PROCESSORNAME"));
+		teamMapping.setBsaId(rs.getInt("BSAID"));
+		teamMapping.setBsaName(rs.getString("BSANAME"));
+		teamMapping.setProjStatus(rs.getString("PROJSTATUS"));
+		
 		return teamMapping;
 	}
 

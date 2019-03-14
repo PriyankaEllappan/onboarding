@@ -11,6 +11,7 @@ public class RoleMapping {
 
 	private Integer id;
 	private Integer roleId;
+	private String role;
 	private Integer rateId;
 	private String rate;
 	private Integer countryId;
@@ -75,13 +76,27 @@ public class RoleMapping {
 	public void setCountryId(Integer countryId) {
 		this.countryId = countryId;
 	}
+	/**
+	 * @return the role
+	 */
+	public String getRole() {
+		return role;
+	}
+	/**
+	 * @param role the role to set
+	 */
+	public void setRole(String role) {
+		this.role = role;
+	}
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "RoleMapping [id=" + id + ", roleId=" + roleId + ", rateId=" + rateId + ", rate=" + rate + ", countryId="
-				+ countryId + "]";
+		return "RoleMapping [id=" + id + ", roleId=" + roleId + ", role=" + role + ", rateId=" + rateId + ", rate="
+				+ rate + ", countryId=" + countryId + "]";
 	}
+	
 	
 }

@@ -19,12 +19,14 @@ public class ReleaseSummaryRowMapper extends AbstractRowMapper implements RowMap
 	@Override
 	public ReleaseSummary mapRow(ResultSet rs, int rowNum) throws SQLException {
 		ReleaseSummary releaseSummary = new ReleaseSummary();
-		if (hasColumn(rs, "ID") == true) {
+		/*if (hasColumn(rs, "ID") == true) {
 			releaseSummary.setId(rs.getInt("ID"));
 		}
 		if (hasColumn(rs, "STATUS") == true) {
 			releaseSummary.setSummary(rs.getString("STATUS"));
-		}
+		}*/
+		releaseSummary.setId(rs.getInt("ID"));
+		releaseSummary.setSummary(rs.getString("STATUS"));
 		return releaseSummary;
 	}
 }

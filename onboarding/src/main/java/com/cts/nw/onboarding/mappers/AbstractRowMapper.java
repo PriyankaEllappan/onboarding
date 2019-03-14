@@ -17,7 +17,7 @@ public abstract class AbstractRowMapper {
 	    ResultSetMetaData rsmd = rs.getMetaData();
 	    int columns = rsmd.getColumnCount();
 	    for (int x = 1; x <= columns; x++) {
-	        if (columnName.equals(rsmd.getColumnName(x))) {
+	        if (columnName.equalsIgnoreCase(rsmd.getColumnName(x))) {
 	            return true;
 	        }
 	    }

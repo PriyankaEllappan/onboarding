@@ -1,3 +1,4 @@
+var projectHierarchy = {}
 var teamHierarchy = {}
 var countryHierarchy = {}
 var roleMappings = {}
@@ -5,10 +6,10 @@ var jsonRequest = {}
 
 $(document).ready(function() {
 	document.getElementById("defaultOpen").click();
-	loadTeamHierarchy();
+	loadProjectHierarchy();
+	loadTeamDetails();
 	loadCountryHierarchy();
 	loadAllRoles();
-	loadRoleMappings();
 	loadApprovalStatus();
 	loadReleaseStatus();
 	
@@ -43,7 +44,7 @@ function openSpecificTab(evt, tabName) {
 function loadCountryHierarchy(){
 	$.ajax({
 		type : 'GET',
-		url : "/onboarding/country/getAllCountryDetails" ,
+		url : "/onboarding/country/getcountries" ,
 		dataType : "text",
 		success : function(resultData) {
 			countryHierarchy = JSON.parse(resultData);
@@ -58,6 +59,38 @@ function loadCountryHierarchy(){
 	});
 }
 
+function loadProjectHierarchy(){
+	$.ajax({
+		type : 'GET',
+		url : "/onboarding/projects/getactiveprojects" ,
+		dataType : "text",
+		success : function(resultData) {
+			projectHierarchy = JSON.parse(resultData);
+			console.log(projectHierarchy);
+			$.each(projectHierarchy, function(key,value) {   
+			     $('#projectName')
+			         .append($("<option></option>")
+			                    .attr("value",value.projectName)
+			                    .text(value.projectName)); 
+			});
+		}
+	});
+}
+
+function loadProjDetails() {
+	var selectedProject = $('#projectName').val();
+	$.each(projectHierarchy, function(key, value) {
+		if (selectedProject == value.projectName) {
+			$('#projectID').val(value.projectId);
+			$('#requester').val(value.requesterName);
+			$('#requesterID').val(value.requesterId);
+			$('#processor').val(value.processorName);
+			$('#processorID').val(value.processorId);
+			$('#bsaInfo').val(value.bsaName);
+		}
+	});
+}
+
 function loadLocDetails() {
 	var selectedCountry = $('#country').val();
 	$.each(countryHierarchy, function(key, value) {
@@ -68,10 +101,10 @@ function loadLocDetails() {
 	});
 }
 
-function loadTeamHierarchy() {
+function loadTeamDetails() {
 	$.ajax({
 		type : 'GET',
-		url : "/onboarding/teams/getAllTeamDetails" ,
+		url : "/onboarding/team/getactiveteams" ,
 		dataType : "text",
 		success : function(resultData) {
 			teamHierarchy = JSON.parse(resultData);
@@ -86,49 +119,19 @@ function loadTeamHierarchy() {
 	});
 }
 
-function loadProjDetails() {
-	var selectedTeam = $('#teamName').val();
-	$.each(teamHierarchy, function(key, value) {
-		if (selectedTeam == value.teamName) {
-			$('#teamMappingID').val(value.teamMapID);
-			$('#projectID').val(value.projectID);
-			$('#projectName').val(value.projectName);
-			$('#requester').val(value.requesterName);
-			$('#requesterID').val(value.requesterID);
-			$('#processor').val(value.processorName);
-			$('#processorID').val(value.processorID);
-			$('#bsaInfo').val(value.bsa);
-			$('#pplInfo').val(value.pplName);
-		}
-	});
-}
-
 function loadAllRoles(){
 	$.ajax({
 		type : 'GET',
-		url : "/onboarding/roles/getAllRoles" ,
-		dataType : "text",
-		success : function(resultData) {
-			var roles = JSON.parse(resultData);
-			console.log(roles);
-			$.each(roles, function(key,value) {   
-				$('#role')
-		         .append($("<option></option>")
-		                    .attr("value",value.id)
-		                    .text(value.role)); 
-			});
-		}
-	});
-}
-
-function loadRoleMappings(){
-	$.ajax({
-		type : 'GET',
-		url : "/onboarding/roles/getAllRoleMappings" ,
+		url : "/onboarding/role/getroles" ,
 		dataType : "text",
 		success : function(resultData) {
 			roleMappings = JSON.parse(resultData);
-			console.log(roleMappings);
+			$.each(roleMappings, function(key,value) {   
+				$('#role')
+		         .append($("<option></option>")
+		                    .attr("value",value.role)
+		                    .text(value.role)); 
+			});
 		}
 	});
 }
@@ -147,27 +150,33 @@ function loadRateDetails(){
 }
 
 function loadApprovalStatus(){
-	var status = "NEW";
 	$.ajax({
 		type : 'GET',
-		url : "/onboarding/status/getapprovalid/" + status,
+		url : "/onboarding/status/getallapprovalstatus",
 		dataType : "text",
 		success : function(resultData) {
 			approvalStat = JSON.parse(resultData);
-			$('#approvalStatus').val(approvalStat.id);
+			$.each(approvalStat, function(key,value) {   
+				if (value.status == "NEW") {
+					$('#approvalStatus').val(value.id);
+				}
+			});
 		}
 	});
 }
 
 function loadReleaseStatus(){
-	var status = "YET TO RELEASE";
 	$.ajax({
 		type : 'GET',
-		url : "/onboarding/status/getreleaseid/" + status,
+		url : "/onboarding/status/getallreleasestatus" ,
 		dataType : "text",
 		success : function(resultData) {
 			releaseStat = JSON.parse(resultData);
-			$('#releaseStatus').val(releaseStat.id);
+			$.each(releaseStat, function(key,value) {   
+				if (value.status == "YET TO RELEASE") {
+					$('#releaseStatus').val(releaseStat.id);
+				}
+			});
 		}
 	});
 }

@@ -19,15 +19,18 @@ public class CountryMappingRowMapper extends AbstractRowMapper implements RowMap
 	@Override
 	public CountryMapping mapRow(ResultSet rs, int rowNum) throws SQLException {
 		CountryMapping countryMapping = new CountryMapping();
-		if (hasColumn(rs, "COUNTRYNAME") == true) {
-		countryMapping.setCountryName(rs.getString("COUNTRYNAME"));
+		/*if (hasColumn(rs, "COUNTRY") == true) {
+		countryMapping.setCountryName(rs.getString("COUNTRY"));
 		}
-		if (hasColumn(rs, "LOCATIONNAME") == true) {
-		countryMapping.setLocationName(rs.getString("LOCATIONNAME"));
+		if (hasColumn(rs, "LOCATION") == true) {
+		countryMapping.setLocationName(rs.getString("LOCATION"));
 		}
-		if (hasColumn(rs, "COUNTRYMAPPINGID") == true) {
-		countryMapping.setCountryMappingID(rs.getInt("COUNTRYMAPPINGID"));
-		}
+		if (hasColumn(rs, "COUNTRYMAPID") == true) {
+		countryMapping.setCountryMappingID(rs.getInt("COUNTRYMAPID"));
+		}*/
+		countryMapping.setCountryName(rs.getString("COUNTRY"));
+		countryMapping.setLocationName(rs.getString("LOCATION"));
+		countryMapping.setCountryMappingID(rs.getInt("COUNTRYMAPID"));
 		return countryMapping;
 	}
 
