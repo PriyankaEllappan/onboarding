@@ -13,3 +13,114 @@ insert into authorities(username,authority)
 		
 insert into authorities(username,authority) 
 	values('guest','ROLE_PROCESSOR');		
+	
+insert into processors values('413804','PALAT,HARIKUMAR');
+insert into processors values('227822','RAMABADRAN,SRINIVASAN');
+insert into processors values('394557','Mylavarapu Venkata,Satya Raghavendrasyam Kumar');
+insert into processors values('429992','KUMARASAMY,MADHESWARAN');
+insert into processors values('351728','BHATTACHARJEE,NABAMITA');
+insert into processors values('420393','ISWARIAH SATISH,IRENE');
+insert into processors values('104689','K,MAKESH');
+insert into processors values('250319','ARUMUGASAMY,VETRIVELRAJAN');
+insert into processors values('435373','YEMULWAR,VISHAL');
+insert into processors values('200712','KUMAR T S,ARUN');
+insert into processors values('357037','PAIK,CHANDAN');
+insert into processors values('248493','MULLICK,SUMITA');
+insert into processors values('507506','SHAJI,ABILASH');
+insert into processors values('186828','KHURANA,AMIT');
+insert into processors values('292670','DALAL,VINOD');
+insert into requesters values('151539','GOPALAN,ASHWINI');
+insert into requesters values('139453','GOPALSAMY,UMA MAHESWARI');
+insert into requesters values('184933','TIRUMARUGAL SAMBASIVAN,NAGARAJAN');
+insert into requesters values('224781','SURAPUREDDY,VENKATAREDDY');
+insert into requesters values('351728','BHATTACHARJEE,NABAMITA');
+insert into requesters values('141802','PRABHAKARAN,MANIKANDAN');
+insert into requesters values('421592','BOOTHALINGAM,MURUGAN');
+insert into requesters values('434361','NAGARAJAN,SURESH');
+insert into requesters values('162913','GUPTA,SAUNAK');
+insert into requesters values('258202','KALAI PALANIKUMAR,MUTHURAJA');
+insert into requesters values('200712','KUMAR T S,ARUN');
+insert into requesters values('454145','VIJAYAN,VINODKUMAR');
+insert into requesters values('248493','MULLICK,SUMITA');
+insert into requesters values('636694','SINGH,ABHIK');
+insert into projectinfo values('1000161542','NATIONWIDE DIGITAL');
+insert into projectinfo values('1000172889','NATIONWIDE PROMISE2020 TPP');
+insert into projectinfo values('1000172989','NATIONW-BACK OFFICE PROCESSING');
+insert into projectinfo values('1000174523','NATIONW-NATIONWIDE JAVA MANAGE');
+insert into projectinfo values('1000191607','NATIONW-NATIONWIDE STAFF AUG E');
+insert into projectinfo values('1000192992','NW IT SIMPLIFICATION EAGLE BFS');
+insert into projectinfo values('1000194733','NATIONW-GUIDEWIRE MANAGED CAPA');
+insert into projectinfo values('1000194734','NATIONW-SUREPOWER INNOVATION M');
+insert into projectinfo values('1000197981','NATIONWIDE PROMISE2020-OIPA 1');
+insert into projectinfo values('1000214548','NATIONW-NATIONWIDE CLAIMS GW U');
+insert into projectinfo values('1000217607','NATIONW-NW PET CITRIX UPGRADE-');
+insert into projectinfo values('1000226679','NATIONW-TPP RELEASE 1.1-MAY 20');
+insert into projectinfo values('1000226922','NATIONWIDE PLPC BO PHASE 3');
+insert into projectinfo values('1000231392','NATIONW-RPA DEVELOPMENT - COMM');
+insert into projectinfo values('1000245389','NATIONWIDE-OIPA RUN SUPPORT');
+insert into projectinfo values('1000248059','NATIONW-NATIONWIDE LEAN BTO CO');
+
+insert into bsa values(1,'IPS');
+insert into projectmapping (id,projectid,requesterid,processorid,bsaid,status) values(DEFAULT,(select projectid from projectinfo where projectid='1000161542'),
+(select requesterid from requesters where requesterid='151539'),(select processorid from processors where processorid='413804'),(select id from bsa where id=1),DEFAULT);
+
+insert into projectmapping (id,projectid,requesterid,processorid,bsaid,status) values(2,(select projectid from projectinfo where projectid='1000172889'),
+(select requesterid from requesters where requesterid='139453'),(select processorid from processors where processorid='227822'),(select id from bsa where id=1),DEFAULT);
+
+insert into teams(id,teamname,PROJECTMAPID,status) values (DEFAULT,'SQR',1,DEFAULT);
+insert into teams(id,teamname,PROJECTMAPID,status) values (2,'IMEDIA',1,DEFAULT);
+
+INSERT INTO COUNTRIES (ID, COUNTRY) VALUES ('1', 'INDIA');
+INSERT INTO COUNTRIES (ID, COUNTRY) VALUES ('2', 'USA');
+INSERT INTO LOCATIONS (ID, LOCATION) VALUES ('1', 'OFFSHORE');
+INSERT INTO LOCATIONS (ID, LOCATION) VALUES ('2', 'ONSITE');
+
+INSERT INTO COUNTRYMAPPING(ID,COUNTRYID,LOCATIONID) VALUES(1,1,1);
+INSERT INTO COUNTRYMAPPING(ID,COUNTRYID,LOCATIONID) VALUES(2,2,2);
+
+INSERT INTO ROLES (ID, ROLE) VALUES ('1', 'ACCOUNTANT');
+INSERT INTO ROLES (ID, ROLE) VALUES ('2', 'CONSULTANT');
+
+INSERT INTO RATES (ID, RATE) VALUES ('1', '$25');
+INSERT INTO RATES (ID, RATE) VALUES ('2', '$30');
+
+INSERT INTO ROLEMAPPING(ID,ROLEID,RATEID,COUNTRYID) VALUES(1,1,1,1);
+INSERT INTO ROLEMAPPING(ID,ROLEID,RATEID,COUNTRYID) VALUES(2,2,2,2);
+
+insert into movementinfo values(DEFAULT,'ONSITE TO OFFSHORE');
+insert into movementinfo values(DEFAULT,'OFFSHORE TO ONSITE');
+insert into releasesummary values(DEFAULT,'PROJECT CANCELLED');
+insert into releasesummary values(DEFAULT,'PROJECT RAMPDOWN');
+insert into releasesummary values(DEFAULT,'PERFORMANCE ISSUES');
+insert into releasesummary values(DEFAULT,'TRAVEL OR VISA ISSUES');
+insert into releasesummary values(DEFAULT,'RESIGNATION');
+insert into releasesummary values(DEFAULT,'OTHERS');
+insert into approvalstatus values(DEFAULT,'NEW');
+insert into approvalstatus values(DEFAULT,'INPROGRESS');
+insert into approvalstatus values(DEFAULT,'COMPLETED');
+insert into approvalstatus values(DEFAULT,'CLOSED');
+insert into approvalstatus values(DEFAULT,'REJECTED');
+insert into releasestatus values(DEFAULT,'YET TO RELEASE');
+insert into releasestatus values(DEFAULT,'RELEASE INITIATED');
+insert into releasestatus values(DEFAULT,'RELEASED');
+
+INSERT INTO BANDS(ID,NAME) VALUES(1,'A');
+INSERT INTO BANDS(ID,NAME) VALUES(2,'B');
+INSERT INTO BANDS(ID,NAME) VALUES(3,'C');
+INSERT INTO BANDS(ID,NAME) VALUES(4,'D');
+INSERT INTO BANDS(ID,NAME) VALUES(5,'E');
+INSERT INTO BANDS(ID,NAME) VALUES(6,'F');
+INSERT INTO BANDS(ID,NAME) VALUES(7,'G');
+INSERT INTO BANDS(ID,NAME) VALUES(8,'H');
+
+
+INSERT INTO MAILATTACHMENTS(ID,FILENAME) VALUES(1,'TEST');
+
+
+
+INSERT INTO EMPLOYEEPROJECTHISTORY(ID, EMPLOYEEID, PROJECT, TEAM, ROLE, COUNTRY, 
+STARTDATE, NATIONWIDEID, NATIONWIDEIDCREATEDDATE, FGONBOARDINGDATE, MOVEMENTID, 
+WORKFORCEID, SCRUMMASTER, APM, PPLMANAGER, BAND, EXPERIENCE, ATTACHMENTID, COMMENTS, SKILLSET, 
+SKILLSUMMARY, APPROVALSTATUS, RELEASESTATUS, RELEASEDATE, REASONFOROFFBOARDING) VALUES(1,616550,1,1,1,1,
+'2016-01-01','ellapp1','2016-02-02','2018-01-01',1,
+'aaa','siva','siva','jonhson',1,2,1,'comments of 616550','java','java summary',1,1,'2020-01-01',1) ; 	

@@ -20,7 +20,52 @@ import com.cts.nw.onboarding.bo.EmployeeProjHist;
 		public EmployeeProjHist mapRow(ResultSet rs, int rowNum) throws SQLException {
 			EmployeeProjHist employeeProjHist = new EmployeeProjHist();
 			
-			if (hasColumn(rs, "ID") == true) {
+			employeeProjHist.setId(rs.getInt("ID"));
+			employeeProjHist.setStartDate(rs.getDate("STARTDATE"));
+			employeeProjHist.setNationwideId(rs.getString("NATIONWIDEID"));	
+			employeeProjHist.setNationwideIdCreatedDate(rs.getDate("NATIONWIDEIDCREATEDDATE"));
+			employeeProjHist.setFgOnBoardingDate(rs.getDate("FGONBOARDINGDATE"));
+			employeeProjHist.setMovementId(rs.getInt("MOVEMENTID"));
+			employeeProjHist.setWorkForceId(rs.getString("WORKFORCEID"));
+			employeeProjHist.setScrumMaster(rs.getString("SCRUMMASTER"));
+			employeeProjHist.setApm(rs.getString("APM"));
+			employeeProjHist.setPplManager(rs.getString("PPLMANAGER"));
+			employeeProjHist.setExperience(rs.getInt("EXPERIENCE"));
+			employeeProjHist.setComments(rs.getString("COMMENTS"));
+			employeeProjHist.setSkillSet(rs.getString("SKILLSET"));
+			employeeProjHist.setSkillSummary(rs.getString("SKILLSUMMARY"));
+			employeeProjHist.setReleaseDate(rs.getDate("RELEASEDATE"));
+			employeeProjHist.setApprovalStatusId(rs.getInt("APPROVALSTATUSID"));
+			employeeProjHist.setApprovalStatus(rs.getString("APPROVALSTATUS"));
+			employeeProjHist.setReleaseStatusId(rs.getInt("RELEASESTATUSID"));
+			employeeProjHist.setReleaseStatus(rs.getString("RELEASESTATUS"));
+			employeeProjHist.setReasonForOffboarding(rs.getInt("REASONFOROFFBOARDING"));
+			employeeProjHist.setAttachmentId(rs.getInt("ATTACHMENTID"));
+			employeeProjHist.setEmployeeId(rs.getInt("EMPLOYEEID"));
+			employeeProjHist.setName(rs.getString("NAME"));
+			employeeProjHist.setFirstName(rs.getString("FIRSTNAME"));
+			employeeProjHist.setLastName(rs.getString("LASTNAME"));
+			employeeProjHist.setDateOfBirth(rs.getDate("DOB"));
+			employeeProjHist.setPassportNumber(rs.getString("PASSPORTNUMBER"));
+			employeeProjHist.setEmail(rs.getString("EMAIL"));
+			employeeProjHist.setCountryId(rs.getInt("COUNTRYID"));
+			employeeProjHist.setCountryName(rs.getString("COUNTRYNAME"));
+			employeeProjHist.setLocation(rs.getString("LOCATION"));
+			employeeProjHist.setRoleId(rs.getInt("ROLEID"));
+			employeeProjHist.setRole(rs.getString("ROLE"));
+			employeeProjHist.setRate(rs.getString("RATE"));
+			employeeProjHist.setTeamId(rs.getInt("TEAMID"));
+			employeeProjHist.setTeamName(rs.getString("TEAMNAME"));
+			employeeProjHist.setBsaName(rs.getString("BSANAME"));
+			employeeProjHist.setProjectId(rs.getLong("PROJECTID"));
+			employeeProjHist.setProjectName(rs.getString("PROJECTNAME"));
+			employeeProjHist.setRequesterId(rs.getInt("REQUESTERID"));
+			employeeProjHist.setRequesterName(rs.getString("REQUESTERNAME"));
+			employeeProjHist.setProcessorId(rs.getInt("PROCESSORID"));
+			employeeProjHist.setProcessorName(rs.getString("PROCESSORNAME"));
+			employeeProjHist.setBandId(rs.getInt("BAND"));
+			
+			/*if (hasColumn(rs, "ID") == true) {
 				employeeProjHist.setId(rs.getInt("ID"));
 			}
 			if (hasColumn(rs, "STARTDATE") == true) {
@@ -150,8 +195,8 @@ import com.cts.nw.onboarding.bo.EmployeeProjHist;
 				employeeProjHist.setProcessorName(rs.getString("PROCESSORNAME"));
 			}	
 			if (hasColumn(rs, "BAND") == true) {
-				employeeProjHist.setBandId(rs.getInt("BAND"));
-			}	
+				employeeProjHist.setBandId(rs.getInt("BAND")); 
+			}	*/
 			return employeeProjHist;
 		}
 
