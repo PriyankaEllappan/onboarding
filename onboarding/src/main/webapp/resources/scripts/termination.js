@@ -70,12 +70,12 @@ function loadReleaseStatus(){
 function loadReleaseReason(){
 	$.ajax({
 		type : 'GET',
-		url : "/onboarding/release/getreasonsummary",
+		url : "/onboarding/release/getreleasesummary",
 		dataType : "text",
 		success : function(resultData) {
 			releaseReason = JSON.parse(resultData);
 			$.each(releaseReason, function(key,value) {   
-				$('#releaseReason')
+				$('#reasonForOffboarding')
 		         .append($("<option></option>")
 		                    .attr("value",value.id)
 		                    .text(value.summary)); 

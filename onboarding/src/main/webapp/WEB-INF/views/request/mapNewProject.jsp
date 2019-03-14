@@ -222,6 +222,25 @@
 								</div>
 							</div>
 						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-2">
+									<label for="experience">Experience</label>
+								</div>
+								<div class="col-md-3">
+									<input class="form-control" name="experience" id="experience"
+										placeholder="Enter Experience in years" autocomplete="off" />
+								</div>
+								<div class="col-md-1"></div>
+								<div class="col-md-2">
+									<label for="movementID">Movement</label>
+								</div>
+								<div class="col-md-3">
+									<select class="form-control" name="movementID" id="movementID"
+										></select>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div id="customerInfo" class="tabcontent">

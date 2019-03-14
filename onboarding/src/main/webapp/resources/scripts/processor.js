@@ -41,7 +41,7 @@ function loadApprovalStatus(){
 		dataType : "text",
 		success : function(resultData) {
 			approvalStat = JSON.parse(resultData);
-			$.each(approvalStat, function(key,value) {   
+			$.each(approvalStat, function(key,value) {  
 				$('#approvalStatus')
 		         .append($("<option></option>")
 		                    .attr("value",value.id)
@@ -51,18 +51,21 @@ function loadApprovalStatus(){
 	});
 }
 
-/*function loadReleaseStatus(){
-	var status = "YET TO RELEASE";
+function loadReleaseStatus(){
 	$.ajax({
 		type : 'GET',
-		url : "/onboarding/status/getreleaseid/" + status,
+		url : "/onboarding/status/getallreleasestatus" ,
 		dataType : "text",
 		success : function(resultData) {
 			releaseStat = JSON.parse(resultData);
-			$('#releaseStatus').val(releaseStat.id);
+			$.each(releaseStat, function(key,value) {  
+				if (value.status == "YET TO RELEASE") {
+					$('#releaseStatus').val(releaseStat.id);
+				}
+			});
 		}
 	});
-}*/
+}
 
 
 /* Processor Register Submit */
@@ -101,7 +104,8 @@ function loadApprovalStatus(){
 	});
 });
 */
-function setRequestParams() {
+
+/*function setRequestParams() {
 	jsonRequest["id"] = $('#empProjId').val();
 	jsonRequest["employeeMasterID"] = $('#newEmpID').val();
 	jsonRequest["projectId"] = $('#projectID').val();
@@ -117,4 +121,4 @@ function setRequestParams() {
 	jsonRequest["fgOnboardingDate"] = $('#fgOnboardingDate').val();
 	jsonRequest["nationwideidCreatedDate"] = $('#nwIdCreatedDate').val();
 	jsonRequest["nationwideID"] = $('#nationwideID').val();
-}
+}*/

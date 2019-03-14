@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -37,65 +38,64 @@
 					onclick="openSpecificTab(event, 'releaseInfo')">Release
 					Details</button>
 			</div>
-			<form name="projectRegisterForm" method="post">
+			<form:form name="projectRegisterForm" method="post"
+				action="/onboarding/release/processrelease" modelAttribute="employee">
 				<div id="basicInfo" class="tabcontent">
 					<div class="resizeTabCont">
 						<br>
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-2">
-									<label for="newEmpID">Employee Id</label>
+									<form:label path="employeeId">Employee Id</form:label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" name="newEmpID" id="newEmpID" value="${employee.employeeMasterID}"
-										placeholder="Enter EmployeeID" readonly autocomplete="off" />
+									<form:input class="form-control" name="employeeId"
+										path="employeeId" />
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
-									<label for="newEmpEmail">Email</label>
+									<form:label path="email">Email</form:label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" id="newEmpEmail" name="newEmpEmail" value="${employee.email}"
-										placeholder="Enter Email Id" readonly autocomplete="off" />
+									<form:input class="form-control" path="email" name="email" />
 								</div>
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-2">
-									<label for="newEmpFName">First Name</label>
+									<form:label path="firstName">First Name</form:label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" id="newEmpFName" name="newEmpFName" value="${employee.firstName}"
-										placeholder="Enter First Name" readonly autocomplete="off" />
+									<form:input class="form-control" path="firstName"
+										name="firstName" />
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
-									<label for="newEmpLName">Last Name</label>
+									<form:label path="lastName">Last Name</form:label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" id="newEmpLName" name="newEmpLName" value="${employee.lastName}"
-										placeholder="Enter Last Name" readonly autocomplete="off" />
+									<form:input class="form-control" path="lastName"
+										name="lastName" />
 								</div>
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-2">
-									<label for="newEmpDOB">Date Of Birth</label>
+									<form:label path="dateOfBirth">Date Of Birth</form:label>
 								</div>
 								<div class="col-md-3">
-									<input autocomplete="off" class="form-control" name="newEmpDOB" value="${employee.DOB}"
-										id="newEmpDOB" placeholder="Enter Date of Birth (YYYY-MM-DD)"
-										readonly autocomplete="off" />
+									<form:input autocomplete="off" class="form-control"
+										name="dateOfBirth" path="dateOfBirth" />
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
-									<label for="newEmpPPNo">Passport ID No*</label>
+									<form:label path="passportNumber">Passport ID/SSN No</form:label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" name="newEmpPPNo" id="newEmpPPNo" value="${employee.passportNumber}"
-										placeholder="Enter Passport No" readonly autocomplete="off" />
+									<form:input class="form-control" name="passportNumber"
+										path="passportNumber" />
 								</div>
 							</div>
 						</div>
@@ -107,116 +107,138 @@
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-2">
-									<label for="teamName">Team Name</label>
+									<form:label path="teamName">Team Name</form:label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" id="teamName" name="teamName" value="${employee.teamName}"
-										placeholder="Enter Team Name" readonly autocomplete="off" />
+									<form:input class="form-control" path="teamName"
+										name="teamName" />
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
-									<label for="startDate">Start Date</label>
+									<form:label path="startDate">Start Date</form:label>
 								</div>
 								<div class="col-md-3">
-									<input autocomplete="off" class="form-control" name="startDate" value="${employee.startDate}"
-										id="startDate" readonly
-										placeholder="Enter Start Date (YYYY-MM-DD)" />
+									<form:input autocomplete="off" class="form-control"
+										name="startDate" path="startDate" />
 								</div>
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-2">
-									<label for="projectID">Project ID</label>
+									<form:label path="projectId">Project ID</form:label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" id="projectID" name="projectID" value="${employee.projectId}"
-										placeholder="Enter Project ID" readonly autocomplete="off" />
+									<form:input class="form-control" path="projectId"
+										name="projectId" />
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
-									<label for="projectName">Project Name</label>
+									<form:label path="projectName">Project Name</form:label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" id="projectName" name="projectName" value="${employee.projectName}"
-										placeholder="Enter Project Name" readonly autocomplete="off" />
+									<form:input class="form-control" path="projectName"
+										name="projectName" />
 								</div>
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-2">
-									<label for="requester">Requester</label>
+									<form:label path="requesterName">Requester</form:label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" id="requester" name="requester" value="${employee.requesterName}"
-										placeholder="Enter Requester Name" readonly autocomplete="off" />
+									<form:input class="form-control" path="requesterName"
+										name="requesterName" />
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
-									<label for="processor">Processor</label>
+									<form:label path="processorName">Processor</form:label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" name="processor" id="processor" value="${employee.processorName}"
-										placeholder="Enter Processor Name" readonly autocomplete="off" />
+									<form:input class="form-control" name="processorName"
+										path="processorName" />
 								</div>
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-2">
-									<label for="country">Country</label>
+									<form:label path="countryName">Country</form:label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" name="country" id="country" value="${employee.countryName}"
-										placeholder="Enter Country" readonly autocomplete="off" />
+									<form:input class="form-control" name="countryName"
+										path="countryName" />
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
-									<label for="location">Location</label>
+									<form:label path="location">Location</form:label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" name="location" id="location" value="${employee.locationName}"
-										placeholder="Enter Location" readonly autocomplete="off" />
+									<form:input class="form-control" name="location"
+										path="location" />
 								</div>
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-2">
-									<label for="role">Role</label>
+									<form:label path="role">Role</form:label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" name="role" id="role" value="${employee.roleName}"
-										placeholder="Enter Role value" readonly autocomplete="off" />
+									<form:input class="form-control" name="role" path="role"
+										id="role" />
+									<%-- placeholder="Enter Role value" readonly autocomplete="off" /> --%>
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
-									<label for="rate">Rate</label>
+									<form:label path="rate">Rate</form:label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" name="rate" id="rate" value="${employee.rateValue}"
-										placeholder="Enter Rate value" readonly autocomplete="off" />
+									<form:input class="form-control" name="rate" path="rate" />
+									<%-- placeholder="Enter Rate value" readonly autocomplete="off" /> --%>
 								</div>
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-2">
-									<label for="skill">Skill</label>
+									<form:label path="skillSet">Skill</form:label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" name="skill" id="skill" value="${employee.skillSet}"
-										placeholder="Enter Skills" readonly autocomplete="off" />
+									<form:input class="form-control" name="skillSet"
+										path="skillSet" />
+									<%-- placeholder="Enter Skills" readonly autocomplete="off" /> --%>
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
-									<label for="skillSummary">Skill Summary</label>
+									<form:label path="skillSummary">Skill Summary</form:label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" name="skillSummary" value="${employee.skillSummary}"
-										id="skillSummary" placeholder="Enter Skill Summary" readonly
-										autocomplete="off" />
+									<form:input class="form-control" name="skillSummary"
+										path="skillSummary" />
+									<!-- 	placeholder="Enter Skill Summary" readonly autocomplete="off" /> -->
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-2">
+									<form:label path="experience">Experience</form:label>
+								</div>
+								<div class="col-md-3">
+									<form:input class="form-control" name="experience"
+										path="experience" />
+									<%-- placeholder="Enter Skills" readonly autocomplete="off" /> --%>
+								</div>
+								<div class="col-md-1"></div>
+								<div class="col-md-2">
+									<form:label path="movementId">Movement</form:label>
+								</div>
+								<div class="col-md-3">
+									<form:input class="form-control" name="movementId"
+										path="movementId" />
+									<!-- 	placeholder="Enter Skill Summary" readonly autocomplete="off" /> -->
 								</div>
 							</div>
 						</div>
@@ -228,79 +250,112 @@
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-2">
-									<label for="bsaInfo">BSA</label>
+									<form:label path="bsaName">BSA</form:label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" id="bsaInfo" name="bsaInfo" value="${employee.bsaInfo}"
-										placeholder="Enter BSA Info" readonly autocomplete="off" />
+									<form:input class="form-control" path="bsaName" name="bsaName" />
+									<%-- 	placeholder="Enter BSA Name" readonly autocomplete="off" /> --%>
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
-									<label for="pplInfo">Customer PPL</label>
+									<form:label path="band">Band</form:label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" name="pplInfo" id="pplInfo" value="${employee.pplInfo}"
-										placeholder="Enter PPL Info" readonly autocomplete="off" />
+									<form:select class="form-control" name="band" path="band"></form:select>
 								</div>
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-2">
-									<label for="nationwideID">Nationwide ID</label>
+									<form:label path="pplManager">Customer PPL</form:label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" id="nationwideID" value="${employee.nationwideID}"
-										name="nationwideID" placeholder="Enter Nationwide ID" readonly
-										autocomplete="off" />
+									<form:input class="form-control" name="pplManager"
+										path="pplManager" />
+									<!-- placeholder="Enter PPL Name" readonly autocomplete="off" /> -->
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
-									<label for="nwIdCreatedDate">Nationwide ID Created Date</label>
+									<form:label path="apm">APM</form:label>
 								</div>
 								<div class="col-md-3">
-									<input autocomplete="off" class="form-control"
-										name="nwIdCreatedDate" id="nwIdCreatedDate" value="${employee.nationwideidCreatedDate}"
-										readonly placeholder="Enter Nationwide ID Created Date (YYYY-MM-DD)" />
+									<form:input autocomplete="off" class="form-control" name="apm"
+										path="apm" />
+									<!-- placeholder="Enter FG Onboarding Date (YYYY-MM-DD)" /> -->
 								</div>
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-2">
-									<label for="approvalStatus">Approval Status</label>
+									<form:label path="nationwideId">Nationwide ID</form:label>
 								</div>
 								<div class="col-md-3">
-									<select class="form-control" name="approvalStatus" 
-										id="approvalStatus"></select>
+									<form:input class="form-control" path="nationwideId"
+										name="nationwideId" />
+									<!-- 	placeholder="Enter Nationwide ID"  autocomplete="off" /> -->
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
-									<label for="fgOnboardingDate">FG Onboarding Date</label>
+									<form:label path="nationwideIdCreatedDate">Nationwide ID Created Date</form:label>
 								</div>
 								<div class="col-md-3">
-									<input autocomplete="off" class="form-control"
-										name="fgOnboardingDate" id="fgOnboardingDate" value="${employee.fgOnboardingDate}"
-										readonly placeholder="Enter FG Onboarding Date (YYYY-MM-DD)" />
+									<form:input autocomplete="off" class="form-control"
+										name="nationwideIdCreatedDate" path="nationwideIdCreatedDate" />
+									<%-- placeholder="Enter Nationwide ID Created Date (YYYY-MM-DD)" /> --%>
 								</div>
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-2">
-									<label for="comments">Comments</label>
+									<form:label path="workForceId">Workforce Id</form:label>
 								</div>
 								<div class="col-md-3">
-									<textarea rows="3" cols="10" class="form-control" value="${employee.comments}"
-										name="comments" id="comments" readonly></textarea>
+									<form:input autocomplete="off" class="form-control"
+										name="workForceId" path="workForceId" />
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
-									<label for="attachment">Attachment</label>
+									<form:label path="fgOnBoardingDate">FG Onboarding Date</form:label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" id="attachment" name="attachment" 
-										placeholder="Enter Attachment" readonly autocomplete="off" />
+									<form:input autocomplete="off" class="form-control"
+										name="fgOnBoardingDate" path="fgOnBoardingDate" />
+									<!-- placeholder="Enter FG Onboarding Date (YYYY-MM-DD)" /> -->
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-2">
+									<form:label path="approvalStatus">Approval Status</form:label>
+								</div>
+								<div class="col-md-3">
+									<form:select class="form-control" name="approvalStatus"
+										path="approvalStatus"></form:select>
+								</div>
+								<div class="col-md-1"></div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-2">
+									<form:label path="comments">Comments</form:label>
+								</div>
+								<div class="col-md-3">
+									<form:textarea rows="3" cols="10" class="form-control"
+										name="comments" path="comments" />
+								</div>
+								<div class="col-md-1"></div>
+								<div class="col-md-2">
+									<form:label path="attachmentId">Attachment</form:label>
+								</div>
+								<div class="col-md-3">
+									<form:input class="form-control" path="attachmentId"
+										name="attachmentId" />
+									<!-- placeholder="Enter Attachment" autocomplete="off" /> -->
 								</div>
 							</div>
 						</div>
@@ -312,33 +367,31 @@
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-2">
-									<label for="releaseStatus">Release Status</label>
+									<form:label path="releaseStatus">Release Status</form:label>
 								</div>
 								<div class="col-md-3">
-									<select class="form-control" name="releaseStatus"
-										id="releaseStatus"></select>
+									<form:select class="form-control" name="releaseStatus"
+										path="releaseStatus"></form:select>
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
-									<label for="releaseReason">Release Reason</label>
+									<form:label path="reasonForOffboarding">Release Summary</form:label>
 								</div>
 								<div class="col-md-3">
-									<select class="form-control" name="releaseReason"
-										id="releaseReason"></select>
+									<form:select class="form-control" name="reasonForOffboarding"
+										path="reasonForOffboarding"></form:select>
 								</div>
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-2">
-									<label for="releaseDate">Release Date</label>
+									<form:label path="releaseDate">Release Date</form:label>
 								</div>
 								<div class="col-md-3">
-									<input autocomplete="off" class="form-control"
-										name="releaseDate" id="releaseDate"
-										placeholder="Enter Release Date (YYYY-MM-DD)" />
+									<form:input autocomplete="off" class="form-control"
+										name="releaseDate" path="releaseDate" />
 								</div>
-								<div class="col-md-1"></div>
 							</div>
 						</div>
 						<div class="form-group">
@@ -349,19 +402,30 @@
 										Submit</button>
 								</div>
 								<div class="col-md-2">
-									<input class="btn btn-info" id="releaseFormReset" type="reset"
-										value="Cancel" />
+									<button class="btn btn-info" id="releaseFormReset"
+										type="reset" value="Cancel">Cancel</button>
 								</div>
 							</div>
 						</div>
 						<div class="hideElements">
-							<input type="hidden" id="requesterID" value="${employee.requesterID}" /> 
-							<input type="hidden" id="processorID" value="${employee.processorID}" />
-							<input type="hidden" id="empProjId" value="${employee.id}" />
+							<form:input type="hidden" path="id" />
+							<form:input type="hidden" path="movementId" />
+							<form:input type="hidden" path="releaseStatusId" />
+							<form:input type="hidden" path="approvalStatusId" />
+							<form:input type="hidden" path="name" />
+							<form:input type="hidden" path="countryId" />
+							<form:input type="hidden" path="roleId" />
+							<form:input type="hidden" path="teamId" />
+							<form:input type="hidden" path="requesterId" />
+							<form:input type="hidden" path="processorId" />
+							<form:input type="hidden" path="movement" />
+							<form:input type="hidden" path="fileName" />
+							<form:input type="hidden" path="fileData" />
+							<form:input type="hidden" path="bandId" />
 						</div>
 					</div>
 				</div>
-			</form>
+			</form:form>
 		</div>
 		<span id="messageDiv" class="hideElements"> </span>
 	</div>
