@@ -86,7 +86,7 @@ public class RequesterController {
     * @param employeeJson
     * @return
     */
-    @GetMapping(value = "/request/checkActiveAssignment/{empid}", produces = { MediaType.APPLICATION_JSON_VALUE })
+    @GetMapping(value = "/request/checkactiveassignments/{employeeid}", produces = { MediaType.APPLICATION_JSON_VALUE })
     public @ResponseBody List<EmployeeProjHist> checkActiveAssignment(@PathVariable String employeeid) {
     		List<EmployeeProjHist> activeAssignment;
            try {

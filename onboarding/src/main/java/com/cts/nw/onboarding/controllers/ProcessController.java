@@ -35,7 +35,7 @@ public class ProcessController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/process/processrequest/{empprojid}", method = RequestMethod.GET)
+	@RequestMapping(value = "/process/processrequest/{empProjHistId}", method = RequestMethod.GET)
 	public String generateRequestProcessForm(@ModelAttribute("employee") EmployeeProjHist employee,
 			@PathVariable String empProjHistId, ModelMap model,Principal principal) {
 		try {

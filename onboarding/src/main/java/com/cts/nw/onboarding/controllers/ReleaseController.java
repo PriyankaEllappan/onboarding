@@ -30,7 +30,7 @@ public class ReleaseController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/processrelease/{projInfoId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/processrelease/{empProjHistId}", method = RequestMethod.GET)
 	public String generateReleaseProcessForm(@ModelAttribute("employee") EmployeeProjHist employee,
 			@PathVariable String empProjHistId, ModelMap model) {
 		try {

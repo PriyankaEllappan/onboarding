@@ -45,7 +45,7 @@
 								</div>
 								<div class="col-md-3">
 									<input class="form-control" name="newEmpID" id="newEmpID"
-										placeholder="Enter EmployeeID" value="${employee.ID}" readonly
+										placeholder="Enter EmployeeID" value="${employee.employeeId}" readonly
 										autocomplete="off" />
 								</div>
 								<div class="col-md-1"></div>
@@ -87,7 +87,7 @@
 								</div>
 								<div class="col-md-3">
 									<input autocomplete="off" class="form-control" name="newEmpDOB"
-										id="newEmpDOB" value="${employee.DOB}"
+										id="newEmpDOB" value="${employee.dateOfBirth}"
 										placeholder="Enter Date of Birth (YYYY-MM-DD)" readonly
 										autocomplete="off" />
 								</div>

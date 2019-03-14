@@ -63,6 +63,7 @@ $(document).ready(function() {
 					console.log("Resource not available in directory");
 				} else {
 					var returnedData = JSON.parse(resultData);
+					
 					$('#newEmpName').val(returnedData.name);
 					$('#newEmpEmail').val(returnedData.emailId);
 					$('#newEmpFName').val(returnedData.name.split(" ")[0]);
@@ -80,11 +81,11 @@ $(document).ready(function() {
 			var validationStatus = validateForm();
 			if(validationStatus == true){
 				jsonStr = {}
-				jsonStr["id"] = $('#newEmpID').val();
+				jsonStr["employeeId"] = $('#newEmpID').val();
 				jsonStr["name"] = $('#newEmpName').val();
 				jsonStr["firstName"] = $('#newEmpFName').val();
 				jsonStr["lastName"] = $('#newEmpLName').val();
-				jsonStr["dob"] = $('#newEmpDOB').val();
+				jsonStr["dateOfBirth"] = $('#newEmpDOB').val();
 				jsonStr["email"] = $('#newEmpEmail').val();
 				jsonStr["passportNumber"] = $('#newEmpPPNo').val();
 				$.post({
@@ -128,9 +129,9 @@ function checkForanEmployee(empID) {
 				var returnedData = JSON.parse(resultData);
 				console.log("Response has data");
 				console.log(returnedData);
-				$('#availEmpID').text(returnedData.id);
+				$('#availEmpID').text(returnedData.employeeId);
 				$('#availEmpName').text(returnedData.name);
-				$('#availEmpDOB').text(returnedData.DOB);
+				$('#availEmpDOB').text(returnedData.dateOfBirth);
 				$('#availEmpEmail').text(returnedData.email);
 				$('#availEmpPPNo').text(returnedData.passportNumber);
 				$("#resourceAvailable").show();
@@ -143,7 +144,7 @@ function checkForanActiveAssignment(empID) {
 	console.log("checkForanEmployee");
 	$.ajax({
 		type : 'GET',
-		url : "/onboarding/request/checkActiveAssignment/" + empID,
+		url : "/onboarding/request/checkactiveassignments/" + empID,
 		dataType : "text",
 		success : function(resultData) {
 			if (!$.trim(resultData)) {
