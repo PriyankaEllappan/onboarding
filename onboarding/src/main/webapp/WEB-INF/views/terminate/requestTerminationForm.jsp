@@ -39,7 +39,7 @@
 					Details</button>
 			</div>
 			<form:form name="projectRegisterForm" method="post"
-				action="/onboarding/release/processrelease" modelAttribute="employee">
+				action="/onboarding/release/requestrelease" modelAttribute="employee">
 				<div id="basicInfo" class="tabcontent">
 					<div class="resizeTabCont">
 						<br>
@@ -318,11 +318,11 @@
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
-									<form:label path="fgOnBoardingDate">FG Onboarding Date</form:label>
+									<form:label path="scrumMaster">Scrum Master</form:label>
 								</div>
 								<div class="col-md-3">
 									<form:input autocomplete="off" class="form-control"
-										name="fgOnBoardingDate" path="fgOnBoardingDate" />
+										name="scrumMaster" path="scrumMaster" />
 									<!-- placeholder="Enter FG Onboarding Date (YYYY-MM-DD)" /> -->
 								</div>
 							</div>
@@ -337,6 +337,14 @@
 										path="approvalStatus"></form:select>
 								</div>
 								<div class="col-md-1"></div>
+								<div class="col-md-2">
+									<form:label path="fgOnBoardingDate">FG Onboarding Date</form:label>
+								</div>
+								<div class="col-md-3">
+									<form:input autocomplete="off" class="form-control"
+										name="fgOnBoardingDate" path="fgOnBoardingDate" />
+									<!-- placeholder="Enter FG Onboarding Date (YYYY-MM-DD)" /> -->
+								</div>
 							</div>
 						</div>
 						<div class="form-group">
