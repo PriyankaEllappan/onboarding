@@ -103,6 +103,18 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 			return 0;
 		}
 	}
+
+	@Override
+	public List<EmployeeProjHist> checkActiveAssignments(String empid) {
+		try {
+			String whereClause = " WHERE EPH.RELEASESTATUS IN (1,2) AND EMPLOYEEID = ?";
+			String query = QueryConstants.EMPPROJHIST_SELECT + whereClause;
+			RowMapper<EmployeeProjHist> rowMapper = new EmployeeProjHistRowMapper();
+			return this.jdbcTemplate.query(query, rowMapper,empid);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
 	
 
 }

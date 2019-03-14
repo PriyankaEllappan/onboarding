@@ -15,6 +15,6 @@ public interface EmployeeMasterDAO {
 
 	List<EmployeeMaster> getAllEmployeeMasterDetails();
 	EmployeeMaster getEmployeeMasterDetailsByID(int id);
-	int addEmployeeMaster(EmployeeMaster employeeMaster);
+	int addNewResource(EmployeeMaster employeeMaster);
 	
 }

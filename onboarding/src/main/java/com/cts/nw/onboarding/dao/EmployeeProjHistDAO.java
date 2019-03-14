@@ -14,8 +14,8 @@ import com.cts.nw.onboarding.bo.EmployeeProjHist;
 public interface EmployeeProjHistDAO {
 
 	/*Requester Operations*/
-	List<EmployeeProjHist> getAllEmployeeProjectInfo();
 	int addEmployeeProjectInfo(EmployeeProjHist employeeProjectHist);
+	List<EmployeeProjHist> checkActiveAssignments(String empid);
 	
 	/*Processor Operations*/
 	List<EmployeeProjHist> getRecordsPerProcessor(int processorid);
@@ -26,5 +26,5 @@ public interface EmployeeProjHistDAO {
 	/*Common Operations*/
 	EmployeeProjHist getSpecificEmployeeProjectHist(int empProjHistId);
 	Integer updateSpecificEmployeeProjectHist(EmployeeProjHist employeeProjectHist);
-	
+	List<EmployeeProjHist> getAllEmployeeProjectInfo();
 }

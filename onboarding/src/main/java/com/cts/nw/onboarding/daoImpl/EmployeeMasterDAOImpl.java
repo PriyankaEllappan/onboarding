@@ -51,7 +51,7 @@ public class EmployeeMasterDAOImpl implements EmployeeMasterDAO {
 	}
 
 	@Override
-	public int addEmployeeMaster(EmployeeMaster employeeMaster) {
+	public int addNewResource(EmployeeMaster employeeMaster) {
 		return jdbcTemplate.update(QueryConstants.EMPLOYEEMASTER_INSERT, employeeMaster.getEmployeeId(), employeeMaster.getName(), employeeMaster.getFirstName(),
 				employeeMaster.getLastName(), employeeMaster.getDateOfBirth(), employeeMaster.getPassportNumber(), employeeMaster.getEmail());
 	}

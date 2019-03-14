@@ -3,9 +3,12 @@
  */
 package com.cts.nw.onboarding.serviceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cts.nw.onboarding.bo.EmployeeMaster;
 import com.cts.nw.onboarding.dao.EmployeeMasterDAO;
 import com.cts.nw.onboarding.dao.EmployeeProjHistDAO;
 import com.cts.nw.onboarding.service.MailService;
@@ -20,46 +23,47 @@ public class RequesterServiceImpl implements RequesterService {
 
 	@Autowired
 	private EmployeeMasterDAO employeeMasterDAO;
-	
-	@Autowired
-	EmployeeProjHistDAO employeeProjectInfoDAO; 
-	
-	@Autowired
-	MailService mailService;
-	
-	/* (non-Javadoc)
-	 * @see com.cts.nw.onboarding.service.RequesterService#checkEmployeeAvailability(java.lang.String)
-	 
+
 	@Override
-	public EmployeeMaster checkEmployeeAvailability(String empid) {
-		Integer employeeId;
-		employeeId = Integer.parseInt(empid);
-		System.out.println("Employee to be found:" + employeeId);
-		return employeeMasterDAO.getEmployeeMasterDetailsByID(employeeId);
+	public EmployeeMaster getResourceByID(String employeeid) {
+		int empId; 
+		try{
+			empId = Integer.parseInt(employeeid);
+			return employeeMasterDAO.getEmployeeMasterDetailsByID(empId);
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
 	}
 
-	 (non-Javadoc)
-	 * @see com.cts.nw.onboarding.service.RequesterService#addNewResource(com.cts.nw.onboarding.bo.EmployeeMaster)
-	 
+	@Override
+	public List<EmployeeMaster> getAllEmployees() {
+		try{
+			return employeeMasterDAO.getAllEmployeeMasterDetails();
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 	@Override
 	public EmployeeMaster addNewResource(EmployeeMaster employee) {
-		Integer rowsAffected = 0;
-		rowsAffected = employeeMasterDAO.addEmployeeMaster(employee);
-		if (rowsAffected > 0) {
-			return employee;
+		try{
+			Integer rowsAffected = 0;
+			rowsAffected = employeeMasterDAO.addNewResource(employee);
+			if (rowsAffected > 0) {
+				return employee;
+			}
+		}catch(Exception e){
+			e.printStackTrace();	
 		}
 		return null;
 	}
 	
-	 (non-Javadoc)
-	 * @see com.cts.nw.onboarding.service.RequesterService#populateRequesterForm(int)
 	 
-	@Override
-	public EmployeeMaster populateRequesterForm(int empid) {
-		return employeeMasterDAO.getEmployeeMasterDetailsByID(empid);
-	}
+	
 
-	 (non-Javadoc)
+	/* (non-Javadoc)
 	 * @see com.cts.nw.onboarding.service.RequesterService#addNewProject(com.cts.nw.onboarding.bo.EmployeeProjectInfo)
 	 
 	@Override
