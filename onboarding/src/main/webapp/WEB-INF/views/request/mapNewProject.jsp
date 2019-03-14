@@ -110,38 +110,19 @@
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-2">
-									<label for="teamName">Team Name</label>
+									<label for="projectName">Project Name</label>
 								</div>
 								<div class="col-md-3">
-									<select class="form-control" name="teamName" id="teamName"
+									<select class="form-control" name="projectName" id="projectName"
 										onchange="loadProjDetails()"></select>
 								</div>
 								<div class="col-md-1"></div>
-								<div class="col-md-2">
-									<label for="startDate">Start Date</label>
-								</div>
-								<div class="col-md-3">
-									<input autocomplete="off" class="form-control" name="startDate"
-										id="startDate" placeholder="Enter Start Date (YYYY-MM-DD)" />
-								</div>
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="row">
 								<div class="col-md-2">
 									<label for="projectID">Project ID</label>
 								</div>
 								<div class="col-md-3">
 									<input class="form-control" id="projectID" name="projectID"
 										placeholder="Enter Project ID" readonly autocomplete="off" />
-								</div>
-								<div class="col-md-1"></div>
-								<div class="col-md-2">
-									<label for="projectName">Project Name</label>
-								</div>
-								<div class="col-md-3">
-									<input class="form-control" id="projectName" name="projectName"
-										placeholder="Enter Project Name" readonly autocomplete="off" />
 								</div>
 							</div>
 						</div>
@@ -161,6 +142,25 @@
 								<div class="col-md-3">
 									<input class="form-control" name="processor" id="processor"
 										placeholder="Enter Processor Name" readonly autocomplete="off" />
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-2">
+									<label for="teamName">Team Name</label>
+								</div>
+								<div class="col-md-3">
+									<select class="form-control" name="teamName" id="teamName"
+										onchange="loadProjDetails()"></select>
+								</div>
+								<div class="col-md-1"></div>
+								<div class="col-md-2">
+									<label for="startDate">Start Date</label>
+								</div>
+								<div class="col-md-3">
+									<input autocomplete="off" class="form-control" name="startDate"
+										id="startDate" placeholder="Enter Start Date (YYYY-MM-DD)" />
 								</div>
 							</div>
 						</div>
@@ -242,7 +242,7 @@
 								</div>
 								<div class="col-md-3">
 									<input class="form-control" name="pplInfo" id="pplInfo"
-										placeholder="Enter PPL Info" readonly autocomplete="off" />
+										placeholder="Enter PPL Info" autocomplete="off" />
 								</div>
 							</div>
 						</div>
