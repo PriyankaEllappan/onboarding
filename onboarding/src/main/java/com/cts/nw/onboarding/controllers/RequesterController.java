@@ -1,6 +1,6 @@
 /**
  * 
- *//*
+ */
 package com.cts.nw.onboarding.controllers;
 
 import java.util.List;
@@ -18,25 +18,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.cts.nw.onboarding.bo.EmployeeActiveAssignment;
 import com.cts.nw.onboarding.bo.EmployeeMaster;
-import com.cts.nw.onboarding.bo.EmployeeProjectInfo;
+import com.cts.nw.onboarding.bo.EmployeeProjHist;
 import com.cts.nw.onboarding.service.RequesterService;
 
-*//**
+/**
  * @author 656579
  *
- *//*
+ */
 @Controller
 public class RequesterController {
 
 	@Autowired
 	RequesterService requesterService;
 
+	
     @GetMapping(value = "/request/resourcelist", produces = { MediaType.APPLICATION_JSON_VALUE })
     public String getAllEmployees(ModelMap model) {
            try {
-        	   model.addAttribute("resources", requesterService.getAllEmployees()); 
+        	   model.addAttribute("employees", requesterService.getAllEmployees()); 
         	   return "resourcedetails/resourceList";
            } catch (Exception e) {
                   e.printStackTrace();
@@ -44,34 +44,34 @@ public class RequesterController {
            }
     }
         
-	*//**
+	/**
 	 * @param model
 	 * @return
-	 *//*
+	 */
 	@RequestMapping(value = "/request/check", method = RequestMethod.GET)
 	public String index() {
 		return "request/checkResourceAvailability";
 	}
 	
-	*//**
+	/**
 	 * @param model
 	 * @return
-	 *//*
+	 */
 	@RequestMapping(value = "/request/check/{empid}", method = RequestMethod.GET)
 	public @ResponseBody EmployeeMaster employeeAvailability(@PathVariable String empid) {
 		EmployeeMaster employee = null;
 		try {
-			return requesterService.checkEmployeeAvailability(empid);
+			return requesterService.getResourceByID(empid);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return employee;
 	}
 	
-	*//**
+	/**
 	 * @param employeeJson
 	 * @return
-	 *//*
+	 */
 	@PostMapping(value = "/request/addresource", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public @ResponseBody EmployeeMaster createUser(@RequestBody EmployeeMaster employeeJson) {
 		try {
@@ -82,15 +82,15 @@ public class RequesterController {
 		}
 	}
 	
-    *//**
+    /**
     * @param employeeJson
     * @return
-    *//*
+    */
     @GetMapping(value = "/request/checkActiveAssignment/{empid}", produces = { MediaType.APPLICATION_JSON_VALUE })
-    public @ResponseBody List<EmployeeActiveAssignment> checkActiveAssignment(@PathVariable String empid) {
-    		List<EmployeeActiveAssignment> activeAssignment;
+    public @ResponseBody List<EmployeeProjHist> checkActiveAssignment(@PathVariable String employeeid) {
+    		List<EmployeeProjHist> activeAssignment;
            try {
-        	   activeAssignment = requesterService.checkforActiveAssignment(empid);
+        	   activeAssignment = requesterService.checkActiveAssignments(employeeid);
         	   if(activeAssignment != null && !activeAssignment.isEmpty()){
         		   return activeAssignment;
         	   }else{
@@ -102,15 +102,15 @@ public class RequesterController {
            }
     }
 
-	*//**
+	/**
 	 * @param model
 	 * @return
-	 *//*
+	 */
 	@RequestMapping(value = "/request/mapproject/{empid}", method = RequestMethod.GET)
 	public String generateAddProjForm(@ModelAttribute("employee") EmployeeMaster employee,
-			@PathVariable int empid, ModelMap model) {
+			@PathVariable String empid, ModelMap model) {
 		try {
-			employee = requesterService.populateRequesterForm(empid);
+			employee = requesterService.getResourceByID(empid);
 			model.addAttribute("employee", employee);
 			return "request/mapNewProject";
 		} catch (Exception e) {
@@ -119,12 +119,12 @@ public class RequesterController {
 		}
 	}
 	
-	*//**
+	/**
 	 * @param employeeJson
 	 * @return
-	 *//*
+	 */
 	@PostMapping(value = "/request/addproject", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public @ResponseBody EmployeeProjectInfo assignProject(@RequestBody EmployeeProjectInfo employeeProjJson) {
+	public @ResponseBody EmployeeProjHist assignProject(@RequestBody EmployeeProjHist employeeProjJson) {
 		try {
 			System.out.println(employeeProjJson.toString());
 			return requesterService.addNewProject(employeeProjJson);
@@ -135,4 +135,3 @@ public class RequesterController {
 	}
 	
 }
-*/

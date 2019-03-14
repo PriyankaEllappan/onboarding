@@ -3,29 +3,43 @@
  */
 package com.cts.nw.onboarding.controllers;
 
+import java.security.Principal;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.cts.nw.onboarding.bo.EmployeeProjHist;
+import com.cts.nw.onboarding.service.ProcessorService;
 
 /**
  * @author 656579
  *
  */
 @Controller
-public class ProcessController {/*
+public class ProcessController {
 
 	@Autowired
 	ProcessorService processorService;
 	
-	*//**
+	/**
 	 * @param model
 	 * @return
-	 *//*
+	 */
 	@RequestMapping(value = "/process/processrequest/{empprojid}", method = RequestMethod.GET)
 	public String generateRequestProcessForm(@ModelAttribute("employee") EmployeeProjHist employee,
-			@PathVariable String empprojid, ModelMap model,Principal principal) {
-		String processor; 
+			@PathVariable String empProjHistId, ModelMap model,Principal principal) {
 		try {
-			processor = "429992";
-			employee = processorService.getEmployeetoProcess(processor,empprojid);
+			employee = processorService.getEmployeetoProcess(empProjHistId);
 			if(employee != null){
 				System.out.println(employee.toString());
 				model.addAttribute("employee", employee);
@@ -40,10 +54,10 @@ public class ProcessController {/*
 		}
 	}
 	
-	*//**
+	/**
 	 * @param employeeJson
 	 * @return
-	 *//*
+	 */
 	@PostMapping(value = "/process/processupdate", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public @ResponseBody EmployeeProjHist assignProject(@RequestBody EmployeeProjHist employeeProjJson) {
 		try {
@@ -57,13 +71,13 @@ public class ProcessController {/*
 	
 	@GetMapping(value = "/process/processlist", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public String getAllEmployeestoProcess(ModelMap model) {
-		int processorId = 227822;
+		String processorId = "429992";
 		try {
-			model.addAttribute("resources", processorService.getRecordsPerProcessor(processorId));
+			model.addAttribute("employees", processorService.getRecordsPerProcessor(processorId));
 			return "resourcedetails/processList";
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	} 
-*/}
+}

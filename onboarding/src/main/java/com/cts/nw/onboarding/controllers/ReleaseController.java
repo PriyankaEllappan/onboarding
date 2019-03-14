@@ -1,4 +1,4 @@
-/*package com.cts.nw.onboarding.controllers;
+package com.cts.nw.onboarding.controllers;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.cts.nw.onboarding.bo.ProcessorsInfo;
+import com.cts.nw.onboarding.bo.EmployeeProjHist;
 import com.cts.nw.onboarding.bo.ReleaseSummary;
 import com.cts.nw.onboarding.service.ReleaseService;
 
@@ -26,15 +26,15 @@ public class ReleaseController {
 	@Autowired
 	ReleaseService releaseService;
 	
-	*//**
+	/**
 	 * @param model
 	 * @return
-	 *//*
+	 */
 	@RequestMapping(value = "/processrelease/{projInfoId}", method = RequestMethod.GET)
-	public String generateReleaseProcessForm(@ModelAttribute("employee") ProcessorsInfo employee,
-			@PathVariable String projInfoId, ModelMap model) {
+	public String generateReleaseProcessForm(@ModelAttribute("employee") EmployeeProjHist employee,
+			@PathVariable String empProjHistId, ModelMap model) {
 		try {
-			employee = releaseService.getEmployeetoReleasebyId(projInfoId);
+			employee = releaseService.getEmployeetoRelease(empProjHistId);
 			model.addAttribute("employee", employee);
 			return "terminate/requestTerminationForm";
 		} catch (Exception e) {
@@ -43,11 +43,11 @@ public class ReleaseController {
 		}
 	}
 	
-	*//**
+	/**
 	 * @param model
 	 * @return
-	 *//*
-	@RequestMapping(value = "/getreasonsummary", method = RequestMethod.GET)
+	 */
+	@RequestMapping(value = "/getreleasesummary", method = RequestMethod.GET)
 	public @ResponseBody List<ReleaseSummary> getAllReleaseSummary() {
 		List<ReleaseSummary> statList = null;
 		try {
@@ -58,12 +58,12 @@ public class ReleaseController {
 		return statList;
 	}
 	
-	*//**
+	/**
 	 * @param employeeJson
 	 * @return
-	 *//*
+	 */
 	@PostMapping(value = "/requestrelease", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public @ResponseBody ProcessorsInfo requestRelease(@RequestBody ProcessorsInfo employeeProjJson) {
+	public @ResponseBody EmployeeProjHist requestRelease(@RequestBody EmployeeProjHist employeeProjJson) {
 		try {
 			System.out.println(employeeProjJson.toString());
 			return releaseService.releaseAnEmployee(employeeProjJson);
@@ -75,15 +75,12 @@ public class ReleaseController {
 	
 	 @GetMapping(value = "/releaselist", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public String getAllEmployees(ModelMap model) {
-		int releaseStatusID = 1;
 		try {
-			model.addAttribute("resources", releaseService.getEmployeesbyReleaseStatusId(releaseStatusID));
+			model.addAttribute("employees", releaseService.getEmployeestobeReleased());
 			return "resourcedetails/releaseList";
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
-
 	}
 }
-*/
