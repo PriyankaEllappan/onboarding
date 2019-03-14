@@ -51,7 +51,7 @@ function loadApprovalStatus(){
 	});
 }
 
-function loadReleaseStatus(){
+/*function loadReleaseStatus(){
 	var status = "YET TO RELEASE";
 	$.ajax({
 		type : 'GET',
@@ -62,11 +62,11 @@ function loadReleaseStatus(){
 			$('#releaseStatus').val(releaseStat.id);
 		}
 	});
-}
+}*/
 
 
 /* Processor Register Submit */
-$(function() {
+/*$(function() {
 	$('#processorFormSubmit').click(function(e) {
 		e.preventDefault();
 		setRequestParams();
@@ -100,7 +100,7 @@ $(function() {
 		})
 	});
 });
-
+*/
 function setRequestParams() {
 	jsonRequest["id"] = $('#empProjId').val();
 	jsonRequest["employeeMasterID"] = $('#newEmpID').val();

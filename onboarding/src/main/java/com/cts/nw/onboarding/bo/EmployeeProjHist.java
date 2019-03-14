@@ -5,6 +5,8 @@ package com.cts.nw.onboarding.bo;
 
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.mysql.cj.jdbc.Blob;
 
@@ -12,6 +14,7 @@ import com.mysql.cj.jdbc.Blob;
  * @author 616550
  *
  */
+@Component
 public class EmployeeProjHist {
 
 	private Integer id;
