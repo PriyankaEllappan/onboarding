@@ -24,7 +24,7 @@ import com.cts.nw.onboarding.service.ReleaseService;
 
 @Controller
 @RequestMapping("/release")
-public class ReleaseController {
+public class ReleaseController extends AbstractController{
 
 	@Autowired
 	ReleaseService releaseService;

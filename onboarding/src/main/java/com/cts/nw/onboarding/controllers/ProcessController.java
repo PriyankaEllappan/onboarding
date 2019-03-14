@@ -29,7 +29,7 @@ import com.cts.nw.onboarding.service.ProcessorService;
  *
  */
 @Controller
-public class ProcessController {
+public class ProcessController extends AbstractController{
 
 	@Autowired
 	ProcessorService processorService;
@@ -59,6 +59,9 @@ public class ProcessController {
 	public ModelAndView updateResource(@ModelAttribute("employee") EmployeeProjHist employee,
 			BindingResult result) {
 		System.out.println(employee.toString());
+		
+		processorService.processAnEmployee(employee);
+		System.out.println("Completed");
 		/*ModelAndView modelAndView = null;
 		if (result.hasErrors()) {
 			modelAndView = new ModelAndView("processUpdate");
