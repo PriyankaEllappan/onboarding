@@ -1,0 +1,15 @@
+USERS
+#UserName: admin / Password: nwadmin@cts
+insert into users(username,password,enabled)
+	values('admin','$2a$10$L7VZdtoIX54gnfGjE6yYzuqABJL2adwEM1uSTDhz1VXNxIR7wW9Pu',true);
+
+#UserName: guest / Password: nwguest@cts	
+insert into users(username,password,enabled)
+	values('guest','$2a$10$0WalrkYp0hVzRH1N1AU4XuUxOxggFyiJpnWn/2XeGgTuFcvGKMjUe',true);
+
+ROLES
+insert into authorities(username,authority) 
+	values('admin','ROLE_ADMIN');
+		
+insert into authorities(username,authority) 
+	values('guest','ROLE_PROCESSOR');		
