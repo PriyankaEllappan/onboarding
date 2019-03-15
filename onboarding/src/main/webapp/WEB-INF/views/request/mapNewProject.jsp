@@ -174,8 +174,7 @@
 									<label for="country">Country</label>
 								</div>
 								<div class="col-md-3">
-									<select class="form-control" name="country" id="country"
-										onchange="loadLocDetails()">
+									<select class="form-control" name="country" id="country">
 									<option value="" selected disabled>Select</option>
 									</select>
 
@@ -196,8 +195,7 @@
 									<label for="role">Role</label>
 								</div>
 								<div class="col-md-3">
-									<select class="form-control" name="role" id="role"
-										onchange="loadRateDetails()">
+									<select class="form-control" name="role" id="role">
 								<option value="" selected disabled>Select</option>
 										</select>
 								</div>

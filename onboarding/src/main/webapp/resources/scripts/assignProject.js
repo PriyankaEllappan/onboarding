@@ -33,6 +33,16 @@ $(document).ready(function() {
 		});
 	})
 	
+	$("#role").change(function() {
+		loadRateDetails();
+	})
+	
+	$("#country").change(function() {
+		$("#country").prop('disabled', true);
+		loadLocDetails();
+		loadRateDetails();
+	})
+	
 	/* DatePicker Options */
 	var dateOfBirth = $('#startDate');
 	var container = $('.content-style');
@@ -144,7 +154,7 @@ function loadAllRoles(){
 			$.each(roleMappings, function(key,value) {   
 				$('#role')
 		         .append($("<option></option>")
-		                    .attr("value",value.role)
+		                    .attr("value",value.id)
 		                    .text(value.role)); 
 			});
 		}
@@ -154,12 +164,10 @@ function loadAllRoles(){
 function loadRateDetails(){
 	var selectedRoleID = $('#role').val();
 	var selectedCountryMapID = $('#countryMappingID').val();
-	/*alert(selectedRoleID);
-	alert(selectedCountryMapID);*/
 	$.each(roleMappings, function(key,value) {   
-		if (selectedRoleID == value.roleId && selectedCountryMapID == value.countryMappingID) {
-			$('#roleMappingID').val(value.roleMappingID);
-			$('#rate').val(value.rateValue);
+		if (selectedRoleID == value.roleId && selectedCountryMapID == value.countryId) {
+			$('#roleMappingID').val(value.roleId);
+			$('#rate').val(value.rate);
 		}
 	});
 }
