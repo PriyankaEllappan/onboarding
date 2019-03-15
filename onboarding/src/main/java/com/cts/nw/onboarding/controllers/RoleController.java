@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cts.nw.onboarding.bo.RoleMapping;
+import com.cts.nw.onboarding.bo.Roles;
 import com.cts.nw.onboarding.service.RoleService;
 
 /**
@@ -29,13 +30,13 @@ public class RoleController {
 	 * @param 
 	 * @return
 	 */
-	@RequestMapping(value = "/getroles", method = RequestMethod.GET)
+	@RequestMapping(value = "/getrolemappings", method = RequestMethod.GET)
 	public @ResponseBody List<RoleMapping> getAllRoleMappings() {
-		List<RoleMapping> countryList;
+		List<RoleMapping> roleMappingList;
 		try {
-			countryList = roleService.getAllRoleMappings();
-			if (countryList.size() > 0) {
-				return countryList;
+			roleMappingList = roleService.getAllRoleMappings();
+			if (roleMappingList.size() > 0) {
+				return roleMappingList;
 			} else {
 				return null;
 			}
@@ -46,4 +47,24 @@ public class RoleController {
 		}
 	}
 
+	/**
+	 * @param 
+	 * @return
+	 */
+	@RequestMapping(value = "/getroles", method = RequestMethod.GET)
+	public @ResponseBody List<Roles> getAllRoles() {
+		List<Roles> roleList;
+		try {
+			roleList = roleService.getRoleDetails();
+			if (roleList.size() > 0) {
+				return roleList;
+			} else {
+				return null;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

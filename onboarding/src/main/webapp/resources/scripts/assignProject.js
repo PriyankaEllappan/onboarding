@@ -2,6 +2,7 @@ var projectHierarchy = {}
 var teamHierarchy = {}
 var countryHierarchy = {}
 var roleMappings = {}
+var roles = {}
 var jsonRequest = {}
 var movementList = {}
 var selectedTeam = [];
@@ -10,6 +11,7 @@ $(document).ready(function() {
 	loadTeamDetails();
 	loadCountryHierarchy();
 	loadAllRoles();
+	loadAllRoleMappings();
 	loadApprovalStatus();
 	loadReleaseStatus();
 	loadMovementDetails();
@@ -38,7 +40,6 @@ $(document).ready(function() {
 	})
 	
 	$("#country").change(function() {
-		$("#country").prop('disabled', true);
 		loadLocDetails();
 		loadRateDetails();
 	})
@@ -78,7 +79,6 @@ function loadProjectHierarchy(){
 		dataType : "text",
 		success : function(resultData) {
 			projectHierarchy = JSON.parse(resultData);
-			console.log(projectHierarchy);
 			$.each(projectHierarchy, function(key,value) {   
 			     $('#projectName')
 			         .append($("<option></option>")
@@ -112,7 +112,6 @@ function loadCountryHierarchy(){
 		dataType : "text",
 		success : function(resultData) {
 			countryHierarchy = JSON.parse(resultData);
-			console.log(countryHierarchy);
 			$.each(countryHierarchy, function(key,value) {   
 			     $('#country')
 			         .append($("<option></option>")
@@ -155,8 +154,19 @@ function loadAllRoles(){
 				$('#role')
 		         .append($("<option></option>")
 		                    .attr("value",value.id)
-		                    .text(value.role)); 
+		                    .text(value.roleName)); 
 			});
+		}
+	});
+}
+
+function loadAllRoleMappings(){
+	$.ajax({
+		type : 'GET',
+		url : "/onboarding/role/getrolemappings" ,
+		dataType : "text",
+		success : function(resultData) {
+			roleMappings = JSON.parse(resultData);
 		}
 	});
 }
@@ -211,7 +221,6 @@ function loadMovementDetails(){
 		dataType : "text",
 		success : function(resultData) {
 			movementList = JSON.parse(resultData);
-			console.log(movementList);
 			$.each(movementList, function(key,value) {   
 			     $('#movementID')
 			         .append($("<option></option>")
@@ -239,7 +248,6 @@ $(function() {
 			data : JSON.stringify(jsonRequest),
 			contentType : 'application/json; charset=utf-8',
 			success : function(resultData) {
-				console.log(resultData);
 				if (!$.trim(resultData)) {
 					$('#messageDiv').removeClass('hideElements');
 					$('#messageDiv').text("Unable to add the project details");
@@ -253,7 +261,6 @@ $(function() {
 				}
 			},
 			error : function() {
-				console.log("error");
 				$('#messageDiv').removeClass('hideElements');
 				$('#messageDiv').text("Unable to add the project details");
 				$('#messageDiv').addClass('showElements');
