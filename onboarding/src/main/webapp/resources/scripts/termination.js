@@ -18,6 +18,7 @@ $(document).ready(function() {
 	loadBands();
 	loadReleaseStatus();
 	loadReleaseReason();
+	loadMovementDetails();
 	
 	$("#releaseStatus").change(function() {
 		
@@ -79,10 +80,25 @@ function loadBands(){
 		success : function(resultData) {
 			bandDetails = JSON.parse(resultData);
 			$.each(bandDetails, function(key,value) {   
-			     $('#band')
-			         .append($("<option></option>")
-			                    .attr("value",value.id)
-			                    .text(value.bandName)); 
+				if($("#bandId").val() == value.id ){
+					$('#band').val(value.bandName);
+				}
+			});
+		}
+	});
+}
+
+function loadMovementDetails(){
+	$.ajax({
+		type : 'GET',
+		url : "/onboarding/movement/getmovements" ,
+		dataType : "text",
+		success : function(resultData) {
+			movementList = JSON.parse(resultData);
+			$.each(movementList, function(key,value) {  
+				if($("#movementId").val() == value.id ){
+					 $('#movement').val(value.movement)
+				}
 			});
 		}
 	});

@@ -21,6 +21,7 @@ $(document).ready(function() {
 	loadApprovalStatus();
 	loadReleaseStatus();
 	loadBands();
+	loadMovementDetails();
 	
 	$("#band").change(function() {
 		var selectedVal = $("#band").val();
@@ -100,6 +101,22 @@ function loadBands(){
 			         .append($("<option></option>")
 			                    .attr("value",value.id)
 			                    .text(value.bandName)); 
+			});
+		}
+	});
+}
+
+function loadMovementDetails(){
+	$.ajax({
+		type : 'GET',
+		url : "/onboarding/movement/getmovements" ,
+		dataType : "text",
+		success : function(resultData) {
+			movementList = JSON.parse(resultData);
+			$.each(movementList, function(key,value) {  
+				if($("#movementId").val() == value.id ){
+					 $('#movement').val(value.movement)
+				}
 			});
 		}
 	});

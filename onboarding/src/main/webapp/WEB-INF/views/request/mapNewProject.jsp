@@ -113,7 +113,9 @@
 									<label for="projectName">Project Name</label>
 								</div>
 								<div class="col-md-3">
-									<select class="form-control" name="projectName" id="projectName"></select>
+									<select class="form-control" name="projectName" id="projectName">
+									<option value="" selected disabled>Select</option>
+									</select>
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
@@ -173,7 +175,9 @@
 								</div>
 								<div class="col-md-3">
 									<select class="form-control" name="country" id="country"
-										onchange="loadLocDetails()"></select>
+										onchange="loadLocDetails()">
+									<option value="" selected disabled>Select</option>
+									</select>
 
 								</div>
 								<div class="col-md-1"></div>
@@ -193,7 +197,9 @@
 								</div>
 								<div class="col-md-3">
 									<select class="form-control" name="role" id="role"
-										onchange="loadRateDetails()"></select>
+										onchange="loadRateDetails()">
+								<option value="" selected disabled>Select</option>
+										</select>
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
@@ -238,8 +244,9 @@
 									<label for="movementID">Movement</label>
 								</div>
 								<div class="col-md-3">
-									<select class="form-control" name="movementID" id="movementID"
-										></select>
+									<select class="form-control" name="movementID" id="movementID">
+									<option value="" selected disabled>Select</option>
+									</select>
 								</div>
 							</div>
 						</div>

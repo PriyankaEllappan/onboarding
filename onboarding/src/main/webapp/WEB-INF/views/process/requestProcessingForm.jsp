@@ -251,7 +251,9 @@
 									<form:label path="band">Band</form:label>
 								</div>
 								<div class="col-md-3">
-									<form:select class="form-control" name="band" path="band"></form:select>
+									<form:select class="form-control" name="band" path="band">
+									<form:option value="" label="Select" selected="true" disabled="true" />
+									</form:select>
 								</div>
 							</div>
 						</div>
@@ -319,7 +321,9 @@
 								</div>
 								<div class="col-md-3">
 									<form:select class="form-control" name="approvalStatus"
-										path="approvalStatus"></form:select>
+										path="approvalStatus">
+									<form:option value="" label="Select" selected="true" disabled="true" />	
+									</form:select>
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">

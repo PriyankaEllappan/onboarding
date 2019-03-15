@@ -228,11 +228,11 @@
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
-									<form:label path="movementId">Movement</form:label>
+									<form:label path="movement">Movement</form:label>
 								</div>
 								<div class="col-md-3">
-									<form:input class="form-control" name="movementId"
-										path="movementId" readonly="true"/>
+									<form:input class="form-control" name="movement"
+										path="movement" readonly="true"/>
 								</div>
 							</div>
 						</div>
@@ -366,7 +366,9 @@
 								</div>
 								<div class="col-md-3">
 									<form:select class="form-control" name="releaseStatus"
-										path="releaseStatus"></form:select>
+										path="releaseStatus">
+										<form:option value="" label="Select" selected="true" disabled="true" />
+									</form:select>
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
@@ -374,7 +376,9 @@
 								</div>
 								<div class="col-md-3">
 									<form:select class="form-control" name="releaseSummary"
-										path="releaseSummary"></form:select>
+										path="releaseSummary">
+										<form:option value="" label="Select" selected="true" disabled="true" />
+									</form:select>
 								</div>
 							</div>
 						</div>
@@ -413,7 +417,7 @@
 							<form:input type="hidden" path="teamId" />
 							<form:input type="hidden" path="requesterId" />
 							<form:input type="hidden" path="processorId" />
-							<form:input type="hidden" path="movement" />
+							<form:input type="hidden" path="movementId" />
 							<form:input type="hidden" path="fileName" />
 							<form:input type="hidden" path="fileData" />
 							<form:input type="hidden" path="bandId" />
