@@ -3,7 +3,7 @@ var teamHierarchy = {}
 var countryHierarchy = {}
 var roleMappings = {}
 var jsonRequest = {}
-
+var movementList = {}
 $(document).ready(function() {
 	loadProjectHierarchy();
 	loadTeamDetails();
@@ -11,6 +11,7 @@ $(document).ready(function() {
 	loadAllRoles();
 	loadApprovalStatus();
 	loadReleaseStatus();
+	loadMovementDetails();
 	document.getElementById("defaultOpen").click();
 	$("#teamList").prop('disabled', true);
 	
@@ -185,6 +186,24 @@ function loadReleaseStatus(){
 				if (value.status == "YET TO RELEASE") {
 					$('#releaseStatus').val(releaseStat.id);
 				}
+			});
+		}
+	});
+}
+
+function loadMovementDetails(){
+	$.ajax({
+		type : 'GET',
+		url : "/onboarding/movement/getmovements" ,
+		dataType : "text",
+		success : function(resultData) {
+			movementList = JSON.parse(resultData);
+			console.log(movementList);
+			$.each(movementList, function(key,value) {   
+			     $('#movementID')
+			         .append($("<option></option>")
+			                    .attr("value",value.id)
+			                    .text(value.movement)); 
 			});
 		}
 	});

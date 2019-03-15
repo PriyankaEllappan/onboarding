@@ -27,7 +27,7 @@ public class QueryConstants {
 	 public static final String TEAMS_INSERT = "INSERT INTO TEAMS(ID,TEAMNAME,PROJECTMAPID,STATUS) VALUES(?,?,?,?)";
 	 
 	 public static final String BANDS_SELECT ="SELECT B.ID AS ID, B.NAME AS BANDNAME FROM BANDS B" ;
-	 
+	 public static final String MOVEMENTS_SELECT ="SELECT M.ID AS ID ,M.VALUE AS MOVEMENT FROM  MOVEMENTINFO M;" ;
 	 
 	 public static final String RELEASESTATUS_UPDATE = "";
 	 public static final String RELEASESUMMARY_INSERT = "";
