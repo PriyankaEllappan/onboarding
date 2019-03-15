@@ -1,5 +1,6 @@
 var jsonRequest = {}
 var approvalStat;
+var bandDetails;
 
 $(document).ready(function() {
 	
@@ -21,6 +22,14 @@ $(document).ready(function() {
 	loadReleaseStatus();
 	loadBands();
 	
+	$("#band").change(function() {
+		var selectedVal = $("#band").val();
+		$.each(bandDetails, function(key,value) {  
+			if(selectedVal == value.id ){
+				 $("#bandId").val(value.id);
+			}
+		});
+	})
 	$("#approvalStatus").change(function() {
 		var selectedVal = $("#approvalStatus").val();
 		$.each(approvalStat, function(key,value) {  
@@ -89,7 +98,7 @@ function loadBands(){
 			$.each(bandDetails, function(key,value) {   
 			     $('#band')
 			         .append($("<option></option>")
-			                    .attr("value",value.bandName)
+			                    .attr("value",value.id)
 			                    .text(value.bandName)); 
 			});
 		}

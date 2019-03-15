@@ -47,6 +47,19 @@ public class EmployeeProjHist {
 	private Integer releaseStatusId;
 	private String releaseStatus;
 	private Integer reasonForOffboarding;
+	private String releaseSummary;
+	/**
+	 * @return the releaseSummary
+	 */
+	public String getReleaseSummary() {
+		return releaseSummary;
+	}
+	/**
+	 * @param releaseSummary the releaseSummary to set
+	 */
+	public void setReleaseSummary(String releaseSummary) {
+		this.releaseSummary = releaseSummary;
+	}
 	private Integer attachmentId;
 	private Integer employeeId;
 	private String name;
@@ -684,15 +697,17 @@ public class EmployeeProjHist {
 				+ comments + ", skillSet=" + skillSet + ", skillSummary=" + skillSummary + ", releaseDate="
 				+ releaseDate + ", approvalStatusId=" + approvalStatusId + ", approvalStatus=" + approvalStatus
 				+ ", releaseStatusId=" + releaseStatusId + ", releaseStatus=" + releaseStatus
-				+ ", reasonForOffboarding=" + reasonForOffboarding + ", attachmentId=" + attachmentId + ", employeeId="
-				+ employeeId + ", name=" + name + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", dateOfBirth=" + dateOfBirth + ", passportNumber=" + passportNumber + ", email=" + email
-				+ ", countryId=" + countryId + ", countryName=" + countryName + ", location=" + location + ", roleId="
-				+ roleId + ", role=" + role + ", rate=" + rate + ", teamId=" + teamId + ", teamName=" + teamName
-				+ ", bsaName=" + bsaName + ", projectMappingId=" + projectMappingId + ", projectId=" + projectId
-				+ ", projectName=" + projectName + ", requesterId=" + requesterId + ", requesterName=" + requesterName
-				+ ", processorId=" + processorId + ", processorName=" + processorName + ", movement=" + movement
-				+ ", fileName=" + fileName + ", fileData=" + fileData + ", bandId=" + bandId + ", band=" + band + "]";
+				+ ", reasonForOffboarding=" + reasonForOffboarding + ", releaseSummary=" + releaseSummary
+				+ ", attachmentId=" + attachmentId + ", employeeId=" + employeeId + ", name=" + name + ", firstName="
+				+ firstName + ", lastName=" + lastName + ", dateOfBirth=" + dateOfBirth + ", passportNumber="
+				+ passportNumber + ", email=" + email + ", countryId=" + countryId + ", countryName=" + countryName
+				+ ", location=" + location + ", roleId=" + roleId + ", role=" + role + ", rate=" + rate + ", teamId="
+				+ teamId + ", teamName=" + teamName + ", bsaName=" + bsaName + ", projectMappingId=" + projectMappingId
+				+ ", projectId=" + projectId + ", projectName=" + projectName + ", requesterId=" + requesterId
+				+ ", requesterName=" + requesterName + ", processorId=" + processorId + ", processorName="
+				+ processorName + ", movement=" + movement + ", fileName=" + fileName + ", fileData=" + fileData
+				+ ", bandId=" + bandId + ", band=" + band + "]";
 	}
+	
 	
 }

@@ -15,8 +15,29 @@ $(document).ready(function() {
 	
 	document.getElementById("defaultOpen").click();
 	loadApprovalStatus();
+	loadBands();
 	loadReleaseStatus();
 	loadReleaseReason();
+	
+	$("#releaseStatus").change(function() {
+		
+		var selectedVal = $("#releaseStatus").val();
+		$.each(releaseStat, function(key,value) {  
+			if(selectedVal == value.id ){
+				 $("#releaseStatusId").val(value.id);
+			}
+		});
+	})
+	
+	$("#releaseSummary").change(function() {
+		
+		var selectedVal = $("#releaseSummary").val();
+		$.each(releaseReason, function(key,value) { 
+			if(selectedVal == value.id ){
+				 $("#reasonForOffboarding").val(value.id);
+			}
+		});
+	})
 })
 
 function openSpecificTab(evt, tabName) {
@@ -50,6 +71,23 @@ function loadApprovalStatus(){
 	});
 }
 
+function loadBands(){
+	$.ajax({
+		type : 'GET',
+		url : "/onboarding/band/getbands" ,
+		dataType : "text",
+		success : function(resultData) {
+			bandDetails = JSON.parse(resultData);
+			$.each(bandDetails, function(key,value) {   
+			     $('#band')
+			         .append($("<option></option>")
+			                    .attr("value",value.id)
+			                    .text(value.bandName)); 
+			});
+		}
+	});
+}
+
 function loadReleaseStatus(){
 	$.ajax({
 		type : 'GET',
@@ -75,7 +113,7 @@ function loadReleaseReason(){
 		success : function(resultData) {
 			releaseReason = JSON.parse(resultData);
 			$.each(releaseReason, function(key,value) {   
-				$('#reasonForOffboarding')
+				$('#releaseSummary')
 		         .append($("<option></option>")
 		                    .attr("value",value.id)
 		                    .text(value.summary)); 

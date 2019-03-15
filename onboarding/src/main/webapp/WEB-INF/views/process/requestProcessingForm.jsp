@@ -54,7 +54,7 @@
 									<form:label path="email">Email</form:label>
 								</div>
 								<div class="col-md-3">
-									<form:input class="form-control" path="email" name="email" />
+									<form:input class="form-control" path="email" name="email" readonly="true"/>
 								</div>
 							</div>
 						</div>
@@ -65,7 +65,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input class="form-control" path="firstName"
-										name="firstName" />
+										name="firstName" readonly="true"/>
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
@@ -73,7 +73,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input class="form-control" path="lastName"
-										name="lastName" />
+										name="lastName" readonly="true"/>
 								</div>
 							</div>
 						</div>
@@ -84,7 +84,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input autocomplete="off" class="form-control"
-										name="dateOfBirth" path="dateOfBirth" />
+										name="dateOfBirth" path="dateOfBirth" readonly="true" />
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
@@ -92,7 +92,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input class="form-control" name="passportNumber"
-										path="passportNumber" />
+										path="passportNumber" readonly="true" />
 								</div>
 							</div>
 						</div>
@@ -108,7 +108,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input class="form-control" path="teamName"
-										name="teamName" />
+										name="teamName" readonly="true"/>
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
@@ -116,7 +116,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input autocomplete="off" class="form-control"
-										name="startDate" path="startDate" />
+										name="startDate" path="startDate" readonly="true"/>
 								</div>
 							</div>
 						</div>
@@ -127,7 +127,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input class="form-control" path="projectId"
-										name="projectId" />
+										name="projectId" readonly="true"/>
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
@@ -135,7 +135,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input class="form-control" path="projectName"
-										name="projectName" />
+										name="projectName" readonly="true"/>
 								</div>
 							</div>
 						</div>
@@ -146,7 +146,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input class="form-control" path="requesterName"
-										name="requesterName" />
+										name="requesterName" readonly="true"/>
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
@@ -154,7 +154,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input class="form-control" name="processorName"
-										path="processorName" />
+										path="processorName" readonly="true"/>
 								</div>
 							</div>
 						</div>
@@ -165,7 +165,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input class="form-control" name="countryName"
-										path="countryName" />
+										path="countryName" readonly="true"/>
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
@@ -173,7 +173,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input class="form-control" name="location"
-										path="location" />
+										path="location" readonly="true"/>
 								</div>
 							</div>
 						</div>
@@ -184,16 +184,14 @@
 								</div>
 								<div class="col-md-3">
 									<form:input class="form-control" name="role" path="role"
-										id="role" />
-									<%-- placeholder="Enter Role value" readonly autocomplete="off" /> --%>
+										readonly="true" />
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
 									<form:label path="rate">Rate</form:label>
 								</div>
 								<div class="col-md-3">
-									<form:input class="form-control" name="rate" path="rate" />
-									<%-- placeholder="Enter Rate value" readonly autocomplete="off" /> --%>
+									<form:input class="form-control" name="rate" path="rate" readonly="true"/>
 								</div>
 							</div>
 						</div>
@@ -204,8 +202,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input class="form-control" name="skillSet"
-										path="skillSet" />
-									<%-- placeholder="Enter Skills" readonly autocomplete="off" /> --%>
+										path="skillSet" readonly="true"/>
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
@@ -213,8 +210,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input class="form-control" name="skillSummary"
-										path="skillSummary" />
-									<!-- 	placeholder="Enter Skill Summary" readonly autocomplete="off" /> -->
+										path="skillSummary" readonly="true"/>
 								</div>
 							</div>
 						</div>
@@ -225,8 +221,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input class="form-control" name="experience"
-										path="experience" />
-									<%-- placeholder="Enter Skills" readonly autocomplete="off" /> --%>
+										path="experience" readonly="true"/>
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
@@ -234,8 +229,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input class="form-control" name="movementId"
-										path="movementId" />
-									<!-- 	placeholder="Enter Skill Summary" readonly autocomplete="off" /> -->
+										path="movementId" readonly="true"/>
 								</div>
 							</div>
 						</div>
@@ -250,8 +244,7 @@
 									<form:label path="bsaName">BSA</form:label>
 								</div>
 								<div class="col-md-3">
-									<form:input class="form-control" path="bsaName" name="bsaName" />
-									<%-- 	placeholder="Enter BSA Name" readonly autocomplete="off" /> --%>
+									<form:input class="form-control" path="bsaName" name="bsaName" readonly="true"/>
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
@@ -270,7 +263,6 @@
 								<div class="col-md-3">
 									<form:input class="form-control" name="pplManager"
 										path="pplManager" />
-									<!-- placeholder="Enter PPL Name" readonly autocomplete="off" /> -->
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
@@ -279,7 +271,6 @@
 								<div class="col-md-3">
 									<form:input autocomplete="off" class="form-control" name="apm"
 										path="apm" />
-									<!-- placeholder="Enter FG Onboarding Date (YYYY-MM-DD)" /> -->
 								</div>
 							</div>
 						</div>
@@ -291,7 +282,6 @@
 								<div class="col-md-3">
 									<form:input class="form-control" path="nationwideId"
 										name="nationwideId" />
-									<!-- 	placeholder="Enter Nationwide ID"  autocomplete="off" /> -->
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
@@ -300,7 +290,6 @@
 								<div class="col-md-3">
 									<form:input autocomplete="off" class="form-control"
 										name="nationwideIdCreatedDate" path="nationwideIdCreatedDate" />
-									<%-- placeholder="Enter Nationwide ID Created Date (YYYY-MM-DD)" /> --%>
 								</div>
 							</div>
 						</div>
@@ -320,7 +309,6 @@
 								<div class="col-md-3">
 									<form:input autocomplete="off" class="form-control"
 										name="scrumMaster" path="scrumMaster" />
-									<!-- placeholder="Enter FG Onboarding Date (YYYY-MM-DD)" /> -->
 								</div>
 							</div>
 						</div>
@@ -340,7 +328,6 @@
 								<div class="col-md-3">
 									<form:input autocomplete="off" class="form-control"
 										name="fgOnBoardingDate" path="fgOnBoardingDate" />
-									<!-- placeholder="Enter FG Onboarding Date (YYYY-MM-DD)" /> -->
 								</div>
 							</div>
 						</div>
@@ -360,7 +347,6 @@
 								<div class="col-md-3">
 									<form:input class="form-control" path="attachmentId"
 										name="attachmentId" />
-									<!-- placeholder="Enter Attachment" autocomplete="off" /> -->
 								</div>
 							</div>
 						</div>
