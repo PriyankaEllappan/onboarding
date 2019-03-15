@@ -205,9 +205,9 @@ function loadReleaseStatus(){
 		dataType : "text",
 		success : function(resultData) {
 			releaseStat = JSON.parse(resultData);
-			$.each(releaseStat, function(key,value) {   
+			$.each(releaseStat, function(key,value) {  
 				if (value.status == "YET TO RELEASE") {
-					$('#releaseStatus').val(releaseStat.id);
+					$('#releaseStatusId').val(value.id);
 				}
 			});
 		}
@@ -273,19 +273,20 @@ $(function() {
 function setRequestParams(){
 	jsonRequest["employeeId"] = $('#newEmpID').val();
 	jsonRequest["teamId"] = $('#teamMappingID').val();
-	jsonRequest["role"] = $('#roleMappingID').val();
-	jsonRequest["country"] = $('#countryMappingID').val();
+	jsonRequest["roleId"] = $('#roleMappingID').val();
+	jsonRequest["countryId"] = $('#countryMappingID').val();
 	jsonRequest["startDate"] = $('#startDate').val();
-	jsonRequest["approvalStatus"] = $('#approvalStatus').val();
-	jsonRequest["releaseStatus"] = $('#releaseStatus').val();
+	jsonRequest["approvalStatusId"] = $('#approvalStatus').val();
+	jsonRequest["releaseStatusId"] = $('#releaseStatusId').val();
 	jsonRequest["skillSet"] = $('#skill').val();
 	jsonRequest["skillSummary"] = $('#skillSummary').val();
 	jsonRequest["requesterId"] = $('#requesterID').val();
 	jsonRequest["processorId"] = $('#processorID').val();
 	jsonRequest["projectId"] = $('#projectID').val();
-	jsonRequest["employeeName"] = $('#name').val();
+	jsonRequest["name"] = $('#name').val();
 	jsonRequest["projectName"] = $('#projectName').val();
 	jsonRequest["projectMappingId"] = $('#projectMapID').val();
 	jsonRequest["movementId"] = $('#movementId').val();
 	jsonRequest["pplManager"] = $('#pplInfo').val();
+	jsonRequest["experience"] = $('#experience').val();
 }

@@ -92,7 +92,7 @@ public class EmployeeProjHist {
 	private String fileName;
 	private Blob fileData;
 	
-	private int bandId;
+	private Integer bandId;
 	private String band;
 	
 	
@@ -148,13 +148,13 @@ public class EmployeeProjHist {
 	/**
 	 * @return the bandId
 	 */
-	public int getBandId() {
+	public Integer getBandId() {
 		return bandId;
 	}
 	/**
 	 * @param bandId the bandId to set
 	 */
-	public void setBandId(int bandId) {
+	public void setBandId(Integer bandId) {
 		this.bandId = bandId;
 	}
 	/**
