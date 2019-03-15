@@ -67,6 +67,7 @@ public class EmployeeProjHist {
 	private Integer teamId;
 	private String teamName;
 	private String bsaName;
+	private Integer projectMappingId;
 	private Long projectId;
 	private String projectName;
 	private Integer requesterId;
@@ -82,6 +83,19 @@ public class EmployeeProjHist {
 	private String band;
 	
 	
+	
+	/**
+	 * @return the projectMappingId
+	 */
+	public Integer getProjectMappingId() {
+		return projectMappingId;
+	}
+	/**
+	 * @param projectMappingId the projectMappingId to set
+	 */
+	public void setProjectMappingId(Integer projectMappingId) {
+		this.projectMappingId = projectMappingId;
+	}
 	/**
 	 * @return the movement
 	 */
@@ -666,7 +680,7 @@ public class EmployeeProjHist {
 		return "EmployeeProjHist [id=" + id + ", nationwideId=" + nationwideId + ", startDate=" + startDate
 				+ ", nationwideIdCreatedDate=" + nationwideIdCreatedDate + ", fgOnBoardingDate=" + fgOnBoardingDate
 				+ ", movementId=" + movementId + ", workForceId=" + workForceId + ", scrumMaster=" + scrumMaster
-				+ ", apm=" + apm + ", pplManager=" + pplManager + ", Experience=" + experience + ", comments="
+				+ ", apm=" + apm + ", pplManager=" + pplManager + ", experience=" + experience + ", comments="
 				+ comments + ", skillSet=" + skillSet + ", skillSummary=" + skillSummary + ", releaseDate="
 				+ releaseDate + ", approvalStatusId=" + approvalStatusId + ", approvalStatus=" + approvalStatus
 				+ ", releaseStatusId=" + releaseStatusId + ", releaseStatus=" + releaseStatus
@@ -675,9 +689,10 @@ public class EmployeeProjHist {
 				+ ", dateOfBirth=" + dateOfBirth + ", passportNumber=" + passportNumber + ", email=" + email
 				+ ", countryId=" + countryId + ", countryName=" + countryName + ", location=" + location + ", roleId="
 				+ roleId + ", role=" + role + ", rate=" + rate + ", teamId=" + teamId + ", teamName=" + teamName
-				+ ", bsaName=" + bsaName + ", projectId=" + projectId + ", projectName=" + projectName
-				+ ", requesterId=" + requesterId + ", requesterName=" + requesterName + ", processorId=" + processorId
-				+ ", processorName=" + processorName + ", movement=" + movement + ", fileName=" + fileName
-				+ ", fileData=" + fileData + ", bandId=" + bandId + ", band=" + band + "]";
+				+ ", bsaName=" + bsaName + ", projectMappingId=" + projectMappingId + ", projectId=" + projectId
+				+ ", projectName=" + projectName + ", requesterId=" + requesterId + ", requesterName=" + requesterName
+				+ ", processorId=" + processorId + ", processorName=" + processorName + ", movement=" + movement
+				+ ", fileName=" + fileName + ", fileData=" + fileData + ", bandId=" + bandId + ", band=" + band + "]";
 	}
+	
 }

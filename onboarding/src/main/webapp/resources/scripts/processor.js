@@ -18,6 +18,7 @@ $(document).ready(function() {
 	document.getElementById("defaultOpen").click();
 	loadApprovalStatus();
 	loadReleaseStatus();
+	loadBands();
 })
 
 function openSpecificTab(evt, tabName) {
@@ -62,6 +63,24 @@ function loadReleaseStatus(){
 				if (value.status == "YET TO RELEASE") {
 					$('#releaseStatus').val(releaseStat.id);
 				}
+			});
+		}
+	});
+}
+
+function loadBands(){
+	$.ajax({
+		type : 'GET',
+		url : "/onboarding/band/getbands" ,
+		dataType : "text",
+		success : function(resultData) {
+			bandDetails = JSON.parse(resultData);
+			console.log(bandDetails);
+			$.each(bandDetails, function(key,value) {   
+			     $('#band')
+			         .append($("<option></option>")
+			                    .attr("value",value.bandName)
+			                    .text(value.bandName)); 
 			});
 		}
 	});

@@ -394,6 +394,7 @@
 							<form:input type="hidden" path="fileName" />
 							<form:input type="hidden" path="fileData" />
 							<form:input type="hidden" path="bandId" />
+							<form:input type="hidden" path="projectMappingId" />
 						</div>
 					</div>
 				</div>

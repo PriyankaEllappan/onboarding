@@ -14,24 +14,16 @@ import com.cts.nw.onboarding.bo.Teams;
  * @author 616550
  *
  */
-public class TeamsRowMapper extends AbstractRowMapper implements RowMapper<Teams>{
+public class TeamsRowMapper implements RowMapper<Teams> {
 
 	@Override
 	public Teams mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Teams team = new Teams();
-		if (hasColumn(rs, "ID") == true) {
-			team.setId(rs.getInt("ID"));
-		}
-		if (hasColumn(rs, "TEAMNAME") == true) {
-			team.setTeamName(rs.getString("TEAMNAME"));
-		}
-		if (hasColumn(rs, "PROJECTMAPID") == true) {
-			team.setProjMapId(rs.getInt("PROJECTMAPID"));
-		}
-		if (hasColumn(rs, "STATUS") == true) {
-			team.setStatus(rs.getString("STATUS"));
-		}
+		team.setId(rs.getInt("ID"));
+		team.setTeamName(rs.getString("TEAMNAME"));
+		team.setProjMapId(rs.getInt("PROJECTMAPID"));
+		team.setStatus(rs.getString("STATUS"));
 		return team;
 	}
-	
+
 }

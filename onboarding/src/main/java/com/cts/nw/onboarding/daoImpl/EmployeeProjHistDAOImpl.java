@@ -41,7 +41,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	@Override
 	public Integer addEmployeeProjectInfo(EmployeeProjHist employeeProjectHist) {
 		try{
-			return jdbcTemplate.update(QueryConstants.EMPPROJHIST_INSERT,employeeProjectHist.getId(),employeeProjectHist.getEmployeeId(),employeeProjectHist.getProjectId(),employeeProjectHist.getTeamId(),employeeProjectHist.getRoleId(),
+			return jdbcTemplate.update(QueryConstants.EMPPROJHIST_INSERT,employeeProjectHist.getId(),employeeProjectHist.getEmployeeId(),employeeProjectHist.getProjectMappingId(),employeeProjectHist.getTeamId(),employeeProjectHist.getRoleId(),
 					employeeProjectHist.getCountryId(),employeeProjectHist.getStartDate(),employeeProjectHist.getNationwideId(),employeeProjectHist.getNationwideIdCreatedDate(),
 					employeeProjectHist.getFgOnBoardingDate(),employeeProjectHist.getMovementId(),employeeProjectHist.getWorkForceId(),employeeProjectHist.getScrumMaster(),employeeProjectHist.getApm(),
 					employeeProjectHist.getPplManager(),employeeProjectHist.getBandId(),employeeProjectHist.getExperience(),employeeProjectHist.getAttachmentId(),employeeProjectHist.getComments(),
@@ -92,7 +92,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	@Override
 	public Integer updateSpecificEmployeeProjectHist(EmployeeProjHist employeeProjectHist) {
 		try{
-			return jdbcTemplate.update(QueryConstants.EMPPROJHIST_UPDATE,employeeProjectHist.getEmployeeId(),employeeProjectHist.getProjectId(),employeeProjectHist.getTeamId(),employeeProjectHist.getRoleId(),
+			return jdbcTemplate.update(QueryConstants.EMPPROJHIST_UPDATE,employeeProjectHist.getEmployeeId(),employeeProjectHist.getProjectMappingId(),employeeProjectHist.getTeamId(),employeeProjectHist.getRoleId(),
 					employeeProjectHist.getCountryId(),employeeProjectHist.getStartDate(),employeeProjectHist.getNationwideId(),employeeProjectHist.getNationwideIdCreatedDate(),
 					employeeProjectHist.getFgOnBoardingDate(),employeeProjectHist.getMovementId(),employeeProjectHist.getWorkForceId(),employeeProjectHist.getScrumMaster(),employeeProjectHist.getApm(),
 					employeeProjectHist.getPplManager(),employeeProjectHist.getBandId(),employeeProjectHist.getExperience(),employeeProjectHist.getAttachmentId(),employeeProjectHist.getComments(),
