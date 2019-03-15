@@ -26,7 +26,7 @@ public class ProjectMappingRowMapper implements RowMapper<ProjectMapping> {
 		teamMapping.setBsaId(rs.getInt("BSAID"));
 		teamMapping.setBsaName(rs.getString("BSANAME"));
 		teamMapping.setProjStatus(rs.getString("PROJSTATUS"));
-		
+		teamMapping.setProjMapId(rs.getInt("PROJMAPID"));
 		return teamMapping;
 	}
 

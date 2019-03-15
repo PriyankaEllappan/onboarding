@@ -18,8 +18,24 @@ public class ProjectMapping {
 	private Integer bsaId;
 	private String bsaName;
 	private String projStatus;
+	private Integer projMapId;
 	
-	
+	/**
+	 * @return the projMapId
+	 */
+	public Integer getProjMapId() {
+		return projMapId;
+	}
+
+
+	/**
+	 * @param projMapId the projMapId to set
+	 */
+	public void setProjMapId(Integer projMapId) {
+		this.projMapId = projMapId;
+	}
+
+
 	/**
 	 * @return the projectId
 	 */
@@ -169,12 +185,11 @@ public class ProjectMapping {
 	 */
 	@Override
 	public String toString() {
-		return "ProjectMapping [ projectId=" + projectId
-				+ ", projectName=" + projectName + ", requesterId=" + requesterId + ", requesterName=" + requesterName
-				+ ", processorId=" + processorId + ", processorName=" + processorName + ", bsaId=" + bsaId
-				+ ", bsaName=" + bsaName + ", projStatus=" + projStatus + "]";
+		return "ProjectMapping [projectId=" + projectId + ", projectName=" + projectName + ", requesterId="
+				+ requesterId + ", requesterName=" + requesterName + ", processorId=" + processorId + ", processorName="
+				+ processorName + ", bsaId=" + bsaId + ", bsaName=" + bsaName + ", projStatus=" + projStatus
+				+ ", projMapId=" + projMapId + "]";
 	}
-	
-	
+
 	
 }

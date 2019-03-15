@@ -113,8 +113,7 @@
 									<label for="projectName">Project Name</label>
 								</div>
 								<div class="col-md-3">
-									<select class="form-control" name="projectName" id="projectName"
-										onchange="loadProjDetails()"></select>
+									<select class="form-control" name="projectName" id="projectName"></select>
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
@@ -123,6 +122,7 @@
 								<div class="col-md-3">
 									<input class="form-control" id="projectID" name="projectID"
 										placeholder="Enter Project ID" readonly autocomplete="off" />
+									<input class="form-control" type="hidden" id="projectMapID" name="projectMapID"/>
 								</div>
 							</div>
 						</div>
@@ -151,8 +151,10 @@
 									<label for="teamName">Team Name</label>
 								</div>
 								<div class="col-md-3">
-									<select class="form-control" name="teamName" id="teamName"
-										onchange="loadProjDetails()"></select>
+									<input list="teamName" id="teamList" class="form-control" autocomplete="off" name="teamName"/>
+									<datalist id="teamName" ></datalist>
+									<!-- <select class="form-control" name="teamName" id="teamName"
+										></select> -->
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">

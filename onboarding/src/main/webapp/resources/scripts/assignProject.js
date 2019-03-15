@@ -5,13 +5,31 @@ var roleMappings = {}
 var jsonRequest = {}
 
 $(document).ready(function() {
-	document.getElementById("defaultOpen").click();
 	loadProjectHierarchy();
 	loadTeamDetails();
 	loadCountryHierarchy();
 	loadAllRoles();
 	loadApprovalStatus();
 	loadReleaseStatus();
+	document.getElementById("defaultOpen").click();
+	$("#teamList").prop('disabled', true);
+	
+	$("#projectName").change(function() {
+		var selectedProject = $("#projectName").val();
+		$("#teamList").prop('disabled', false);
+		$.each(projectHierarchy, function(key,value) {  
+			if (selectedProject == value.projectName) {
+				$('#projectID').val(value.projectId);
+				$('#requester').val(value.requesterName);
+				$('#requesterID').val(value.requesterId);
+				$('#processor').val(value.processorName);
+				$('#processorID').val(value.processorId);
+				$('#bsaInfo').val(value.bsaName);
+				$('#projectMapID').val(value.projMapId);
+				loadTeamList(value.projMapId);
+			}
+		});
+	})
 	
 	/* DatePicker Options */
 	var dateOfBirth = $('#startDate');
@@ -41,24 +59,6 @@ function openSpecificTab(evt, tabName) {
     evt.currentTarget.className += " active";
 }
 
-function loadCountryHierarchy(){
-	$.ajax({
-		type : 'GET',
-		url : "/onboarding/country/getcountries" ,
-		dataType : "text",
-		success : function(resultData) {
-			countryHierarchy = JSON.parse(resultData);
-			console.log(countryHierarchy);
-			$.each(countryHierarchy, function(key,value) {   
-			     $('#country')
-			         .append($("<option></option>")
-			                    .attr("value",value.countryName)
-			                    .text(value.countryName)); 
-			});
-		}
-	});
-}
-
 function loadProjectHierarchy(){
 	$.ajax({
 		type : 'GET',
@@ -77,16 +77,32 @@ function loadProjectHierarchy(){
 	});
 }
 
-function loadProjDetails() {
-	var selectedProject = $('#projectName').val();
-	$.each(projectHierarchy, function(key, value) {
-		if (selectedProject == value.projectName) {
-			$('#projectID').val(value.projectId);
-			$('#requester').val(value.requesterName);
-			$('#requesterID').val(value.requesterId);
-			$('#processor').val(value.processorName);
-			$('#processorID').val(value.processorId);
-			$('#bsaInfo').val(value.bsaName);
+function loadTeamList(selectedProjectMapId){
+	var dataList = $('#teamName');
+	dataList.empty();
+	$.each(teamHierarchy, function(key,value) { 
+		if(selectedProjectMapId == value.projMapId){
+			$('#teamName')
+	         .append($("<option></option>")
+	                    .text(value.teamName)); 
+		}
+    });
+}
+
+function loadCountryHierarchy(){
+	$.ajax({
+		type : 'GET',
+		url : "/onboarding/country/getcountries" ,
+		dataType : "text",
+		success : function(resultData) {
+			countryHierarchy = JSON.parse(resultData);
+			console.log(countryHierarchy);
+			$.each(countryHierarchy, function(key,value) {   
+			     $('#country')
+			         .append($("<option></option>")
+			                    .attr("value",value.countryName)
+			                    .text(value.countryName)); 
+			});
 		}
 	});
 }
@@ -108,13 +124,6 @@ function loadTeamDetails() {
 		dataType : "text",
 		success : function(resultData) {
 			teamHierarchy = JSON.parse(resultData);
-			console.log(teamHierarchy);
-			$.each(teamHierarchy, function(key,value) {   
-			     $('#teamName')
-			         .append($("<option></option>")
-			                    .attr("value",value.teamName)
-			                    .text(value.teamName)); 
-			});
 		}
 	});
 }
