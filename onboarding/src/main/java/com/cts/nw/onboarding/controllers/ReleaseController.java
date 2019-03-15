@@ -1,9 +1,10 @@
 package com.cts.nw.onboarding.controllers;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -11,8 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -30,34 +29,39 @@ public class ReleaseController extends AbstractController{
 	ReleaseService releaseService;
 	
 	/**
+	 * @param resource
+	 * @param empProjHistId
 	 * @param model
 	 * @return
-	 *//*
-	@RequestMapping(value = "/processrelease/{empProjHistId}", method = RequestMethod.GET)
-	public String generateReleaseProcessForm(@ModelAttribute("employee") EmployeeProjHist employee,
-			@PathVariable String empProjHistId, ModelMap model) {
-		try {
-			employee = releaseService.getEmployeetoRelease(empProjHistId);
-			model.addAttribute("employee", employee);
-			return "terminate/requestTerminationForm";
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}*/
+	 */
+	@RequestMapping(value = "/requestrelease/{empProjHistId}", method = RequestMethod.GET)
+	public ModelAndView generateReleaseProcessForm(@ModelAttribute("employee") EmployeeProjHist resource, @PathVariable("empProjHistId") String empProjHistId,
+			Model model) {
+		System.out.println(releaseService.getEmployeetoRelease(empProjHistId).toString());
+		return new ModelAndView("terminate/requestTerminationForm", "employee", releaseService.getEmployeetoRelease(empProjHistId));
+	}
 	
 	/**
-	 * Displays the Update Form.
+	 * Updates the Resource Details
 	 * 
 	 * @param id
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/processrelease/{empProjHistId}", method = RequestMethod.GET)
-	public ModelAndView generateReleaseProcessForm(@ModelAttribute("employee") EmployeeProjHist resource, @PathVariable("empProjHistId") String empProjHistId,
-			Model model) {
-		System.out.println(releaseService.getEmployeetoRelease(empProjHistId).toString());
-		return new ModelAndView("terminate/requestTerminationForm", "employee", releaseService.getEmployeetoRelease(empProjHistId));
+	@RequestMapping(value = "/processrelease", method = RequestMethod.POST)
+	public ModelAndView releaseResource(@ModelAttribute("employee") EmployeeProjHist employee,
+			BindingResult result) {
+		System.out.println(employee.toString());
+		ModelAndView modelAndView;
+		try {
+			releaseService.releaseAnEmployee(employee);
+			modelAndView = new ModelAndView("detailsSaved");
+			return modelAndView;
+		} catch (Exception e) {
+			e.printStackTrace();
+			modelAndView = new ModelAndView("process/requestProcessingForm");
+			return modelAndView;
+		}
 	}
 	
 	/**
@@ -75,50 +79,35 @@ public class ReleaseController extends AbstractController{
 		return statList;
 	}
 	
+	
 	/**
-	 * @param employeeJson
+	 * @param model
 	 * @return
-	 *//*
-	@PostMapping(value = "/requestrelease", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public @ResponseBody EmployeeProjHist requestRelease(@RequestBody EmployeeProjHist employeeProjJson) {
+	 */
+	@GetMapping(value = "/list")
+	public String getAllEmployees(ModelMap model) {
 		try {
-			System.out.println(employeeProjJson.toString());
-			return releaseService.releaseAnEmployee(employeeProjJson);
+			return "resourcedetails/releaseList";
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
-	}*/
-	
-	/**
-	 * Updates the Resource Details
-	 * 
-	 * @param id
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping(value = "/requestrelease", method = RequestMethod.POST)
-	public ModelAndView releaseResource(@ModelAttribute("employee") EmployeeProjHist employee,
-			BindingResult result) {
-		System.out.println(employee.toString());
-		/*ModelAndView modelAndView = null;
-		if (result.hasErrors()) {
-			modelAndView = new ModelAndView("processUpdate");
-			return modelAndView;
-		} else {
-			processService.updateResource(resource);
-			modelAndView = new ModelAndView("detailsSaved");
-		    modelAndView.addObject("resource", processService.findResource(resource, resource.getEmpId()));
-			return modelAndView;
-		}*/
-		return null;
 	}
 	
-	 @GetMapping(value = "/releaselist", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public String getAllEmployees(ModelMap model) {
+	/**
+	 * @param 
+	 * @return
+	 */
+	@RequestMapping(value = "/resources", method = RequestMethod.GET)
+	public @ResponseBody List<EmployeeProjHist> getResourcesAvailableforRelease() {
+		List<EmployeeProjHist> releaseList;
 		try {
-			model.addAttribute("employees", releaseService.getEmployeestobeReleased());
-			return "resourcedetails/releaseList";
+			releaseList = releaseService.getEmployeestobeReleased();
+			if (releaseList.size() > 0) {
+				return releaseList;
+			} else {
+				return null;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

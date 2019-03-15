@@ -3,8 +3,6 @@
  */
 package com.cts.nw.onboarding.controllers;
 
-import java.security.Principal;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -14,11 +12,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cts.nw.onboarding.bo.EmployeeProjHist;
@@ -58,38 +53,18 @@ public class ProcessController extends AbstractController{
 	@RequestMapping(value = "/process/processupdate", method = RequestMethod.POST)
 	public ModelAndView updateResource(@ModelAttribute("employee") EmployeeProjHist employee,
 			BindingResult result) {
-		System.out.println(employee.toString());
-		
-		processorService.processAnEmployee(employee);
-		System.out.println("Completed");
-		/*ModelAndView modelAndView = null;
-		if (result.hasErrors()) {
-			modelAndView = new ModelAndView("processUpdate");
-			return modelAndView;
-		} else {
-			processService.updateResource(resource);
-			modelAndView = new ModelAndView("detailsSaved");
-		    modelAndView.addObject("resource", processService.findResource(resource, resource.getEmpId()));
-			return modelAndView;
-		}*/
-		return null;
-	}
-	
-	/**
-	 * @param employeeJson
-	 * @return
-	 *//*
-	@PostMapping(value = "/process/processupdate", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public @ResponseBody EmployeeProjHist assignProject(@RequestBody EmployeeProjHist employeeProjJson) {
+		ModelAndView modelAndView;
 		try {
-			System.out.println(employeeProjJson.toString());
-			return processorService.processAnEmployee(employeeProjJson);
+			processorService.processAnEmployee(employee);
+			modelAndView = new ModelAndView("detailsSaved");
+			return modelAndView;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			modelAndView = new ModelAndView("process/requestProcessingForm");
+			return modelAndView;
 		}
-	}*/
-	
+	}
+		
 	@GetMapping(value = "/process/processlist", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public String getAllEmployeestoProcess(ModelMap model) {
 		String processorId = "429992";
