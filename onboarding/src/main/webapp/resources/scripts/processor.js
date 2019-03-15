@@ -1,10 +1,11 @@
 var jsonRequest = {}
+var approvalStat;
 
 $(document).ready(function() {
 	
 	/* DatePicker Options */
-	var nwIdCreatedDate = $('#nwIdCreatedDate');
-	var fgOnboardingDate = $('#fgOnboardingDate');
+	var nwIdCreatedDate = $('#nationwideIdCreatedDate');
+	var fgOnboardingDate = $('#fgOnBoardingDate');
 	var container = $('.content-style');
 	var options = {
 		format : 'yyyy-mm-dd',
@@ -19,6 +20,16 @@ $(document).ready(function() {
 	loadApprovalStatus();
 	loadReleaseStatus();
 	loadBands();
+	
+	$("#approvalStatus").change(function() {
+		var selectedVal = $("#approvalStatus").val();
+		$.each(approvalStat, function(key,value) {  
+			if(selectedVal == value.id ){
+				 $("#approvalStatusId").val(value.id);
+			}
+		});
+	})
+	
 })
 
 function openSpecificTab(evt, tabName) {
@@ -75,7 +86,6 @@ function loadBands(){
 		dataType : "text",
 		success : function(resultData) {
 			bandDetails = JSON.parse(resultData);
-			console.log(bandDetails);
 			$.each(bandDetails, function(key,value) {   
 			     $('#band')
 			         .append($("<option></option>")

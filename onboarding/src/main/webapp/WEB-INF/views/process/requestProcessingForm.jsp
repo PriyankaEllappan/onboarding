@@ -47,7 +47,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input class="form-control" name="employeeId"
-										path="employeeId" />
+										path="employeeId" readonly="true"/>
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
