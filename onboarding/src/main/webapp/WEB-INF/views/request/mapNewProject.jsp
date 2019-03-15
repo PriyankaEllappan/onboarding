@@ -290,7 +290,7 @@
 					</div>
 				</div>
 				<div class="hideElements">
-					<input type="hidden" id="teamMappingID" /> 
+					<input type="hidden" value="0" id="teamMappingID" /> 
 					<input type="hidden" id="roleMappingID" /> 
 					<input type="hidden" id="roleID" /> 
 					<input type="hidden" id="countryMappingID" />

@@ -4,6 +4,7 @@ var countryHierarchy = {}
 var roleMappings = {}
 var jsonRequest = {}
 var movementList = {}
+var selectedTeam = [];
 $(document).ready(function() {
 	loadProjectHierarchy();
 	loadTeamDetails();
@@ -83,6 +84,10 @@ function loadTeamList(selectedProjectMapId){
 	dataList.empty();
 	$.each(teamHierarchy, function(key,value) { 
 		if(selectedProjectMapId == value.projMapId){
+			var selectedTeamTemp = {};
+			selectedTeamTemp["id"] = value.id;
+			selectedTeamTemp["teamName"] = value.teamName;
+			selectedTeam.push(selectedTeamTemp);
 			$('#teamName')
 	         .append($("<option></option>")
 	                    .text(value.teamName)); 
@@ -213,6 +218,11 @@ function loadMovementDetails(){
 $(function() {
 	$('#projectRegisterFormSubmit').click(function(e) {
 		e.preventDefault();
+		$.each(selectedTeam, function(key,value) {   
+			if($('#teamList').val() == value.teamName ){
+				$('#teamMappingID').val(value.id); 
+			}
+		});
 		setRequestParams();
 		$.post({
 			url : '/onboarding/request/addproject',
@@ -246,8 +256,8 @@ $(function() {
 });
 
 function setRequestParams(){
-	jsonRequest["employeeID"] = $('#newEmpID').val();
-	jsonRequest["team"] = $('#teamMappingID').val();
+	jsonRequest["employeeId"] = $('#newEmpID').val();
+	jsonRequest["teamId"] = $('#teamMappingID').val();
 	jsonRequest["role"] = $('#roleMappingID').val();
 	jsonRequest["country"] = $('#countryMappingID').val();
 	jsonRequest["startDate"] = $('#startDate').val();
@@ -260,4 +270,7 @@ function setRequestParams(){
 	jsonRequest["projectId"] = $('#projectID').val();
 	jsonRequest["employeeName"] = $('#name').val();
 	jsonRequest["projectName"] = $('#projectName').val();
+	jsonRequest["projectMappingId"] = $('#projectMapID').val();
+	jsonRequest["movementId"] = $('#movementId').val();
+	jsonRequest["pplManager"] = $('#pplInfo').val();
 }
