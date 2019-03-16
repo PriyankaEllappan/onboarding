@@ -71,7 +71,7 @@ public class RequesterServiceImpl implements RequesterService {
 			Integer rowsAffected = 0;
 			rowsAffected = employeeProjHistDAO.addEmployeeProjectInfo(employeeProjJson);
 			if (rowsAffected > 0) {
-				mailService.onBoardingInitiated(employeeProjJson);
+				//mailService.onBoardingInitiated(employeeProjJson);
 				return employeeProjJson;
 			}
 		} catch (Exception e) {

@@ -47,9 +47,9 @@ public class ReleaseServiceImpl implements ReleaseService{
 		rowsAffected = employeeProjHistDAO.updateSpecificEmployeeProjectHist(employeeProjHist);
 		if(rowsAffected > 0){
 			if (employeeProjHist.getReleaseStatusId() == 2) {
-				mailService.offBoardingInitiated(employeeProjHist);
+				//mailService.offBoardingInitiated(employeeProjHist);
 			} else if (employeeProjHist.getReleaseStatusId() == 3) {
-				mailService.offBoardingCompleted(employeeProjHist);
+				//mailService.offBoardingCompleted(employeeProjHist);
 			}
 			return employeeProjHist;
 		}

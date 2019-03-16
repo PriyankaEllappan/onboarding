@@ -28,11 +28,11 @@
 		<table class="table table-striped">
 			<tr>
 				<td>Employee Id(Cognizant)</td>
-				<td>${employee.getEmpId()}</td>
+				<td>${employee.getEmployeeId()}</td>
 			</tr>
 			<tr>
 				<td>Employee Name</td>
-				<td>${employee.getEmpFullName()}</td>
+				<td>${employee.getName()}</td>
 			</tr>
 			<tr>
 				<td>Email</td>
@@ -52,7 +52,7 @@
 			</tr>
 			<tr>
 				<td>Passport/ID Number</td>
-				<td>${employee.getPassportNo()}</td>
+				<td>${employee.getPassportNumber()}</td>
 			</tr>
 			<tr>
 				<td>Team Name</td>
@@ -60,19 +60,19 @@
 			</tr>
 			<tr>
 				<td>Project Name</td>
-				<td>${employee.getProjName()}</td>
+				<td>${employee.getProjectName()}</td>
 			</tr>
 			<tr>
 				<td>Project Id</td>
-				<td>${employee.getProjId()}</td>
+				<td>${employee.getProjectId()}</td>
 			</tr>
 			<tr>
 				<td>Requester</td>
-				<td>${employee.getRequester()}</td>
+				<td>${employee.getRequesterName()}</td>
 			</tr>
 			<tr>
 				<td>Processor</td>
-				<td>${employee.getProcessor()}</td>
+				<td>${employee.getProcessorName()}</td>
 			</tr>
 			<tr>
 				<td>Location</td>
@@ -82,34 +82,49 @@
 				<td>Start Date</td>
 				<td>${employee.getStartDate()}</td>
 			</tr>
-
-			<tr>
-				<td>End Date</td>
-				<td>${employee.getEndDate()}</td>
-			</tr>
 			<tr>
 				<td>Nationwide Id</td>
-				<td>${employee.getNationWideId()}</td>
+				<td>${employee.getNationwideId()}</td>
 			</tr>
 			<tr>
 				<td>NationwideId Created Date</td>
-				<td>${employee.getNationWideIdDate()}</td>
+				<td>${employee.getNationwideIdCreatedDate()}</td>
+			</tr>
+			<tr>
+				<td>SkillSet</td>
+				<td>${employee.getSkillSet()}</td>
+			</tr>
+			<tr>
+				<td>SkillSummary</td>
+				<td>${employee.getSkillSummary()}</td>
+			</tr>
+			<tr>
+				<td>Experience</td>
+				<td>${employee.getExperience()}</td>
+			</tr>
+			<tr>
+				<td>BSAName</td>
+				<td>${employee.getBsaName()}</td>
+			</tr>
+			<tr>
+				<td>Customer PPL</td>
+				<td>${employee.getPplManager()}</td>
+			</tr>
+			<tr>
+				<td>APM</td>
+				<td>${employee.getApm()}</td>
+			</tr>
+			<tr>
+				<td>Scrum Master</td>
+				<td>${employee.getScrumMaster()}</td>
+			</tr>
+			<tr>
+				<td>FGOnBoardingDate</td>
+				<td>${employee.getFgOnBoardingDate()}</td>
 			</tr>
 			<tr>
 				<td>Comments</td>
 				<td>${employee.getComments()}</td>
-			</tr>
-			<tr>
-				<td>Status</td>
-				<td>${employee.getStatus()}</td>
-			</tr>
-			<tr>
-				<td>Terminated Status</td>
-				<td>${employee.getTerminated()}</td>
-			</tr>
-			<tr>
-				<td>Terminated Date</td>
-				<td>${employee.getTerminatedDate()}</td>
 			</tr>
 			<tr>
 				<td><button class="btn btn-info"

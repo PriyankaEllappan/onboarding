@@ -42,9 +42,9 @@ public class ProcessorServiceImpl implements ProcessorService {
 		rowsAffected = employeeProjHistDAO.updateSpecificEmployeeProjectHist(employeeProjHist);
 		if(rowsAffected > 0){
 			if (employeeProjHist.getApprovalStatusId() == 2) {
-				mailService.onBoardingAcknowledged(employeeProjHist);
+				//mailService.onBoardingAcknowledged(employeeProjHist);
 			} else if (employeeProjHist.getApprovalStatusId() == 3) {
-				mailService.onBoardingCompleted(employeeProjHist);
+				//mailService.onBoardingCompleted(employeeProjHist);
 			}
 			return employeeProjHist;
 		}

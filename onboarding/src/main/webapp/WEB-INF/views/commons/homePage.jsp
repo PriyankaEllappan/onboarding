@@ -8,90 +8,100 @@
 <link rel="stylesheet"
 	href="/onboarding/resources/stylesheets/bootstrap.min.css">
 <link rel="stylesheet"
-	href="/onboarding/resources/stylesheets/bootstrap-datepicker.min.css">
-<link rel="stylesheet"
 	href="/onboarding/resources/stylesheets/application.css">
+<script src="/onboarding/resources/scripts/jquery.min.js"></script>
+<script src="/onboarding/resources/scripts/bootstrap.min.js"></script>
+<script src="/onboarding/resources/scripts/application.js"></script>
+<style type="text/css">
+a {
+	text-decoration: none !important;
+}
+</style>
 </head>
 <body>
 	<jsp:include page="../layouts/header.jsp" />
 	<div class="content-style">
 		<div class="row">
-			<div class="col-xs-8">
-				<h3>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Welcome <span style="color: #161892">${userName}</span>
-				</h3>
-			</div>
+			<br>
 		</div>
-		<br> <br>
-		<div style="margin-left: 61px;">
-			<div class="row">
-				<div class="col-xs-3"></div>
-				<div class="col-xs-3">
-					<button class="btn btn-info button-fixedwidth"
-						onclick="location.href='/onboarding/request/add'">Resource
-						onboarding</button>
+		<div class="row">
+			<br>
+		</div>
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+				<div class="panel-group" id="accordion">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion"
+									href="#collapse1">Onboarding Resources</a>
+							</h4>
+						</div>
+						<div id="collapse1" class="panel-collapse collapse in">
+							<div class="panel-body">
+								<ul class="list-group">
+									<li class="list-group-item"><a
+										href="/onboarding/request/check">Raise a request to
+											On-Board a resource</a></li>
+									<li class="list-group-item"><a
+										href="/onboarding/request/resourcelist">View request list</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion"
+									href="#collapse2">Processing Requests</a>
+							</h4>
+						</div>
+						<div id="collapse2" class="panel-collapse collapse">
+							<div class="panel-body">
+								<div class="panel-body">
+									<ul class="list-group">
+										<li class="list-group-item"><a
+											href="/onboarding/process/onboardlist">Process
+												On-Boarding requests</a></li>
+										<li class="list-group-item"><a
+											href="/onboarding/process/offboardlist">Process
+												Off-Boarding requests</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion"
+									href="#collapse3">Offboarding Resources</a>
+							</h4>
+						</div>
+						<div id="collapse3" class="panel-collapse collapse">
+							<div class="panel-body">
+								<div class="panel-body">
+									<ul class="list-group">
+										<li class="list-group-item"><a
+											href="/onboarding/release/list">Raise a request to
+												Off-Board a resource</a></li>
+										<li class="list-group-item"><a
+											href="/onboarding/release/teamlist">Raise an request to
+												Off-Board by team</a></li>
+										<li class="list-group-item"><a
+											href="/onboarding/release/projectlist">Raise an request
+												to Off-Board by team</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-xs-5">
-					<br>
-				</div>
-			</div>
-			<div class="row">
-			<div class="col-xs-3"></div>
-				<div class="col-xs-3">
-					<button class="btn btn-info button-fixedwidth"
-						onclick="location.href='/onboarding/process'">Process
-						onboarding</button>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-5">
-					<br>
-				</div>
-			</div>
-			<div class="row">
-			<div class="col-xs-3"></div>
-				<div class="col-xs-3">
-					<button class="btn btn-info button-fixedwidth"
-						onclick="location.href='/onboarding/terminate'">Terminate
-						a resource</button>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-5">
-					<br>
-				</div>
-			</div>
-			<div class="row">
-			<div class="col-xs-3"></div>
-				<div class="col-xs-3">
-					<button class="btn btn-info button-fixedwidth"
-						onclick="location.href='/onboarding/request'">List of
-						resources</button>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-5">
-					<br>
-				</div>
-			</div>
-			<div class="row">
-			<div class="col-xs-3"></div>
-				<div class="col-xs-3">
-					<button class="btn btn-info button-fixedwidth"
-						onclick="location.href='/onboarding/project'">Project
-						Details</button>
-				</div>
-			</div>
+			<div class="col-md-4"></div>
 		</div>
 	</div>
-
-	<!-- Load Script Files -->
-	<script src="/onboarding/resources/scripts/jquery.min.js"></script>
-	<script src="/onboarding/resources/scripts/bootstrap.min.js"></script>
-	<script src="/onboarding/resources/scripts/application.js"></script>
-	<script src="/onboarding/resources/scripts/bootstrap-datepicker.min.js"></script>
 	<jsp:include page="../layouts/footer.jsp" />
 </body>
 </html>

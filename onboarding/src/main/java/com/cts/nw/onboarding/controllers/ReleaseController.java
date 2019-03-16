@@ -1,8 +1,6 @@
 package com.cts.nw.onboarding.controllers;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,14 +18,22 @@ import org.springframework.web.servlet.ModelAndView;
 import com.cts.nw.onboarding.bo.EmployeeProjHist;
 import com.cts.nw.onboarding.bo.ReleaseSummary;
 import com.cts.nw.onboarding.service.ReleaseService;
+import com.cts.nw.onboarding.util.UserDetails;
 
 @Controller
 @RequestMapping("/release")
-public class ReleaseController extends AbstractController{
+public class ReleaseController extends AbstractController {
+
+	UserDetails user;
+
+	public ReleaseController() {
+		super();
+		user = loggedInUserDetails();
+	}
 
 	@Autowired
 	ReleaseService releaseService;
-	
+
 	/**
 	 * @param resource
 	 * @param empProjHistId
@@ -35,12 +41,13 @@ public class ReleaseController extends AbstractController{
 	 * @return
 	 */
 	@RequestMapping(value = "/requestrelease/{empProjHistId}", method = RequestMethod.GET)
-	public ModelAndView generateReleaseProcessForm(@ModelAttribute("employee") EmployeeProjHist resource, @PathVariable("empProjHistId") String empProjHistId,
-			Model model) {
+	public ModelAndView generateReleaseProcessForm(@ModelAttribute("employee") EmployeeProjHist resource,
+			@PathVariable("empProjHistId") String empProjHistId, Model model) {
 		System.out.println(releaseService.getEmployeetoRelease(empProjHistId).toString());
-		return new ModelAndView("terminate/requestTerminationForm", "employee", releaseService.getEmployeetoRelease(empProjHistId));
+		return new ModelAndView("terminate/requestTerminationForm", "employee",
+				releaseService.getEmployeetoRelease(empProjHistId));
 	}
-	
+
 	/**
 	 * Updates the Resource Details
 	 * 
@@ -49,8 +56,7 @@ public class ReleaseController extends AbstractController{
 	 * @return
 	 */
 	@RequestMapping(value = "/processrelease", method = RequestMethod.POST)
-	public ModelAndView releaseResource(@ModelAttribute("employee") EmployeeProjHist employee,
-			BindingResult result) {
+	public ModelAndView releaseResource(@ModelAttribute("employee") EmployeeProjHist employee, BindingResult result) {
 		System.out.println(employee.toString());
 		ModelAndView modelAndView;
 		try {
@@ -63,7 +69,7 @@ public class ReleaseController extends AbstractController{
 			return modelAndView;
 		}
 	}
-	
+
 	/**
 	 * @param model
 	 * @return
@@ -78,8 +84,7 @@ public class ReleaseController extends AbstractController{
 		}
 		return statList;
 	}
-	
-	
+
 	/**
 	 * @param model
 	 * @return
@@ -93,9 +98,36 @@ public class ReleaseController extends AbstractController{
 			return null;
 		}
 	}
+
+	/**
+	 * @param model
+	 * @return
+	 */
+	@GetMapping(value = "/teamlist")
+	public String getAllEmployeesbyTeam(ModelMap model) {
+		try {
+			return "resourcedetails/releaseList";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 	
 	/**
-	 * @param 
+	 * @param model
+	 * @return
+	 */
+	@GetMapping(value = "/projectlist")
+	public String getAllEmployeesbyProject(ModelMap model) {
+		try {
+			return "resourcedetails/releaseList";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	/**
+	 * @param
 	 * @return
 	 */
 	@RequestMapping(value = "/resources", method = RequestMethod.GET)

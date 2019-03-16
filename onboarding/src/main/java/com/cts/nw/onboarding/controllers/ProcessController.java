@@ -18,17 +18,25 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cts.nw.onboarding.bo.EmployeeProjHist;
 import com.cts.nw.onboarding.service.ProcessorService;
+import com.cts.nw.onboarding.util.UserDetails;
 
 /**
  * @author 656579
  *
  */
 @Controller
-public class ProcessController extends AbstractController{
+public class ProcessController extends AbstractController {
+
+	UserDetails user;
+
+	public ProcessController() {
+		super();
+		user = loggedInUserDetails();
+	}
 
 	@Autowired
 	ProcessorService processorService;
-	
+
 	/**
 	 * Displays the Update Form.
 	 * 
@@ -37,12 +45,13 @@ public class ProcessController extends AbstractController{
 	 * @return
 	 */
 	@RequestMapping(value = "/process/processrequest/{empProjHistId}", method = RequestMethod.GET)
-	public ModelAndView showUpdateForm(@ModelAttribute("employee") EmployeeProjHist resource, @PathVariable("empProjHistId") String empProjHistId,
-			Model model) {
+	public ModelAndView showUpdateForm(@ModelAttribute("employee") EmployeeProjHist resource,
+			@PathVariable("empProjHistId") String empProjHistId, Model model) {
 		System.out.println(processorService.getEmployeetoProcess(empProjHistId).toString());
-		return new ModelAndView("process/requestProcessingForm", "employee", processorService.getEmployeetoProcess(empProjHistId));
+		return new ModelAndView("process/requestProcessingForm", "employee",
+				processorService.getEmployeetoProcess(empProjHistId));
 	}
-	
+
 	/**
 	 * Updates the Resource Details
 	 * 
@@ -51,8 +60,7 @@ public class ProcessController extends AbstractController{
 	 * @return
 	 */
 	@RequestMapping(value = "/process/processupdate", method = RequestMethod.POST)
-	public ModelAndView updateResource(@ModelAttribute("employee") EmployeeProjHist employee,
-			BindingResult result) {
+	public ModelAndView updateResource(@ModelAttribute("employee") EmployeeProjHist employee, BindingResult result) {
 		ModelAndView modelAndView;
 		try {
 			processorService.processAnEmployee(employee);
@@ -64,9 +72,9 @@ public class ProcessController extends AbstractController{
 			return modelAndView;
 		}
 	}
-		
-	@GetMapping(value = "/process/processlist", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public String getAllEmployeestoProcess(ModelMap model) {
+
+	@GetMapping(value = "/process/onboardlist", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public String getAllEmployeestobeOnboarded(ModelMap model) {
 		String processorId = "429992";
 		try {
 			model.addAttribute("employees", processorService.getRecordsPerProcessor(processorId));
@@ -75,5 +83,17 @@ public class ProcessController extends AbstractController{
 			e.printStackTrace();
 			return null;
 		}
-	} 
+	}
+	
+	@GetMapping(value = "/process/offboardlist", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public String getAllEmployeestobeOffboarded(ModelMap model) {
+		String processorId = "429992";
+		try {
+			model.addAttribute("employees", processorService.getRecordsPerProcessor(processorId));
+			return "resourcedetails/processList";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

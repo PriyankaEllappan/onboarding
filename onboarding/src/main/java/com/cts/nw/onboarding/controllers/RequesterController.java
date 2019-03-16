@@ -21,29 +21,36 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.cts.nw.onboarding.bo.EmployeeMaster;
 import com.cts.nw.onboarding.bo.EmployeeProjHist;
 import com.cts.nw.onboarding.service.RequesterService;
+import com.cts.nw.onboarding.util.UserDetails;
 
 /**
  * @author 656579
  *
  */
 @Controller
-public class RequesterController {
+public class RequesterController extends AbstractController {
+
+	UserDetails user;
+
+	public RequesterController() {
+		super();
+		user = loggedInUserDetails();
+	}
 
 	@Autowired
 	RequesterService requesterService;
 
-	
-    @GetMapping(value = "/request/resourcelist", produces = { MediaType.APPLICATION_JSON_VALUE })
-    public String getAllEmployees(ModelMap model) {
-           try {
-        	   model.addAttribute("employees", requesterService.getAllEmployees()); 
-        	   return "resourcedetails/resourceList";
-           } catch (Exception e) {
-                  e.printStackTrace();
-                  return null;
-           }
-    }
-        
+	@GetMapping(value = "/request/resourcelist", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public String getAllEmployees(ModelMap model) {
+		try {
+			model.addAttribute("employees", requesterService.getAllEmployees());
+			return "resourcedetails/resourceList";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 	/**
 	 * @param model
 	 * @return
@@ -52,7 +59,7 @@ public class RequesterController {
 	public String index() {
 		return "request/checkResourceAvailability";
 	}
-	
+
 	/**
 	 * @param model
 	 * @return
@@ -67,7 +74,7 @@ public class RequesterController {
 		}
 		return employee;
 	}
-	
+
 	/**
 	 * @param employeeJson
 	 * @return
@@ -81,34 +88,34 @@ public class RequesterController {
 			return null;
 		}
 	}
-	
-    /**
-    * @param employeeJson
-    * @return
-    */
-    @GetMapping(value = "/request/checkactiveassignments/{employeeid}", produces = { MediaType.APPLICATION_JSON_VALUE })
-    public @ResponseBody List<EmployeeProjHist> checkActiveAssignment(@PathVariable String employeeid) {
-    		List<EmployeeProjHist> activeAssignment;
-           try {
-        	   activeAssignment = requesterService.checkActiveAssignments(employeeid);
-        	   if(activeAssignment != null && !activeAssignment.isEmpty()){
-        		   return activeAssignment;
-        	   }else{
-        		   return null;
-        	   }
-           } catch (Exception e) {
-                  e.printStackTrace();
-                  return null;
-           }
-    }
+
+	/**
+	 * @param employeeJson
+	 * @return
+	 */
+	@GetMapping(value = "/request/checkactiveassignments/{employeeid}", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public @ResponseBody List<EmployeeProjHist> checkActiveAssignment(@PathVariable String employeeid) {
+		List<EmployeeProjHist> activeAssignment;
+		try {
+			activeAssignment = requesterService.checkActiveAssignments(employeeid);
+			if (activeAssignment != null && !activeAssignment.isEmpty()) {
+				return activeAssignment;
+			} else {
+				return null;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 	/**
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value = "/request/mapproject/{empid}", method = RequestMethod.GET)
-	public String generateAddProjForm(@ModelAttribute("employee") EmployeeMaster employee,
-			@PathVariable String empid, ModelMap model) {
+	public String generateAddProjForm(@ModelAttribute("employee") EmployeeMaster employee, @PathVariable String empid,
+			ModelMap model) {
 		try {
 			employee = requesterService.getResourceByID(empid);
 			model.addAttribute("employee", employee);
@@ -118,7 +125,7 @@ public class RequesterController {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * @param employeeJson
 	 * @return
@@ -133,5 +140,5 @@ public class RequesterController {
 			return null;
 		}
 	}
-	
+
 }

@@ -2,14 +2,7 @@
 package com.cts.nw.onboarding.controllers;
 
 import java.security.Principal;
-import java.util.Collection;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,23 +10,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cts.nw.onboarding.util.UserDetails;
+
 /**
  * @author 656579
  *
  */
 @Controller
 @RequestMapping("/")
-public class HomeController {
-
-	public static String APPURL = "";
-	/**
-	 * @return
-	 */
-	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView home() {
-		String homepageMessage = "Onboarding Application";
-		return new ModelAndView("commons/index", "message", homepageMessage);
-	}
+public class HomeController extends AbstractController {
 
 	/**
 	 * @param model
@@ -76,68 +61,43 @@ public class HomeController {
 	}
 	
 	/**
-	 * @param model
-	 * @param principal
 	 * @return
 	 */
-	@RequestMapping("/admin")
-	public ModelAndView adminIndex(ModelMap model, Principal principal) {
-		String loggedInUserName = null;
-		loggedInUserName = getLoggedinUserDetails(principal, loggedInUserName);
-		return new ModelAndView("commons/homePage", "userName", loggedInUserName);
-	}
-
-	/**
-	 * @param model
-	 * @param principal
-	 * @return
-	 */
-	@RequestMapping("/request")
-	public ModelAndView processIndex(ModelMap model, Principal principal) {
-		String loggedInUserName = null;
-		loggedInUserName = getLoggedinUserDetails(principal, loggedInUserName);
-		return new ModelAndView("commons/homePage", "userName", loggedInUserName);
+	@RequestMapping(method = RequestMethod.GET)
+	public ModelAndView getIndex(@ModelAttribute("user") UserDetails userDetail) {
+		return getViewPage(userDetail);
 	}
 	
 	/**
-	 * @param model
-	 * @param principal
 	 * @return
 	 */
-	@RequestMapping("/process")
-	public ModelAndView requestIndex(ModelMap model, Principal principal) {
-		String loggedInUserName = null;
-		loggedInUserName = getLoggedinUserDetails(principal, loggedInUserName);
-		return new ModelAndView("commons/homePage", "userName", loggedInUserName);
+	@RequestMapping(value = "/admin",method = RequestMethod.GET)
+	public ModelAndView getAdmin(@ModelAttribute("user") UserDetails userDetail) {
+		return getViewPage(userDetail);
 	}
 	
 	/**
-	 * @param principal
-	 * @param loggedInUserName
 	 * @return
 	 */
-	private String getLoggedinUserDetails(Principal principal, String loggedInUserName) {
-		try {
-			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-			if (!(authentication instanceof AnonymousAuthenticationToken)) {
-				String currentUserName = authentication.getName();
-				Collection<? extends GrantedAuthority> currentUserNameAuthorities = authentication.getAuthorities();
-				System.out.println("Logged in User :" + currentUserName);
-				System.out.println("Logged in Role" + currentUserNameAuthorities.toString());
-				if (principal.getName() != null) {
-					loggedInUserName = principal.getName();
-				} else {
-					System.out.println("principal.getName() is null");
-				}
-			} else {
-				System.out.println("Please login to continue");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return loggedInUserName;
+	@RequestMapping(value = "/request",method = RequestMethod.GET)
+	public ModelAndView getProcess(@ModelAttribute("user") UserDetails userDetail) {
+		return getViewPage(userDetail);
+	}
+	
+	/**
+	 * @return
+	 */
+	@RequestMapping(value = "/process",method = RequestMethod.GET)
+	public ModelAndView getRequest(@ModelAttribute("user") UserDetails userDetail) {
+		return getViewPage(userDetail);
 	}
 
+	private ModelAndView getViewPage(@ModelAttribute("user") UserDetails userDetail) {
+		
+		userDetail = loggedInUserDetails();
+		return new ModelAndView("commons/homePage", "user", userDetail);
+	}
+	
 	/**
 	 * @param model
 	 * @return
@@ -145,16 +105,6 @@ public class HomeController {
 	@RequestMapping(value = "/j_spring_security_logout", method = RequestMethod.GET)
 	public String logout(ModelMap model) {
 		return "commons/login";
-	}
-
-	@ModelAttribute
-	public void setUrl(HttpServletRequest request){
-		if(request.getLocalPort() != 0){
-			APPURL = request.getServerName() + ":" + request.getLocalPort() + request.getContextPath();
-		}else{
-			APPURL = request.getServerName() + request.getContextPath();
-		}
-		System.out.println(APPURL);
 	}
 	
 }

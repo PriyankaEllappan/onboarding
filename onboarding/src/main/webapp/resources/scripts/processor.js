@@ -64,11 +64,20 @@ function loadApprovalStatus(){
 		success : function(resultData) {
 			approvalStat = JSON.parse(resultData);
 			$.each(approvalStat, function(key,value) {  
-				$('#approvalStatus')
-		         .append($("<option></option>")
-		                    .attr("value",value.id)
-		                    .text(value.status)); 
+				if(value.id == 1 || value.id ==5){
+					$('#approvalStatus')
+			         .append($("<option></option>")
+			                    .attr("value",value.id)
+			                    .attr("disabled", true)
+			                    .text(value.status));
+				}else{
+					$('#approvalStatus')
+			         .append($("<option></option>")
+			                    .attr("value",value.id)
+			                    .text(value.status));
+				}
 			});
+			$('select[name="approvalStatus"]').find('option[value='+ $('#approvalStatusId').val() +']').attr("selected",true);
 		}
 	});
 }
