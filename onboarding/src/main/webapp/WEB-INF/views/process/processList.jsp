@@ -3,12 +3,10 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Resource OnBoarding</title>
-
 <!-- Load Sytle Sheets -->
 <link rel="stylesheet"
 	href="/onboarding/resources/stylesheets/bootstrap.min.css">
@@ -16,6 +14,10 @@
 	href="/onboarding/resources/stylesheets/bootstrap-datepicker.min.css">
 <link rel="stylesheet"
 	href="/onboarding/resources/stylesheets/application.css">
+<script src="/onboarding/resources/scripts/jquery.min.js"></script>
+<script src="/onboarding/resources/scripts/bootstrap.min.js"></script>
+<script src="/onboarding/resources/scripts/application.js"></script>
+<script src="/onboarding/resources/scripts/bootstrap-datepicker.min.js"></script>
 </head>
 <body>
 	<jsp:include page="../layouts/header.jsp" />
@@ -29,38 +31,27 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
+					<th>Employee Id</th>
 					<th>Employee Name</th>
+					<th>Project Id</th>
 					<th>Project Name</th>
-					<th>Project ID</th>
-					<th>Requester ID</th>
-					<th>Requester Name</th>
-					<th>Processor ID</th>
-					<th>Processor Name</th>
+					<th>Team Name</th>
 				</tr>
 			</thead>
-			<c:forEach var="resource" items="${resources}">
+			<c:forEach var="employee" items="${employees}">
 				<tr>
-					<td>${resource.getFirstName()}</td>
-					<td>${resource.getProjectName()}</td>
-					<td>${resource.getProjectId()}</td>
-					<td>${resource.getRequesterID()}</td>
-					<td>${resource.getRequesterName()}</td>
-					<td>${resource.getProcessorID()}</td>
-					<td>${resource.getProcessorName()}</td>
+					<td>${employee.getEmployeeId()}</td>
+					<td>${employee.getName()}</td>
+					<td>${employee.getProjectId()}</td>
+					<td>${employee.getProjectName()}</td>
+					<td>${employee.getTeamName()}</td>
 					<td><button class="btn btn-info"
-							onclick="location.href='show/${resource.getId()}'">Show</button>
-					<td><button class="btn btn-primary"
-							onclick="location.href='approve/${resource.getId()}'">Approve</button>
+							onclick="location.href='show/${resource.getID()}'">Show</button>
 				</tr>
 			</c:forEach>
 		</table>
 	</div>
-
 	<!-- Load Script Files -->
-	<script src="/onboarding/resources/scripts/jquery.min.js"></script>
-	<script src="/onboarding/resources/scripts/bootstrap.min.js"></script>
-	<script src="/onboarding/resources/scripts/application.js"></script>
-	<script src="/onboarding/resources/scripts/bootstrap-datepicker.min.js"></script>
 	<jsp:include page="../layouts/footer.jsp" />
 </body>
 </html>

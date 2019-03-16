@@ -110,4 +110,14 @@ public class RequesterServiceImpl implements RequesterService {
 		return null;
 	}
 
+	@Override
+	public List<EmployeeProjHist> getEmployeesPerRequester(String requesterId) {
+		try {
+			return employeeProjHistDAO.getEmployeesPerRequester(requesterId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }

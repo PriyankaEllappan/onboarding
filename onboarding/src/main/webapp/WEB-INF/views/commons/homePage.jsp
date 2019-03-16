@@ -45,7 +45,7 @@ a {
 										href="/onboarding/request/check">Raise a request to
 											On-Board a resource</a></li>
 									<li class="list-group-item"><a
-										href="/onboarding/request/resourcelist">View request list</a></li>
+										href="/onboarding/request/requestlist">View request list</a></li>
 								</ul>
 							</div>
 						</div>

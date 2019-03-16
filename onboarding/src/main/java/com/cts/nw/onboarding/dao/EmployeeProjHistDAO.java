@@ -16,12 +16,16 @@ public interface EmployeeProjHistDAO {
 	/*Requester Operations*/
 	Integer addEmployeeProjectInfo(EmployeeProjHist employeeProjectHist);
 	List<EmployeeProjHist> checkActiveAssignments(String empid);
+	List<EmployeeProjHist> getEmployeesPerRequester(String requesterId);
 	
 	/*Processor Operations*/
-	List<EmployeeProjHist> getRecordsPerProcessor(String processorid);
+	List<EmployeeProjHist> getRecordsPerProcessortoOnboard(String processorid);
+	List<EmployeeProjHist> getRecordsPerProcessortoOffboard(String processorid);
 	
 	/*Release Operations*/
 	List<EmployeeProjHist> getEmployeestobeReleased();
+	List<EmployeeProjHist> getEmployeestobeReleasedByTeam(String teamId);
+	List<EmployeeProjHist> getEmployeestobeReleasedByProject(String projectId);
 	
 	/*Common Operations*/
 	EmployeeProjHist getSpecificEmployeeProjectHist(String empProjHistId);

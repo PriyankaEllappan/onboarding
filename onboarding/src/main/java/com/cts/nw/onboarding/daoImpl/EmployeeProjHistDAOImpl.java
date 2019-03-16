@@ -54,7 +54,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	}
 
 	@Override
-	public List<EmployeeProjHist> getRecordsPerProcessor(String processorid) {
+	public List<EmployeeProjHist> getRecordsPerProcessortoOnboard(String processorid) {
 		try {
 			String whereClause = " WHERE PR.PROCESSORID = ? AND EPH.APPROVALSTATUS IN (1,2)";
 			String query = QueryConstants.EMPPROJHIST_SELECT + whereClause;
@@ -65,6 +65,17 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 		}
 	}
 
+	@Override
+	public List<EmployeeProjHist> getRecordsPerProcessortoOffboard(String processorid) {
+		try {
+			String whereClause = " WHERE PR.PROCESSORID = ? AND EPH.RELEASESTATUS = 2";
+			String query = QueryConstants.EMPPROJHIST_SELECT + whereClause;
+			RowMapper<EmployeeProjHist> rowMapper = new EmployeeProjHistRowMapper();
+			return this.jdbcTemplate.query(query, rowMapper,processorid);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
 	@Override
 	public EmployeeProjHist getSpecificEmployeeProjectHist(String empProjHistId) {
 		try {
@@ -89,6 +100,30 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 		}
 	}
 
+	@Override
+	public List<EmployeeProjHist> getEmployeestobeReleasedByTeam(String teamId) {
+		try {
+			String whereClause = " WHERE EPH.RELEASESTATUS IN (1,2) AND EPH.TEAM = ?";
+			String query = QueryConstants.EMPPROJHIST_SELECT + whereClause;
+			RowMapper<EmployeeProjHist> rowMapper = new EmployeeProjHistRowMapper();
+			return this.jdbcTemplate.query(query, rowMapper,teamId);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+
+	@Override
+	public List<EmployeeProjHist> getEmployeestobeReleasedByProject(String projectId) {
+		try {
+			String whereClause = " WHERE EPH.RELEASESTATUS IN (1,2) AND PM.PROJECTID = ?";
+			String query = QueryConstants.EMPPROJHIST_SELECT + whereClause;
+			RowMapper<EmployeeProjHist> rowMapper = new EmployeeProjHistRowMapper();
+			return this.jdbcTemplate.query(query, rowMapper,projectId);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+	
 	@Override
 	public Integer updateSpecificEmployeeProjectHist(EmployeeProjHist employeeProjectHist) {
 		try{
@@ -115,6 +150,17 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 			return null;
 		}
 	}
-	
+
+	@Override
+	public List<EmployeeProjHist> getEmployeesPerRequester(String requesterId) {
+		try {
+			String whereClause = " WHERE RQ.REQUESTERID = ? ";
+			String query = QueryConstants.EMPPROJHIST_SELECT + whereClause;
+			RowMapper<EmployeeProjHist> rowMapper = new EmployeeProjHistRowMapper();
+			return this.jdbcTemplate.query(query, rowMapper,requesterId);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
 
 }

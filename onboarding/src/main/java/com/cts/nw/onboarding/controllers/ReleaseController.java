@@ -61,7 +61,7 @@ public class ReleaseController extends AbstractController {
 		ModelAndView modelAndView;
 		try {
 			releaseService.releaseAnEmployee(employee);
-			modelAndView = new ModelAndView("detailsSaved");
+			modelAndView = new ModelAndView("commons/detailsSaved");
 			return modelAndView;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -92,7 +92,7 @@ public class ReleaseController extends AbstractController {
 	@GetMapping(value = "/list")
 	public String getAllEmployees(ModelMap model) {
 		try {
-			return "resourcedetails/releaseList";
+			return "terminate/releaseList";
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -106,7 +106,7 @@ public class ReleaseController extends AbstractController {
 	@GetMapping(value = "/teamlist")
 	public String getAllEmployeesbyTeam(ModelMap model) {
 		try {
-			return "resourcedetails/releaseList";
+			return "terminate/releaseList";
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -120,7 +120,7 @@ public class ReleaseController extends AbstractController {
 	@GetMapping(value = "/projectlist")
 	public String getAllEmployeesbyProject(ModelMap model) {
 		try {
-			return "resourcedetails/releaseList";
+			return "terminate/releaseList";
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

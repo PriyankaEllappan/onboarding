@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.cts.nw.onboarding.bo.EmployeeMaster;
 import com.cts.nw.onboarding.bo.EmployeeProjHist;
 import com.cts.nw.onboarding.service.RequesterService;
-import com.cts.nw.onboarding.util.UserDetails;
 
 /**
  * @author 656579
@@ -30,21 +29,16 @@ import com.cts.nw.onboarding.util.UserDetails;
 @Controller
 public class RequesterController extends AbstractController {
 
-	UserDetails user;
-
-	public RequesterController() {
-		super();
-		user = loggedInUserDetails();
-	}
-
 	@Autowired
 	RequesterService requesterService;
 
-	@GetMapping(value = "/request/resourcelist", produces = { MediaType.APPLICATION_JSON_VALUE })
+	@GetMapping(value = "/request/requestlist")
 	public String getAllEmployees(ModelMap model) {
 		try {
-			model.addAttribute("employees", requesterService.getAllEmployees());
-			return "resourcedetails/resourceList";
+			String requesterId = "151539";
+			model.addAttribute("employees", requesterService.getEmployeesPerRequester(requesterId));
+			model.addAttribute("user", loggedInUserDetails());
+			return "request/requestList";
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -56,7 +50,8 @@ public class RequesterController extends AbstractController {
 	 * @return
 	 */
 	@RequestMapping(value = "/request/check", method = RequestMethod.GET)
-	public String index() {
+	public String index(ModelMap model) {
+		model.addAttribute("user", loggedInUserDetails());
 		return "request/checkResourceAvailability";
 	}
 
@@ -119,6 +114,7 @@ public class RequesterController extends AbstractController {
 		try {
 			employee = requesterService.getResourceByID(empid);
 			model.addAttribute("employee", employee);
+			model.addAttribute("user", loggedInUserDetails());
 			return "request/mapNewProject";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -131,9 +127,10 @@ public class RequesterController extends AbstractController {
 	 * @return
 	 */
 	@PostMapping(value = "/request/addproject", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public @ResponseBody EmployeeProjHist assignProject(@RequestBody EmployeeProjHist employeeProjJson) {
+	public @ResponseBody EmployeeProjHist assignProject(@RequestBody EmployeeProjHist employeeProjJson,ModelMap model) {
 		try {
 			System.out.println(employeeProjJson.toString());
+			model.addAttribute("user", loggedInUserDetails());
 			return requesterService.addNewProject(employeeProjJson);
 		} catch (Exception e) {
 			e.printStackTrace();

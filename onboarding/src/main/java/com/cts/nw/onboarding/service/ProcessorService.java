@@ -13,11 +13,14 @@ import com.cts.nw.onboarding.bo.EmployeeProjHist;
  */
 public interface ProcessorService {
 
-	List<EmployeeProjHist> getRecordsPerProcessor(String processorid);
 
 	EmployeeProjHist getEmployeetoProcess(String empProjHistId);
 
 	EmployeeProjHist processAnEmployee(EmployeeProjHist employeeProjHist);
+
+	List<EmployeeProjHist> getRecordsPerProcessortoOnboard(String processorid);
+
+	List<EmployeeProjHist> getRecordsPerProcessortoOffboard(String processorid);
 
 
 }

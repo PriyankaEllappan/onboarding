@@ -18,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cts.nw.onboarding.bo.EmployeeProjHist;
 import com.cts.nw.onboarding.service.ProcessorService;
-import com.cts.nw.onboarding.util.UserDetails;
 
 /**
  * @author 656579
@@ -27,12 +26,6 @@ import com.cts.nw.onboarding.util.UserDetails;
 @Controller
 public class ProcessController extends AbstractController {
 
-	UserDetails user;
-
-	public ProcessController() {
-		super();
-		user = loggedInUserDetails();
-	}
 
 	@Autowired
 	ProcessorService processorService;
@@ -75,10 +68,11 @@ public class ProcessController extends AbstractController {
 
 	@GetMapping(value = "/process/onboardlist", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public String getAllEmployeestobeOnboarded(ModelMap model) {
-		String processorId = "429992";
+		String processorId = "413804";
 		try {
-			model.addAttribute("employees", processorService.getRecordsPerProcessor(processorId));
-			return "resourcedetails/processList";
+			model.addAttribute("employees", processorService.getRecordsPerProcessortoOnboard(processorId));
+			model.addAttribute("user",loggedInUserDetails());
+			return "process/processList";
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -87,10 +81,11 @@ public class ProcessController extends AbstractController {
 	
 	@GetMapping(value = "/process/offboardlist", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public String getAllEmployeestobeOffboarded(ModelMap model) {
-		String processorId = "429992";
+		String processorId = "413804";
 		try {
-			model.addAttribute("employees", processorService.getRecordsPerProcessor(processorId));
-			return "resourcedetails/processList";
+			model.addAttribute("employees", processorService.getRecordsPerProcessortoOffboard(processorId));
+			model.addAttribute("user",loggedInUserDetails());
+			return "process/processList";
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

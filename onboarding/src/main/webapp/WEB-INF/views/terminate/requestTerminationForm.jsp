@@ -39,7 +39,7 @@
 					Details</button>
 			</div>
 			<form:form name="projectRegisterForm" method="post"
-				action="/onboarding/release/requestrelease" modelAttribute="employee">
+				action="/onboarding/release/processrelease" modelAttribute="employee">
 				<div id="basicInfo" class="tabcontent">
 					<div class="resizeTabCont">
 						<br>
