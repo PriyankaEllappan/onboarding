@@ -208,3 +208,12 @@ CREATE TABLE AUTHORITIES (
 );
 
 show tables;
+
+delimiter //
+CREATE PROCEDURE insertTeam(OUT id int, 
+  IN team_name varchar(255), IN proj_id int, IN stat varchar(20)) 
+BEGIN
+INSERT INTO TEAMS(TEAMNAME,PROJECTMAPID,STATUS) VALUES (team_name,proj_id,stat);
+SET id = LAST_INSERT_ID();
+END //
+delimiter ;

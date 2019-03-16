@@ -273,6 +273,7 @@ $(function() {
 function setRequestParams(){
 	jsonRequest["employeeId"] = $('#newEmpID').val();
 	jsonRequest["teamId"] = $('#teamMappingID').val();
+	jsonRequest["teamName"] = $('#teamList').val();
 	jsonRequest["roleId"] = $('#roleMappingID').val();
 	jsonRequest["countryId"] = $('#countryMappingID').val();
 	jsonRequest["startDate"] = $('#startDate').val();

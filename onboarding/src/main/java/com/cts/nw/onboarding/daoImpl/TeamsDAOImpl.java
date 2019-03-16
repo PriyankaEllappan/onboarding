@@ -3,6 +3,9 @@
  */
 package com.cts.nw.onboarding.daoImpl;
 
+import java.sql.CallableStatement;
+import java.sql.SQLException;
+import java.sql.Types;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +34,10 @@ public class TeamsDAOImpl implements TeamsDAO{
 	@Override
 	public List<Teams> getAllActiveTeams() {
 		try {
+			String whereClause = " WHERE  T.STATUS = 'ACTIVE'";
+			String query = QueryConstants.TEAMS_SELECT + whereClause;
 			RowMapper<Teams> rowMapper = new TeamsRowMapper();
-			return this.jdbcTemplate.query(QueryConstants.TEAMS_SELECT,rowMapper);
+			return this.jdbcTemplate.query(query,rowMapper);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
@@ -42,5 +47,23 @@ public class TeamsDAOImpl implements TeamsDAO{
 	public Integer insertNewTeam(Teams team) {
 		return jdbcTemplate.update(QueryConstants.TEAMS_INSERT,team.getId(),team.getTeamName(),team.getProjMapId(),team.getStatus());
 	}
-
+	
+	@Override
+	public Integer insertNewViaCallable(Teams team) {
+		Integer returnValue = null;
+		System.out.println("About to Start");
+		try {
+			CallableStatement cstmt = jdbcTemplate.getDataSource().getConnection().prepareCall(QueryConstants.TEAMPROCEDURE_INSERT);
+			cstmt.setString(2, team.getTeamName());
+			cstmt.setLong(3, team.getProjMapId());
+			cstmt.setString(4, team.getStatus());
+			cstmt.registerOutParameter(1, Types.INTEGER);
+			cstmt.execute();
+			returnValue = cstmt.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return returnValue;
+	}
+	
 }
