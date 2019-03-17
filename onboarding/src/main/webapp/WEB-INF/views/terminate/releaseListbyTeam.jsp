@@ -13,32 +13,46 @@
 	href="/onboarding/resources/stylesheets/bootstrap.min.css">
 <link rel="stylesheet"
 	href="/onboarding/resources/stylesheets/application.css">
-<link rel="stylesheet"
-	href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">	
 <!-- Load Script Files -->
 <script src="/onboarding/resources/scripts/jquery.min.js"></script>
 <script src="/onboarding/resources/scripts/bootstrap.min.js"></script>
 <script src="/onboarding/resources/scripts/releaselist.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 </head>
 <body>
 	<jsp:include page="../layouts/header.jsp" />
 	<div class="content-style">
-		<h2>Active Resources</h2>
 		<div id="navbar">
 			<ul class="nav navbar-nav navbar-left">
 				<li class="active"><a href="/onboarding">Back to home</a></li>
 			</ul>
 		</div>
-		<table class="table table-striped" id="releaseTable">
-			<tr>
-				<th>Employee Name</th>
-				<th>Project Name</th>
-				<th>Team Name</th>
-			</tr>
+		<div class="form-group">
+			<div class="row">
+				<div class="col-md-2">
+					<label for="teamName">Team Name</label>
+				</div>
+				<div class="col-md-3">
+					<select class="form-control" name="teamName" id="teamName">
+						<option value="" selected disabled>Select</option>
+					</select>
+				</div>
+				<div class="col-md-1"></div>
+			</div>
+		</div>
+		<table class="table table-striped" id="releaseTeamTable">
+			<thead>
+				<tr>
+					<th>Employee Id</th>
+					<th>Employee Name</th>
+					<th>Project Id</th>
+					<th>Project Name</th>
+					<th>Team Name</th>
+				</tr>
+			</thead>
+			</tbody>
 		</table>
 	</div>
-	
+
 	<jsp:include page="../layouts/footer.jsp" />
 </body>
 </html>

@@ -73,10 +73,11 @@ public class ReleaseController extends AbstractController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/releaselist", method = RequestMethod.POST)
+	@RequestMapping(value = "/releaselist", method = RequestMethod.GET)
 	public ModelAndView releaseAllList() {
 		ModelAndView modelView;
 		modelView = bindViewwithUserInfo("terminate/releaseList");
+		modelView.addObject("employees", releaseService.getEmployeestobeReleased());
 		return modelView;
 	}
 	
@@ -85,7 +86,7 @@ public class ReleaseController extends AbstractController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/releaselistbyteam", method = RequestMethod.POST)
+	@RequestMapping(value = "/releaselistbyteam", method = RequestMethod.GET)
 	public ModelAndView releaseListbyTeam() {
 		ModelAndView modelView;
 		modelView = bindViewwithUserInfo("terminate/releaseListbyTeam");
@@ -97,33 +98,13 @@ public class ReleaseController extends AbstractController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/releaselistbyproject", method = RequestMethod.POST)
+	@RequestMapping(value = "/releaselistbyproject", method = RequestMethod.GET)
 	public ModelAndView releaseListbyProj() {
 		ModelAndView modelView;
 		modelView = bindViewwithUserInfo("terminate/releaseListbyProj");
 		return modelView;
 	}
-	
-	/**
-	 * @param
-	 * @return
-	 */
-	@RequestMapping(value = "/getresources", method = RequestMethod.GET)
-	public @ResponseBody List<EmployeeProjHist> getResourcesAvailableforRelease() {
-		List<EmployeeProjHist> releaseList;
-		try {
-			releaseList = releaseService.getEmployeestobeReleased();
-			if (releaseList.size() > 0) {
-				return releaseList;
-			} else {
-				return null;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
+		
 	/**
 	 * @param
 	 * @return

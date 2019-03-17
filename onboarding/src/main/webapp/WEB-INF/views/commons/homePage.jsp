@@ -84,13 +84,13 @@ a {
 								<div class="panel-body">
 									<ul class="list-group">
 										<li class="list-group-item"><a
-											href="/onboarding/release/list">Raise a request to
+											href="/onboarding/release/releaselist">Raise a request to
 												Off-Board a resource</a></li>
 										<li class="list-group-item"><a
-											href="/onboarding/release/teamlist">Raise an request to
+											href="/onboarding/release/releaselistbyteam">Raise an request to
 												Off-Board by team</a></li>
 										<li class="list-group-item"><a
-											href="/onboarding/release/projectlist">Raise an request
+											href="/onboarding/release/releaselistbyproject">Raise an request
 												to Off-Board by team</a></li>
 									</ul>
 								</div>
