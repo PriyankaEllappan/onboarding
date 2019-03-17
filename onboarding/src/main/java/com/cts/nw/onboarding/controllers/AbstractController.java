@@ -18,8 +18,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.cts.nw.onboarding.util.UserDetails;
+import com.cts.nw.onboarding.util.AppInfo;
 
 /**
  * @author 656579
@@ -27,53 +28,93 @@ import com.cts.nw.onboarding.util.UserDetails;
  */
 @Controller
 public class AbstractController {
-	
-	public static String APPURL = "";
-	
+
+	public static AppInfo APPINFO = new AppInfo();
+
 	@InitBinder
 	public void dataBinding(WebDataBinder binder) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		dateFormat.setLenient(false);
-		binder.registerCustomEditor(Date.class, "dateOfBirth", new CustomDateEditor(dateFormat, true));
-		binder.registerCustomEditor(Date.class, "startDate", new CustomDateEditor(dateFormat, true));
-		binder.registerCustomEditor(Date.class, "nationwideIdCreatedDate", new CustomDateEditor(dateFormat, true));
-		binder.registerCustomEditor(Date.class, "fgOnBoardingDate", new CustomDateEditor(dateFormat, true));
-		binder.registerCustomEditor(Date.class, "releaseDate", new CustomDateEditor(dateFormat, true));
+		setDateFormat(binder, dateFormat, "dateOfBirth");
+		setDateFormat(binder, dateFormat, "startDate");
+		setDateFormat(binder, dateFormat, "nationwideIdCreatedDate");
+		setDateFormat(binder, dateFormat, "fgOnBoardingDate");
+		setDateFormat(binder, dateFormat, "releaseDate");
+	}
+
+	/**
+	 * @param binder
+	 * @param dateFormat
+	 * @param dateField
+	 */
+	private void setDateFormat(WebDataBinder binder, SimpleDateFormat dateFormat, String dateField) {
+		binder.registerCustomEditor(Date.class, dateField, new CustomDateEditor(dateFormat, true));
 	}
 
 	/**
 	 * 
 	 */
-	public UserDetails loggedInUserDetails() {
-		UserDetails userDetails = null;
+	@ModelAttribute
+	public void setApplicationInfo(HttpServletRequest request) {
 		try {
-			userDetails = new UserDetails();
+			System.out.println("In Logged in User :" + APPINFO.toString());
+			setAppUrl(request);
+			setLoggedinUserInfo();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("Out Logged in User :" + APPINFO.toString());
+	}
+
+	/**
+	 * 
+	 */
+	private void setLoggedinUserInfo() {
+		try {
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 			if (!(authentication instanceof AnonymousAuthenticationToken)) {
-				if(authentication != null){
+				if (authentication != null) {
 					String currentUserName = authentication.getName();
 					Collection<? extends GrantedAuthority> currentUserNameAuthorities = authentication.getAuthorities();
-					userDetails.setLoggedInUser(currentUserName);
-					userDetails.setLoggedInUserRole(currentUserNameAuthorities.toString());
-					System.out.println(userDetails.toString());
+					APPINFO.setLoggedInUser(currentUserName);
+					APPINFO.setLoggedInUserRole(currentUserNameAuthorities.toString());
 				}
 			} else {
 				System.out.println("Please login to continue");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+
 		}
-		return userDetails;
 	}
 
-	@ModelAttribute
-	public void setUrl(HttpServletRequest request){
-		if(request.getLocalPort() != 0){
-			APPURL = request.getServerName() + ":" + request.getLocalPort() + request.getContextPath();
-		}else{
-			APPURL = request.getServerName() + request.getContextPath();
+	/**
+	 * @param request
+	 */
+	private void setAppUrl(HttpServletRequest request) {
+		try {
+			if (request.getLocalPort() != 0) {
+				APPINFO.setAppUrl(request.getServerName() + ":" + request.getLocalPort() + request.getContextPath());
+			} else {
+				APPINFO.setAppUrl(request.getServerName() + request.getContextPath());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		System.out.println(APPURL);
 	}
+	
+	/**
+	 * @param request
+	 */
+	protected ModelAndView bindViewwithUserInfo(String viewPage) {
+		ModelAndView modelView = null;
+		try {
+			modelView = new ModelAndView(viewPage);
+			modelView.addObject("appInfo", APPINFO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return modelView;
+	}
+	
 	
 }

@@ -20,7 +20,7 @@ import com.cts.nw.onboarding.service.TeamService;
  */
 @Controller
 @RequestMapping("/team")
-public class TeamController {
+public class TeamController extends AbstractController {
 
 	@Autowired
 	TeamService teamService;

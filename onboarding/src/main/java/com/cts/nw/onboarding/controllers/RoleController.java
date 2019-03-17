@@ -21,7 +21,7 @@ import com.cts.nw.onboarding.service.RoleService;
  */
 @Controller
 @RequestMapping("/role")
-public class RoleController {
+public class RoleController extends AbstractController {
 
 	@Autowired
 	RoleService roleService;

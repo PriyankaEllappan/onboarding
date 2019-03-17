@@ -19,4 +19,8 @@ public interface ReleaseService {
 
 	List<ReleaseSummary> getAllReleaseSummary();
 
+	List<EmployeeProjHist> getEmployeestobeReleasedbyTeam(String teamId);
+
+	List<EmployeeProjHist> getEmployeestobeReleasedbyProject(String projectId);
+
 }

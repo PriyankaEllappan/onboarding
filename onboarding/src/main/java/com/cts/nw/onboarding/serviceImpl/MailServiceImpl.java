@@ -10,11 +10,11 @@ import org.springframework.stereotype.Service;
 
 import com.cts.nw.onboarding.bo.EmployeeProjHist;
 import com.cts.nw.onboarding.bo.MailDetail;
-import com.cts.nw.onboarding.controllers.HomeController;
+import com.cts.nw.onboarding.controllers.AbstractController;
 import com.cts.nw.onboarding.mailers.SendMail;
 import com.cts.nw.onboarding.service.LDAPService;
 import com.cts.nw.onboarding.service.MailService;
-import com.cts.nw.onboarding.vo.EmployeeDetails;
+import com.cts.nw.onboarding.util.EmployeeDetails;
 
 @PropertySource(value = { "classpath:mail.properties" })
 
@@ -53,7 +53,7 @@ public class MailServiceImpl implements MailService {
 		emailContent = emailContent.replace("<<EMPNAME>>", resource.getName());
 		emailContent = emailContent.replace("<<PROJID>>", String.valueOf(resource.getProjectId()));
 		emailContent = emailContent.replace("<<PROJNAME>>", resource.getProjectName());
-		emailContent = emailContent.replace("<<URL>>", HomeController.APPURL);
+		emailContent = emailContent.replace("<<URL>>", AbstractController.APPINFO.getAppUrl());
 		employeeDetail = lDAPService.getEmployee(String.valueOf(resource.getProcessorId()));
 		System.out.println("-------" + employeeDetail.getEmailId());
 
@@ -82,7 +82,7 @@ public class MailServiceImpl implements MailService {
 		emailContent = emailContent.replace("<<EMPNAME>>", resource.getName());
 		emailContent = emailContent.replace("<<PROJID>>", String.valueOf(resource.getProjectId()));
 		emailContent = emailContent.replace("<<PROJNAME>>", resource.getProjectName());
-		emailContent = emailContent.replace("<<URL>>", HomeController.APPURL);
+		emailContent = emailContent.replace("<<URL>>", AbstractController.APPINFO.getAppUrl());
 		mailDetail.setContent(emailContent);
 		mailDetail.setSubject("Process Mail.. !!!");
 		sendMail.send(mailDetail);
@@ -104,7 +104,7 @@ public class MailServiceImpl implements MailService {
 		mailDetail.setCc(ccList);
 
 		emailContent = emailContent.replace("<<NWID>>", resource.getNationwideId());
-		emailContent = emailContent.replace("<<URL>>", HomeController.APPURL);
+		emailContent = emailContent.replace("<<URL>>", AbstractController.APPINFO.getAppUrl());
 
 		mailDetail.setContent(emailContent);
 		mailDetail.setSubject("Complete Mail.. !!!");
@@ -131,7 +131,7 @@ public class MailServiceImpl implements MailService {
 		emailContent = emailContent.replace("<<EMPNAME>>", resource.getName());
 		emailContent = emailContent.replace("<<PROJID>>", String.valueOf(resource.getProjectId()));
 		emailContent = emailContent.replace("<<PROJNAME>>", resource.getProjectName());
-		emailContent = emailContent.replace("<<URL>>", HomeController.APPURL);
+		emailContent = emailContent.replace("<<URL>>", AbstractController.APPINFO.getAppUrl());
 		mailDetail.setContent(emailContent);
 		mailDetail.setSubject(" Resource ReleaseInitiated Mail.. !!!");
 		sendMail.send(mailDetail);
@@ -158,7 +158,7 @@ public class MailServiceImpl implements MailService {
 		emailContent = emailContent.replace("<<EMPNAME>>", resource.getName());
 		emailContent = emailContent.replace("<<PROJID>>", String.valueOf(resource.getProjectId()));
 		emailContent = emailContent.replace("<<PROJNAME>>", resource.getProjectName());
-		emailContent = emailContent.replace("<<URL>>", HomeController.APPURL);
+		emailContent = emailContent.replace("<<URL>>", AbstractController.APPINFO.getAppUrl());
 		mailDetail.setContent(emailContent);
 		mailDetail.setSubject(" Resource OffBoarding Mail.. !!!");
 		sendMail.send(mailDetail);

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cts.nw.onboarding.service.LDAPService;
-import com.cts.nw.onboarding.vo.EmployeeDetails;
+import com.cts.nw.onboarding.util.EmployeeDetails;
 
 /**
  * @author 616550
@@ -20,7 +20,7 @@ import com.cts.nw.onboarding.vo.EmployeeDetails;
  */
 @Controller
 @RequestMapping("/resource")
-public class ResourceController {
+public class ResourceController extends AbstractController {
 
 	// private static final Logger logger = Logger.getLogger(ResourceController.class);
 	

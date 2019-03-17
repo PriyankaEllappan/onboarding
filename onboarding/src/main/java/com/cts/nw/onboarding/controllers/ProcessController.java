@@ -4,9 +4,7 @@
 package com.cts.nw.onboarding.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,11 +36,11 @@ public class ProcessController extends AbstractController {
 	 * @return
 	 */
 	@RequestMapping(value = "/process/processrequest/{empProjHistId}", method = RequestMethod.GET)
-	public ModelAndView showUpdateForm(@ModelAttribute("employee") EmployeeProjHist resource,
-			@PathVariable("empProjHistId") String empProjHistId, Model model) {
-		System.out.println(processorService.getEmployeetoProcess(empProjHistId).toString());
-		return new ModelAndView("process/requestProcessingForm", "employee",
-				processorService.getEmployeetoProcess(empProjHistId));
+	public ModelAndView showUpdateForm(@PathVariable("empProjHistId") String empProjHistId) {
+		ModelAndView modelView;
+		modelView = bindViewwithUserInfo("process/requestProcessingForm");
+		modelView.addObject("employee", processorService.getEmployeetoProcess(empProjHistId));
+		return modelView;
 	}
 
 	/**
@@ -52,43 +50,43 @@ public class ProcessController extends AbstractController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/process/processupdate", method = RequestMethod.POST)
+	@RequestMapping(value = "/process/processrequest", method = RequestMethod.POST)
 	public ModelAndView updateResource(@ModelAttribute("employee") EmployeeProjHist employee, BindingResult result) {
-		ModelAndView modelAndView;
-		try {
-			processorService.processAnEmployee(employee);
-			modelAndView = new ModelAndView("detailsSaved");
-			return modelAndView;
-		} catch (Exception e) {
-			e.printStackTrace();
-			modelAndView = new ModelAndView("process/requestProcessingForm");
-			return modelAndView;
-		}
+		ModelAndView modelView;
+		processorService.processAnEmployee(employee);
+		modelView = bindViewwithUserInfo("commons/detailsSaved");
+		modelView.addObject("employee", employee);
+		return modelView;
 	}
 
-	@GetMapping(value = "/process/onboardlist", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public String getAllEmployeestobeOnboarded(ModelMap model) {
+	
+	/**
+	 * Display the On board List. 
+	 * @param model
+	 * @return
+	 */
+	@GetMapping(value = "/process/onboardlist")
+	public ModelAndView getAllEmployeestobeOnboarded(ModelMap model) {
 		String processorId = "413804";
-		try {
-			model.addAttribute("employees", processorService.getRecordsPerProcessortoOnboard(processorId));
-			model.addAttribute("user",loggedInUserDetails());
-			return "process/processList";
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
+		ModelAndView modelView;
+		modelView = bindViewwithUserInfo("process/processList");
+		modelView.addObject("employees", processorService.getRecordsPerProcessortoOnboard(processorId));
+		return modelView;
 	}
 	
-	@GetMapping(value = "/process/offboardlist", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public String getAllEmployeestobeOffboarded(ModelMap model) {
+	
+	/**
+	 * Display the Off board List.
+	 * @param model
+	 * @return
+	 */
+	@GetMapping(value = "/process/offboardlist")
+	public ModelAndView getAllEmployeestobeOffboarded(ModelMap model) {
 		String processorId = "413804";
-		try {
-			model.addAttribute("employees", processorService.getRecordsPerProcessortoOffboard(processorId));
-			model.addAttribute("user",loggedInUserDetails());
-			return "process/processList";
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
+		ModelAndView modelView;
+		modelView = bindViewwithUserInfo("process/processList");
+		modelView.addObject("employees", processorService.getRecordsPerProcessortoOffboard(processorId));
+		return modelView;
 	}
+	
 }

@@ -20,7 +20,7 @@ import com.cts.nw.onboarding.service.CountryService;
  */
 @Controller
 @RequestMapping("/country")
-public class CountryController {
+public class CountryController extends AbstractController {
 
 	@Autowired
 	CountryService countryService;
@@ -39,7 +39,6 @@ public class CountryController {
 			} else {
 				return null;
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

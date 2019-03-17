@@ -28,6 +28,9 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
+	/* (non-Javadoc)
+	 * @see com.cts.nw.onboarding.dao.EmployeeProjHistDAO#getAllEmployeeProjectInfo()
+	 */
 	@Override
 	public List<EmployeeProjHist> getAllEmployeeProjectInfo() {
 		try {
@@ -38,6 +41,9 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.cts.nw.onboarding.dao.EmployeeProjHistDAO#addEmployeeProjectInfo(com.cts.nw.onboarding.bo.EmployeeProjHist)
+	 */
 	@Override
 	public Integer addEmployeeProjectInfo(EmployeeProjHist employeeProjectHist) {
 		try{
@@ -53,6 +59,9 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.cts.nw.onboarding.dao.EmployeeProjHistDAO#getRecordsPerProcessortoOnboard(java.lang.String)
+	 */
 	@Override
 	public List<EmployeeProjHist> getRecordsPerProcessortoOnboard(String processorid) {
 		try {
@@ -65,6 +74,9 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.cts.nw.onboarding.dao.EmployeeProjHistDAO#getRecordsPerProcessortoOffboard(java.lang.String)
+	 */
 	@Override
 	public List<EmployeeProjHist> getRecordsPerProcessortoOffboard(String processorid) {
 		try {
@@ -76,6 +88,9 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 			return null;
 		}
 	}
+	/* (non-Javadoc)
+	 * @see com.cts.nw.onboarding.dao.EmployeeProjHistDAO#getSpecificEmployeeProjectHist(java.lang.String)
+	 */
 	@Override
 	public EmployeeProjHist getSpecificEmployeeProjectHist(String empProjHistId) {
 		try {
@@ -88,6 +103,9 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.cts.nw.onboarding.dao.EmployeeProjHistDAO#getEmployeestobeReleased()
+	 */
 	@Override
 	public List<EmployeeProjHist> getEmployeestobeReleased() {
 		try {
@@ -100,8 +118,11 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.cts.nw.onboarding.dao.EmployeeProjHistDAO#getEmployeestobeReleasedbyTeam(java.lang.String)
+	 */
 	@Override
-	public List<EmployeeProjHist> getEmployeestobeReleasedByTeam(String teamId) {
+	public List<EmployeeProjHist> getEmployeestobeReleasedbyTeam(String teamId) {
 		try {
 			String whereClause = " WHERE EPH.RELEASESTATUS IN (1,2) AND EPH.TEAM = ?";
 			String query = QueryConstants.EMPPROJHIST_SELECT + whereClause;
@@ -112,8 +133,11 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.cts.nw.onboarding.dao.EmployeeProjHistDAO#getEmployeestobeReleasedbyProj(java.lang.String)
+	 */
 	@Override
-	public List<EmployeeProjHist> getEmployeestobeReleasedByProject(String projectId) {
+	public List<EmployeeProjHist> getEmployeestobeReleasedbyProj(String projectId) {
 		try {
 			String whereClause = " WHERE EPH.RELEASESTATUS IN (1,2) AND PM.PROJECTID = ?";
 			String query = QueryConstants.EMPPROJHIST_SELECT + whereClause;
@@ -124,6 +148,9 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.cts.nw.onboarding.dao.EmployeeProjHistDAO#updateSpecificEmployeeProjectHist(com.cts.nw.onboarding.bo.EmployeeProjHist)
+	 */
 	@Override
 	public Integer updateSpecificEmployeeProjectHist(EmployeeProjHist employeeProjectHist) {
 		try{
@@ -139,6 +166,9 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.cts.nw.onboarding.dao.EmployeeProjHistDAO#checkActiveAssignments(java.lang.String)
+	 */
 	@Override
 	public List<EmployeeProjHist> checkActiveAssignments(String empid) {
 		try {
@@ -151,6 +181,9 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.cts.nw.onboarding.dao.EmployeeProjHistDAO#getEmployeesPerRequester(java.lang.String)
+	 */
 	@Override
 	public List<EmployeeProjHist> getEmployeesPerRequester(String requesterId) {
 		try {

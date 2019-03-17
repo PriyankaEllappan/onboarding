@@ -20,7 +20,7 @@ import com.cts.nw.onboarding.service.MovementService;
  */
 @Controller
 @RequestMapping("/movement")
-public class MovementController {
+public class MovementController extends AbstractController {
 
 	@Autowired
 	MovementService movementService;

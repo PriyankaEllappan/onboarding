@@ -20,7 +20,7 @@ import com.cts.nw.onboarding.service.BandService;
  */
 @Controller
 @RequestMapping("/band")
-public class BandController {
+public class BandController extends AbstractController {
 
 	@Autowired
 	BandService bandService;

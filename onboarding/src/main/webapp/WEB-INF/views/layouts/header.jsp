@@ -13,7 +13,7 @@
 		<br><p>Onboarding Resources</p>
 	</div>
 	<div class="col-md-3 welcome-text" align="left">
-	<br><br><p>Welcome ${user.loggedInUser}</p>
+	<br><br><p>Welcome ${appInfo.loggedInUser}</p>
 	</div>
 </div>
 

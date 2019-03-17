@@ -20,7 +20,7 @@ import com.cts.nw.onboarding.service.ProjectService;
  */
 @Controller
 @RequestMapping("/projects")
-public class ProjectController {
+public class ProjectController extends AbstractController {
 
 	@Autowired
 	ProjectService projectService;
@@ -39,7 +39,6 @@ public class ProjectController {
 			} else {
 				return null;
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

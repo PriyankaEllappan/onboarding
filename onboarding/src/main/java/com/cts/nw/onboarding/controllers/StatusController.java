@@ -21,7 +21,7 @@ import com.cts.nw.onboarding.service.StatusService;
  */
 @Controller
 @RequestMapping("/status")
-public class StatusController {
+public class StatusController extends AbstractController {
 
 	@Autowired
 	StatusService statusService;

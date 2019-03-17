@@ -126,10 +126,6 @@
 				<td>Comments</td>
 				<td>${employee.getComments()}</td>
 			</tr>
-			<tr>
-				<td><button class="btn btn-info"
-						onclick="location.href='./list'">Back</button>
-			</tr>
 		</table>
 	</div>
 	<!-- Load Script Files -->

@@ -10,13 +10,13 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.cts.nw.onboarding.bo.EmployeeMaster;
 import com.cts.nw.onboarding.bo.EmployeeProjHist;
@@ -31,18 +31,14 @@ public class RequesterController extends AbstractController {
 
 	@Autowired
 	RequesterService requesterService;
-
+	
 	@GetMapping(value = "/request/requestlist")
-	public String getAllEmployees(ModelMap model) {
-		try {
-			String requesterId = "151539";
-			model.addAttribute("employees", requesterService.getEmployeesPerRequester(requesterId));
-			model.addAttribute("user", loggedInUserDetails());
-			return "request/requestList";
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
+	public ModelAndView getAllEmployees(ModelMap model) {
+		String requesterId = "151539";
+		ModelAndView modelView;
+		modelView = bindViewwithUserInfo("request/requestList");
+		modelView.addObject("employees", requesterService.getEmployeesPerRequester(requesterId));
+		return modelView;
 	}
 
 	/**
@@ -50,9 +46,10 @@ public class RequesterController extends AbstractController {
 	 * @return
 	 */
 	@RequestMapping(value = "/request/check", method = RequestMethod.GET)
-	public String index(ModelMap model) {
-		model.addAttribute("user", loggedInUserDetails());
-		return "request/checkResourceAvailability";
+	public ModelAndView index() {
+		ModelAndView modelView;
+		modelView = bindViewwithUserInfo("request/checkResourceAvailability");
+		return modelView;
 	}
 
 	/**
@@ -109,28 +106,20 @@ public class RequesterController extends AbstractController {
 	 * @return
 	 */
 	@RequestMapping(value = "/request/mapproject/{empid}", method = RequestMethod.GET)
-	public String generateAddProjForm(@ModelAttribute("employee") EmployeeMaster employee, @PathVariable String empid,
-			ModelMap model) {
-		try {
-			employee = requesterService.getResourceByID(empid);
-			model.addAttribute("employee", employee);
-			model.addAttribute("user", loggedInUserDetails());
-			return "request/mapNewProject";
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
+	public ModelAndView generateAddProjForm(@PathVariable("empid") String empid) {
+		ModelAndView modelView;
+		modelView = bindViewwithUserInfo("request/mapNewProject");
+		modelView.addObject("employee", requesterService.getResourceByID(empid));
+		return modelView;
 	}
 
 	/**
 	 * @param employeeJson
 	 * @return
 	 */
-	@PostMapping(value = "/request/addproject", produces = { MediaType.APPLICATION_JSON_VALUE })
+	@PostMapping(value = "/request/mapproject", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public @ResponseBody EmployeeProjHist assignProject(@RequestBody EmployeeProjHist employeeProjJson,ModelMap model) {
 		try {
-			System.out.println(employeeProjJson.toString());
-			model.addAttribute("user", loggedInUserDetails());
 			return requesterService.addNewProject(employeeProjJson);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -21,7 +21,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import com.cts.nw.onboarding.service.LDAPService;
-import com.cts.nw.onboarding.vo.EmployeeDetails;
+import com.cts.nw.onboarding.util.EmployeeDetails;
 
 /**
  * @author 616550
