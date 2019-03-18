@@ -242,7 +242,7 @@ $(function() {
 		});
 		setRequestParams();
 		$.post({
-			url : '/onboarding/request/addproject',
+			url : '/onboarding/request/mapproject',
 			type : 'POST',
 			dataType : 'json',
 			data : JSON.stringify(jsonRequest),

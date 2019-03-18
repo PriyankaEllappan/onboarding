@@ -16,6 +16,7 @@ $(document).ready(function() {
 	$("#resourceAvailable").hide();
 	$("#NoActiveAssignment").hide();
 	$("#projTagDiv").hide();
+	$("#resourceAddedSubmit").hide();
 	
 	/* Employee Search function */
 	$("#checkEmpIdSubmit").click(function() {
@@ -49,6 +50,14 @@ $(document).ready(function() {
 	$("#confirmAddProject").click(function() {
 		var selectedValue = $('input[name=projMovement]:checked').val(); 
 		alert(selectedValue);
+	})
+	
+	$("#NoActiveSubmit").click(function() {
+		window.location = "/onboarding/request/mapproject/" + $("#availEmpID").text();
+	})
+	
+	$("#resourceAddedSubmitSpan").click(function() {
+		window.location = "/onboarding/request/mapproject/" + $("#newEmpID").val();
 	})
 	
 	/* Employee details Search */
@@ -102,6 +111,7 @@ $(document).ready(function() {
 						} else {
 							$("#resourceNonAvailable").hide();
 							$('#statusSucessMessage').text("Resource Registered");
+							$("#resourceAddedSubmit").show();
 						}
 					},
 					error : function() {
