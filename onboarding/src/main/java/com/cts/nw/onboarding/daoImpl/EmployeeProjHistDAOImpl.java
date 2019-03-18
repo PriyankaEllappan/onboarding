@@ -148,6 +148,18 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 		}
 	}
 	
+	@Override
+	public Integer releaseEmployeesByTeamorProj(EmployeeProjHist employeeProjectHist,Integer Id) {
+		try{
+			System.out.println(employeeProjectHist.toString());
+			return jdbcTemplate.update(QueryConstants.RELEASEBYTEAMORPROJ,employeeProjectHist.getReleaseStatusId(),employeeProjectHist.getReleaseDate(),
+					employeeProjectHist.getReasonForOffboarding(),Id);
+		}catch(Exception e){
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	
 	/* (non-Javadoc)
 	 * @see com.cts.nw.onboarding.dao.EmployeeProjHistDAO#updateSpecificEmployeeProjectHist(com.cts.nw.onboarding.bo.EmployeeProjHist)
 	 */

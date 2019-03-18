@@ -23,4 +23,8 @@ public interface ReleaseService {
 
 	List<EmployeeProjHist> getEmployeestobeReleasedbyProject(String projectId);
 
+	EmployeeProjHist releaseEmployeesByTeam(EmployeeProjHist employeeJson);
+
+	EmployeeProjHist releaseEmployeesByProject(EmployeeProjHist employeeJson);
+
 }

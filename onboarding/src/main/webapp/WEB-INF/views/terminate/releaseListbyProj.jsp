@@ -17,22 +17,25 @@
 <script src="/onboarding/resources/scripts/jquery.min.js"></script>
 <script src="/onboarding/resources/scripts/bootstrap.min.js"></script>
 <script src="/onboarding/resources/scripts/releaselist.js"></script>
+<script src="/onboarding/resources/scripts/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet"
+	href="/onboarding/resources/stylesheets/bootstrap-datepicker.min.css">
 </head>
 <body>
 	<jsp:include page="../layouts/header.jsp" />
 	<div class="content-style">
-		<h2>Active Resources</h2>
+		<!-- <h2>Active Resources</h2>
 		<div id="navbar">
 			<ul class="nav navbar-nav navbar-left">
 				<li class="active"><a href="/onboarding">Back to home</a></li>
 			</ul>
-		</div>
+		</div> -->
 		<div class="form-group">
 			<div class="row">
-				<div class="col-md-2">
+				<div class="col-md-1">
 					<label for="projectName">Project Name</label>
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-2">
 					<select class="form-control" name="projectName" id="projectName">
 						<option value="" selected disabled>Select</option>
 					</select>
@@ -40,18 +43,53 @@
 				<div class="col-md-1"></div>
 			</div>
 		</div>
-		<table class="table table-striped" id="releaseProjTable">
-		<thead>
-				<tr>
-					<th>Employee Id</th>
-					<th>Employee Name</th>
-					<th>Project Id</th>
-					<th>Project Name</th>
-					<th>Team Name</th>
-				</tr>
-			</thead>
-			</tbody>
-		</table>
+		<div id="releaseProjDropDown">
+			<div class="form-group">
+				<div class="row">
+					<div class="col-md-1">
+						<label for="releaseStatus">Release Status</label>
+					</div>
+					<div class="col-md-2">
+						<select class="form-control" name="releaseStatus"
+							id="releaseStatus">
+							<option value="" selected disabled>Select</option>
+						</select>
+					</div>
+					<div class="col-md-1">
+						<label for="releaseSummary">Release Summary</label>
+					</div>
+					<div class="col-md-2">
+						<select class="form-control" name="releaseSummary"
+							id="releaseSummary">
+							<option value="" selected disabled>Select</option>
+						</select>
+					</div>
+					<div class="col-md-1">
+						<label for="releaseDate">Release Date</label>
+					</div>
+					<div class="col-md-2">
+						<input autocomplete="off" class="form-control" name="releaseDate"
+							id="releaseDate" />
+					</div>
+					<div class="col-md-1" style="text-align: right">
+						<button class="btn btn-info" id="projectSubmit">Submit</button>
+					</div>
+				</div>
+			</div>
+			<table class="table table-striped" id="releaseProjTable">
+				<thead>
+					<tr>
+						<th>Employee Id</th>
+						<th>Employee Name</th>
+						<th>Project Id</th>
+						<th>Project Name</th>
+						<th>Team Name</th>
+					</tr>
+				</thead>
+				</tbody>
+			</table>
+		</div>
+		<div><span id="statusMessage"> </span></div>
 	</div>
 
 	<jsp:include page="../layouts/footer.jsp" />

@@ -26,10 +26,12 @@ public interface EmployeeProjHistDAO {
 	List<EmployeeProjHist> getEmployeestobeReleased();
 	List<EmployeeProjHist> getEmployeestobeReleasedbyTeam(String teamId);
 	List<EmployeeProjHist> getEmployeestobeReleasedbyProj(String projectId);
+	Integer releaseEmployeesByTeamorProj(EmployeeProjHist employeeProjHist,Integer Id);
 	
 	/*Common Operations*/
 	EmployeeProjHist getSpecificEmployeeProjectHist(String empProjHistId);
 	Integer updateSpecificEmployeeProjectHist(EmployeeProjHist employeeProjectHist);
 	List<EmployeeProjHist> getAllEmployeeProjectInfo();
+	
 	
 }

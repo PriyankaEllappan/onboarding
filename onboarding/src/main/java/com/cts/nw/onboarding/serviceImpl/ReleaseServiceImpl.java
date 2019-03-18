@@ -20,22 +20,22 @@ import com.cts.nw.onboarding.service.ReleaseService;
  *
  */
 @Service
-public class ReleaseServiceImpl implements ReleaseService{
+public class ReleaseServiceImpl implements ReleaseService {
 
 	@Autowired
 	EmployeeProjHistDAO employeeProjHistDAO;
 
 	@Autowired
 	ReleaseSummaryDAO releaseSummaryDAO;
-	
+
 	@Autowired
 	MailService mailService;
-	
+
 	@Override
-	public List<EmployeeProjHist> getEmployeestobeReleased(){
+	public List<EmployeeProjHist> getEmployeestobeReleased() {
 		return employeeProjHistDAO.getEmployeestobeReleased();
 	}
-	
+
 	@Override
 	public List<EmployeeProjHist> getEmployeestobeReleasedbyTeam(String teamId) {
 		return employeeProjHistDAO.getEmployeestobeReleasedbyTeam(teamId);
@@ -45,31 +45,72 @@ public class ReleaseServiceImpl implements ReleaseService{
 	public List<EmployeeProjHist> getEmployeestobeReleasedbyProject(String projectId) {
 		return employeeProjHistDAO.getEmployeestobeReleasedbyProj(projectId);
 	}
-	
+
 	@Override
 	public EmployeeProjHist getEmployeetoRelease(String empProjHistId) {
 		return employeeProjHistDAO.getSpecificEmployeeProjectHist(empProjHistId);
 	}
-	
+
 	@Override
 	public EmployeeProjHist releaseAnEmployee(EmployeeProjHist employeeProjHist) {
 		Integer rowsAffected = 0;
 		rowsAffected = employeeProjHistDAO.updateSpecificEmployeeProjectHist(employeeProjHist);
-		if(rowsAffected > 0){
+		if (rowsAffected > 0) {
 			if (employeeProjHist.getReleaseStatusId() == 2) {
-				//mailService.offBoardingInitiated(employeeProjHist);
+				// mailService.offBoardingInitiated(employeeProjHist);
 			} else if (employeeProjHist.getReleaseStatusId() == 3) {
-				//mailService.offBoardingCompleted(employeeProjHist);
+				// mailService.offBoardingCompleted(employeeProjHist);
 			}
 			return employeeProjHist;
 		}
 		return null;
 
 	}
-	
+
 	@Override
 	public List<ReleaseSummary> getAllReleaseSummary() {
 		return releaseSummaryDAO.getAllReleaseSummary();
 	}
-	
+
+	@Override
+	public EmployeeProjHist releaseEmployeesByTeam(EmployeeProjHist employeeProjHist) {
+
+		List<EmployeeProjHist> listofResources = employeeProjHistDAO
+				.getEmployeestobeReleasedbyTeam(String.valueOf(employeeProjHist.getTeamId()));
+		System.out.println("Team:" + listofResources.size());
+		for (EmployeeProjHist resource : listofResources) {
+			Integer rowsAffected = 0;
+			rowsAffected = employeeProjHistDAO.releaseEmployeesByTeamorProj(employeeProjHist, resource.getId());
+			if (rowsAffected > 0) {
+				if (employeeProjHist.getReleaseStatusId() == 2) {
+					// mailService.offBoardingInitiated(employeeProjHist);
+				} else if (employeeProjHist.getReleaseStatusId() == 3) {
+					// mailService.offBoardingCompleted(employeeProjHist);
+				}
+			}
+		}
+
+		return employeeProjHist;
+	}
+
+	@Override
+	public EmployeeProjHist releaseEmployeesByProject(EmployeeProjHist employeeProjHist) {
+		List<EmployeeProjHist> listofResources = employeeProjHistDAO
+				.getEmployeestobeReleasedbyProj(String.valueOf(employeeProjHist.getProjectId()));
+		System.out.println("Project:" + listofResources.size());
+		for (EmployeeProjHist resource : listofResources) {
+			Integer rowsAffected = 0;
+			rowsAffected = employeeProjHistDAO.releaseEmployeesByTeamorProj(employeeProjHist, resource.getId());
+			if (rowsAffected > 0) {
+				if (employeeProjHist.getReleaseStatusId() == 2) {
+					// mailService.offBoardingInitiated(employeeProjHist);
+				} else if (employeeProjHist.getReleaseStatusId() == 3) {
+					// mailService.offBoardingCompleted(employeeProjHist);
+				}
+			}
+		}
+
+		return employeeProjHist;
+	}
+
 }

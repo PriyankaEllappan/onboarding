@@ -11,7 +11,6 @@
 	href="/onboarding/resources/stylesheets/application.css">
 <script src="/onboarding/resources/scripts/jquery.min.js"></script>
 <script src="/onboarding/resources/scripts/bootstrap.min.js"></script>
-<script src="/onboarding/resources/scripts/application.js"></script>
 <style type="text/css">
 a {
 	text-decoration: none !important;
@@ -91,7 +90,7 @@ a {
 												Off-Board by team</a></li>
 										<li class="list-group-item"><a
 											href="/onboarding/release/releaselistbyproject">Raise an request
-												to Off-Board by team</a></li>
+												to Off-Board by Project</a></li>
 									</ul>
 								</div>
 							</div>
