@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.cts.nw.onboarding.util;
+package com.cts.nw.onboarding.bean;
 
 /**
  * @author 656579

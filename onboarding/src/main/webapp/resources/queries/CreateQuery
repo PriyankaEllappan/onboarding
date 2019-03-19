@@ -217,3 +217,14 @@ INSERT INTO TEAMS(TEAMNAME,PROJECTMAPID,STATUS) VALUES (team_name,proj_id,stat);
 SET id = LAST_INSERT_ID();
 END //
 delimiter ;
+
+
+delimiter //
+CREATE PROCEDURE insertMailObj(OUT id int, 
+  IN file_name VARCHAR(200), IN file_data longblob) 
+BEGIN
+INSERT INTO MAILATTACHMENTS(FILENAME,FILEDATA) VALUES (file_name,file_data);
+SET id = LAST_INSERT_ID();
+END //
+delimiter ;
+

@@ -7,7 +7,7 @@ package com.cts.nw.onboarding.bo;
  * @author 656579
  *
  */
-public class FileUpload {
+public class MailAttachment {
 
 	private Integer id;
 	private byte[] data;

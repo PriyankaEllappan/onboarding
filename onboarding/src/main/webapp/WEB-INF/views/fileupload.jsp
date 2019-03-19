@@ -38,7 +38,7 @@
    <body>
       <center>
          <h2>Spring MVC File Upload Example</h2>
-         <form id="fileUploadForm" method="post" action="/onboarding/resource/addfile" enctype="multipart/form-data">
+         <form id="fileUploadForm" method="post" action="/onboarding/attachment/upload" enctype="multipart/form-data">
             <table id="fileUploadFormBeanTable" border="0" width="80%">
                <tr>
                   <td>Description:</td>

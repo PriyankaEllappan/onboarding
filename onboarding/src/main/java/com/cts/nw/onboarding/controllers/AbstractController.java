@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.cts.nw.onboarding.util.AppInfo;
+import com.cts.nw.onboarding.bean.AppInfo;
 
 /**
  * @author 656579

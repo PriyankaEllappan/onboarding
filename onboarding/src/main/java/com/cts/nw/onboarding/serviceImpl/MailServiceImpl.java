@@ -8,13 +8,13 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
+import com.cts.nw.onboarding.bean.EmployeeDetails;
 import com.cts.nw.onboarding.bo.EmployeeProjHist;
 import com.cts.nw.onboarding.bo.MailDetail;
 import com.cts.nw.onboarding.controllers.AbstractController;
 import com.cts.nw.onboarding.mailers.SendMail;
 import com.cts.nw.onboarding.service.LDAPService;
 import com.cts.nw.onboarding.service.MailService;
-import com.cts.nw.onboarding.util.EmployeeDetails;
 
 @PropertySource(value = { "classpath:mail.properties" })
 

@@ -3,7 +3,7 @@
  */
 package com.cts.nw.onboarding.service;
 
-import com.cts.nw.onboarding.util.EmployeeDetails;
+import com.cts.nw.onboarding.bean.EmployeeDetails;
 
 /**
  * @author 616550
