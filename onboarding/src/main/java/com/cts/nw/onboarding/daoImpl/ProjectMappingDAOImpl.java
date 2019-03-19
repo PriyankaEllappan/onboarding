@@ -41,4 +41,17 @@ public class ProjectMappingDAOImpl implements ProjectMappingDAO {
 
 	}
 
+	@Override
+	public ProjectMapping getProcesssorPerProjectId(String projectId) {
+		
+		String whereClause = "WHERE PM.PROJECTID =? AND PM.STATUS = 'ACTIVE' ";
+		String query = QueryConstants.PROCESSOR_SELECT + whereClause;
+		try {
+			RowMapper<ProjectMapping> rowMapper = new ProjectMappingRowMapper();
+			return this.jdbcTemplate.queryForObject(query, rowMapper,projectId);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+
 }

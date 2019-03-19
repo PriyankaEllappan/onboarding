@@ -13,6 +13,6 @@ import com.cts.nw.onboarding.bo.ProjectMapping;
  */
 public interface ProjectMappingDAO {
 
-	List<ProjectMapping> getAllActiveProjectDetails();
-	
+	List<ProjectMapping> getAllActiveProjectDetails();	
+	ProjectMapping getProcesssorPerProjectId(String projectId);
 }
