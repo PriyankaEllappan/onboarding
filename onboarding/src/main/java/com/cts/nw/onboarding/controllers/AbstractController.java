@@ -57,13 +57,11 @@ public class AbstractController {
 	@ModelAttribute
 	public void setApplicationInfo(HttpServletRequest request) {
 		try {
-			System.out.println("In Logged in User :" + APPINFO.toString());
 			setAppUrl(request);
 			setLoggedinUserInfo();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("Out Logged in User :" + APPINFO.toString());
 	}
 
 	/**
