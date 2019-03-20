@@ -26,7 +26,7 @@
 		<div id="formDiv">
 			<div class="tab">
 				<button class="tablinks"
-					onclick="openSpecificTab(event, 'basicInfo')" id="defaultOpen">Employee
+					onclick="openSpecificTab(event, 'basicInfo')">Employee
 					Details</button>
 				<button class="tablinks"
 					onclick="openSpecificTab(event, 'projInfo')">Project
@@ -35,7 +35,7 @@
 					onclick="openSpecificTab(event, 'customerInfo')">Customer
 					Details</button>
 				<button class="tablinks"
-					onclick="openSpecificTab(event, 'releaseInfo')">Release
+					onclick="openSpecificTab(event, 'releaseInfo')" id="defaultOpen">Release
 					Details</button>
 			</div>
 			<form:form name="projectRegisterForm" method="post"
@@ -375,7 +375,7 @@
 									<form:label path="releaseSummary">Release Summary</form:label>
 								</div>
 								<div class="col-md-3">
-									<form:select class="form-control" name="releaseSummary"
+									<form:select class="form-control" name="releaseSummary" readonly="true"
 										path="releaseSummary">
 										<form:option value="" label="Select" selected="true" disabled="true" />
 									</form:select>
@@ -389,7 +389,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input autocomplete="off" class="form-control"
-										name="releaseDate" path="releaseDate" />
+										name="releaseDate" readonly="true" path="releaseDate" />
 								</div>
 							</div>
 						</div>

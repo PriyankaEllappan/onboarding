@@ -22,6 +22,7 @@ public interface EmployeeProjHistDAO {
 	List<EmployeeProjHist> getRecordsPerProcessortoOnboard(String processorid);
 	List<EmployeeProjHist> getRecordsPerProcessortoOffboard(String processorid);
 	Integer onBoardEmployee(EmployeeProjHist employeeProjectHist);
+	Integer processOffboardEmployee(EmployeeProjHist employeeProjectHist, Integer Id);
 	
 	/*Release Operations*/
 	List<EmployeeProjHist> getEmployeestobeReleased();
@@ -33,6 +34,7 @@ public interface EmployeeProjHistDAO {
 	EmployeeProjHist getSpecificEmployeeProjectHist(String empProjHistId);
 	Integer updateSpecificEmployeeProjectHist(EmployeeProjHist employeeProjectHist);
 	List<EmployeeProjHist> getAllEmployeeProjectInfo();
+	
 	
 	
 	

@@ -117,6 +117,7 @@ function loadReleaseStatus(){
 		                    .attr("value",value.id)
 		                    .text(value.status)); 
 			});
+			$('select[name="releaseStatus"]').find('option[value='+ $('#releaseStatusId').val() +']').attr("selected",true);
 		}
 	});
 }

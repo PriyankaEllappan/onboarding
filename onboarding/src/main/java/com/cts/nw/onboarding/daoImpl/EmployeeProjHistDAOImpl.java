@@ -152,8 +152,19 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	public Integer offboardEmployee(EmployeeProjHist employeeProjectHist,Integer Id) {
 		try{
 			System.out.println(employeeProjectHist.toString());
-			return jdbcTemplate.update(QueryConstants.OFFBOARDDPROCESS_UPDATE,employeeProjectHist.getReleaseStatusId(),employeeProjectHist.getReleaseDate(),
+			return jdbcTemplate.update(QueryConstants.REQUEST_OFFBOARD_UPDATE,employeeProjectHist.getReleaseStatusId(),employeeProjectHist.getReleaseDate(),
 					employeeProjectHist.getReasonForOffboarding(),Id);
+		}catch(Exception e){
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	
+	@Override
+	public Integer processOffboardEmployee(EmployeeProjHist employeeProjectHist,Integer Id) {
+		try{
+			System.out.println(employeeProjectHist.toString());
+			return jdbcTemplate.update(QueryConstants.PROCESS_OFFBOARD_UPDATE,employeeProjectHist.getReleaseStatusId(),Id);
 		}catch(Exception e){
 			e.printStackTrace();
 			return 0;

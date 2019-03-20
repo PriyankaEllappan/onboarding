@@ -74,7 +74,7 @@ public class ProcessorServiceImpl implements ProcessorService {
 	@Override
 	public EmployeeProjHist offboardAnEmployee(EmployeeProjHist employeeProjHist) {
 		Integer rowsAffected = 0;
-		rowsAffected = employeeProjHistDAO.offboardEmployee(employeeProjHist, employeeProjHist.getId());
+		rowsAffected = employeeProjHistDAO.processOffboardEmployee(employeeProjHist, employeeProjHist.getId());
 		if(rowsAffected > 0){
 			return employeeProjHist;
 		}

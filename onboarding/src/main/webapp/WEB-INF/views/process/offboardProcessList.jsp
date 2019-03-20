@@ -44,7 +44,7 @@
 					<td>${employee.getTeamName()}</td>
 					<c:choose>
 						<c:when test="${employee.getApprovalStatus() == 'NEW'}">
-							<td><button class="btn-info" onclick="location.href='offboard/${employee.getId()}'">Acknowledge</button></td>
+							<td><button class="btn-info" onclick="location.href='offboard/${employee.getId()}'">Approve</button></td>
 						</c:when>
 						<c:when test="${employee.getApprovalStatus() == 'INPROGRESS'}">
 							<td><button class="btn-warning">Processing</button></td>
