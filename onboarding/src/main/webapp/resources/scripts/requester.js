@@ -9,78 +9,44 @@ $(document).ready(function() {
 		todayHighlight : true,
 		autoclose : true,
 	};
-
 	dateOfBirth.datepicker(options);
 	
+	/*Default Hide Tags*/
 	$("#resourceNonAvailable").hide();
 	$("#resourceAvailable").hide();
-	$("#NoActiveAssignment").hide();
-	$("#projTagDiv").hide();
 	$("#resourceAddedSubmit").hide();
 	
 	/* Employee Search function */
 	$("#checkEmpIdSubmit").click(function() {
+		$("#checkEmpId").attr("disabled", "disabled");
 		$('#checkEmpIdSubmit').prop('disabled', true);
 		$('#checkEmpIdSubmit').css('cursor', 'not-allowed');
 		var empId = $("#checkEmpId").val();
-		console.log(empId);
 		checkForanEmployee(empId);
 	})
 
-	/* Confirm to add resource function */
-	$("#confirmAddResource").click(function() {
-		$("#resourceNonAvailable").show();
+	$("#availableAssignProj").click(function() {
+		$('#availableAssignProj').css('cursor', 'not-allowed');
+		var empId = $("#availEmpID").text();
+		checkForanActiveAssignment(empId);
 	})
 	
-	/* Active Assignment check function */
-	$("#activeCheck").click(function() {
-		/*$('#checkForActiveAssignment').css('cursor', 'not-allowed');*/
-		$('#checkForActiveAssignment').hide();
-		var empId = $("#availEmpID").text();
-		console.log(empId);
-		checkForanActiveAssignment(empId);
+	$("#nonAvailableAssignProj").click(function() {
+		$('#nonAvailableAssignProj').css('cursor', 'not-allowed');
+		window.location = "/onboarding/request/mapproject/" + $("#newEmpID").val();
 	})
 	
 	/* Confirm to add resource function */
 	$("#confirmTagging").click(function() {
-		$("#projTagDiv").show();
-		$("#projTagConf").hide();
-	})
-
-	$("#confirmAddProject").click(function() {
-		var selectedValue = $('input[name=projMovement]:checked').val(); 
-		alert(selectedValue);
-	})
-	
-	$("#NoActiveSubmit").click(function() {
 		window.location = "/onboarding/request/mapproject/" + $("#availEmpID").text();
 	})
 	
-	$("#resourceAddedSubmitSpan").click(function() {
-		window.location = "/onboarding/request/mapproject/" + $("#newEmpID").val();
+	/* Confirm to add resource function */
+	$("#confirmAddResource").click(function() {
+		var empId = $('#checkEmpId').val();
+		loadEmployeeDetails(empId);
+		$("#resourceNonAvailable").show();
 	})
-	
-	/* Employee details Search */
-	$("#newEmpID").blur(function() {
-		var empId = $('#newEmpID').val();
-		$.ajax({
-			type : 'GET',
-			url : "/onboarding/resource/getemployee?empId=" + empId,
-			dataType : "text",
-			success : function(resultData) {
-				if (!$.trim(resultData)) {
-					console.log("Resource not available in directory");
-				} else {
-					var returnedData = JSON.parse(resultData);
-					
-					$('#newEmpName').val(returnedData.name);
-					$('#newEmpEmail').val(returnedData.emailId);
-					$('#newEmpFName').val(returnedData.name.split(" ")[0]);
-					$('#newEmpLName').val(returnedData.name.split(" ")[1]);
-				}
-			}
-		});
-	});
 
 	/* Employee Register Submit */
 	$(function() {
@@ -111,6 +77,11 @@ $(document).ready(function() {
 						} else {
 							$("#resourceNonAvailable").hide();
 							$('#statusSucessMessage').text("Resource Registered");
+							$('#addedResEmpID').text(resultData.employeeId);
+							$('#addedResEmpName').text(resultData.name);
+							$('#addedResEmpDOB').text(resultData.dateOfBirth);
+							$('#addedResEmpEmail').text(resultData.email);
+							$('#addedResEmpPPNo').text(resultData.passportNumber);
 							$("#resourceAddedSubmit").show();
 						}
 					},
@@ -133,12 +104,9 @@ function checkForanEmployee(empID) {
 		dataType : "text",
 		success : function(resultData) {
 			if (!$.trim(resultData)) {
-				console.log("Empty Response");
 				$('#NoResourceModal').modal('show');
 			} else {
 				var returnedData = JSON.parse(resultData);
-				console.log("Response has data");
-				console.log(returnedData);
 				$('#availEmpID').text(returnedData.employeeId);
 				$('#availEmpName').text(returnedData.name);
 				$('#availEmpDOB').text(returnedData.dateOfBirth);
@@ -151,30 +119,25 @@ function checkForanEmployee(empID) {
 }
 
 function checkForanActiveAssignment(empID) {
-	console.log("checkForanEmployee");
 	$.ajax({
 		type : 'GET',
 		url : "/onboarding/request/checkactiveassignments/" + empID,
 		dataType : "text",
 		success : function(resultData) {
 			if (!$.trim(resultData)) {
-				console.log("Empty Response");
-				$('#NoActiveAssignment').show();
+				window.location = "/onboarding/request/mapproject/" + $("#availEmpID").text();
 			} else {
 				var returnedData = JSON.parse(resultData);
 				console.log("Response has data");
 				console.log(returnedData);
-				$.each(returnedData, function(key,value) {   
-				     $('#availableProjects')
-				         .append('<tr><td>'+value.projectID+'</td><td>'+value.projectName+'</td></tr>'); 
+				$.each(returnedData, function(key, value) {
+					$('#availableProjects').append(
+							'<tr><td>&nbsp;&nbsp;' + value.name +
+							'</td><td>&nbsp;&nbsp;'
+									+ value.projectName + '</td><td>&nbsp;&nbsp;'
+									+ value.teamName + '</td></tr>');
 				});
 				$('#ActiveAssignment').modal('show');
-				/*$('#availEmpID').text(returnedData.id);
-				$('#availEmpName').text(returnedData.name);
-				$('#availEmpDOB').text(returnedData.DOB);
-				$('#availEmpEmail').text(returnedData.email);
-				$('#availEmpPPNo').text(returnedData.passportNumber);
-				$("#resourceAvailable").show();*/
 			}
 		}
 	});
@@ -194,4 +157,24 @@ function validateForm() {
 		return false;
 	} 
 	return true;
+}
+
+function loadEmployeeDetails(empId){
+	$.ajax({
+		type : 'GET',
+		url : "/onboarding/resource/getemployee?empId=" + empId,
+		dataType : "text",
+		success : function(resultData) {
+			if (!$.trim(resultData)) {
+				$('#errMessage').text("Resource not available in Cognizant Directory. Please check the Employee ID");
+			} else {
+				var returnedData = JSON.parse(resultData);
+				$('#newEmpID').val(empId);
+				$('#newEmpName').val(returnedData.name);
+				$('#newEmpEmail').val(returnedData.emailId);
+				$('#newEmpFName').val(returnedData.name.split(" ")[0]);
+				$('#newEmpLName').val(returnedData.name.split(" ")[1]);
+			}
+		}
+	});
 }

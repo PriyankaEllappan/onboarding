@@ -20,5 +20,6 @@ public interface RequesterService {
 	EmployeeProjHist addNewProject(EmployeeProjHist employeeProjHist);
 	List<EmployeeProjHist> checkActiveAssignments(String employeeid);
 	List<EmployeeProjHist> getEmployeesPerRequester(String requesterId);
+	EmployeeProjHist getEmployeeProjById(String empProjHistId);
 	
 }

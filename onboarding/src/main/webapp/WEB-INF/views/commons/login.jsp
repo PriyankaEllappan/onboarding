@@ -32,7 +32,7 @@
 						<tr>
 							<td>User &nbsp;&nbsp;</td>
 							<td></td>
-							<td><input type='text' name='username'></td>
+							<td><input type='text' name='username' autocomplete="off"></td>
 						</tr>
 						<tr>
 							<td><br></td>

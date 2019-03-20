@@ -19,12 +19,11 @@
 <body>
 	<jsp:include page="../layouts/header.jsp" />
 	<div class="container-fluid content-style">
-		<h4>Check for User Availability</h4>
-		<label for="checkEmpId"> Search for an existing Employee</label> <input
+		<br> <span class="has-error" id="errMessage"></span> <span
+			class="is-success" id="statusSucessMessage"></span> <br> <br>
+		<label for="checkEmpId"> Enter Employee ID: </label> <input
 			type="text" id="checkEmpId" name="checkEmpId"></input>
 		<button type="submit" id="checkEmpIdSubmit" style="cursor: pointer;">Check</button>
-		<br> <span class="has-error" id="errMessage"></span> <span
-			class="is-success" id="statusSucessMessage"></span>
 		<div class="resizeTabCont" id="resourceNonAvailable">
 			<br> <br>
 			<form name="resourceRegisterForm" method="post">
@@ -35,7 +34,7 @@
 						</div>
 						<div class="col-md-3">
 							<input class="form-control" name="newEmpID" id="newEmpID"
-								placeholder="Enter EmployeeID" />
+								placeholder="Enter EmployeeID" readonly autocomplete="off" />
 						</div>
 						<div class="col-md-1"></div>
 						<div class="col-md-2">
@@ -110,11 +109,29 @@
 			</form>
 		</div>
 		<div id="resourceAddedSubmit">
-			<p>
-				<br>
-				<br> <span id="resourceAddedSubmitSpan"
-					style="cursor: pointer;">Click</span> to tag an project
-			</p>
+			<br> <br>
+			<table class="resizeTabCont table table-striped">
+				<thead>
+					<tr>
+						<th>Employee ID</th>
+						<th>Employee Name</th>
+						<th>Date of Birth</th>
+						<th>Email</th>
+						<th>Passport Number</th>
+					</tr>
+				</thead>
+				<tr>
+					<td><span id="addedResEmpID"></span></td>
+					<td><span id="addedResEmpName"></span></td>
+					<td><span id="addedResEmpDOB"></span></td>
+					<td><span id="addedResEmpEmail"></span></td>
+					<td><span id="addedResEmpPPNo"></span></td>
+				</tr>
+			</table>
+			<br> <br>
+			<button type="button" class="btn btn-primary"
+				id="nonAvailableAssignProj" style="align: right">Assign
+				Project</button>
 		</div>
 		<div id="resourceAvailable">
 			<br> <br>
@@ -137,15 +154,9 @@
 				</tr>
 			</table>
 			<br> <br>
-			<p id="checkForActiveAssignment">
-				<span id="activeCheck" style="cursor: pointer;">Click</span> to
-				check for any active assignments
-			</p>
-			<p id="NoActiveAssignment">
-				No active assignments available for the requested employee. <span
-					id="NoActiveSubmit" style="cursor: pointer;">Click</span> to tag an
-				project
-			</p>
+			<button type="button" class="btn btn-primary"
+				id="availableAssignProj" style="align: right">Assign
+				Project</button>
 		</div>
 	</div>
 	<!-- Resource Non Availability Modal -->
@@ -181,12 +192,13 @@
 					<p>Requested resource is tagged under below project. Do you
 						wish to tag a new project</p>
 					<br>
-					<table class="resizeTabCont table table-striped"
+					<table class="resizeTabCont table .table-borderless"
 						id="availableProjects">
 						<thead>
 							<tr>
-								<th>Project ID</th>
+								<th>Name</th>
 								<th>Project Name</th>
+								<th>Team Name</th>
 							</tr>
 						</thead>
 					</table>
@@ -195,20 +207,6 @@
 							<button type="button" class="btn btn-primary" id="confirmTagging">YES</button>
 							<button type="button" class="btn btn-secondary"
 								data-dismiss="modal">No</button>
-						</div>
-					</div>
-					<div id="projTagDiv">
-						<p>Is this an internal project movement?</p>
-						<label class="radio-inline"> <input type="radio"
-							name="projMovement" id="projMovement1" value="yes"> Yes
-						</label> <label class="radio-inline"> <input type="radio"
-							name="projMovement" id="projMovement2" value="no"> No
-						</label><br>
-						<div align="right">
-							<button type="button" class="btn btn-primary"
-								id="confirmAddProject" data-dismiss="modal">Submit</button>
-							<button type="button" class="btn btn-secondary"
-								data-dismiss="modal">Cancel</button>
 						</div>
 					</div>
 				</div>

@@ -17,7 +17,6 @@
 <script src="/onboarding/resources/scripts/jquery.min.js"></script>
 <script src="/onboarding/resources/scripts/bootstrap.min.js"></script>
 <script src="/onboarding/resources/scripts/application.js"></script>
-<script src="/onboarding/resources/scripts/bootstrap-datepicker.min.js"></script>
 </head>
 <body>
 	<jsp:include page="../layouts/header.jsp" />

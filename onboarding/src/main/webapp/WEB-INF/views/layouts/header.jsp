@@ -3,11 +3,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div class="row header-style">
-	<div class="col-md-4" align="right">
+	<div class="col-md-1" align="right">
 		<div style="float: left">
 			<a href="/onboarding"> <img class="logo-style"
 				src="/onboarding/resources/images/cognizantLogo.png"
 				alt="Cognizant Logo"></a>
+				
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div style="padding-top:40px;">
+			<img class="to-click" style="height: 35px;" src="/onboarding/resources/icons/homeIcon.png" onclick="/onboarding'">
 		</div>
 	</div>
 	<div class="col-md-5 header-text" align="left">

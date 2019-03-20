@@ -4,31 +4,37 @@
 	left: 0px;
 	padding: 0 0 0 15px;
 	height: 80px;
-	right: 0px; 
+	right: 0px;
 	overflow: hidden;
 	border: 1px solid #ccc;
-    border-top: none;
-    background: #B0E0E6;
+	border-top: none;
+	background: #B0E0E6;
 }
 
 .header-text {
-	font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif; 
-	font-size: 33px; 
+	font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial,
+		sans-serif;
+	font-size: 33px;
 	font-style: normal;
-	font-variant: normal; 
+	font-variant: normal;
 	font-weight: 730;
-	line-height: 26.4px; 
-	text-shadow: 1px 0px 1px #808080, 0px 1px 1px #EEEEEE, 2px 1px 1px #CCCCCC, 1px 2px 1px #EEEEEE, 3px 2px 1px #CCCCCC, 2px 3px 1px #EEEEEE, 4px 3px 1px #CCCCCC, 3px 4px 1px #EEEEEE, 5px 4px 1px #CCCCCC, 4px 5px 1px #EEEEEE, 6px 5px 1px #CCCCCC, 5px 6px 1px #EEEEEE, 7px 6px 1px #CCCCCC, 2px 2px 2px rgba(28,110,164,0);
+	line-height: 26.4px;
+	text-shadow: 1px 0px 1px #808080, 0px 1px 1px #EEEEEE, 2px 1px 1px
+		#CCCCCC, 1px 2px 1px #EEEEEE, 3px 2px 1px #CCCCCC, 2px 3px 1px #EEEEEE,
+		4px 3px 1px #CCCCCC, 3px 4px 1px #EEEEEE, 5px 4px 1px #CCCCCC, 4px 5px
+		1px #EEEEEE, 6px 5px 1px #CCCCCC, 5px 6px 1px #EEEEEE, 7px 6px 1px
+		#CCCCCC, 2px 2px 2px rgba(28, 110, 164, 0);
 	color: #000000;
 	/* background: #FFFFFF; */
 }
 
-.welcome-text{
+.welcome-text {
 	font-family: Arial;
-	font-size: 15px; 
+	font-size: 15px;
 	font-style: normal;
 	font-variant: normal;
 }
+
 .logo-style {
 	max-height: 79px;
 	overflow: visible;
@@ -56,7 +62,7 @@ body {
 	padding-bottom: 10px;
 }
 
-.resizeTabCont{
+.resizeTabCont {
 	width: 75%;
 }
 
@@ -67,17 +73,18 @@ body {
 	left: 0px;
 	right: 0px;
 	overflow: hidden;
-	background-color:#B0E0E6;
+	background-color: #B0E0E6;
 }
 
 .has-error {
 	color: red
 }
 
-.is-success{
+.is-success {
 	color: green
 }
-.button-fixedwidth{
+
+.button-fixedwidth {
 	width: 100%;
 }
 
@@ -91,39 +98,39 @@ body {
 
 /* Style the tab */
 .tab {
-  overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
+	overflow: hidden;
+	border: 1px solid #ccc;
+	background-color: #f1f1f1;
 }
 
 /* Style the buttons inside the tab */
 .tab button {
-  background-color: inherit;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-  font-size: 17px;
+	background-color: inherit;
+	float: left;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 14px 16px;
+	transition: 0.3s;
+	font-size: 17px;
 }
 
 /* Change background color of buttons on hover */
 .tab button:hover {
-  background-color: #ddd;
+	background-color: #ddd;
 }
 
 /* Create an active/current tablink class */
 .tab button.active {
-  background-color: #ccc;
+	background-color: #ccc;
 }
 
 /* Style the tab content */
 .tabcontent {
-  display: none;
-  padding: 6px 12px;
-  border: 1px solid #ccc;
-  border-top: none;
+	display: none;
+	padding: 6px 12px;
+	border: 1px solid #ccc;
+	border-top: none;
 }
 
 select option[disabled]:first-child {
@@ -132,4 +139,24 @@ select option[disabled]:first-child {
 
 .form-control {
 	border-radius: 0px !important;
+}
+
+.btn {
+	border-radius: 0px !important;
+}
+
+.table {
+	font-size: small !important;
+}
+
+.is-required {
+	color: red
+}
+
+.to-click {
+	cursor: pointer;
+}
+
+.icon-image {
+	height: 20px;
 }

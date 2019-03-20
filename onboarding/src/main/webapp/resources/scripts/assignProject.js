@@ -6,6 +6,7 @@ var roles = {}
 var jsonRequest = {}
 var movementList = {}
 var selectedTeam = [];
+
 $(document).ready(function() {
 	loadProjectHierarchy();
 	loadTeamDetails();
@@ -15,8 +16,20 @@ $(document).ready(function() {
 	loadApprovalStatus();
 	loadReleaseStatus();
 	loadMovementDetails();
-	document.getElementById("defaultOpen").click();
+	
+	document.getElementById("projTab").click();
 	$("#teamList").prop('disabled', true);
+	
+	/* DatePicker Options */
+	var dateOfBirth = $('#startDate');
+	var container = $('.content-style');
+	var options = {
+		format : 'yyyy-mm-dd',
+		container : container,
+		todayHighlight : true,
+		autoclose : true,
+	};
+	dateOfBirth.datepicker(options);
 	
 	$("#projectName").change(function() {
 		var selectedProject = $("#projectName").val();
@@ -43,18 +56,6 @@ $(document).ready(function() {
 		loadLocDetails();
 		loadRateDetails();
 	})
-	
-	/* DatePicker Options */
-	var dateOfBirth = $('#startDate');
-	var container = $('.content-style');
-	var options = {
-		format : 'yyyy-mm-dd',
-		container : container,
-		todayHighlight : true,
-		autoclose : true,
-	};
-
-	dateOfBirth.datepicker(options);
 	
 });
 
@@ -233,41 +234,49 @@ function loadMovementDetails(){
 
 /* Project Register Submit */
 $(function() {
-	$('#projectRegisterFormSubmit').click(function(e) {
-		e.preventDefault();
-		$.each(selectedTeam, function(key,value) {   
-			if($('#teamList').val() == value.teamName ){
-				$('#teamMappingID').val(value.id); 
-			}
-		});
-		setRequestParams();
-		$.post({
-			url : '/onboarding/request/mapproject',
-			type : 'POST',
-			dataType : 'json',
-			data : JSON.stringify(jsonRequest),
-			contentType : 'application/json; charset=utf-8',
-			success : function(resultData) {
-				if (!$.trim(resultData)) {
-					$('#messageDiv').removeClass('hideElements');
-					$('#messageDiv').text("Unable to add the project details");
-					$('#messageDiv').addClass('showElements');
-					$('#formDiv').addClass('hideElements');
-				} else {
-					$('#messageDiv').removeClass('hideElements');
-					$('#messageDiv').text("Project details added successfully");
-					$('#messageDiv').addClass('showElements');
-					$('#formDiv').addClass('hideElements');
+	$('#projectRegisterFormSubmit').click(
+			function(e) {
+				e.preventDefault();
+				$('#errMessage').text("");
+				var validationStatus = validateForm();
+				if (validationStatus == true) {
+					$.each(selectedTeam, function(key, value) {
+						if ($('#teamList').val() == value.teamName) {
+							$('#teamMappingID').val(value.id);
+						}
+					});
+					setRequestParams();
+					$.post({
+						url : '/onboarding/request/mapproject',
+						type : 'POST',
+						dataType : 'json',
+						data : JSON.stringify(jsonRequest),
+						contentType : 'application/json; charset=utf-8',
+						success : function(resultData) {
+							if (!$.trim(resultData)) {
+								$('#messageDiv').removeClass('hideElements');
+								$('#messageDiv').text(
+										"Unable to add the project details");
+								$('#messageDiv').addClass('showElements');
+								$('#formDiv').addClass('hideElements');
+							} else {
+								$('#messageDiv').removeClass('hideElements');
+								$('#messageDiv').text(
+										"Project details added successfully");
+								$('#messageDiv').addClass('showElements');
+								$('#formDiv').addClass('hideElements');
+							}
+						},
+						error : function() {
+							$('#messageDiv').removeClass('hideElements');
+							$('#messageDiv').text(
+									"Unable to add the project details");
+							$('#messageDiv').addClass('showElements');
+							$('#formDiv').addClass('hideElements');
+						}
+					})
 				}
-			},
-			error : function() {
-				$('#messageDiv').removeClass('hideElements');
-				$('#messageDiv').text("Unable to add the project details");
-				$('#messageDiv').addClass('showElements');
-				$('#formDiv').addClass('hideElements');
-			}
-		})
-	});
+			});
 });
 
 function setRequestParams(){
@@ -290,4 +299,38 @@ function setRequestParams(){
 	jsonRequest["movementId"] = $('#movementId').val();
 	jsonRequest["pplManager"] = $('#pplInfo').val();
 	jsonRequest["experience"] = $('#experience').val();
+}
+
+function validateForm() {
+	if ($('#projectName').val() == null || $('#projectName').val() == "") {
+		$('#errMessage').text("Project needs to be selected");
+		$('#projTab').click();
+		return false;
+	} 
+	if ($('#teamList').val() == null || $('#teamList').val() == "") {
+		$('#errMessage').text("Team name should be selected or entered");
+		$('#projTab').click();
+		return false;
+	} 
+	if ($('#startDate').val() == null || $('#startDate').val() == "") {
+		$('#errMessage').text("Start Date cannot be null or empty");
+		$('#projTab').click();
+		return false;
+	} 
+	if ($('#country').val() == null || $('#country').val() == "") {
+		$('#errMessage').text("Country needs to be selected");
+		$('#projTab').click();
+		return false;
+	} 
+	if ($('#role').val() == null || $('#role').val() == "") {
+		$('#errMessage').text("Role needs to be selected");
+		$('#projTab').click();
+		return false;
+	} 
+	if ($('#experience').val() != null && isNaN($('#experience').val())) {
+		$('#errMessage').text("Experience Should be Numeric Value");
+		$('#projTab').click();
+		return false;
+	} 
+	return true;
 }

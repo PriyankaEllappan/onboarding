@@ -77,8 +77,6 @@ public class AbstractController {
 					APPINFO.setLoggedInUser(currentUserName);
 					APPINFO.setLoggedInUserRole(currentUserNameAuthorities.toString());
 				}
-			} else {
-				System.out.println("Please login to continue");
 			}
 		} catch (Exception e) {
 
@@ -99,7 +97,7 @@ public class AbstractController {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * @param request
 	 */
@@ -113,6 +111,5 @@ public class AbstractController {
 		}
 		return modelView;
 	}
-	
-	
+
 }

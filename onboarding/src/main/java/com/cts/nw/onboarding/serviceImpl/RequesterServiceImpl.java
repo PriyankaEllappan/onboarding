@@ -120,4 +120,9 @@ public class RequesterServiceImpl implements RequesterService {
 		return null;
 	}
 
+	@Override
+	public EmployeeProjHist getEmployeeProjById(String empProjHistId) {
+		return employeeProjHistDAO.getSpecificEmployeeProjectHist(empProjHistId);
+	}
+
 }

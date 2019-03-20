@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
@@ -22,13 +21,16 @@
 <body>
 	<jsp:include page="../layouts/header.jsp" />
 	<div class="container-fluid content-style">
+	<span class="has-error" id="errMessage"></span> 
+	<span class="is-success" id="statusSucessMessage"></span>
+	<br> 
 		<div id="formDiv">
 			<div class="tab">
 				<button class="tablinks"
-					onclick="openSpecificTab(event, 'basicInfo')" id="defaultOpen">Employee
+					onclick="openSpecificTab(event, 'basicInfo')">Employee
 					Details</button>
 				<button class="tablinks"
-					onclick="openSpecificTab(event, 'projInfo')">Project
+					onclick="openSpecificTab(event, 'projInfo')" id="projTab">Project
 					Details</button>
 				<button class="tablinks"
 					onclick="openSpecificTab(event, 'customerInfo')">Customer
@@ -110,7 +112,7 @@
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-2">
-									<label for="projectName">Project Name</label>
+									<label for="projectName">Project Name<span class="is-required"> *</span></label>
 								</div>
 								<div class="col-md-3">
 									<select class="form-control" name="projectName" id="projectName">
@@ -150,7 +152,7 @@
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-2">
-									<label for="teamName">Team Name</label>
+									<label for="teamName">Team Name<span class="is-required"> *</span></label>
 								</div>
 								<div class="col-md-3">
 									<input list="teamName" id="teamList" class="form-control" autocomplete="off" name="teamName"/>
@@ -160,7 +162,7 @@
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
-									<label for="startDate">Start Date</label>
+									<label for="startDate">Start Date<span class="is-required"> *</span></label>
 								</div>
 								<div class="col-md-3">
 									<input autocomplete="off" class="form-control" name="startDate"
@@ -171,7 +173,7 @@
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-2">
-									<label for="country">Country</label>
+									<label for="country">Country<span class="is-required"> *</span></label>
 								</div>
 								<div class="col-md-3">
 									<select class="form-control" name="country" id="country">
@@ -192,7 +194,7 @@
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-2">
-									<label for="role">Role</label>
+									<label for="role">Role<span class="is-required"> *</span></label>
 								</div>
 								<div class="col-md-3">
 									<select class="form-control" name="role" id="role">
@@ -234,7 +236,7 @@
 									<label for="experience">Experience</label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" name="experience" id="experience"
+									<input class="form-control" type="number" name="experience" id="experience"
 										placeholder="Enter Experience in years" autocomplete="off" />
 								</div>
 								<div class="col-md-1"></div>
@@ -248,6 +250,7 @@
 								</div>
 							</div>
 						</div>
+						<span class="is-required"> *</span> Fields are mandatory
 					</div>
 				</div>
 				<div id="customerInfo" class="tabcontent">
