@@ -32,6 +32,7 @@
 					<th>Project Name</th>
 					<th>Team Name</th>
 					<th></th>
+					<th></th>
 				</tr>
 			</thead>
 			<c:forEach var="employee" items="${employees}">
@@ -41,7 +42,15 @@
 					<td>${employee.getProjectId()}</td>
 					<td>${employee.getProjectName()}</td>
 					<td>${employee.getTeamName()}</td>
-					<td><img class="icon-image to-click" src="/onboarding/resources/icons/showIcon" onclick="location.href='show/${employee.getId()}'"></td>
+					<c:choose>
+						<c:when test="${employee.getApprovalStatus() == 'NEW'}">
+							<td><button class="btn-info" onclick="location.href='onboard/${employee.getId()}'">Acknowledge</button></td>
+						</c:when>
+						<c:when test="${employee.getApprovalStatus() == 'INPROGRESS'}">
+							<td><button class="btn-warning">Processing</button></td>
+						</c:when>
+					</c:choose>
+					<td><img class="icon-image to-click" src="/onboarding/resources/icons/showIcon" onclick="location.href='onboard/${employee.getId()}'"></td>
 				</tr>
 			</c:forEach>
 		</table>

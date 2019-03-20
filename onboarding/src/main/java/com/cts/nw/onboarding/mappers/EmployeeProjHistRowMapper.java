@@ -24,7 +24,7 @@ import com.cts.nw.onboarding.bo.EmployeeProjHist;
 			employeeProjHist.setNationwideId(rs.getString("NATIONWIDEID"));	
 			employeeProjHist.setNationwideIdCreatedDate(rs.getDate("NATIONWIDEIDCREATEDDATE"));
 			employeeProjHist.setFgOnBoardingDate(rs.getDate("FGONBOARDINGDATE"));
-			employeeProjHist.setMovementId(rs.getInt("MOVEMENTID"));
+			employeeProjHist.setMovementId(rs.getString("MOVEMENTID"));
 			employeeProjHist.setWorkForceId(rs.getString("WORKFORCEID"));
 			employeeProjHist.setScrumMaster(rs.getString("SCRUMMASTER"));
 			employeeProjHist.setApm(rs.getString("APM"));
@@ -63,7 +63,7 @@ import com.cts.nw.onboarding.bo.EmployeeProjHist;
 			employeeProjHist.setRequesterName(rs.getString("REQUESTERNAME"));
 			employeeProjHist.setProcessorId(rs.getInt("PROCESSORID"));
 			employeeProjHist.setProcessorName(rs.getString("PROCESSORNAME"));
-			employeeProjHist.setBandId(rs.getInt("BAND"));
+			employeeProjHist.setBandId(rs.getString("BAND"));
 			return employeeProjHist;
 		}
 

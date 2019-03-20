@@ -21,17 +21,19 @@ public interface EmployeeProjHistDAO {
 	/*Processor Operations*/
 	List<EmployeeProjHist> getRecordsPerProcessortoOnboard(String processorid);
 	List<EmployeeProjHist> getRecordsPerProcessortoOffboard(String processorid);
+	Integer onBoardEmployee(EmployeeProjHist employeeProjectHist);
 	
 	/*Release Operations*/
 	List<EmployeeProjHist> getEmployeestobeReleased();
 	List<EmployeeProjHist> getEmployeestobeReleasedbyTeam(String teamId);
 	List<EmployeeProjHist> getEmployeestobeReleasedbyProj(String projectId);
-	Integer releaseEmployeesByTeamorProj(EmployeeProjHist employeeProjHist,Integer Id);
+	Integer offboardEmployee(EmployeeProjHist employeeProjHist,Integer Id);
 	
 	/*Common Operations*/
 	EmployeeProjHist getSpecificEmployeeProjectHist(String empProjHistId);
 	Integer updateSpecificEmployeeProjectHist(EmployeeProjHist employeeProjectHist);
 	List<EmployeeProjHist> getAllEmployeeProjectInfo();
+	
 	
 	
 }

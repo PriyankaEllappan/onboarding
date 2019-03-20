@@ -149,10 +149,10 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	}
 	
 	@Override
-	public Integer releaseEmployeesByTeamorProj(EmployeeProjHist employeeProjectHist,Integer Id) {
+	public Integer offboardEmployee(EmployeeProjHist employeeProjectHist,Integer Id) {
 		try{
 			System.out.println(employeeProjectHist.toString());
-			return jdbcTemplate.update(QueryConstants.RELEASEBYTEAMORPROJ,employeeProjectHist.getReleaseStatusId(),employeeProjectHist.getReleaseDate(),
+			return jdbcTemplate.update(QueryConstants.OFFBOARDDPROCESS_UPDATE,employeeProjectHist.getReleaseStatusId(),employeeProjectHist.getReleaseDate(),
 					employeeProjectHist.getReasonForOffboarding(),Id);
 		}catch(Exception e){
 			e.printStackTrace();
@@ -178,6 +178,22 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.cts.nw.onboarding.dao.EmployeeProjHistDAO#updateSpecificEmployeeProjectHist(com.cts.nw.onboarding.bo.EmployeeProjHist)
+	 */
+	@Override
+	public Integer onBoardEmployee(EmployeeProjHist employeeProjectHist) {
+		try{
+			return jdbcTemplate.update(QueryConstants.ONBOARDPROCESS_UPDATE,employeeProjectHist.getNationwideId(),employeeProjectHist.getNationwideIdCreatedDate(),
+					employeeProjectHist.getFgOnBoardingDate(),employeeProjectHist.getWorkForceId(),employeeProjectHist.getScrumMaster(),employeeProjectHist.getApm(),
+					employeeProjectHist.getPplManager(),employeeProjectHist.getBandId(),employeeProjectHist.getAttachmentId(),employeeProjectHist.getComments(),
+					employeeProjectHist.getApprovalStatusId(),employeeProjectHist.getId());
+		}catch(Exception e){
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	
 	/* (non-Javadoc)
 	 * @see com.cts.nw.onboarding.dao.EmployeeProjHistDAO#checkActiveAssignments(java.lang.String)
 	 */

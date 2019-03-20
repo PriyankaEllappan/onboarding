@@ -16,11 +16,12 @@ public interface ProcessorService {
 
 	EmployeeProjHist getEmployeetoProcess(String empProjHistId);
 
-	EmployeeProjHist processAnEmployee(EmployeeProjHist employeeProjHist);
-
 	List<EmployeeProjHist> getRecordsPerProcessortoOnboard(String processorid);
 
 	List<EmployeeProjHist> getRecordsPerProcessortoOffboard(String processorid);
 
+	EmployeeProjHist onboardAnEmployee(EmployeeProjHist employeeProjHist);
+
+	EmployeeProjHist offboardAnEmployee(EmployeeProjHist employeeProjHist);
 
 }

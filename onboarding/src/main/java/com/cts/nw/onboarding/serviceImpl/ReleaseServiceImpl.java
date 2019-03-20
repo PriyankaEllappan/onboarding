@@ -80,7 +80,7 @@ public class ReleaseServiceImpl implements ReleaseService {
 		System.out.println("Team:" + listofResources.size());
 		for (EmployeeProjHist resource : listofResources) {
 			Integer rowsAffected = 0;
-			rowsAffected = employeeProjHistDAO.releaseEmployeesByTeamorProj(employeeProjHist, resource.getId());
+			rowsAffected = employeeProjHistDAO.offboardEmployee(employeeProjHist, resource.getId());
 			if (rowsAffected > 0) {
 				if (employeeProjHist.getReleaseStatusId() == 2) {
 					// mailService.offBoardingInitiated(employeeProjHist);
@@ -100,7 +100,7 @@ public class ReleaseServiceImpl implements ReleaseService {
 		System.out.println("Project:" + listofResources.size());
 		for (EmployeeProjHist resource : listofResources) {
 			Integer rowsAffected = 0;
-			rowsAffected = employeeProjHistDAO.releaseEmployeesByTeamorProj(employeeProjHist, resource.getId());
+			rowsAffected = employeeProjHistDAO.offboardEmployee(employeeProjHist, resource.getId());
 			if (rowsAffected > 0) {
 				if (employeeProjHist.getReleaseStatusId() == 2) {
 					// mailService.offBoardingInitiated(employeeProjHist);

@@ -30,7 +30,7 @@ public class EmployeeProjHist {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date fgOnBoardingDate;
 	
-	private Integer movementId;
+	private String movementId;
 	private String workForceId;
 	private String scrumMaster;
 	private String apm;
@@ -83,7 +83,7 @@ public class EmployeeProjHist {
 	private String fileName;
 	private Blob fileData;
 	
-	private Integer bandId;
+	private String bandId;
 	private String band;
 	
 	
@@ -136,16 +136,18 @@ public class EmployeeProjHist {
 	public void setFileData(Blob fileData) {
 		this.fileData = fileData;
 	}
+	
+	
 	/**
 	 * @return the bandId
 	 */
-	public Integer getBandId() {
+	public String getBandId() {
 		return bandId;
 	}
 	/**
 	 * @param bandId the bandId to set
 	 */
-	public void setBandId(Integer bandId) {
+	public void setBandId(String bandId) {
 		this.bandId = bandId;
 	}
 	/**
@@ -220,16 +222,17 @@ public class EmployeeProjHist {
 	public void setFgOnBoardingDate(Date fgOnBoardingDate) {
 		this.fgOnBoardingDate = fgOnBoardingDate;
 	}
+	
 	/**
 	 * @return the movementId
 	 */
-	public Integer getMovementId() {
+	public String getMovementId() {
 		return movementId;
 	}
 	/**
 	 * @param movementId the movementId to set
 	 */
-	public void setMovementId(Integer movementId) {
+	public void setMovementId(String movementId) {
 		this.movementId = movementId;
 	}
 	/**

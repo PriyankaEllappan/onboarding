@@ -40,7 +40,6 @@ $(document).ready(function() {
 			}
 		});
 	})
-	
 })
 
 function openSpecificTab(evt, tabName) {
@@ -65,7 +64,7 @@ function loadApprovalStatus(){
 		success : function(resultData) {
 			approvalStat = JSON.parse(resultData);
 			$.each(approvalStat, function(key,value) {  
-				if(value.id == 1 || value.id ==5){
+				if(value.id == 1 || value.id == 4){
 					$('#approvalStatus')
 			         .append($("<option></option>")
 			                    .attr("value",value.id)
@@ -130,4 +129,21 @@ function loadMovementDetails(){
 			});
 		}
 	});
+}
+
+function validateForm() {
+	alert("Inside");
+	/*if ($('#newEmpID').val() == null || $('#newEmpID').val() == "") {
+		$('#errMessage').text("Employee ID cannot be null or empty");
+		return false;
+	} 
+	if ($('#newEmpDOB').val() == null || $('#newEmpDOB').val() == "") {
+		$('#errMessage').text("Date of Birth cannot be null or empty");
+		return false;
+	} 
+	if ($('#newEmpPPNo').val() == null || $('#newEmpPPNo').val() == "") {
+		$('#errMessage').text("Passport number cannot be null or empty");
+		return false;
+	} */
+	return true;
 }

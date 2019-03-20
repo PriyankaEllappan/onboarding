@@ -18,7 +18,7 @@
 <script src="/onboarding/resources/scripts/jquery.min.js"></script>
 <script src="/onboarding/resources/scripts/bootstrap-datepicker.min.js"></script>
 <script src="/onboarding/resources/scripts/bootstrap.min.js"></script>
-<script src="/onboarding/resources/scripts/processor.js"></script>
+<script src="/onboarding/resources/scripts/termination.js"></script>
 </head>
 <body>
 	<jsp:include page="../layouts/header.jsp" />
@@ -26,17 +26,20 @@
 		<div id="formDiv">
 			<div class="tab">
 				<button class="tablinks"
-					onclick="openSpecificTab(event, 'basicInfo')" >Employee
+					onclick="openSpecificTab(event, 'basicInfo')" id="defaultOpen">Employee
 					Details</button>
 				<button class="tablinks"
-					onclick="openSpecificTab(event, 'projInfo')" id="defaultOpen">Project
+					onclick="openSpecificTab(event, 'projInfo')">Project
 					Details</button>
 				<button class="tablinks"
 					onclick="openSpecificTab(event, 'customerInfo')">Customer
 					Details</button>
+				<button class="tablinks"
+					onclick="openSpecificTab(event, 'releaseInfo')">Release
+					Details</button>
 			</div>
 			<form:form name="projectRegisterForm" method="post"
-				action="/onboarding/process/processrequest" modelAttribute="employee" enctype="multipart/form-data">
+				action="/onboarding/process/offboard" modelAttribute="employee">
 				<div id="basicInfo" class="tabcontent">
 					<div class="resizeTabCont">
 						<br>
@@ -84,7 +87,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input autocomplete="off" class="form-control"
-										name="dateOfBirth" path="dateOfBirth" readonly="true" />
+										name="dateOfBirth" path="dateOfBirth" readonly="true"/>
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
@@ -92,7 +95,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input class="form-control" name="passportNumber"
-										path="passportNumber" readonly="true" />
+										path="passportNumber" readonly="true"/>
 								</div>
 							</div>
 						</div>
@@ -225,11 +228,11 @@
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
-									<form:label path="movementId">Movement</form:label>
+									<form:label path="movement">Movement</form:label>
 								</div>
 								<div class="col-md-3">
-									<form:input class="form-control" name="movementId"
-										path="movementId" readonly="true"/>
+									<form:input class="form-control" name="movement"
+										path="movement" readonly="true"/>
 								</div>
 							</div>
 						</div>
@@ -251,9 +254,8 @@
 									<form:label path="band">Band</form:label>
 								</div>
 								<div class="col-md-3">
-									<form:select class="form-control" name="band" path="band">
-									<form:option value="" label="Select" selected="true" disabled="true" />
-									</form:select>
+									<form:input autocomplete="off" class="form-control" name="band"
+										path="band" readonly="true"/>
 								</div>
 							</div>
 						</div>
@@ -264,7 +266,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input class="form-control" name="pplManager"
-										path="pplManager" />
+										path="pplManager" readonly="true"/>
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
@@ -272,7 +274,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input autocomplete="off" class="form-control" name="apm"
-										path="apm" />
+										path="apm" readonly="true"/>
 								</div>
 							</div>
 						</div>
@@ -283,7 +285,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input class="form-control" path="nationwideId"
-										name="nationwideId" />
+										name="nationwideId" readonly="true"/>
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
@@ -291,7 +293,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input autocomplete="off" class="form-control"
-										name="nationwideIdCreatedDate" path="nationwideIdCreatedDate" />
+										name="nationwideIdCreatedDate" path="nationwideIdCreatedDate" readonly="true"/>
 								</div>
 							</div>
 						</div>
@@ -302,7 +304,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input autocomplete="off" class="form-control"
-										name="workForceId" path="workForceId" />
+										name="workForceId" path="workForceId" readonly="true"/>
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
@@ -310,7 +312,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input autocomplete="off" class="form-control"
-										name="scrumMaster" path="scrumMaster" />
+										name="scrumMaster" path="scrumMaster" readonly="true"/>
 								</div>
 							</div>
 						</div>
@@ -320,10 +322,8 @@
 									<form:label path="approvalStatus">Approval Status</form:label>
 								</div>
 								<div class="col-md-3">
-									<form:select class="form-control" name="approvalStatus"
-										path="approvalStatus">
-									<form:option value="" label="Select" selected="true" disabled="true" />	
-									</form:select>
+									<form:input autocomplete="off" class="form-control" name="approvalStatus"
+										path="approvalStatus" readonly="true"/>
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
@@ -331,7 +331,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input autocomplete="off" class="form-control"
-										name="fgOnBoardingDate" path="fgOnBoardingDate" />
+										name="fgOnBoardingDate" path="fgOnBoardingDate" readonly="true"/>
 								</div>
 							</div>
 						</div>
@@ -342,31 +342,66 @@
 								</div>
 								<div class="col-md-3">
 									<form:textarea rows="3" cols="10" class="form-control"
-										name="comments" path="comments" />
+										name="comments" path="comments"  readonly="true"/>
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
-									<form:label path="attachment">Attachment</form:label>
+									<form:label path="attachmentId">Attachment</form:label>
 								</div>
 								<div class="col-md-3">
-								<form:input path="attachment" type="file"
-											name="attachment" size="60" />
-								</div>
-								<%-- <div class="col-md-3">
 									<form:input class="form-control" path="attachmentId"
-										name="attachmentId" />
-								</div> --%>
+										name="attachmentId"  readonly="true"/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="releaseInfo" class="tabcontent">
+					<div class="resizeTabCont">
+						<br>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-2">
+									<form:label path="releaseStatus">Release Status</form:label>
+								</div>
+								<div class="col-md-3">
+									<form:select class="form-control" name="releaseStatus"
+										path="releaseStatus">
+										<form:option value="" label="Select" selected="true" disabled="true" />
+									</form:select>
+								</div>
+								<div class="col-md-1"></div>
+								<div class="col-md-2">
+									<form:label path="releaseSummary">Release Summary</form:label>
+								</div>
+								<div class="col-md-3">
+									<form:select class="form-control" name="releaseSummary"
+										path="releaseSummary">
+										<form:option value="" label="Select" selected="true" disabled="true" />
+									</form:select>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-2">
+									<form:label path="releaseDate">Release Date</form:label>
+								</div>
+								<div class="col-md-3">
+									<form:input autocomplete="off" class="form-control"
+										name="releaseDate" path="releaseDate" />
+								</div>
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="row">
 								<br /> <br />
 								<div class="col-md-6" style="text-align: right">
-									<button class="btn btn-info" id="processorFormSubmit">
+									<button class="btn btn-info" id="releaseFormSubmit">
 										Submit</button>
 								</div>
 								<div class="col-md-2">
-									<button class="btn btn-info" id="processorFormReset"
+									<button class="btn btn-info" id="releaseFormReset"
 										type="reset" value="Cancel">Cancel</button>
 								</div>
 							</div>
@@ -376,19 +411,18 @@
 							<form:input type="hidden" path="movementId" />
 							<form:input type="hidden" path="releaseStatusId" />
 							<form:input type="hidden" path="approvalStatusId" />
-							<form:input type="hidden" path="releaseStatus" />
-							<form:input type="hidden" path="reasonForOffboarding" />
 							<form:input type="hidden" path="name" />
 							<form:input type="hidden" path="countryId" />
 							<form:input type="hidden" path="roleId" />
 							<form:input type="hidden" path="teamId" />
 							<form:input type="hidden" path="requesterId" />
 							<form:input type="hidden" path="processorId" />
-							<form:input type="hidden" path="movement" />
+							<form:input type="hidden" path="movementId" />
 							<form:input type="hidden" path="fileName" />
 							<form:input type="hidden" path="fileData" />
 							<form:input type="hidden" path="bandId" />
 							<form:input type="hidden" path="projectMappingId" />
+							<form:input type="hidden" path="reasonForOffboarding" />
 						</div>
 					</div>
 				</div>

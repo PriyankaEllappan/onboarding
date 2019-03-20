@@ -13,7 +13,6 @@ import com.cts.nw.onboarding.bo.EmployeeProjHist;
 import com.cts.nw.onboarding.bo.MailAttachment;
 import com.cts.nw.onboarding.dao.EmployeeProjHistDAO;
 import com.cts.nw.onboarding.dao.MailAttachmentDAO;
-import com.cts.nw.onboarding.service.AttachmentService;
 import com.cts.nw.onboarding.service.MailService;
 import com.cts.nw.onboarding.service.ProcessorService;
 
@@ -49,7 +48,7 @@ public class ProcessorServiceImpl implements ProcessorService {
 	}
 	
 	@Override
-	public EmployeeProjHist processAnEmployee(EmployeeProjHist employeeProjHist) {
+	public EmployeeProjHist onboardAnEmployee(EmployeeProjHist employeeProjHist) {
 		Integer rowsAffected = 0;
 		MailAttachment fileUploadObj;
 		Integer mailId = null;
@@ -60,13 +59,23 @@ public class ProcessorServiceImpl implements ProcessorService {
 			employeeProjHist.setAttachmentId(mailId);
 		}
 		
-		rowsAffected = employeeProjHistDAO.updateSpecificEmployeeProjectHist(employeeProjHist);
+		rowsAffected = employeeProjHistDAO.onBoardEmployee(employeeProjHist);
 		if(rowsAffected > 0){
 			if (employeeProjHist.getApprovalStatusId() == 2) {
 				//mailService.onBoardingAcknowledged(employeeProjHist);
 			} else if (employeeProjHist.getApprovalStatusId() == 3) {
 				//mailService.onBoardingCompleted(employeeProjHist);
 			}
+			return employeeProjHist;
+		}
+		return null;
+	}
+	
+	@Override
+	public EmployeeProjHist offboardAnEmployee(EmployeeProjHist employeeProjHist) {
+		Integer rowsAffected = 0;
+		rowsAffected = employeeProjHistDAO.offboardEmployee(employeeProjHist, employeeProjHist.getId());
+		if(rowsAffected > 0){
 			return employeeProjHist;
 		}
 		return null;
