@@ -139,19 +139,3 @@ function loadReleaseReason(){
 		}
 	});
 }
-
-/*function loadRelease(){
-	alert($('#reasonForOffboarding').val());
-	alert(value.id);
-	$.each(releaseReason, function(key,value) { 
-		alert($('#reasonForOffboarding').val());
-		alert(value.id);
-		if($('#reasonForOffboarding').val() == value.id){
-			$('#releaseSummary').val(value.summary);	
-		}
-		$('#releaseStatus')
-         .append($("<option></option>")
-                    .attr("value",value.id)
-                    .text(value.status)); 
-	});
-}*/
