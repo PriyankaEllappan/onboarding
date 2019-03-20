@@ -89,4 +89,18 @@ public class ProcessController extends AbstractController {
 		return modelView;
 	}
 	
+	/**
+	 * Displays the Update Form.
+	 * 
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/process/show/{empProjHistId}", method = RequestMethod.GET)
+	public ModelAndView showResource(@PathVariable("empProjHistId") String empProjHistId) {
+		ModelAndView modelView;
+		modelView = bindViewwithUserInfo("commons/showResource");
+		modelView.addObject("employee", processorService.getEmployeetoProcess(empProjHistId));
+		return modelView;
+	}
 }

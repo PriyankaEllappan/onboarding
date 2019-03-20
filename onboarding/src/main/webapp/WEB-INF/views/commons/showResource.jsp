@@ -8,20 +8,17 @@
 <link rel="stylesheet"
 	href="/onboarding/resources/stylesheets/bootstrap.min.css">
 <link rel="stylesheet"
-	href="/onboarding/resources/stylesheets/bootstrap-datepicker.min.css">
-<link rel="stylesheet"
 	href="/onboarding/resources/stylesheets/application.css">
 <script src="/onboarding/resources/scripts/jquery.min.js"></script>
 <script src="/onboarding/resources/scripts/bootstrap.min.js"></script>
-<script src="/onboarding/resources/scripts/application.js"></script>
-<script src="/onboarding/resources/scripts/bootstrap-datepicker.min.js"></script>
+
 </head>
 <body>
 	<jsp:include page="../layouts/header.jsp" />
 	<div class="content-style">
 		<div class="row">
-			<div class="col-md-4" align="left">
-				<h3 style="color: blue;">Resource Details</h3>
+			<div class="col-md-12" align="center">
+				<h4>Resource Details</h4><br>
 			</div>
 		</div>
 		<table class="table table-striped">

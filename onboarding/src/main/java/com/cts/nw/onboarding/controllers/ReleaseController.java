@@ -176,4 +176,18 @@ public class ReleaseController extends AbstractController {
 		}
 	}
 	
+	/**
+	 * Displays the Update Form.
+	 * 
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/show/{empProjHistId}", method = RequestMethod.GET)
+	public ModelAndView showResource(@PathVariable("empProjHistId") String empProjHistId) {
+		ModelAndView modelView;
+		modelView = bindViewwithUserInfo("commons/showResource");
+		modelView.addObject("employee", releaseService.getEmployeetoRelease(empProjHistId));
+		return modelView;
+	}
 }

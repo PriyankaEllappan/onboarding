@@ -135,7 +135,7 @@ public class RequesterController extends AbstractController {
 	 * @return
 	 */
 	@RequestMapping(value = "/request/show/{empProjHistId}", method = RequestMethod.GET)
-	public ModelAndView showUpdateForm(@PathVariable("empProjHistId") String empProjHistId) {
+	public ModelAndView showResource(@PathVariable("empProjHistId") String empProjHistId) {
 		ModelAndView modelView;
 		modelView = bindViewwithUserInfo("commons/showResource");
 		modelView.addObject("employee", requesterService.getEmployeeProjById(empProjHistId));

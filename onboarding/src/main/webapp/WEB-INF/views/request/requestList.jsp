@@ -14,16 +14,14 @@
 	href="/onboarding/resources/stylesheets/application.css">
 <script src="/onboarding/resources/scripts/jquery.min.js"></script>
 <script src="/onboarding/resources/scripts/bootstrap.min.js"></script>
-<script src="/onboarding/resources/scripts/application.js"></script>
 </head>
 <body>
 	<jsp:include page="../layouts/header.jsp" />
 	<div class="content-style">
-		<h4>Resources List</h4>
-		<div id="navbar">
-			<ul class="nav navbar-nav navbar-left">
-				<li class="active"><a href="/onboarding">Back to home</a></li>
-			</ul>
+		<div class="row">
+			<div class="col-md-12" align="center">
+				<h4>Request List</h4><br>
+			</div>
 		</div>
 		<table class="table table-striped">
 			<thead>
