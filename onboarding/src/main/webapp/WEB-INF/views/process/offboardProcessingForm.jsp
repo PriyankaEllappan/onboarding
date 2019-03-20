@@ -367,7 +367,6 @@
 								<div class="col-md-3">
 									<form:select class="form-control" name="releaseStatus"
 										path="releaseStatus">
-										<form:option value="" label="Select" selected="true" disabled="true" />
 									</form:select>
 								</div>
 								<div class="col-md-1"></div>
@@ -376,7 +375,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:select class="form-control" name="releaseSummary" readonly="true"
-										path="releaseSummary">
+										path="releaseSummary" disabled="true">
 										<form:option value="" label="Select" selected="true" disabled="true" />
 									</form:select>
 								</div>
@@ -389,7 +388,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input autocomplete="off" class="form-control"
-										name="releaseDate" readonly="true" path="releaseDate" />
+										name="releaseDate" id="fakeRelDate" readonly="true" path="releaseDate" />
 								</div>
 							</div>
 						</div>

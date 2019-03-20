@@ -34,6 +34,7 @@
 					<th>Project Name</th>
 					<th>Team Name</th>
 					<th></th>
+					<th></th>
 				</tr>
 			</thead>
 			<c:forEach var="employee" items="${employees}">
@@ -43,12 +44,19 @@
 					<td>${employee.getProjectId()}</td>
 					<td>${employee.getProjectName()}</td>
 					<td>${employee.getTeamName()}</td>
+					<c:choose>
+						<c:when test="${employee.getReleaseStatus() == 'YET TO RELEASE'}">
+							<td><button class="btn-danger" onclick="location.href='requestrelease/${employee.getId()}'">Release</button></td>
+						</c:when>
+						<c:when test="${employee.getReleaseStatus() == 'RELEASE INITIATED'}">
+							<td><button class="btn-warning">Release Initiated</button></td>
+						</c:when>
+					</c:choose>
 					<td><img class="icon-image to-click" src="/onboarding/resources/icons/showIcon" onclick="location.href='show/${employee.getId()}'"></td>
 				</tr>
 			</c:forEach>
 		</table>
 	</div>
-	<!-- Load Script Files -->
 	<jsp:include page="../layouts/footer.jsp" />
 </body>
 </html>
