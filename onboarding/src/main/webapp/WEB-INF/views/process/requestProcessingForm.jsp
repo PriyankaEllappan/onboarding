@@ -26,17 +26,17 @@
 		<div id="formDiv">
 			<div class="tab">
 				<button class="tablinks"
-					onclick="openSpecificTab(event, 'basicInfo')" id="defaultOpen">Employee
+					onclick="openSpecificTab(event, 'basicInfo')" >Employee
 					Details</button>
 				<button class="tablinks"
-					onclick="openSpecificTab(event, 'projInfo')">Project
+					onclick="openSpecificTab(event, 'projInfo')" id="defaultOpen">Project
 					Details</button>
 				<button class="tablinks"
 					onclick="openSpecificTab(event, 'customerInfo')">Customer
 					Details</button>
 			</div>
 			<form:form name="projectRegisterForm" method="post"
-				action="/onboarding/process/processrequest" modelAttribute="employee">
+				action="/onboarding/process/processrequest" modelAttribute="employee" enctype="multipart/form-data">
 				<div id="basicInfo" class="tabcontent">
 					<div class="resizeTabCont">
 						<br>
@@ -346,12 +346,16 @@
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
-									<form:label path="attachmentId">Attachment</form:label>
+									<form:label path="attachment">Attachment</form:label>
 								</div>
 								<div class="col-md-3">
+								<form:input path="attachment" type="file"
+											name="attachment" size="60" />
+								</div>
+								<%-- <div class="col-md-3">
 									<form:input class="form-control" path="attachmentId"
 										name="attachmentId" />
-								</div>
+								</div> --%>
 							</div>
 						</div>
 						<div class="form-group">

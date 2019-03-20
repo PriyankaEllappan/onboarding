@@ -31,6 +31,7 @@ $(document).ready(function() {
 			}
 		});
 	})
+	
 	$("#approvalStatus").change(function() {
 		var selectedVal = $("#approvalStatus").val();
 		$.each(approvalStat, function(key,value) {  

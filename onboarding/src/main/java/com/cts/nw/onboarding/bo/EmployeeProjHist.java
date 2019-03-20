@@ -6,6 +6,7 @@ package com.cts.nw.onboarding.bo;
 import java.util.Date;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.mysql.cj.jdbc.Blob;
@@ -48,18 +49,8 @@ public class EmployeeProjHist {
 	private String releaseStatus;
 	private Integer reasonForOffboarding;
 	private String releaseSummary;
-	/**
-	 * @return the releaseSummary
-	 */
-	public String getReleaseSummary() {
-		return releaseSummary;
-	}
-	/**
-	 * @param releaseSummary the releaseSummary to set
-	 */
-	public void setReleaseSummary(String releaseSummary) {
-		this.releaseSummary = releaseSummary;
-	}
+	
+	private CommonsMultipartFile[] attachment;
 	private Integer attachmentId;
 	private Integer employeeId;
 	private String name;
@@ -684,6 +675,32 @@ public class EmployeeProjHist {
 	 */
 	public void setProcessorName(String processorName) {
 		this.processorName = processorName;
+	}
+	
+	/**
+	 * @return the releaseSummary
+	 */
+	public String getReleaseSummary() {
+		return releaseSummary;
+	}
+	/**
+	 * @param releaseSummary the releaseSummary to set
+	 */
+	public void setReleaseSummary(String releaseSummary) {
+		this.releaseSummary = releaseSummary;
+	}
+	
+	/**
+	 * @return the attachment
+	 */
+	public CommonsMultipartFile[] getAttachment() {
+		return attachment;
+	}
+	/**
+	 * @param attachment the attachment to set
+	 */
+	public void setAttachment(CommonsMultipartFile[] attachment) {
+		this.attachment = attachment;
 	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()

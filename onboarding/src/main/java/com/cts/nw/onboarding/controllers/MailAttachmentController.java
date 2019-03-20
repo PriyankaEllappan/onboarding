@@ -37,6 +37,10 @@ public class MailAttachmentController extends AbstractController {
 
 	@PostMapping(value = "/upload")
 	public @ResponseBody Integer saveUploadedFileInDatabase(@RequestParam CommonsMultipartFile[] attachFileObj) {
+		System.out.println("In");
+		if(attachFileObj != null){
+			System.out.println("Yes");
+		}
 		return attachmentService.uploadAttachment(attachFileObj);
 	}
 
