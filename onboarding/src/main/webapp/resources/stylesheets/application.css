@@ -3,29 +3,28 @@
 	top: 0px;
 	left: 0px;
 	padding: 0 0 0 15px;
-	height: 80px;
+	height: 65px;
 	right: 0px;
 	overflow: hidden;
 	border: 1px solid #ccc;
 	border-top: none;
-	background: #B0E0E6;
+	background-color: #0039a6;
 }
 
-.header-text {
+.header-text  {
 	font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial,
 		sans-serif;
-	font-size: 33px;
+	font-size: 28px;
 	font-style: normal;
 	font-variant: normal;
 	font-weight: 730;
 	line-height: 26.4px;
-	text-shadow: 1px 0px 1px #808080, 0px 1px 1px #EEEEEE, 2px 1px 1px
-		#CCCCCC, 1px 2px 1px #EEEEEE, 3px 2px 1px #CCCCCC, 2px 3px 1px #EEEEEE,
-		4px 3px 1px #CCCCCC, 3px 4px 1px #EEEEEE, 5px 4px 1px #CCCCCC, 4px 5px
-		1px #EEEEEE, 6px 5px 1px #CCCCCC, 5px 6px 1px #EEEEEE, 7px 6px 1px
-		#CCCCCC, 2px 2px 2px rgba(28, 110, 164, 0);
-	color: #000000;
-	/* background: #FFFFFF; */
+	color: transparent;
+	background: #32CD32;
+	-webkit-background-clip: text;
+	-moz-background-clip: text;
+	background-clip: text;
+	text-shadow: 0px 3px 3px rgba(34,139,34, 0.5);
 }
 
 .welcome-text {
@@ -36,7 +35,7 @@
 }
 
 .logo-style {
-	max-height: 79px;
+	max-height: 65px;
 	overflow: visible;
 	padding-top: 0;
 	padding-bottom: 0;
@@ -51,8 +50,8 @@ body {
 
 .content-style {
 	position: absolute;
-	top: 96px;
-	bottom: 25px;
+	top: 65px;
+	bottom: 20px;
 	left: 0px;
 	right: 0px;
 	overflow: auto;
@@ -69,11 +68,12 @@ body {
 .footer-style {
 	position: absolute;
 	bottom: 0px;
-	height: 25px;
+	height: 20px;
 	left: 0px;
 	right: 0px;
 	overflow: hidden;
-	background-color: #B0E0E6;
+	background-color: #0039a6;
+	color: #32CD32;
 }
 
 .has-error {

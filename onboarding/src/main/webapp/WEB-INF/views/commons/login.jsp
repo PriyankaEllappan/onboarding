@@ -60,8 +60,5 @@
 		</div>
 	</div>
 	<jsp:include page="../layouts/footer.jsp" />
-	<h3>App Login Page</h3>
-
-
 </body>
 </html>
