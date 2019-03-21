@@ -62,7 +62,7 @@ body {
 }
 
 .resizeTabCont {
-	width: 75%;
+	width: 85%;
 }
 
 .footer-style {
@@ -159,4 +159,26 @@ select option[disabled]:first-child {
 
 .icon-image {
 	height: 23px;
+}
+
+.tab{
+	background-color: #32CD32 !important;
+}
+
+.tab button.active {
+    background-color: #228B22 !important;
+}
+.next-symbol{
+	background-color: #228B22;
+	color:000000;
+	border: none;
+}
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{
+	background-color: #228B22 !important;
+}
+
+.btn-info {
+    color: #fff;
+    background-color: #228B22;
+    border-color: #228B22;
 }

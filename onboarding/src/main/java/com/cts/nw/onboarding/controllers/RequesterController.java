@@ -34,7 +34,7 @@ public class RequesterController extends AbstractController {
 	
 	@GetMapping(value = "/request/requestlist")
 	public ModelAndView getAllEmployees(ModelMap model) {
-		String requesterId = "151539";
+		String requesterId = APPINFO.getLoggedInUserId();
 		ModelAndView modelView;
 		modelView = bindViewwithUserInfo("request/requestList");
 		modelView.addObject("employees", requesterService.getEmployeesPerRequester(requesterId));

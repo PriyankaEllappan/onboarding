@@ -21,19 +21,18 @@
 <body>
 	<jsp:include page="../layouts/header.jsp" />
 	<div class="container-fluid content-style">
-	<span class="has-error" id="errMessage"></span> 
-	<span class="is-success" id="statusSucessMessage"></span>
-	<br> 
+		<span class="has-error" id="errMessage"></span> <span
+			class="is-success" id="statusSucessMessage"></span> <br>
 		<div id="formDiv">
 			<div class="tab">
 				<button class="tablinks"
-					onclick="openSpecificTab(event, 'basicInfo')">Employee
+					onclick="openSpecificTab(event, 'basicInfo')" id="empTab">Employee
 					Details</button>
 				<button class="tablinks"
 					onclick="openSpecificTab(event, 'projInfo')" id="projTab">Project
 					Details</button>
 				<button class="tablinks"
-					onclick="openSpecificTab(event, 'customerInfo')">Customer
+					onclick="openSpecificTab(event, 'customerInfo')" id="custTab">Customer
 					Details</button>
 			</div>
 			<form name="projectRegisterForm" method="post">
@@ -47,8 +46,8 @@
 								</div>
 								<div class="col-md-3">
 									<input class="form-control" name="newEmpID" id="newEmpID"
-										placeholder="Enter EmployeeID" value="${employee.employeeId}" readonly
-										autocomplete="off" />
+										placeholder="Enter EmployeeID" value="${employee.employeeId}"
+										readonly autocomplete="off" />
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
@@ -105,6 +104,14 @@
 							</div>
 						</div>
 					</div>
+					<div class="row">
+						<div class="col-md-11"></div>
+						<div class="col-md-1">
+							<ul class="nav nav-pills">
+								<li class="active" onclick="openSpecificTabNext(event, 'projInfo')"><a href="#">Next >></a></li>
+							</ul>
+						</div>
+					</div>
 				</div>
 				<div id="projInfo" class="tabcontent">
 					<div class="resizeTabCont">
@@ -112,11 +119,13 @@
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-2">
-									<label for="projectName">Project Name<span class="is-required"> *</span></label>
+									<label for="projectName">Project Name<span
+										class="is-required"> *</span></label>
 								</div>
 								<div class="col-md-3">
-									<select class="form-control" name="projectName" id="projectName">
-									<option value="" selected disabled>Select</option>
+									<select class="form-control" name="projectName"
+										id="projectName">
+										<option value="" selected disabled>Select</option>
 									</select>
 								</div>
 								<div class="col-md-1"></div>
@@ -126,7 +135,8 @@
 								<div class="col-md-3">
 									<input class="form-control" id="projectID" name="projectID"
 										placeholder="Enter Project ID" readonly autocomplete="off" />
-									<input class="form-control" type="hidden" id="projectMapID" name="projectMapID"/>
+									<input class="form-control" type="hidden" id="projectMapID"
+										name="projectMapID" />
 								</div>
 							</div>
 						</div>
@@ -152,17 +162,20 @@
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-2">
-									<label for="teamName">Team Name<span class="is-required"> *</span></label>
+									<label for="teamName">Team Name<span
+										class="is-required"> *</span></label>
 								</div>
 								<div class="col-md-3">
-									<input list="teamName" id="teamList" class="form-control" autocomplete="off" name="teamName"/>
-									<datalist id="teamName" ></datalist>
+									<input list="teamName" id="teamList" class="form-control"
+										autocomplete="off" name="teamName" />
+									<datalist id="teamName"></datalist>
 									<!-- <select class="form-control" name="teamName" id="teamName"
 										></select> -->
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
-									<label for="startDate">Start Date<span class="is-required"> *</span></label>
+									<label for="startDate">Start Date<span
+										class="is-required"> *</span></label>
 								</div>
 								<div class="col-md-3">
 									<input autocomplete="off" class="form-control" name="startDate"
@@ -173,11 +186,12 @@
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-2">
-									<label for="country">Country<span class="is-required"> *</span></label>
+									<label for="country">Country<span class="is-required">
+											*</span></label>
 								</div>
 								<div class="col-md-3">
 									<select class="form-control" name="country" id="country">
-									<option value="" selected disabled>Select</option>
+										<option value="" selected disabled>Select</option>
 									</select>
 
 								</div>
@@ -194,12 +208,13 @@
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-2">
-									<label for="role">Role<span class="is-required"> *</span></label>
+									<label for="role">Role<span class="is-required">
+											*</span></label>
 								</div>
 								<div class="col-md-3">
 									<select class="form-control" name="role" id="role">
-								<option value="" selected disabled>Select</option>
-										</select>
+										<option value="" selected disabled>Select</option>
+									</select>
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
@@ -225,8 +240,9 @@
 									<label for="skillSummary">Skill Summary</label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" name="skillSummary" id="skillSummary"
-										placeholder="Enter Skill Summary" autocomplete="off" />
+									<input class="form-control" name="skillSummary"
+										id="skillSummary" placeholder="Enter Skill Summary"
+										autocomplete="off" />
 								</div>
 							</div>
 						</div>
@@ -236,8 +252,9 @@
 									<label for="experience">Experience</label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" type="number" name="experience" id="experience"
-										placeholder="Enter Experience in years" autocomplete="off" />
+									<input class="form-control" type="number" name="experience"
+										id="experience" placeholder="Enter Experience in years"
+										autocomplete="off" />
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
@@ -245,12 +262,20 @@
 								</div>
 								<div class="col-md-3">
 									<select class="form-control" name="movementID" id="movementID">
-									<option value="" selected disabled>Select</option>
+										<option value="" selected disabled>Select</option>
 									</select>
 								</div>
 							</div>
 						</div>
 						<span class="is-required"> *</span> Fields are mandatory
+					</div>
+					<div class="row">
+						<div class="col-md-11"></div>
+						<div class="col-md-1">
+							<ul class="nav nav-pills">
+								<li class="active" onclick="openSpecificTabNext(event, 'customerInfo')"><a href="#">Next >></a></li>
+							</ul>
+						</div>
 					</div>
 				</div>
 				<div id="customerInfo" class="tabcontent">
@@ -291,16 +316,14 @@
 					</div>
 				</div>
 				<div class="hideElements">
-					<input type="hidden" value="0" id="teamMappingID" /> 
-					<input type="hidden" id="roleMappingID" /> 
-					<input type="hidden" id="roleID" /> 
-					<input type="hidden" id="countryMappingID" />
-					<input type="hidden" id="processorID" />
-					<input type="hidden" id="requesterID" />
-					<input type="hidden" id="approvalStatus" />
-					<input type="hidden" id="releaseStatusId" />
-					<input type="hidden" id="name" value="${employee.name}"/>
-					
+					<input type="hidden" value="0" id="teamMappingID" /> <input
+						type="hidden" id="roleMappingID" /> <input type="hidden"
+						id="roleID" /> <input type="hidden" id="countryMappingID" /> <input
+						type="hidden" id="processorID" /> <input type="hidden"
+						id="requesterID" /> <input type="hidden" id="approvalStatus" />
+					<input type="hidden" id="releaseStatusId" /> <input type="hidden"
+						id="name" value="${employee.name}" />
+
 				</div>
 			</form>
 		</div>

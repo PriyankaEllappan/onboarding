@@ -26,16 +26,16 @@
 		<div id="formDiv">
 			<div class="tab">
 				<button class="tablinks"
-					onclick="openSpecificTab(event, 'basicInfo')">Employee
+					onclick="openSpecificTab(event, 'basicInfo')" id="empTab">Employee
 					Details</button>
 				<button class="tablinks"
-					onclick="openSpecificTab(event, 'projInfo')">Project
+					onclick="openSpecificTab(event, 'projInfo')" id="projTab">Project
 					Details</button>
 				<button class="tablinks"
-					onclick="openSpecificTab(event, 'customerInfo')">Customer
+					onclick="openSpecificTab(event, 'customerInfo')" id="custTab">Customer
 					Details</button>
 				<button class="tablinks"
-					onclick="openSpecificTab(event, 'releaseInfo')" id="defaultOpen">Release
+					onclick="openSpecificTab(event, 'releaseInfo')" id="releaseTab">Release
 					Details</button>
 			</div>
 			<form:form name="projectRegisterForm" method="post"
@@ -98,6 +98,14 @@
 										path="passportNumber" readonly="true"/>
 								</div>
 							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-11"></div>
+						<div class="col-md-1">
+							<ul class="nav nav-pills">
+								<li class="active" onclick="openSpecificTabNext(event, 'projInfo')"><a href="#">Next >></a></li>
+							</ul>
 						</div>
 					</div>
 				</div>
@@ -237,6 +245,14 @@
 							</div>
 						</div>
 					</div>
+					<div class="row">
+						<div class="col-md-11"></div>
+						<div class="col-md-1">
+							<ul class="nav nav-pills">
+								<li class="active" onclick="openSpecificTabNext(event, 'customerInfo')"><a href="#">Next >></a></li>
+							</ul>
+						</div>
+					</div>
 				</div>
 				<div id="customerInfo" class="tabcontent">
 					<div class="resizeTabCont">
@@ -353,6 +369,14 @@
 										name="attachmentId"  readonly="true"/>
 								</div>
 							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-11"></div>
+						<div class="col-md-1">
+							<ul class="nav nav-pills">
+								<li class="active" onclick="openSpecificTabNext(event, 'releaseInfo')"><a href="#">Next >></a></li>
+							</ul>
 						</div>
 					</div>
 				</div>

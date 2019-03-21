@@ -33,17 +33,17 @@
 			src="/onboarding/resources/images/cognizantLogo.png"
 			alt="Cognizant Logo">
 	</div>
-	<div class="col-md-7 header-text" align="left">
+	<div class="col-md-8 header-text" align="center">
 		<br>
 		<p>Nationwide Resource Onboarding</p>
 	</div>
-	<div class="col-md-3 welcome-text" style="color: white;">
+	<div class="col-md-2 welcome-text" style="color: white;">
 		<c:if test="${not empty appInfo.loggedInUserName}">
 			<br>
-			<p>
-				Welcome <span>${appInfo.loggedInUserName} </span> 
-				<br> <span style="font-size: 12px;"> Logged in Role:
-				${appInfo.loggedInUserRole}</span>
+			<p style="font-size: 13px;">
+				Welcome ${appInfo.loggedInUserName} 
+				<br> Logged in Role:
+				<span style="font-size: 11px;" >  ${appInfo.loggedInUserRole}</span>
 			</p>
 		</c:if>
 	</div>

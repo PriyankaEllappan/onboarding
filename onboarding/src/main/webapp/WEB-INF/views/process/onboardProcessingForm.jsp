@@ -28,13 +28,13 @@
 		<div id="formDiv">
 			<div class="tab">
 				<button class="tablinks"
-					onclick="openSpecificTab(event, 'basicInfo')" >Employee
+					onclick="openSpecificTab(event, 'basicInfo')" id="empTab">Employee
 					Details</button>
 				<button class="tablinks"
-					onclick="openSpecificTab(event, 'projInfo')">Project
+					onclick="openSpecificTab(event, 'projInfo')" id="projTab">Project
 					Details</button>
 				<button class="tablinks"
-					onclick="openSpecificTab(event, 'customerInfo')" id="defaultOpen">Customer
+					onclick="openSpecificTab(event, 'customerInfo')" id="custTab">Customer
 					Details</button>
 			</div>
 			<form:form name="projectRegisterForm" method="post"
@@ -97,6 +97,14 @@
 										path="passportNumber" readonly="true" />
 								</div>
 							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-11"></div>
+						<div class="col-md-1">
+							<ul class="nav nav-pills">
+								<li class="active" onclick="openSpecificTabNext(event, 'projInfo')"><a href="#">Next >></a></li>
+							</ul>
 						</div>
 					</div>
 				</div>
@@ -234,6 +242,14 @@
 										path="movementId" readonly="true"/>
 								</div>
 							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-11"></div>
+						<div class="col-md-1">
+							<ul class="nav nav-pills">
+								<li class="active" onclick="openSpecificTabNext(event, 'customerInfo')"><a href="#">Next >></a></li>
+							</ul>
 						</div>
 					</div>
 				</div>

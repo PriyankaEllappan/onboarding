@@ -14,12 +14,13 @@ import com.cts.nw.onboarding.bo.EmployeeProjHist;
  */
 public interface RequesterService {
 
+	List<EmployeeProjHist> getEmployeesPerRequester(String requesterId);
+	
 	EmployeeMaster getResourceByID(String employeeid);
 	EmployeeMaster addNewResource(EmployeeMaster employee);
 	List<EmployeeMaster> getAllEmployees();
 	EmployeeProjHist addNewProject(EmployeeProjHist employeeProjHist);
 	List<EmployeeProjHist> checkActiveAssignments(String employeeid);
-	List<EmployeeProjHist> getEmployeesPerRequester(String requesterId);
 	EmployeeProjHist getEmployeeProjById(String empProjHistId);
 	
 }
