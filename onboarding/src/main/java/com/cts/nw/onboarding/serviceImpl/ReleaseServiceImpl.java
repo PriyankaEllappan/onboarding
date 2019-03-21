@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cts.nw.onboarding.bo.EmployeeProjHist;
+import com.cts.nw.onboarding.bo.ProjectMapping;
 import com.cts.nw.onboarding.bo.ReleaseSummary;
 import com.cts.nw.onboarding.dao.EmployeeProjHistDAO;
+import com.cts.nw.onboarding.dao.ProjectMappingDAO;
 import com.cts.nw.onboarding.dao.ReleaseSummaryDAO;
 import com.cts.nw.onboarding.service.MailService;
 import com.cts.nw.onboarding.service.ReleaseService;
@@ -26,8 +28,11 @@ public class ReleaseServiceImpl implements ReleaseService {
 	EmployeeProjHistDAO employeeProjHistDAO;
 
 	@Autowired
-	ReleaseSummaryDAO releaseSummaryDAO;
+	ProjectMappingDAO projectMappingDAO;
 
+	@Autowired
+	ReleaseSummaryDAO releaseSummaryDAO;
+	
 	@Autowired
 	MailService mailService;
 
@@ -74,17 +79,18 @@ public class ReleaseServiceImpl implements ReleaseService {
 
 	@Override
 	public EmployeeProjHist releaseEmployeesByTeam(EmployeeProjHist employeeProjHist) {
-
+		ProjectMapping projDetail = projectMappingDAO.getProcesssorPerProjectId(String.valueOf(employeeProjHist.getProjectId()));
 		List<EmployeeProjHist> listofResources = employeeProjHistDAO
 				.getEmployeestobeReleasedbyTeam(String.valueOf(employeeProjHist.getTeamId()));
-		System.out.println("Team:" + listofResources.size());
 		for (EmployeeProjHist resource : listofResources) {
 			Integer rowsAffected = 0;
 			rowsAffected = employeeProjHistDAO.offboardEmployee(employeeProjHist, resource.getId());
 			if (rowsAffected > 0) {
-				if (employeeProjHist.getReleaseStatusId() == 2) {
+				if (resource.getReleaseStatusId() == 2) {
+					resource.setProcessorId(projDetail.getProcessorId());
 					// mailService.offBoardingInitiated(employeeProjHist);
-				} else if (employeeProjHist.getReleaseStatusId() == 3) {
+				} else if (resource.getReleaseStatusId() == 3) {
+					resource.setProcessorId(projDetail.getProcessorId());
 					// mailService.offBoardingCompleted(employeeProjHist);
 				}
 			}
@@ -97,7 +103,6 @@ public class ReleaseServiceImpl implements ReleaseService {
 	public EmployeeProjHist releaseEmployeesByProject(EmployeeProjHist employeeProjHist) {
 		List<EmployeeProjHist> listofResources = employeeProjHistDAO
 				.getEmployeestobeReleasedbyProj(String.valueOf(employeeProjHist.getProjectId()));
-		System.out.println("Project:" + listofResources.size());
 		for (EmployeeProjHist resource : listofResources) {
 			Integer rowsAffected = 0;
 			rowsAffected = employeeProjHistDAO.offboardEmployee(employeeProjHist, resource.getId());

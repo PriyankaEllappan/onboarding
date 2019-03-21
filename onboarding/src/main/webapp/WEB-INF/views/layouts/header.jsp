@@ -3,8 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <head>
 <style>
-.header-button {
-	background-color: #4CAF50;
+.header-image {
+	/* background-color: #4CAF50;
 	border: none;
 	color: white;
 	padding: 7px 32px;
@@ -16,7 +16,9 @@
 	display: inline-block;
 	text-decoration: none;
 	cursor: pointer;
-	width: 7em;  height: 2em;
+	width: 7em;  height: 2em; */
+	width: 45px;
+	padding-top: 15px;
 }
 
 .header-button:hover {
@@ -28,23 +30,28 @@
 <div class="row header-style">
 	<div class="col-md-1">
 		<img class="logo-style"
-				src="/onboarding/resources/images/cognizantLogo.png"
-				alt="Cognizant Logo">
+			src="/onboarding/resources/images/cognizantLogo.png"
+			alt="Cognizant Logo">
 	</div>
-	<div class="col-md-3">
-	<button onclick="location.href='/onboarding'" class="header-button" >HOME</button>
-	</div>
-	<div class="col-md-5 header-text" align="left">
+	<div class="col-md-7 header-text" align="left">
 		<br>
 		<p>Nationwide Resource Onboarding</p>
 	</div>
-	<div class="col-md-2 welcome-text" align="right" style="color:white;">
-		<c:if test="${not empty appInfo.loggedInUser}">
+	<div class="col-md-3 welcome-text" style="color: white;">
+		<c:if test="${not empty appInfo.loggedInUserName}">
 			<br>
-			<br>
-			<p>Welcome ${appInfo.loggedInUser}</p>
+			<p>
+				Welcome <span>${appInfo.loggedInUserName} </span> 
+				<br> <span style="font-size: 12px;"> Logged in Role:
+				${appInfo.loggedInUserRole}</span>
+			</p>
 		</c:if>
 	</div>
-	<div class="col-md-1" ></div>
+	<div class="col-md-1">
+		<img class="to-click header-image"
+			onclick="location.href='/onboarding'"
+			src="/onboarding/resources/icons/homeIcon.png">
+		<!-- <button onclick="location.href='/onboarding'" class="header-button" >HOME</button> -->
+	</div>
 </div>
 

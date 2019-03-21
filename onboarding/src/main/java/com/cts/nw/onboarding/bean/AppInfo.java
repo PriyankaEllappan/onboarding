@@ -9,21 +9,35 @@ package com.cts.nw.onboarding.bean;
  */
 public class AppInfo {
 
-	private String loggedInUser;
+	private String loggedInUserId;
+	private String loggedInUserName;
 	private String loggedInUserRole;
 	private String appUrl;
 	
+	
 	/**
-	 * @return the loggedInUser
+	 * @return the loggedInUserId
 	 */
-	public String getLoggedInUser() {
-		return loggedInUser;
+	public String getLoggedInUserId() {
+		return loggedInUserId;
 	}
 	/**
-	 * @param loggedInUser the loggedInUser to set
+	 * @param loggedInUserId the loggedInUserId to set
 	 */
-	public void setLoggedInUser(String loggedInUser) {
-		this.loggedInUser = loggedInUser;
+	public void setLoggedInUserId(String loggedInUserId) {
+		this.loggedInUserId = loggedInUserId;
+	}
+	/**
+	 * @return the loggedInUserName
+	 */
+	public String getLoggedInUserName() {
+		return loggedInUserName;
+	}
+	/**
+	 * @param loggedInUserName the loggedInUserName to set
+	 */
+	public void setLoggedInUserName(String loggedInUserName) {
+		this.loggedInUserName = loggedInUserName;
 	}
 	/**
 	 * @return the loggedInUserRole
@@ -55,8 +69,8 @@ public class AppInfo {
 	 */
 	@Override
 	public String toString() {
-		return "UserDetails [loggedInUser=" + loggedInUser + ", loggedInUserRole=" + loggedInUserRole + ", appUrl="
-				+ appUrl + "]";
+		return "AppInfo [loggedInUserId=" + loggedInUserId + ", loggedInUserName=" + loggedInUserName
+				+ ", loggedInUserRole=" + loggedInUserRole + ", appUrl=" + appUrl + "]";
 	}
 	
 }

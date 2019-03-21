@@ -9,6 +9,7 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cts.nw.onboarding.bean.AppInfo;
+import com.cts.nw.onboarding.service.LDAPService;
 
 /**
  * @author 656579
@@ -30,6 +32,9 @@ import com.cts.nw.onboarding.bean.AppInfo;
 @Controller
 public class AbstractController {
 
+	@Autowired
+	LDAPService lDAPService;
+	
 	public static AppInfo APPINFO = new AppInfo();
 
 	@InitBinder
@@ -80,8 +85,17 @@ public class AbstractController {
 				if (authentication != null) {
 					String currentUserName = authentication.getName();
 					Collection<? extends GrantedAuthority> currentUserNameAuthorities = authentication.getAuthorities();
-					APPINFO.setLoggedInUser(currentUserName);
-					APPINFO.setLoggedInUserRole(currentUserNameAuthorities.toString());
+					if(currentUserName.equalsIgnoreCase("admin")){
+						APPINFO.setLoggedInUserId(currentUserName);
+						APPINFO.setLoggedInUserName(currentUserName);
+						APPINFO.setLoggedInUserRole(currentUserNameAuthorities.toString());
+					}else{
+						APPINFO.setLoggedInUserId(currentUserName);
+						APPINFO.setLoggedInUserName(lDAPService.getEmployee(currentUserName).getName());
+						for( GrantedAuthority auth: currentUserNameAuthorities){
+							APPINFO.setLoggedInUserRole(auth.getAuthority().replaceAll("ROLE_", ""));
+						}
+					}
 				}
 			}
 		} catch (Exception e) {
