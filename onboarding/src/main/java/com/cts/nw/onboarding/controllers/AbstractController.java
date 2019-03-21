@@ -88,7 +88,9 @@ public class AbstractController {
 					if(currentUserName.equalsIgnoreCase("admin")){
 						APPINFO.setLoggedInUserId(currentUserName);
 						APPINFO.setLoggedInUserName(currentUserName);
-						APPINFO.setLoggedInUserRole(currentUserNameAuthorities.toString());
+						for( GrantedAuthority auth: currentUserNameAuthorities){
+							APPINFO.setLoggedInUserRole(auth.getAuthority().replaceAll("ROLE_", ""));
+						}
 					}else{
 						APPINFO.setLoggedInUserId(currentUserName);
 						APPINFO.setLoggedInUserName(lDAPService.getEmployee(currentUserName).getName());
