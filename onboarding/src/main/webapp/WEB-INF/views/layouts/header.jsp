@@ -10,7 +10,7 @@
 	padding: 7px 32px;
 	text-align: center;
 	font-size: 16px;
-	margin-top: 28px;
+	margin-top: 20px;
 	opacity: 0.6;
 	transition: 0.3s;
 	display: inline-block;
