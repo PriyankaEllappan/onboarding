@@ -99,9 +99,10 @@ public class ProcessController extends AbstractController {
 	 */
 	@GetMapping(value = "/process/onboardlist")
 	public ModelAndView getAllEmployeestobeOnboarded(ModelMap model) {
-		String processorId = "413804";
+		String processorId;
 		ModelAndView modelView;
 		modelView = bindViewwithUserInfo("process/onboardProcessList");
+		processorId = APPINFO.getLoggedInUserId();
 		modelView.addObject("employees", processorService.getRecordsPerProcessortoOnboard(processorId));
 		return modelView;
 	}
@@ -114,9 +115,10 @@ public class ProcessController extends AbstractController {
 	 */
 	@GetMapping(value = "/process/offboardlist")
 	public ModelAndView getAllEmployeestobeOffboarded(ModelMap model) {
-		String processorId = "413804";
+		String processorId;
 		ModelAndView modelView;
 		modelView = bindViewwithUserInfo("process/offboardProcessList");
+		processorId = APPINFO.getLoggedInUserId();
 		modelView.addObject("employees", processorService.getRecordsPerProcessortoOffboard(processorId));
 		return modelView;
 	}

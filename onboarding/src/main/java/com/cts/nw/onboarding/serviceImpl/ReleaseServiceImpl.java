@@ -58,8 +58,10 @@ public class ReleaseServiceImpl implements ReleaseService {
 
 	@Override
 	public EmployeeProjHist releaseAnEmployee(EmployeeProjHist employeeProjHist) {
+		ProjectMapping projDetail = projectMappingDAO.getProcesssorPerProjectId(String.valueOf(employeeProjHist.getProjectId()));
+		employeeProjHist.setOffboardProcessor(String.valueOf(projDetail.getProcessorId()));
 		Integer rowsAffected = 0;
-		rowsAffected = employeeProjHistDAO.updateSpecificEmployeeProjectHist(employeeProjHist);
+		rowsAffected = employeeProjHistDAO.offboardEmployee(employeeProjHist,employeeProjHist.getId());
 		if (rowsAffected > 0) {
 			if (employeeProjHist.getReleaseStatusId() == 2) {
 				// mailService.offBoardingInitiated(employeeProjHist);

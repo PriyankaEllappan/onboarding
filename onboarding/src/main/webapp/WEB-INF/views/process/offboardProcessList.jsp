@@ -43,11 +43,11 @@
 					<td>${employee.getProjectName()}</td>
 					<td>${employee.getTeamName()}</td>
 					<c:choose>
-						<c:when test="${employee.getApprovalStatus() == 'NEW'}">
-							<td><button class="btn-info" onclick="location.href='offboard/${employee.getId()}'">Approve</button></td>
+						<c:when test="${employee.getReleaseStatus() == 'RELEASE INITIATED'}">
+							<td><button class="btn-warning" onclick="location.href='offboard/${employee.getId()}'">Approve</button></td>
 						</c:when>
-						<c:when test="${employee.getApprovalStatus() == 'INPROGRESS'}">
-							<td><button class="btn-warning">Processing</button></td>
+						<c:when test="${employee.getReleaseStatus() == 'RELEASED'}">
+							<td><button class="btn-danger">Released</button></td>
 						</c:when>
 					</c:choose>
 					<td><img class="icon-image to-click" src="/onboarding/resources/icons/showIcon" onclick="location.href='offboard/${employee.getId()}'"></td>

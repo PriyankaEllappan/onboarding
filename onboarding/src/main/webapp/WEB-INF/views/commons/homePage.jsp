@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -29,6 +30,7 @@ a {
 						request list</a>
 				</div>
 			</div>
+			<c:if test="${appInfo.loggedInUserRole == 'ADMIN' || appInfo.loggedInUserRole == 'PROCESSOR'}">
 			<div class="dropitdown">
 				<button class="dropbtn">Processing Requests</button>
 				<div class="dropitdown-content">
@@ -37,6 +39,7 @@ a {
 						Off-Boarding requests</a>
 				</div>
 			</div>
+			</c:if>
 			<div class="dropitdown">
 				<button class="dropbtn">Offboarding Resources</button>
 				<div class="dropitdown-content">
@@ -57,15 +60,15 @@ a {
 				</ol>
 				<div class="carousel-inner">
 					<div class="item active">
-						<img src="https://www.w3schools.com/bootstrap/la.jpg" alt="Los Angeles" style="width: 100%;">
+						<img src="/onboarding/resources/images/Image1.jpg" alt="carousel1" style="width: 100%;">
 					</div>
 
 					<div class="item">
-						<img src="https://www.w3schools.com/bootstrap/chicago.jpg" alt="Chicago" style="width: 100%;">
+						<img src="/onboarding/resources/images/Image2.jpg" alt="carousel2" style="width: 100%;">
 					</div>
 
 					<div class="item">
-						<img src="https://www.w3schools.com/bootstrap/ny.jpg" alt="New york" style="width: 100%;">
+						<img src="/onboarding/resources/images/Image3.jpg" alt="carousel3" style="width: 100%;">
 					</div>
 				</div>
 				<a class="left carousel-control" href="#myCarousel"

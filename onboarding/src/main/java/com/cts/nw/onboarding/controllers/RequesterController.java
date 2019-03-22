@@ -77,6 +77,18 @@ public class RequesterController extends AbstractController {
 	}
 
 	/**
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/request/mapproject/{empid}", method = RequestMethod.GET)
+	public ModelAndView generateAddProjForm(@PathVariable("empid") String empid) {
+		ModelAndView modelView;
+		modelView = bindViewwithUserInfo("request/mapNewProject");
+		modelView.addObject("employee", requesterService.getResourceByID(empid));
+		return modelView;
+	}
+
+	/**
 	 * @param employeeJson
 	 * @return
 	 */
@@ -95,19 +107,7 @@ public class RequesterController extends AbstractController {
 			return null;
 		}
 	}
-
-	/**
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping(value = "/request/mapproject/{empid}", method = RequestMethod.GET)
-	public ModelAndView generateAddProjForm(@PathVariable("empid") String empid) {
-		ModelAndView modelView;
-		modelView = bindViewwithUserInfo("request/mapNewProject");
-		modelView.addObject("employee", requesterService.getResourceByID(empid));
-		return modelView;
-	}
-
+	
 	/**
 	 * @param employeeJson
 	 * @return

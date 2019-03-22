@@ -32,7 +32,7 @@ public interface EmployeeProjHistDAO {
 	
 	/*Common Operations*/
 	EmployeeProjHist getSpecificEmployeeProjectHist(String empProjHistId);
-	Integer updateSpecificEmployeeProjectHist(EmployeeProjHist employeeProjectHist);
+	/*Integer updateSpecificEmployeeProjectHist(EmployeeProjHist employeeProjectHist);*/
 	List<EmployeeProjHist> getAllEmployeeProjectInfo();
 	
 	

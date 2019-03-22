@@ -65,7 +65,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	@Override
 	public List<EmployeeProjHist> getRecordsPerProcessortoOnboard(String processorid) {
 		try {
-			String whereClause = " WHERE PR.PROCESSORID = ? AND EPH.APPROVALSTATUS IN (1,2)";
+			String whereClause = " WHERE PR.PROCESSORID = ? AND EPH.RELEASESTATUS = 1 ORDER BY EPH.APPROVALSTATUS";
 			String query = QueryConstants.EMPPROJHIST_SELECT + whereClause;
 			RowMapper<EmployeeProjHist> rowMapper = new EmployeeProjHistRowMapper();
 			return this.jdbcTemplate.query(query, rowMapper,processorid);
@@ -80,10 +80,10 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	@Override
 	public List<EmployeeProjHist> getRecordsPerProcessortoOffboard(String processorid) {
 		try {
-			String whereClause = " WHERE PR.PROCESSORID = ? AND EPH.RELEASESTATUS = 2";
+			String whereClause = " WHERE PR.PROCESSORID = ? OR EPH.OFFBOARDPROCESSOR = ? AND EPH.RELEASESTATUS IN (2,3)";
 			String query = QueryConstants.EMPPROJHIST_SELECT + whereClause;
 			RowMapper<EmployeeProjHist> rowMapper = new EmployeeProjHistRowMapper();
-			return this.jdbcTemplate.query(query, rowMapper,processorid);
+			return this.jdbcTemplate.query(query, rowMapper,processorid,processorid);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
@@ -97,7 +97,9 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 			String whereClause = " WHERE EPH.ID = ?";
 			String query = QueryConstants.EMPPROJHIST_SELECT + whereClause;
 			RowMapper<EmployeeProjHist> rowMapper = new EmployeeProjHistRowMapper();
-			return this.jdbcTemplate.queryForObject(query, rowMapper, empProjHistId);
+			EmployeeProjHist emp = this.jdbcTemplate.queryForObject(query, rowMapper, empProjHistId);
+			System.out.println(emp.toString());
+			return emp;
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
@@ -153,7 +155,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 		try{
 			System.out.println(employeeProjectHist.toString());
 			return jdbcTemplate.update(QueryConstants.REQUEST_OFFBOARD_UPDATE,employeeProjectHist.getReleaseStatusId(),employeeProjectHist.getReleaseDate(),
-					employeeProjectHist.getReasonForOffboarding(),Id);
+					employeeProjectHist.getReasonForOffboarding(),AbstractController.APPINFO.getLoggedInUserId(),employeeProjectHist.getOffboardProcessor(),Id);
 		}catch(Exception e){
 			e.printStackTrace();
 			return 0;
@@ -163,7 +165,6 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	@Override
 	public Integer processOffboardEmployee(EmployeeProjHist employeeProjectHist,Integer Id) {
 		try{
-			System.out.println(employeeProjectHist.toString());
 			return jdbcTemplate.update(QueryConstants.PROCESS_OFFBOARD_UPDATE,employeeProjectHist.getReleaseStatusId(),Id);
 		}catch(Exception e){
 			e.printStackTrace();
@@ -173,7 +174,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	
 	/* (non-Javadoc)
 	 * @see com.cts.nw.onboarding.dao.EmployeeProjHistDAO#updateSpecificEmployeeProjectHist(com.cts.nw.onboarding.bo.EmployeeProjHist)
-	 */
+	 
 	@Override
 	public Integer updateSpecificEmployeeProjectHist(EmployeeProjHist employeeProjectHist) {
 		try{
@@ -187,7 +188,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 			e.printStackTrace();
 			return 0;
 		}
-	}
+	}*/
 
 	/* (non-Javadoc)
 	 * @see com.cts.nw.onboarding.dao.EmployeeProjHistDAO#updateSpecificEmployeeProjectHist(com.cts.nw.onboarding.bo.EmployeeProjHist)
