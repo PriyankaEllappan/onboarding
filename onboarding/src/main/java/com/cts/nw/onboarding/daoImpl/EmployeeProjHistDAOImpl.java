@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cts.nw.onboarding.bo.EmployeeProjHist;
 import com.cts.nw.onboarding.constants.QueryConstants;
+import com.cts.nw.onboarding.controllers.AbstractController;
 import com.cts.nw.onboarding.dao.EmployeeProjHistDAO;
 import com.cts.nw.onboarding.mappers.EmployeeProjHistRowMapper;
 
@@ -47,12 +48,11 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	@Override
 	public Integer addEmployeeProjectInfo(EmployeeProjHist employeeProjectHist) {
 		try{
-			return jdbcTemplate.update(QueryConstants.EMPPROJHIST_INSERT,employeeProjectHist.getId(),employeeProjectHist.getEmployeeId(),employeeProjectHist.getProjectMappingId(),employeeProjectHist.getTeamId(),employeeProjectHist.getRoleId(),
-					employeeProjectHist.getCountryId(),employeeProjectHist.getStartDate(),employeeProjectHist.getNationwideId(),employeeProjectHist.getNationwideIdCreatedDate(),
-					employeeProjectHist.getFgOnBoardingDate(),employeeProjectHist.getMovementId(),employeeProjectHist.getWorkForceId(),employeeProjectHist.getScrumMaster(),employeeProjectHist.getApm(),
-					employeeProjectHist.getPplManager(),employeeProjectHist.getBandId(),employeeProjectHist.getExperience(),employeeProjectHist.getAttachmentId(),employeeProjectHist.getComments(),
-					employeeProjectHist.getSkillSet(),employeeProjectHist.getSkillSummary(),employeeProjectHist.getApprovalStatusId(),employeeProjectHist.getReleaseStatusId(),employeeProjectHist.getReleaseDate(),
-					employeeProjectHist.getReasonForOffboarding());
+			return jdbcTemplate.update(QueryConstants.EMPPROJECTHIST_INSERT,employeeProjectHist.getId(),employeeProjectHist.getEmployeeId(),employeeProjectHist.getProjectMappingId(),employeeProjectHist.getTeamId(),employeeProjectHist.getRoleId(),
+					employeeProjectHist.getCountryId(),employeeProjectHist.getStartDate(),
+					employeeProjectHist.getMovementId(),employeeProjectHist.getExperience(),
+					employeeProjectHist.getSkillSet(),employeeProjectHist.getSkillSummary(),employeeProjectHist.getApprovalStatusId(),employeeProjectHist.getReleaseStatusId(),
+					AbstractController.APPINFO.getLoggedInUserId());
 		}catch(Exception e){
 			e.printStackTrace();
 			return 0;
@@ -226,10 +226,10 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	@Override
 	public List<EmployeeProjHist> getEmployeesPerRequester(String requesterId) {
 		try {
-			String whereClause = " WHERE RQ.REQUESTERID = ? ";
+			String whereClause = " WHERE RQ.REQUESTERID = ? OR EPH.ONBOARDREQUESTER = ?  ";
 			String query = QueryConstants.EMPPROJHIST_SELECT + whereClause;
 			RowMapper<EmployeeProjHist> rowMapper = new EmployeeProjHistRowMapper();
-			return this.jdbcTemplate.query(query, rowMapper,requesterId);
+			return this.jdbcTemplate.query(query, rowMapper,requesterId,requesterId);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}

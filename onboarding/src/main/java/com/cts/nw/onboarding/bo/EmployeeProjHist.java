@@ -86,8 +86,49 @@ public class EmployeeProjHist {
 	private String bandId;
 	private String band;
 	
+	/*Additional Fields*/
+	private String onboardRequester;
+	private String offboardRequester;
+	private String offboardProcessor;
 	
 	
+	
+	/**
+	 * @return the onboardRequester
+	 */
+	public String getOnboardRequester() {
+		return onboardRequester;
+	}
+	/**
+	 * @param onboardRequester the onboardRequester to set
+	 */
+	public void setOnboardRequester(String onboardRequester) {
+		this.onboardRequester = onboardRequester;
+	}
+	/**
+	 * @return the offboardRequester
+	 */
+	public String getOffboardRequester() {
+		return offboardRequester;
+	}
+	/**
+	 * @param offboardRequester the offboardRequester to set
+	 */
+	public void setOffboardRequester(String offboardRequester) {
+		this.offboardRequester = offboardRequester;
+	}
+	/**
+	 * @return the offboardProcessor
+	 */
+	public String getOffboardProcessor() {
+		return offboardProcessor;
+	}
+	/**
+	 * @param offboardProcessor the offboardProcessor to set
+	 */
+	public void setOffboardProcessor(String offboardProcessor) {
+		this.offboardProcessor = offboardProcessor;
+	}
 	/**
 	 * @return the projectMappingId
 	 */
@@ -726,8 +767,8 @@ public class EmployeeProjHist {
 				+ ", projectId=" + projectId + ", projectName=" + projectName + ", requesterId=" + requesterId
 				+ ", requesterName=" + requesterName + ", processorId=" + processorId + ", processorName="
 				+ processorName + ", movement=" + movement + ", fileName=" + fileName + ", fileData=" + fileData
-				+ ", bandId=" + bandId + ", band=" + band + "]";
+				+ ", bandId=" + bandId + ", band=" + band + ", onboardRequester=" + onboardRequester
+				+ ", offboardRequester=" + offboardRequester + ", offboardProcessor=" + offboardProcessor + "]";
 	}
-	
 	
 }

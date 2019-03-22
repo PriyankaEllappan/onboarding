@@ -73,12 +73,7 @@ public class RequesterController extends AbstractController {
 	 */
 	@PostMapping(value = "/request/addresource", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public @ResponseBody EmployeeMaster createUser(@RequestBody EmployeeMaster employeeJson) {
-		try {
-			return requesterService.addNewResource(employeeJson);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
+		return requesterService.addNewResource(employeeJson);
 	}
 
 	/**
@@ -119,12 +114,7 @@ public class RequesterController extends AbstractController {
 	 */
 	@PostMapping(value = "/request/mapproject", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public @ResponseBody EmployeeProjHist assignProject(@RequestBody EmployeeProjHist employeeProjJson,ModelMap model) {
-		try {
-			return requesterService.addNewProject(employeeProjJson);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
+		return requesterService.addNewProject(employeeProjJson);
 	}
 
 	/**

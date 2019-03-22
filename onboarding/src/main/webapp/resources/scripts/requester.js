@@ -55,6 +55,8 @@ $(document).ready(function() {
 			$('#errMessage').text("");
 			var validationStatus = validateForm();
 			if(validationStatus == true){
+				$('#resourceRegisterFormSubmit').prop('disabled', true);
+				$('#resourceRegisterFormSubmit').css('cursor', 'not-allowed');
 				jsonStr = {}
 				jsonStr["employeeId"] = $('#newEmpID').val();
 				jsonStr["name"] = $('#newEmpName').val();
@@ -72,8 +74,9 @@ $(document).ready(function() {
 					success : function(resultData) {
 						console.log(resultData);
 						if (!$.trim(resultData)) {
-							$("#resourceNonAvailable").hide();
-							$('#errMessage').text("Resource Not Registered");
+							$('#errMessage').text("Resource Not Registered. Incorrect details entered.");
+							$('#resourceRegisterFormSubmit').prop('disabled', false);
+							$('#resourceRegisterFormSubmit').css('cursor', 'pointer');
 						} else {
 							$("#resourceNonAvailable").hide();
 							$('#statusSucessMessage').text("Resource Registered");
@@ -86,8 +89,9 @@ $(document).ready(function() {
 						}
 					},
 					error : function() {
-						$("#resourceNonAvailable").hide();
-						$('#errMessage').text("Resource Not Registered");
+						$('#errMessage').text("Resource Not Registered. Incorrect details entered.");
+						$('#resourceRegisterFormSubmit').prop('disabled', false);
+						$('#resourceRegisterFormSubmit').css('cursor', 'pointer');
 					}
 				})
 			}

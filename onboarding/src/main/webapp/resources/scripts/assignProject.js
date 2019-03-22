@@ -259,6 +259,8 @@ $(function() {
 				$('#errMessage').text("");
 				var validationStatus = validateForm();
 				if (validationStatus == true) {
+					$('#projectRegisterFormSubmit').prop('disabled', true);
+					$('#projectRegisterFormSubmit').css('cursor', 'not-allowed');
 					$.each(selectedTeam, function(key, value) {
 						if ($('#teamList').val() == value.teamName) {
 							$('#teamMappingID').val(value.id);
@@ -273,25 +275,20 @@ $(function() {
 						contentType : 'application/json; charset=utf-8',
 						success : function(resultData) {
 							if (!$.trim(resultData)) {
-								$('#messageDiv').removeClass('hideElements');
-								$('#messageDiv').text(
-										"Unable to add the project details");
-								$('#messageDiv').addClass('showElements');
-								$('#formDiv').addClass('hideElements');
+								$('#errMessage').text("Unable to add the project details. Please verify the entered details");
+								$('#projTab').click(openSpecificTabNext(event, 'projInfo'));
+								$('#projectRegisterFormSubmit').prop('disabled', false);
+								$('#projectRegisterFormSubmit').css('cursor', 'pointer');
 							} else {
-								$('#messageDiv').removeClass('hideElements');
-								$('#messageDiv').text(
-										"Project details added successfully");
-								$('#messageDiv').addClass('showElements');
-								$('#formDiv').addClass('hideElements');
+								$('#formDiv').hide();
+								$('#statusSucessMessage').text("Project details added successfully");
 							}
 						},
 						error : function() {
-							$('#messageDiv').removeClass('hideElements');
-							$('#messageDiv').text(
-									"Unable to add the project details");
-							$('#messageDiv').addClass('showElements');
-							$('#formDiv').addClass('hideElements');
+							$('#errMessage').text("Unable to add the project details. Please verify the entered details");
+							$('#projTab').click(openSpecificTabNext(event, 'projInfo'));
+							$('#projectRegisterFormSubmit').prop('disabled', false);
+							$('#projectRegisterFormSubmit').css('cursor', 'pointer');
 						}
 					})
 				}
@@ -323,32 +320,32 @@ function setRequestParams(){
 function validateForm() {
 	if ($('#projectName').val() == null || $('#projectName').val() == "") {
 		$('#errMessage').text("Project needs to be selected");
-		$('#projTab').click();
+		$('#projTab').click(openSpecificTabNext(event, 'projInfo'));
 		return false;
 	} 
 	if ($('#teamList').val() == null || $('#teamList').val() == "") {
 		$('#errMessage').text("Team name should be selected or entered");
-		$('#projTab').click();
+		$('#projTab').click(openSpecificTabNext(event, 'projInfo'));
 		return false;
 	} 
 	if ($('#startDate').val() == null || $('#startDate').val() == "") {
 		$('#errMessage').text("Start Date cannot be null or empty");
-		$('#projTab').click();
+		$('#projTab').click(openSpecificTabNext(event, 'projInfo'));
 		return false;
 	} 
 	if ($('#country').val() == null || $('#country').val() == "") {
 		$('#errMessage').text("Country needs to be selected");
-		$('#projTab').click();
+		$('#projTab').click(openSpecificTabNext(event, 'projInfo'));
 		return false;
 	} 
 	if ($('#role').val() == null || $('#role').val() == "") {
 		$('#errMessage').text("Role needs to be selected");
-		$('#projTab').click();
+		$('#projTab').click(openSpecificTabNext(event, 'projInfo'));
 		return false;
 	} 
 	if ($('#experience').val() != null && isNaN($('#experience').val())) {
 		$('#errMessage').text("Experience Should be Numeric Value");
-		$('#projTab').click();
+		$('#projTab').click(openSpecificTabNext(event, 'projInfo'));
 		return false;
 	} 
 	return true;

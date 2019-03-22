@@ -16,6 +16,8 @@ import com.cts.nw.onboarding.dao.EmployeeProjHistDAO;
 import com.cts.nw.onboarding.dao.TeamsDAO;
 import com.cts.nw.onboarding.service.MailService;
 import com.cts.nw.onboarding.service.RequesterService;
+import com.cts.nw.onboarding.validators.EmployeeMasterValidator;
+import com.cts.nw.onboarding.validators.OnboardingRequestValidator;
 
 /**
  * @author 656579
@@ -27,6 +29,12 @@ public class RequesterServiceImpl implements RequesterService {
 	@Autowired
 	private EmployeeMasterDAO employeeMasterDAO;
 
+	@Autowired
+	EmployeeMasterValidator employeeMasterValidator;
+	
+	@Autowired
+	OnboardingRequestValidator onboardingRequestValidator;
+	
 	@Autowired
 	EmployeeProjHistDAO employeeProjHistDAO;
 
@@ -47,34 +55,24 @@ public class RequesterServiceImpl implements RequesterService {
 	}
 
 	@Override
-	public List<EmployeeMaster> getAllEmployees() {
-		try {
-			return employeeMasterDAO.getAllEmployeeMasterDetails();
-		} catch (Exception e) {
-			e.printStackTrace();
+	public EmployeeMaster addNewResource(EmployeeMaster employee) {
+		Integer rowsAffected;
+		if (employeeMasterValidator.validate(employee)) {
+			rowsAffected = employeeMasterDAO.addNewResource(employee);
+			if (rowsAffected > 0) {
+				return employee;
+			} else {
+				return null;
+			}
+		} else {
 			return null;
 		}
 	}
 
 	@Override
-	public EmployeeMaster addNewResource(EmployeeMaster employee) {
-		try {
-			Integer rowsAffected = 0;
-			rowsAffected = employeeMasterDAO.addNewResource(employee);
-			if (rowsAffected > 0) {
-				return employee;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	@Override
 	public EmployeeProjHist addNewProject(EmployeeProjHist employeeProjHist) {
-		try {
-			Integer rowsAffected = 0;
-			System.out.println("Process Emp" + employeeProjHist.toString());
+		Integer rowsAffected = 0;
+		if (onboardingRequestValidator.validate(employeeProjHist)) {
 			if (employeeProjHist.getTeamId() == 0) {
 				Teams team = new Teams();
 				Integer teamId;
@@ -82,7 +80,6 @@ public class RequesterServiceImpl implements RequesterService {
 				team.setProjMapId(employeeProjHist.getProjectMappingId());
 				team.setStatus("ACTIVE");
 				teamId = teamsDAO.insertNewViaCallable(team);
-				System.out.println(teamId);
 				if (teamId != null) {
 					employeeProjHist.setTeamId(teamId);
 					rowsAffected = employeeProjHistDAO.addEmployeeProjectInfo(employeeProjHist);
@@ -91,13 +88,13 @@ public class RequesterServiceImpl implements RequesterService {
 				rowsAffected = employeeProjHistDAO.addEmployeeProjectInfo(employeeProjHist);
 			}
 			if (rowsAffected > 0) {
-				// mailService.onBoardingInitiated(employeeProjJson);
 				return employeeProjHist;
+			} else {
+				return null;
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		} else {
+			return null;
 		}
-		return null;
 	}
 
 	@Override

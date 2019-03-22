@@ -64,6 +64,9 @@ import com.cts.nw.onboarding.bo.EmployeeProjHist;
 			employeeProjHist.setProcessorId(rs.getInt("PROCESSORID"));
 			employeeProjHist.setProcessorName(rs.getString("PROCESSORNAME"));
 			employeeProjHist.setBandId(rs.getString("BAND"));
+			employeeProjHist.setOnboardRequester(rs.getString("ONBOARDREQUESTER"));
+			employeeProjHist.setOffboardRequester(rs.getString("OFFBOARDREQUESTER"));
+			employeeProjHist.setOffboardProcessor(rs.getString("OFFBOARDPROCESSOR"));
 			return employeeProjHist;
 		}
 

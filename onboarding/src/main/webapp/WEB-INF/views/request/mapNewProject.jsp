@@ -315,7 +315,6 @@
 						</div>
 					</div>
 				</div>
-				<div class="hideElements">
 					<input type="hidden" value="0" id="teamMappingID" /> <input
 						type="hidden" id="roleMappingID" /> <input type="hidden"
 						id="roleID" /> <input type="hidden" id="countryMappingID" /> <input
@@ -324,10 +323,8 @@
 					<input type="hidden" id="releaseStatusId" /> <input type="hidden"
 						id="name" value="${employee.name}" />
 
-				</div>
 			</form>
 		</div>
-		<span id="messageDiv" class="hideElements"> </span>
 	</div>
 	<jsp:include page="../layouts/footer.jsp" />
 </body>

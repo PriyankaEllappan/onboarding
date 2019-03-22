@@ -18,7 +18,6 @@ public interface RequesterService {
 	
 	EmployeeMaster getResourceByID(String employeeid);
 	EmployeeMaster addNewResource(EmployeeMaster employee);
-	List<EmployeeMaster> getAllEmployees();
 	EmployeeProjHist addNewProject(EmployeeProjHist employeeProjHist);
 	List<EmployeeProjHist> checkActiveAssignments(String employeeid);
 	EmployeeProjHist getEmployeeProjById(String empProjHistId);
