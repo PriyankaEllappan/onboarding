@@ -27,15 +27,15 @@
 			</p>
 		</c:if>
 	</div>
-	<div class="col-md-1">
+	<div class="col-md-1 header-image-div">
 	<img class="to-click header-imageback"
 			onclick="goBack()"
-			src="/onboarding/resources/icons/backIcon.png">
+			src="/onboarding/resources/icons/back.png">
 	</div>
 	<div class="col-md-1">
 		<img class="to-click header-image"
 			onclick="location.href='/onboarding'"
-			src="/onboarding/resources/icons/homeIcon.png">
+			src="/onboarding/resources/icons/home.jpg">
 	</div>
 </div>
 

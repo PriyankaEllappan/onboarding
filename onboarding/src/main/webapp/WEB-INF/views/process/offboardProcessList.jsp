@@ -50,7 +50,7 @@
 							<td><button class="btn-danger">Released</button></td>
 						</c:when>
 					</c:choose>
-					<td><img class="icon-image to-click" src="/onboarding/resources/icons/showIcon" onclick="location.href='offboard/${employee.getId()}'"></td>
+					<td><img class="icon-image to-click" src="/onboarding/resources/icons/show" onclick="location.href='offboard/${employee.getId()}'"></td>
 				</tr>
 			</c:forEach>
 		</table>

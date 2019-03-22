@@ -33,7 +33,8 @@ public class HomeController extends AbstractController {
 	 */
 	@RequestMapping(value = "/loginError", method = RequestMethod.GET)
 	public String loginError(ModelMap model) {
-		model.addAttribute("error", "true");
+		model.addAttribute("error", "1");
+		model.addAttribute("errMessage", "Invalid Username or Password");
 		return "commons/login";
 	}
 
@@ -44,8 +45,7 @@ public class HomeController extends AbstractController {
 	@RequestMapping(value = "/accessDenied", method = RequestMethod.GET)
 	public ModelAndView accesssDenied() {
 		ModelAndView modelView;
-		modelView = bindViewwithUserInfo("commons/accessDenied");
-		modelView.addObject("msg", "You do not have access rights to view this page!");
+		modelView = bindViewwithUserInfo("errors/accessDenied");
 		return modelView;
 	}
 

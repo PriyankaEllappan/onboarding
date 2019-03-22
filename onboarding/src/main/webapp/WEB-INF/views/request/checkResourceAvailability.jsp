@@ -23,8 +23,7 @@
 			class="is-success" id="statusSucessMessage"></span> <br> <br>
 		<label for="checkEmpId"> Enter Employee ID: </label> <input
 			type="text" id="checkEmpId" name="checkEmpId"></input>
-		<!-- <button type="submit" id="checkEmpIdSubmit" style="cursor: pointer;"><img class="icon-image to-click" src="/onboarding/resources/icons/searchIcon.png"></button> -->
-		<img class="icon-image to-click" id="checkEmpIdSubmit" style="cursor: pointer;" src="/onboarding/resources/icons/searchIcon.png">
+		<img class="icon-image to-click" id="checkEmpIdSubmit" style="cursor: pointer;" src="/onboarding/resources/icons/search.png">
 		<div class="resizeTabCont" id="resourceNonAvailable">
 			<br> <br>
 			<form name="resourceRegisterForm" method="post">

@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <style type="text/css">
@@ -17,7 +19,19 @@
 	<div class="content-style">
 		<form name='loginForm' id="loginFormID"
 			action="<c:url value='login' />" method='POST'>
-			<br><br><br><br>
+			<br>
+			<br>
+			<br>
+			<div class="row">
+				<div class="col-xs-4"></div>
+				<div class="col-xs-4">
+					<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
+						<span class="has-error">Your login attempt was not successful due to <c:out
+								value="${SPRING_SECURITY_LAST_EXCEPTION.message}" /></span>
+					</c:if>
+				</div>
+				<div class="col-xs-4"><br><br></div>
+			</div>
 			<div class="row">
 				<div class="col-xs-4"></div>
 				<div class="col-xs-1">

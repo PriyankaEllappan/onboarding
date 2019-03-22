@@ -53,7 +53,7 @@
 							<td><button class="btn-success">PROCESSED</button></td>
 						</c:when>
 					</c:choose>
-					<td><img class="icon-image to-click" src="/onboarding/resources/icons/showIcon" onclick="location.href='show/${employee.getId()}'"></td>
+					<td><img class="icon-image to-click" src="/onboarding/resources/icons/show" onclick="location.href='show/${employee.getId()}'"></td>
 				</tr>
 			</c:forEach>
 		</table>

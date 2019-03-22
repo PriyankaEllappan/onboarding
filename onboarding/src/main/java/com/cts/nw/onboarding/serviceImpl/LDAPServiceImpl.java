@@ -42,7 +42,7 @@ public class LDAPServiceImpl implements LDAPService {
 	public EmployeeDetails getEmployee(String empIdtoSearch) {
 		EmployeeDetails employeeDetails = null;
 		try {
-			employeeDetails = getValidEmployee(empIdtoSearch);
+			/*employeeDetails = getValidEmployee(empIdtoSearch);*/
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

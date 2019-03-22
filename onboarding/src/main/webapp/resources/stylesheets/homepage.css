@@ -148,3 +148,24 @@ body {
   width:640px;
   height:450px;
 }
+
+.header-image {
+	width: 33px;
+	padding-top: 24px;
+	opacity: 0.6;
+}
+
+.header-image:hover {
+	opacity: 1.0;
+}
+
+.header-imageback{
+	width: 48px;
+    padding-top: 15px;
+    margin-left: 25px;
+    opacity: 0.6;
+}
+
+.header-imageback:hover {
+	opacity: 1.0;
+}
