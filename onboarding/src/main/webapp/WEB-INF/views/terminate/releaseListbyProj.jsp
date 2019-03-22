@@ -69,7 +69,7 @@
 								id="releaseDate" />
 						</div>
 						<div class="col-md-1" style="text-align: right">
-							<button class="btn btn-info" id="projectSubmit">Submit</button>
+							<button class="btn btn-submit" id="projectSubmit">Submit</button>
 						</div>
 					</div>
 				</div>

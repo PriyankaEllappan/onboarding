@@ -8,7 +8,7 @@
 <link rel="stylesheet"
 	href="/onboarding/resources/stylesheets/bootstrap.min.css">
 <link rel="stylesheet"
-	href="/onboarding/resources/stylesheets/layouts.css">
+	href="/onboarding/resources/stylesheets/homepage.css">
 <script src="/onboarding/resources/scripts/jquery.min.js"></script>
 <script src="/onboarding/resources/scripts/bootstrap.min.js"></script>
 <style type="text/css">
@@ -49,18 +49,12 @@ a {
 				</div>
 			</div>
 		</div>
-<!-- <div><br><br><br></div>
-<div><br><br><br><br></div>
-
 			<div id="myCarousel" class="carousel slide" data-ride="carousel">
-				Indicators
 				<ol class="carousel-indicators">
 					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 					<li data-target="#myCarousel" data-slide-to="1"></li>
 					<li data-target="#myCarousel" data-slide-to="2"></li>
 				</ol>
-
-				Wrapper for slides
 				<div class="carousel-inner">
 					<div class="item active">
 						<img src="https://www.w3schools.com/bootstrap/la.jpg" alt="Los Angeles" style="width: 100%;">
@@ -74,8 +68,6 @@ a {
 						<img src="https://www.w3schools.com/bootstrap/ny.jpg" alt="New york" style="width: 100%;">
 					</div>
 				</div>
-
-				Left and right controls
 				<a class="left carousel-control" href="#myCarousel"
 					data-slide="prev"> <span
 					class="sr-only">Previous</span>
@@ -83,7 +75,7 @@ a {
 					data-slide="next"><span
 					class="sr-only">Next</span>
 				</a>
-			</div> -->
+			</div>
 	</div>
 	<jsp:include page="../layouts/footer.jsp" />
 </body>

@@ -304,11 +304,11 @@
 							<div class="row">
 								<br /> <br />
 								<div class="col-md-6" style="text-align: right">
-									<button class="btn btn-info" id="projectRegisterFormSubmit">
+									<button class="btn btn-submit" id="projectRegisterFormSubmit">
 										Submit</button>
 								</div>
 								<div class="col-md-2">
-									<input class="btn btn-info" id="projectRegisterFormReset"
+									<input class="btn btn-submit" id="projectRegisterFormReset"
 										type="reset" value="Cancel" />
 								</div>
 							</div>

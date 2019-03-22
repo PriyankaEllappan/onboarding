@@ -376,10 +376,10 @@
 							<div class="row">
 								<br />
 								<div class="col-md-6" style="text-align: right">
-									<input class="btn btn-info" type="submit" onclick="return validateForm()" id="processorFormSubmit" value="Submit">
+									<input class="btn btn-submit" type="submit" onclick="return validateForm()" id="processorFormSubmit" value="Submit">
 								</div>
 								<div class="col-md-2">
-									<button class="btn btn-info" id="processorFormReset"
+									<button class="btn btn-submit" id="processorFormReset"
 										type="reset" value="Cancel">Cancel</button>
 								</div>
 							</div>

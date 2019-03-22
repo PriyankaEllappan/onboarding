@@ -100,9 +100,9 @@
 					<div class="row">
 						<br /> <br />
 						<div class="col-md-10" style="text-align: center">
-							<button class="btn btn-info" id="resourceRegisterFormSubmit">
+							<button class="btn btn-submit" id="resourceRegisterFormSubmit">
 								Submit</button>
-							<input class="btn btn-info" id="resourceRegisterFormReset"
+							<input class="btn btn-submit" id="resourceRegisterFormReset"
 								type="reset" value="Cancel" />
 						</div>
 					</div>

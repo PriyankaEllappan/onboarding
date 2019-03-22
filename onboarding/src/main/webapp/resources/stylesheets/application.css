@@ -100,7 +100,11 @@ body {
 .tab {
 	overflow: hidden;
 	border: 1px solid #ccc;
-	background-color: #f1f1f1;
+	background-color: rgba(50,205,50, 0.8)
+}
+
+.tab button.active {
+    background-color: rgba(34, 139, 34, 0.9) !important;
 }
 
 /* Style the buttons inside the tab */
@@ -117,12 +121,7 @@ body {
 
 /* Change background color of buttons on hover */
 .tab button:hover {
-	background-color: #ddd;
-}
-
-/* Create an active/current tablink class */
-.tab button.active {
-	background-color: #ccc;
+	background-color: rgba(255, 255, 255, 0.9);
 }
 
 /* Style the tab content */
@@ -161,13 +160,6 @@ select option[disabled]:first-child {
 	height: 23px;
 }
 
-.tab{
-	background-color: #32CD32 !important;
-}
-
-.tab button.active {
-    background-color: #228B22 !important;
-}
 .next-symbol{
 	background-color: #228B22;
 	color:000000;
@@ -177,7 +169,7 @@ select option[disabled]:first-child {
 	background-color: #228B22 !important;
 }
 
-.btn-info {
+.btn-submit {
     color: #fff;
     background-color: #228B22;
     border-color: #228B22;

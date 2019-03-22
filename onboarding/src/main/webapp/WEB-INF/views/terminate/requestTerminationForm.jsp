@@ -421,11 +421,11 @@
 							<div class="row">
 								<br /> <br />
 								<div class="col-md-6" style="text-align: right">
-									<button class="btn btn-info" id="releaseFormSubmit">
+									<button class="btn btn-submit" id="releaseFormSubmit">
 										Submit</button>
 								</div>
 								<div class="col-md-2">
-									<button class="btn btn-info" id="releaseFormReset"
+									<button class="btn btn-submit" id="releaseFormReset"
 										type="reset" value="Cancel">Cancel</button>
 								</div>
 							</div>

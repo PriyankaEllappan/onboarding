@@ -49,9 +49,9 @@
 						</tr>
 						<tr>
 							
-							<td><button name="login" value="login">Login</button></td>
+							<td><button class="btn-submit" name="login" value="login">Login</button></td>
 							<td><br></td>
-							<td><button name="reset" value="reset">Reset</button></td>
+							<td><button class="btn-submit"  name="reset" value="reset">Reset</button></td>
 						</tr>
 					</table>
 				</form>

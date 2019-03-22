@@ -47,7 +47,7 @@
 							<td><button class="btn-info" onclick="location.href='onboard/${employee.getId()}'">Acknowledge</button></td>
 						</c:when>
 						<c:when test="${employee.getApprovalStatus() == 'INPROGRESS'}">
-							<td><button class="btn-warning">Processing</button></td>
+							<td><button class="btn-warning" onclick="location.href='onboard/${employee.getId()}'">Processing</button></td>
 						</c:when>
 					</c:choose>
 					<td><img class="icon-image to-click" src="/onboarding/resources/icons/showIcon" onclick="location.href='onboard/${employee.getId()}'"></td>
