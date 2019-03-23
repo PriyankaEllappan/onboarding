@@ -75,7 +75,7 @@ public class ProcessorServiceImpl implements ProcessorService {
 		if(activeAssignmentList != null && activeAssignmentList.size() > 1){
 			EmployeeProjHist activeAssignment = activeAssignmentList.get(0);
 			activeAssignment.setReleaseStatusId(2);
-			activeAssignment.setReasonForOffboarding(2);
+			activeAssignment.setReasonForOffboarding(6);
 			activeAssignment.setReleaseDate(Calendar.getInstance().getTime());
 			releaseService.releaseAnEmployee(activeAssignment);
 		}
