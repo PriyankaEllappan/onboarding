@@ -36,7 +36,7 @@ public class ApprovalStatusDAOImpl implements ApprovalStatusDAO {
 			return this.jdbcTemplate.queryForObject(query, rowMapper,id);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
-		}
+		} 
 	}
 
 	@Override

@@ -27,13 +27,7 @@ public class ResourceController extends AbstractController {
 
 	@RequestMapping(value = "/getemployee", method = RequestMethod.GET)
 	public @ResponseBody EmployeeDetails index(@RequestParam("empId") String empId) {
-		EmployeeDetails employee = null;
-		try {
-			employee = lDAPService.getEmployee(empId);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return employee;
+		return lDAPService.getEmployee(empId);
 	}
 
 }

@@ -58,13 +58,7 @@ public class RequesterController extends AbstractController {
 	 */
 	@RequestMapping(value = "/request/check/{empid}", method = RequestMethod.GET)
 	public @ResponseBody EmployeeMaster employeeAvailability(@PathVariable String empid) {
-		EmployeeMaster employee = null;
-		try {
-			return requesterService.getResourceByID(empid);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return employee;
+		return requesterService.getResourceByID(empid);
 	}
 
 	/**
@@ -101,15 +95,10 @@ public class RequesterController extends AbstractController {
 	@GetMapping(value = "/request/checkactiveassignments/{employeeid}", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public @ResponseBody List<EmployeeProjHist> checkActiveAssignment(@PathVariable String employeeid) {
 		List<EmployeeProjHist> activeAssignment;
-		try {
-			activeAssignment = requesterService.checkActiveAssignments(employeeid);
-			if (activeAssignment != null && !activeAssignment.isEmpty()) {
-				return activeAssignment;
-			} else {
-				return null;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		activeAssignment = requesterService.checkActiveAssignments(employeeid);
+		if (activeAssignment != null && !activeAssignment.isEmpty()) {
+			return activeAssignment;
+		} else {
 			return null;
 		}
 	}
