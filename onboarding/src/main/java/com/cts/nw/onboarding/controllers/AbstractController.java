@@ -67,42 +67,34 @@ public class AbstractController {
 	 */
 	@ModelAttribute
 	public void setApplicationInfo(HttpServletRequest request) {
-		try {
-			setAppUrl(request);
-			setLoggedinUserInfo();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		setAppUrl(request);
+		setLoggedinUserInfo();
 	}
 
 	/**
 	 * 
 	 */
 	private void setLoggedinUserInfo() {
-		try {
-			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-			if (!(authentication instanceof AnonymousAuthenticationToken)) {
-				if (authentication != null) {
-					String currentUserName = authentication.getName();
-					Collection<? extends GrantedAuthority> currentUserNameAuthorities = authentication.getAuthorities();
-					if(currentUserName.equalsIgnoreCase("admin")){
-						APPINFO.setLoggedInUserId(currentUserName);
-						APPINFO.setLoggedInUserName(currentUserName);
-						for( GrantedAuthority auth: currentUserNameAuthorities){
-							APPINFO.setLoggedInUserRole(auth.getAuthority().replaceAll("ROLE_", ""));
-						}
-					}else{
-						APPINFO.setLoggedInUserId(currentUserName);
-						APPINFO.setLoggedInUserName(lDAPService.getEmployee(currentUserName) != null ? lDAPService.getEmployee(currentUserName).getName() : "User");
-						for( GrantedAuthority auth: currentUserNameAuthorities){
-							APPINFO.setLoggedInUserRole(auth.getAuthority().replaceAll("ROLE_", ""));
-						}
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (!(authentication instanceof AnonymousAuthenticationToken)) {
+			if (authentication != null) {
+				String currentUserName = authentication.getName();
+				Collection<? extends GrantedAuthority> currentUserNameAuthorities = authentication.getAuthorities();
+				if (currentUserName.equalsIgnoreCase("admin")) {
+					APPINFO.setLoggedInUserId(currentUserName);
+					APPINFO.setLoggedInUserName(currentUserName);
+					for (GrantedAuthority auth : currentUserNameAuthorities) {
+						APPINFO.setLoggedInUserRole(auth.getAuthority().replaceAll("ROLE_", ""));
+					}
+				} else {
+					APPINFO.setLoggedInUserId(currentUserName);
+					APPINFO.setLoggedInUserName(lDAPService.getEmployee(currentUserName) != null
+							? lDAPService.getEmployee(currentUserName).getName() : "User");
+					for (GrantedAuthority auth : currentUserNameAuthorities) {
+						APPINFO.setLoggedInUserRole(auth.getAuthority().replaceAll("ROLE_", ""));
 					}
 				}
 			}
-		} catch (Exception e) {
-			System.out.println("Excep");
-			e.printStackTrace();
 		}
 	}
 
@@ -110,14 +102,10 @@ public class AbstractController {
 	 * @param request
 	 */
 	private void setAppUrl(HttpServletRequest request) {
-		try {
-			if (request.getLocalPort() != 0) {
-				APPINFO.setAppUrl(request.getServerName() + ":" + request.getLocalPort() + request.getContextPath());
-			} else {
-				APPINFO.setAppUrl(request.getServerName() + request.getContextPath());
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		if (request.getLocalPort() != 0) {
+			APPINFO.setAppUrl(request.getServerName() + ":" + request.getLocalPort() + request.getContextPath());
+		} else {
+			APPINFO.setAppUrl(request.getServerName() + request.getContextPath());
 		}
 	}
 
@@ -126,12 +114,8 @@ public class AbstractController {
 	 */
 	protected ModelAndView bindViewwithUserInfo(String viewPage) {
 		ModelAndView modelView = null;
-		try {
-			modelView = new ModelAndView(viewPage);
-			modelView.addObject("appInfo", APPINFO);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		modelView = new ModelAndView(viewPage);
+		modelView.addObject("appInfo", APPINFO);
 		return modelView;
 	}
 

@@ -11,7 +11,6 @@ import com.cts.nw.onboarding.bo.MailAttachment;
  */
 public interface MailAttachmentDAO {
 
-	Integer uploadAttachment(MailAttachment mailAttachment);
 	MailAttachment downloadAttachment(String id);
 	Integer uploadAttachmentViaCallable(MailAttachment mailAttachment);
 }

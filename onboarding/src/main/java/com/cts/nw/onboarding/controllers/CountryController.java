@@ -32,15 +32,10 @@ public class CountryController extends AbstractController {
 	@RequestMapping(value = "/getcountries", method = RequestMethod.GET)
 	public @ResponseBody List<CountryMapping> getAllCountryDetails() {
 		List<CountryMapping> countryList;
-		try {
-			countryList = countryService.getAllCountryDetails();
-			if (countryList.size() > 0) {
-				return countryList;
-			} else {
-				return null;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		countryList = countryService.getAllCountryDetails();
+		if (countryList.size() > 0) {
+			return countryList;
+		} else {
 			return null;
 		}
 	}

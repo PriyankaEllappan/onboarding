@@ -31,7 +31,6 @@ public class ReleaseSummaryDAOImpl implements ReleaseSummaryDAO {
 
 	@Override
 	public List<ReleaseSummary> getAllReleaseSummary() {
-
 		try {
 			String releaseSummaryInfo = QueryConstants.RELEASESUMMARY_SELECT;
 			RowMapper<ReleaseSummary> rowMapper = new ReleaseSummaryRowMapper();
@@ -40,6 +39,5 @@ public class ReleaseSummaryDAOImpl implements ReleaseSummaryDAO {
 			return null;
 		}
 	}
-
 
 }

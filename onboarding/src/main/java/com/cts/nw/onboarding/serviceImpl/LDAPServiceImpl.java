@@ -21,6 +21,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import com.cts.nw.onboarding.bean.EmployeeDetails;
+import com.cts.nw.onboarding.exception.GlobalExceptionHandler;
 import com.cts.nw.onboarding.service.LDAPService;
 
 /**
@@ -41,11 +42,7 @@ public class LDAPServiceImpl implements LDAPService {
 	@Override
 	public EmployeeDetails getEmployee(String empIdtoSearch) {
 		EmployeeDetails employeeDetails = null;
-		try {
-			/*employeeDetails = getValidEmployee(empIdtoSearch);*/
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		employeeDetails = getValidEmployee(empIdtoSearch);
 		return employeeDetails;
 	}
 
@@ -85,25 +82,15 @@ public class LDAPServiceImpl implements LDAPService {
 					distinguishedname = attributes.get("distinguishedname");
 					title = attributes.get("title");
 				} else {
-					System.out.println("attributes is null");
+					System.out.println("Null attributes returned.");
 				}
 				profile = assignValuestoEmployeeObject(name, associateId, distinguishedname, title, email);
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		} finally {
-			try {
-				if (results != null) {
-					results.close();
-				}
-				if (ctx != null) {
-					ctx.close();
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+			results.close();
+			ctx.close();
+		} catch (NamingException e) {
+			new GlobalExceptionHandler().handleNamingException(e);
+		} 
 		return profile;
 	}
 
@@ -119,15 +106,11 @@ public class LDAPServiceImpl implements LDAPService {
 	private EmployeeDetails assignValuestoEmployeeObject(Attribute name, Attribute associateId,
 			Attribute distinguishedname, Attribute title, Attribute email) throws NamingException {
 		EmployeeDetails employeProfile = new EmployeeDetails();
-		try {
-			employeProfile.setName(isNull(name) ? null : (String) name.get()); 
-			employeProfile.setAssociateId(isNull(associateId) ? null : Integer.parseInt((String) associateId.get())); 
-			employeProfile.setEmailId(isNull(email) ? null : (String) email.get()); 
-			employeProfile.setDistinguishedName(isNull(distinguishedname) ? null : (String) distinguishedname.get()); 
-			employeProfile.setDesignation(isNull(title) ? null : (String) title.get()); 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		employeProfile.setName(isNull(name) ? null : (String) name.get()); 
+		employeProfile.setAssociateId(isNull(associateId) ? null : Integer.parseInt((String) associateId.get())); 
+		employeProfile.setEmailId(isNull(email) ? null : (String) email.get()); 
+		employeProfile.setDistinguishedName(isNull(distinguishedname) ? null : (String) distinguishedname.get()); 
+		employeProfile.setDesignation(isNull(title) ? null : (String) title.get()); 
 		return employeProfile;
 	}
 

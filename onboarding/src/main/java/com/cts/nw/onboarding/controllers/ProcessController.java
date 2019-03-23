@@ -27,9 +27,26 @@ public class ProcessController extends AbstractController {
 
 	@Autowired
 	ProcessorService processorService;
+	
+	/*1. Perform the On boarding operations*/
+	
+	/**
+	 * Display the On board List. 
+	 * @param model
+	 * @return
+	 */
+	@GetMapping(value = "/process/onboardlist")
+	public ModelAndView getAllEmployeestobeOnboarded(ModelMap model) {
+		String processorId;
+		ModelAndView modelView;
+		modelView = bindViewwithUserInfo("process/onboardProcessList");
+		processorId = APPINFO.getLoggedInUserId();
+		modelView.addObject("employees", processorService.getRecordsPerProcessortoOnboard(processorId));
+		return modelView;
+	}
 
 	/**
-	 * Displays the Update Form.
+	 * Displays the Onboard Update Form.
 	 * 
 	 * @param id
 	 * @param model
@@ -39,7 +56,7 @@ public class ProcessController extends AbstractController {
 	public ModelAndView showOnboardForm(@PathVariable("empProjHistId") String empProjHistId) {
 		ModelAndView modelView;
 		modelView = bindViewwithUserInfo("process/onboardProcessingForm");
-		modelView.addObject("employee", processorService.getEmployeetoProcess(empProjHistId));
+		modelView.addObject("employee", processorService.getEmployeeDetails(empProjHistId));
 		return modelView;
 	}
 
@@ -60,53 +77,7 @@ public class ProcessController extends AbstractController {
 		return modelView;
 	}
 
-	/**
-	 * Displays the Update Form.
-	 * 
-	 * @param id
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping(value = "/process/offboard/{empProjHistId}", method = RequestMethod.GET)
-	public ModelAndView showOffboardForm(@PathVariable("empProjHistId") String empProjHistId) {
-		ModelAndView modelView;
-		modelView = bindViewwithUserInfo("process/offboardProcessingForm");
-		modelView.addObject("employee", processorService.getEmployeetoProcess(empProjHistId));
-		return modelView;
-	}
-	
-	/**
-	 * Updates the Resource Details
-	 * 
-	 * @param id
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping(value = "/process/offboard", method = RequestMethod.POST)
-	public ModelAndView offboardResource(@ModelAttribute("employee") EmployeeProjHist employee, BindingResult result) {
-		ModelAndView modelView;
-		System.out.println(employee.toString());
-		processorService.offboardAnEmployee(employee);
-		modelView = bindViewwithUserInfo("commons/detailsSaved");
-		modelView.addObject("employee", employee);
-		return modelView;
-	}
-	
-	/**
-	 * Display the On board List. 
-	 * @param model
-	 * @return
-	 */
-	@GetMapping(value = "/process/onboardlist")
-	public ModelAndView getAllEmployeestobeOnboarded(ModelMap model) {
-		String processorId;
-		ModelAndView modelView;
-		modelView = bindViewwithUserInfo("process/onboardProcessList");
-		processorId = APPINFO.getLoggedInUserId();
-		modelView.addObject("employees", processorService.getRecordsPerProcessortoOnboard(processorId));
-		return modelView;
-	}
-	
+	/*2. Perform the Off boarding operations*/
 	
 	/**
 	 * Display the Off board List.
@@ -130,11 +101,45 @@ public class ProcessController extends AbstractController {
 	 * @param model
 	 * @return
 	 */
+	@RequestMapping(value = "/process/offboard/{empProjHistId}", method = RequestMethod.GET)
+	public ModelAndView showOffboardForm(@PathVariable("empProjHistId") String empProjHistId) {
+		ModelAndView modelView;
+		modelView = bindViewwithUserInfo("process/offboardProcessingForm");
+		modelView.addObject("employee", processorService.getEmployeeDetails(empProjHistId));
+		return modelView;
+	}
+	
+	/**
+	 * Updates the Resource Details
+	 * 
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/process/offboard", method = RequestMethod.POST)
+	public ModelAndView offboardResource(@ModelAttribute("employee") EmployeeProjHist employee, BindingResult result) {
+		ModelAndView modelView;
+		processorService.offboardAnEmployee(employee);
+		modelView = bindViewwithUserInfo("commons/detailsSaved");
+		modelView.addObject("employee", employee);
+		return modelView;
+	}
+	
+	
+	/*3. Display the Resource Information*/
+	
+	/**
+	 * Displays the Update Form.
+	 * 
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/process/show/{empProjHistId}", method = RequestMethod.GET)
 	public ModelAndView showResource(@PathVariable("empProjHistId") String empProjHistId) {
 		ModelAndView modelView;
 		modelView = bindViewwithUserInfo("commons/showResource");
-		modelView.addObject("employee", processorService.getEmployeetoProcess(empProjHistId));
+		modelView.addObject("employee", processorService.getEmployeeDetails(empProjHistId));
 		return modelView;
 	}
 }

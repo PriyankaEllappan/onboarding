@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cts.nw.onboarding.bo.Teams;
 import com.cts.nw.onboarding.constants.QueryConstants;
 import com.cts.nw.onboarding.dao.TeamsDAO;
+import com.cts.nw.onboarding.exception.GlobalExceptionHandler;
 import com.cts.nw.onboarding.mappers.TeamsRowMapper;
 
 /**
@@ -42,16 +43,10 @@ public class TeamsDAOImpl implements TeamsDAO{
 			return null;
 		}
 	}
-
-	@Override
-	public Integer insertNewTeam(Teams team) {
-		return jdbcTemplate.update(QueryConstants.TEAMS_INSERT,team.getId(),team.getTeamName(),team.getProjMapId(),team.getStatus());
-	}
 	
 	@Override
 	public Integer insertNewViaCallable(Teams team) {
 		Integer returnValue = null;
-		System.out.println("About to Start");
 		try {
 			CallableStatement cstmt = jdbcTemplate.getDataSource().getConnection().prepareCall(QueryConstants.TEAMPROCEDURE_INSERT);
 			cstmt.setString(2, team.getTeamName());
@@ -61,7 +56,7 @@ public class TeamsDAOImpl implements TeamsDAO{
 			cstmt.execute();
 			returnValue = cstmt.getInt(1);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			new GlobalExceptionHandler().handleSQLException(e);
 		}
 		return returnValue;
 	}

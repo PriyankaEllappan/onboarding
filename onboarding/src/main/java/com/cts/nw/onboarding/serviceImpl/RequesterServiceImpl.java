@@ -44,14 +44,10 @@ public class RequesterServiceImpl implements RequesterService {
 	@Autowired
 	MailService mailService;
 
+	/*1. Adding Resource*/
 	@Override
 	public EmployeeMaster getResourceByID(String employeeid) {
-		try {
-			return employeeMasterDAO.getEmployeeMasterDetailsByID(employeeid);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
+		return employeeMasterDAO.getEmployeeMasterDetailsByID(employeeid);
 	}
 
 	@Override
@@ -69,6 +65,18 @@ public class RequesterServiceImpl implements RequesterService {
 		}
 	}
 
+	/*2. Map a Project*/
+	
+	@Override
+	public EmployeeProjHist getEmployeeProjById(String empProjHistId) {
+		return employeeProjHistDAO.getSpecificEmployeeProjectHist(empProjHistId);
+	}
+
+	@Override
+	public List<EmployeeProjHist> checkActiveAssignments(String employeeid) {
+		return employeeProjHistDAO.checkActiveAssignments(employeeid);
+	}
+	
 	@Override
 	public EmployeeProjHist addNewProject(EmployeeProjHist employeeProjHist) {
 		Integer rowsAffected = 0;
@@ -97,29 +105,11 @@ public class RequesterServiceImpl implements RequesterService {
 		}
 	}
 
-	@Override
-	public List<EmployeeProjHist> checkActiveAssignments(String employeeid) {
-		try {
-			return employeeProjHistDAO.checkActiveAssignments(employeeid);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
+	/*3. Requester list*/
+	
 	@Override
 	public List<EmployeeProjHist> getEmployeesPerRequester(String requesterId) {
-		try {
-			return employeeProjHistDAO.getEmployeesPerRequester(requesterId);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
+		return employeeProjHistDAO.getEmployeesPerRequester(requesterId);
 	}
-
-	@Override
-	public EmployeeProjHist getEmployeeProjById(String empProjHistId) {
-		return employeeProjHistDAO.getSpecificEmployeeProjectHist(empProjHistId);
-	}
-
+	
 }

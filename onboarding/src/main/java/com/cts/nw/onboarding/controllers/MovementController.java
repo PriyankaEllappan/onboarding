@@ -24,7 +24,7 @@ public class MovementController extends AbstractController {
 
 	@Autowired
 	MovementService movementService;
-	
+
 	/**
 	 * @param model
 	 * @return
@@ -32,19 +32,13 @@ public class MovementController extends AbstractController {
 	@RequestMapping(value = "/getmovements", method = RequestMethod.GET)
 	public @ResponseBody List<Movement> getAllMovements() {
 		List<Movement> movementList = null;
-		try {
-			movementList = movementService.getMovementDetails();
-			if (movementList.size() > 0) {
-				return movementList;
-			} else {
-				return null;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		movementList = movementService.getMovementDetails();
+		if (movementList.size() > 0) {
+			return movementList;
+		} else {
 			return null;
 		}
 
 	}
-
 
 }

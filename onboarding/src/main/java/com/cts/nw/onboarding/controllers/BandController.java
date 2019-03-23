@@ -32,17 +32,11 @@ public class BandController extends AbstractController {
 	@RequestMapping(value = "/getbands", method = RequestMethod.GET)
 	public @ResponseBody List<Bands> getAllBands() {
 		List<Bands> bandList = null;
-		try {
-			bandList = bandService.getBandDetails();
-			if (bandList.size() > 0) {
-				return bandList;
-			} else {
-				return null;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		bandList = bandService.getBandDetails();
+		if (bandList.size() > 0) {
+			return bandList;
+		} else {
 			return null;
 		}
-
 	}
 }

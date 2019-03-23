@@ -14,6 +14,5 @@ import com.cts.nw.onboarding.bo.Teams;
 public interface TeamsDAO {
 
 	List<Teams> getAllActiveTeams();
-	Integer insertNewTeam(Teams team);
 	Integer insertNewViaCallable(Teams team);
 }

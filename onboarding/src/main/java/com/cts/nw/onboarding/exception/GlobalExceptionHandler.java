@@ -6,6 +6,7 @@ package com.cts.nw.onboarding.exception;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.http.HttpStatus;
@@ -30,6 +31,20 @@ public class GlobalExceptionHandler {
 		return modelView;
 	}
 	
+	public ModelAndView handleSQLException(SQLException e) {
+		ModelAndView modelView = getModelView("errors/errorPage");
+		modelView.addObject("errMessage" , "SQL Exception: " + e.getLocalizedMessage());
+		return modelView;
+		
+	}
+	
+	public ModelAndView handleNamingException(NamingException e) {
+		ModelAndView modelView = getModelView("errors/errorPage");
+		modelView.addObject("errMessage" , "Naming Exception: " + e.getLocalizedMessage());
+		return modelView;
+		
+	}
+
 	@ResponseStatus(value=HttpStatus.NOT_FOUND, reason="IOException occured")
 	@ExceptionHandler(IOException.class)
 	public ModelAndView handleIOException(){
@@ -56,5 +71,6 @@ public class GlobalExceptionHandler {
 		model.setViewName(viewName);
 		return model;
 	}
+
 	
 }

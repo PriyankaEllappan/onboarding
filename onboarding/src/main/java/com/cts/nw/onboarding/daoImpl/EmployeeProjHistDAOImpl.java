@@ -29,14 +29,35 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
+	
+	/* 1. Requester Operations */
+	
 	/* (non-Javadoc)
-	 * @see com.cts.nw.onboarding.dao.EmployeeProjHistDAO#getAllEmployeeProjectInfo()
+	 * @see com.cts.nw.onboarding.dao.EmployeeProjHistDAO#getEmployeesPerRequester(java.lang.String)
 	 */
 	@Override
-	public List<EmployeeProjHist> getAllEmployeeProjectInfo() {
+	public List<EmployeeProjHist> getEmployeesPerRequester(String requesterId) {
 		try {
+			String whereClause = " WHERE RQ.REQUESTERID = ? OR EPH.ONBOARDREQUESTER = ?  ";
+			String query = QueryConstants.EMPPROJHIST_SELECT + whereClause;
 			RowMapper<EmployeeProjHist> rowMapper = new EmployeeProjHistRowMapper();
-			return this.jdbcTemplate.query(QueryConstants.EMPPROJHIST_SELECT, rowMapper);
+			return this.jdbcTemplate.query(query, rowMapper,requesterId,requesterId);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+	
+	
+	/* (non-Javadoc)
+	 * @see com.cts.nw.onboarding.dao.EmployeeProjHistDAO#checkActiveAssignments(java.lang.String)
+	 */
+	@Override
+	public List<EmployeeProjHist> checkActiveAssignments(String empid) {
+		try {
+			String whereClause = " WHERE EPH.RELEASESTATUS IN (1,2) AND EMPLOYEEID = ?";
+			String query = QueryConstants.EMPPROJHIST_SELECT + whereClause;
+			RowMapper<EmployeeProjHist> rowMapper = new EmployeeProjHistRowMapper();
+			return this.jdbcTemplate.query(query, rowMapper,empid);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
@@ -47,33 +68,46 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	 */
 	@Override
 	public Integer addEmployeeProjectInfo(EmployeeProjHist employeeProjectHist) {
-		try{
-			return jdbcTemplate.update(QueryConstants.EMPPROJECTHIST_INSERT,employeeProjectHist.getId(),employeeProjectHist.getEmployeeId(),employeeProjectHist.getProjectMappingId(),employeeProjectHist.getTeamId(),employeeProjectHist.getRoleId(),
-					employeeProjectHist.getCountryId(),employeeProjectHist.getStartDate(),
-					employeeProjectHist.getMovementId(),employeeProjectHist.getExperience(),
-					employeeProjectHist.getSkillSet(),employeeProjectHist.getSkillSummary(),employeeProjectHist.getApprovalStatusId(),employeeProjectHist.getReleaseStatusId(),
-					AbstractController.APPINFO.getLoggedInUserId());
-		}catch(Exception e){
-			e.printStackTrace();
-			return 0;
-		}
+		return jdbcTemplate.update(QueryConstants.EMPPROJECTHIST_INSERT,employeeProjectHist.getId(),employeeProjectHist.getEmployeeId(),employeeProjectHist.getProjectMappingId(),employeeProjectHist.getTeamId(),employeeProjectHist.getRoleId(),
+				employeeProjectHist.getCountryId(),employeeProjectHist.getStartDate(),
+				employeeProjectHist.getMovementId(),employeeProjectHist.getExperience(),
+				employeeProjectHist.getSkillSet(),employeeProjectHist.getSkillSummary(),employeeProjectHist.getApprovalStatusId(),employeeProjectHist.getReleaseStatusId(),
+				AbstractController.APPINFO.getLoggedInUserId());
 	}
 
+	
+	/* 2. Processor Operations */
+	
 	/* (non-Javadoc)
 	 * @see com.cts.nw.onboarding.dao.EmployeeProjHistDAO#getRecordsPerProcessortoOnboard(java.lang.String)
 	 */
 	@Override
 	public List<EmployeeProjHist> getRecordsPerProcessortoOnboard(String processorid) {
 		try {
-			String whereClause = " WHERE PR.PROCESSORID = ? AND EPH.RELEASESTATUS = 1 ORDER BY EPH.APPROVALSTATUS";
+			String whereClause = " WHERE PR.PROCESSORID = ? OR EPH.OFFBOARDPROCESSOR = ? ORDER BY EPH.APPROVALSTATUS";
 			String query = QueryConstants.EMPPROJHIST_SELECT + whereClause;
 			RowMapper<EmployeeProjHist> rowMapper = new EmployeeProjHistRowMapper();
-			return this.jdbcTemplate.query(query, rowMapper,processorid);
+			return this.jdbcTemplate.query(query, rowMapper,processorid,processorid);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.cts.nw.onboarding.dao.EmployeeProjHistDAO#updateSpecificEmployeeProjectHist(com.cts.nw.onboarding.bo.EmployeeProjHist)
+	 */
+	@Override
+	public Integer onBoardEmployee(EmployeeProjHist employeeProjectHist) {
+
+		return jdbcTemplate.update(QueryConstants.ONBOARDPROCESS_UPDATE, employeeProjectHist.getNationwideId(),
+				employeeProjectHist.getNationwideIdCreatedDate(), employeeProjectHist.getFgOnBoardingDate(),
+				employeeProjectHist.getWorkForceId(), employeeProjectHist.getScrumMaster(),
+				employeeProjectHist.getApm(), employeeProjectHist.getPplManager(), employeeProjectHist.getBandId(),
+				employeeProjectHist.getAttachmentId(), employeeProjectHist.getComments(),
+				employeeProjectHist.getApprovalStatusId(), employeeProjectHist.getId());
+	}
+	
+	
 	/* (non-Javadoc)
 	 * @see com.cts.nw.onboarding.dao.EmployeeProjHistDAO#getRecordsPerProcessortoOffboard(java.lang.String)
 	 */
@@ -88,23 +122,15 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 			return null;
 		}
 	}
-	/* (non-Javadoc)
-	 * @see com.cts.nw.onboarding.dao.EmployeeProjHistDAO#getSpecificEmployeeProjectHist(java.lang.String)
-	 */
+	
 	@Override
-	public EmployeeProjHist getSpecificEmployeeProjectHist(String empProjHistId) {
-		try {
-			String whereClause = " WHERE EPH.ID = ?";
-			String query = QueryConstants.EMPPROJHIST_SELECT + whereClause;
-			RowMapper<EmployeeProjHist> rowMapper = new EmployeeProjHistRowMapper();
-			EmployeeProjHist emp = this.jdbcTemplate.queryForObject(query, rowMapper, empProjHistId);
-			System.out.println(emp.toString());
-			return emp;
-		} catch (EmptyResultDataAccessException e) {
-			return null;
-		}
+	public Integer processOffboardEmployee(EmployeeProjHist employeeProjectHist,Integer Id) {
+		return jdbcTemplate.update(QueryConstants.PROCESS_OFFBOARD_UPDATE,employeeProjectHist.getReleaseStatusId(),Id);
 	}
-
+	
+	
+	/* 3. Release Operations */
+	
 	/* (non-Javadoc)
 	 * @see com.cts.nw.onboarding.dao.EmployeeProjHistDAO#getEmployeestobeReleased()
 	 */
@@ -119,7 +145,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 			return null;
 		}
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see com.cts.nw.onboarding.dao.EmployeeProjHistDAO#getEmployeestobeReleasedbyTeam(java.lang.String)
 	 */
@@ -152,85 +178,38 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	
 	@Override
 	public Integer offboardEmployee(EmployeeProjHist employeeProjectHist,Integer Id) {
-		try{
-			System.out.println(employeeProjectHist.toString());
-			return jdbcTemplate.update(QueryConstants.REQUEST_OFFBOARD_UPDATE,employeeProjectHist.getReleaseStatusId(),employeeProjectHist.getReleaseDate(),
-					employeeProjectHist.getReasonForOffboarding(),AbstractController.APPINFO.getLoggedInUserId(),employeeProjectHist.getOffboardProcessor(),Id);
-		}catch(Exception e){
-			e.printStackTrace();
-			return 0;
-		}
+		return jdbcTemplate.update(QueryConstants.REQUEST_OFFBOARD_UPDATE,employeeProjectHist.getReleaseStatusId(),employeeProjectHist.getReleaseDate(),
+				employeeProjectHist.getReasonForOffboarding(),AbstractController.APPINFO.getLoggedInUserId(),employeeProjectHist.getOffboardProcessor(),Id);
 	}
 	
-	@Override
-	public Integer processOffboardEmployee(EmployeeProjHist employeeProjectHist,Integer Id) {
-		try{
-			return jdbcTemplate.update(QueryConstants.PROCESS_OFFBOARD_UPDATE,employeeProjectHist.getReleaseStatusId(),Id);
-		}catch(Exception e){
-			e.printStackTrace();
-			return 0;
-		}
-	}
+	
+	/* 4. Common Operations */
 	
 	/* (non-Javadoc)
-	 * @see com.cts.nw.onboarding.dao.EmployeeProjHistDAO#updateSpecificEmployeeProjectHist(com.cts.nw.onboarding.bo.EmployeeProjHist)
-	 
-	@Override
-	public Integer updateSpecificEmployeeProjectHist(EmployeeProjHist employeeProjectHist) {
-		try{
-			return jdbcTemplate.update(QueryConstants.EMPPROJHIST_UPDATE,employeeProjectHist.getEmployeeId(),employeeProjectHist.getProjectMappingId(),employeeProjectHist.getTeamId(),employeeProjectHist.getRoleId(),
-					employeeProjectHist.getCountryId(),employeeProjectHist.getStartDate(),employeeProjectHist.getNationwideId(),employeeProjectHist.getNationwideIdCreatedDate(),
-					employeeProjectHist.getFgOnBoardingDate(),employeeProjectHist.getMovementId(),employeeProjectHist.getWorkForceId(),employeeProjectHist.getScrumMaster(),employeeProjectHist.getApm(),
-					employeeProjectHist.getPplManager(),employeeProjectHist.getBandId(),employeeProjectHist.getExperience(),employeeProjectHist.getAttachmentId(),employeeProjectHist.getComments(),
-					employeeProjectHist.getSkillSet(),employeeProjectHist.getSkillSummary(),employeeProjectHist.getApprovalStatusId(),employeeProjectHist.getReleaseStatusId(),employeeProjectHist.getReleaseDate(),
-					employeeProjectHist.getReasonForOffboarding(),employeeProjectHist.getId());
-		}catch(Exception e){
-			e.printStackTrace();
-			return 0;
-		}
-	}*/
-
-	/* (non-Javadoc)
-	 * @see com.cts.nw.onboarding.dao.EmployeeProjHistDAO#updateSpecificEmployeeProjectHist(com.cts.nw.onboarding.bo.EmployeeProjHist)
+	 * @see com.cts.nw.onboarding.dao.EmployeeProjHistDAO#getSpecificEmployeeProjectHist(java.lang.String)
 	 */
 	@Override
-	public Integer onBoardEmployee(EmployeeProjHist employeeProjectHist) {
-		try{
-			return jdbcTemplate.update(QueryConstants.ONBOARDPROCESS_UPDATE,employeeProjectHist.getNationwideId(),employeeProjectHist.getNationwideIdCreatedDate(),
-					employeeProjectHist.getFgOnBoardingDate(),employeeProjectHist.getWorkForceId(),employeeProjectHist.getScrumMaster(),employeeProjectHist.getApm(),
-					employeeProjectHist.getPplManager(),employeeProjectHist.getBandId(),employeeProjectHist.getAttachmentId(),employeeProjectHist.getComments(),
-					employeeProjectHist.getApprovalStatusId(),employeeProjectHist.getId());
-		}catch(Exception e){
-			e.printStackTrace();
-			return 0;
-		}
-	}
-	
-	/* (non-Javadoc)
-	 * @see com.cts.nw.onboarding.dao.EmployeeProjHistDAO#checkActiveAssignments(java.lang.String)
-	 */
-	@Override
-	public List<EmployeeProjHist> checkActiveAssignments(String empid) {
+	public EmployeeProjHist getSpecificEmployeeProjectHist(String empProjHistId) {
 		try {
-			String whereClause = " WHERE EPH.RELEASESTATUS IN (1,2) AND EMPLOYEEID = ?";
+			String whereClause = " WHERE EPH.ID = ?";
 			String query = QueryConstants.EMPPROJHIST_SELECT + whereClause;
 			RowMapper<EmployeeProjHist> rowMapper = new EmployeeProjHistRowMapper();
-			return this.jdbcTemplate.query(query, rowMapper,empid);
+			EmployeeProjHist emp = this.jdbcTemplate.queryForObject(query, rowMapper, empProjHistId);
+			System.out.println(emp.toString());
+			return emp;
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
 	}
 
 	/* (non-Javadoc)
-	 * @see com.cts.nw.onboarding.dao.EmployeeProjHistDAO#getEmployeesPerRequester(java.lang.String)
+	 * @see com.cts.nw.onboarding.dao.EmployeeProjHistDAO#getAllEmployeeProjectInfo()
 	 */
 	@Override
-	public List<EmployeeProjHist> getEmployeesPerRequester(String requesterId) {
+	public List<EmployeeProjHist> getAllEmployeeProjectInfo() {
 		try {
-			String whereClause = " WHERE RQ.REQUESTERID = ? OR EPH.ONBOARDREQUESTER = ?  ";
-			String query = QueryConstants.EMPPROJHIST_SELECT + whereClause;
 			RowMapper<EmployeeProjHist> rowMapper = new EmployeeProjHistRowMapper();
-			return this.jdbcTemplate.query(query, rowMapper,requesterId,requesterId);
+			return this.jdbcTemplate.query(QueryConstants.EMPPROJHIST_SELECT, rowMapper);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}

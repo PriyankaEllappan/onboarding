@@ -32,19 +32,12 @@ public class ProcessorServiceImpl implements ProcessorService {
 	@Autowired
 	MailAttachmentDAO mailAttachmentDAO;
 	
+	
+	/*1. Resource Onboarding Operations*/
+	
 	@Override
 	public List<EmployeeProjHist> getRecordsPerProcessortoOnboard(String processorid) {
 		return employeeProjHistDAO.getRecordsPerProcessortoOnboard(processorid);
-	}
-	
-	@Override
-	public List<EmployeeProjHist> getRecordsPerProcessortoOffboard(String processorid) {
-		return employeeProjHistDAO.getRecordsPerProcessortoOffboard(processorid);
-	}
-	
-	@Override
-	public EmployeeProjHist getEmployeetoProcess(String empProjHistId) {
-		return employeeProjHistDAO.getSpecificEmployeeProjectHist(empProjHistId);
 	}
 	
 	@Override
@@ -71,6 +64,13 @@ public class ProcessorServiceImpl implements ProcessorService {
 		return null;
 	}
 	
+	/*2. Resource Off boarding Operations*/
+	
+	@Override
+	public List<EmployeeProjHist> getRecordsPerProcessortoOffboard(String processorid) {
+		return employeeProjHistDAO.getRecordsPerProcessortoOffboard(processorid);
+	}
+	
 	@Override
 	public EmployeeProjHist offboardAnEmployee(EmployeeProjHist employeeProjHist) {
 		Integer rowsAffected = 0;
@@ -81,27 +81,27 @@ public class ProcessorServiceImpl implements ProcessorService {
 		return null;
 	}
 	
+	/*3. Display Resource details*/
+	@Override
+	public EmployeeProjHist getEmployeeDetails(String empProjHistId) {
+		return employeeProjHistDAO.getSpecificEmployeeProjectHist(empProjHistId);
+	}
+	
+	
 	public MailAttachment getFileUploadObject(CommonsMultipartFile[] attachFileObj) {
 		MailAttachment fileUploadObj = null;
-		try {
-			if ((attachFileObj != null) && (attachFileObj.length > 0) && (!attachFileObj.equals(""))) {
-				for (CommonsMultipartFile aFile : attachFileObj) {
-					if(aFile.isEmpty()) {
-						continue;
-					} else {
-						if (!aFile.getOriginalFilename().equals("")) {
-							fileUploadObj = new MailAttachment();
-							fileUploadObj.setFileName(aFile.getOriginalFilename());
-							fileUploadObj.setData(aFile.getBytes());
-						}
+		if ((attachFileObj != null) && (attachFileObj.length > 0) && (!attachFileObj.equals(""))) {
+			for (CommonsMultipartFile aFile : attachFileObj) {
+				if(aFile.isEmpty()) {
+					continue;
+				} else {
+					if (!aFile.getOriginalFilename().equals("")) {
+						fileUploadObj = new MailAttachment();
+						fileUploadObj.setFileName(aFile.getOriginalFilename());
+						fileUploadObj.setData(aFile.getBytes());
 					}
-					System.out.println("File Is Successfully Uploaded & Saved In The Database.... Hurrey!\n");
 				}
-			} else {
-				System.out.println("Error in file Upload");
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 		return fileUploadObj;
 	}

@@ -3,12 +3,9 @@ package com.cts.nw.onboarding.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.cts.nw.onboarding.bean.AppInfo;
 
 /**
  * @author 656579
@@ -24,17 +21,6 @@ public class HomeController extends AbstractController {
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(ModelMap model) {
-		return "commons/login";
-	}
-
-	/**
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping(value = "/loginError", method = RequestMethod.GET)
-	public String loginError(ModelMap model) {
-		model.addAttribute("error", "1");
-		model.addAttribute("errMessage", "Invalid Username or Password");
 		return "commons/login";
 	}
 
@@ -61,41 +47,11 @@ public class HomeController extends AbstractController {
 	/**
 	 * @return
 	 */
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = {"/", "/admin","/request","/process"},method = RequestMethod.GET)
 	public ModelAndView getIndex() {
 		ModelAndView modelView;
 		modelView = bindViewwithUserInfo("commons/homePage");
 		return modelView;
 	}
-
-	/**
-	 * @return
-	 */
-	@RequestMapping(value = "/admin", method = RequestMethod.GET)
-	public ModelAndView getAdmin(@ModelAttribute("appInfo") AppInfo appInfo) {
-		ModelAndView modelView;
-		modelView = bindViewwithUserInfo("commons/homePage");
-		return modelView;
-	}
-
-	/**
-	 * @return
-	 */
-	@RequestMapping(value = "/request", method = RequestMethod.GET)
-	public ModelAndView getProcess(@ModelAttribute("appInfo") AppInfo appInfo) {
-		ModelAndView modelView;
-		modelView = bindViewwithUserInfo("commons/homePage");
-		return modelView;
-	}
-
-	/**
-	 * @return
-	 */
-	@RequestMapping(value = "/process", method = RequestMethod.GET)
-	public ModelAndView getRequest(@ModelAttribute("appInfo") AppInfo appInfo) {
-		ModelAndView modelView;
-		modelView = bindViewwithUserInfo("commons/homePage");
-		return modelView;
-	}
-
+	
 }

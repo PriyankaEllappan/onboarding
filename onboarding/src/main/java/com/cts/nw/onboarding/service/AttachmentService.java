@@ -3,8 +3,6 @@
  */
 package com.cts.nw.onboarding.service;
 
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
-
 import com.cts.nw.onboarding.bo.MailAttachment;
 
 /**
@@ -13,7 +11,6 @@ import com.cts.nw.onboarding.bo.MailAttachment;
  */
 public interface AttachmentService {
 
-	Integer uploadAttachment(CommonsMultipartFile[] attachFileObj);
 	MailAttachment downloadAttachment(String id);
 	
 }

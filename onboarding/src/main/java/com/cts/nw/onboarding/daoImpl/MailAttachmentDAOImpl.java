@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cts.nw.onboarding.bo.MailAttachment;
 import com.cts.nw.onboarding.constants.QueryConstants;
 import com.cts.nw.onboarding.dao.MailAttachmentDAO;
+import com.cts.nw.onboarding.exception.GlobalExceptionHandler;
 import com.cts.nw.onboarding.mappers.FileUploadRowMapper;
 
 /**
@@ -29,13 +30,6 @@ public class MailAttachmentDAOImpl implements MailAttachmentDAO {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-
-	@Override
-	public Integer uploadAttachment(MailAttachment mailAttachment) {
-		String query = "INSERT INTO MAILATTACHMENTS(ID,FILENAME,FILEDATA) VALUES(?,?,?)";
-		return jdbcTemplate.update(query, mailAttachment.getId(), mailAttachment.getFileName(),
-				mailAttachment.getData());
-	}
 
 	@Override
 	public MailAttachment downloadAttachment(String id) {
@@ -61,7 +55,7 @@ public class MailAttachmentDAOImpl implements MailAttachmentDAO {
 			cstmt.execute();
 			returnValue = cstmt.getInt(1);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			new GlobalExceptionHandler().handleSQLException(e);
 		}
 		return returnValue;
 	}
