@@ -83,8 +83,14 @@ public class RequesterController extends AbstractController {
 	@RequestMapping(value = "/request/mapproject/{empid}", method = RequestMethod.GET)
 	public ModelAndView generateAddProjForm(@PathVariable("empid") String empid) {
 		ModelAndView modelView;
-		modelView = bindViewwithUserInfo("request/mapNewProject");
-		modelView.addObject("employee", requesterService.getResourceByID(empid));
+		List<EmployeeProjHist> activeAssignment = checkActiveAssignment(empid);
+		if (activeAssignment != null && activeAssignment.size() >= 2) {
+			modelView = bindViewwithUserInfo("errors/assignmentsExceeded");
+		} else {
+			modelView = bindViewwithUserInfo("request/mapNewProject");
+			modelView.addObject("employee", requesterService.getResourceByID(empid));
+		}
+		
 		return modelView;
 	}
 
