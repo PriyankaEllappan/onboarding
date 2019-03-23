@@ -3,6 +3,7 @@
  */
 package com.cts.nw.onboarding.serviceImpl;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import com.cts.nw.onboarding.dao.EmployeeProjHistDAO;
 import com.cts.nw.onboarding.dao.MailAttachmentDAO;
 import com.cts.nw.onboarding.service.MailService;
 import com.cts.nw.onboarding.service.ProcessorService;
+import com.cts.nw.onboarding.service.ReleaseService;
 
 /**
  * @author 656579
@@ -31,6 +33,9 @@ public class ProcessorServiceImpl implements ProcessorService {
 	
 	@Autowired
 	MailAttachmentDAO mailAttachmentDAO;
+	
+	@Autowired
+	ReleaseService releaseService;
 	
 	
 	/*1. Resource Onboarding Operations*/
@@ -55,15 +60,27 @@ public class ProcessorServiceImpl implements ProcessorService {
 		rowsAffected = employeeProjHistDAO.onBoardEmployee(employeeProjHist);
 		if(rowsAffected > 0){
 			if (employeeProjHist.getApprovalStatusId() == 2) {
-				//mailService.onBoardingAcknowledged(employeeProjHist);
+				mailService.onBoardingAcknowledged(employeeProjHist);
 			} else if (employeeProjHist.getApprovalStatusId() == 3) {
-				//mailService.onBoardingCompleted(employeeProjHist);
+				mailService.onBoardingCompleted(employeeProjHist);
+				checkForAnyPrevAssignmentandRelease(employeeProjHist);
 			}
 			return employeeProjHist;
 		}
 		return null;
 	}
 	
+	private void checkForAnyPrevAssignmentandRelease(EmployeeProjHist employeeProjHist) {
+		List<EmployeeProjHist> activeAssignmentList = employeeProjHistDAO.checkActiveAssignments(String.valueOf(employeeProjHist.getEmployeeId()));
+		if(activeAssignmentList != null && activeAssignmentList.size() > 1){
+			EmployeeProjHist activeAssignment = activeAssignmentList.get(0);
+			activeAssignment.setReleaseStatusId(2);
+			activeAssignment.setReasonForOffboarding(2);
+			activeAssignment.setReleaseDate(Calendar.getInstance().getTime());
+			releaseService.releaseAnEmployee(activeAssignment);
+		}
+	}
+
 	/*2. Resource Off boarding Operations*/
 	
 	@Override

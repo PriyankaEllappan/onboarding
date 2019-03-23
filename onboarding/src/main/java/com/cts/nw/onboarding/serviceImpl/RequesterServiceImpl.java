@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.cts.nw.onboarding.bo.EmployeeMaster;
 import com.cts.nw.onboarding.bo.EmployeeProjHist;
 import com.cts.nw.onboarding.bo.Teams;
+import com.cts.nw.onboarding.controllers.AbstractController;
 import com.cts.nw.onboarding.dao.EmployeeMasterDAO;
 import com.cts.nw.onboarding.dao.EmployeeProjHistDAO;
 import com.cts.nw.onboarding.dao.TeamsDAO;
@@ -81,6 +82,7 @@ public class RequesterServiceImpl implements RequesterService {
 	public EmployeeProjHist addNewProject(EmployeeProjHist employeeProjHist) {
 		Integer rowsAffected = 0;
 		if (onboardingRequestValidator.validate(employeeProjHist)) {
+			employeeProjHist.setOnboardRequester(AbstractController.APPINFO.getLoggedInUserId());
 			if (employeeProjHist.getTeamId() == 0) {
 				Teams team = new Teams();
 				Integer teamId;
@@ -96,6 +98,7 @@ public class RequesterServiceImpl implements RequesterService {
 				rowsAffected = employeeProjHistDAO.addEmployeeProjectInfo(employeeProjHist);
 			}
 			if (rowsAffected > 0) {
+				mailService.onBoardingInitiated(employeeProjHist);
 				return employeeProjHist;
 			} else {
 				return null;

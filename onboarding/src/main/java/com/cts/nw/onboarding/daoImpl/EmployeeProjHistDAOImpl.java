@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cts.nw.onboarding.bo.EmployeeProjHist;
 import com.cts.nw.onboarding.constants.QueryConstants;
-import com.cts.nw.onboarding.controllers.AbstractController;
 import com.cts.nw.onboarding.dao.EmployeeProjHistDAO;
 import com.cts.nw.onboarding.mappers.EmployeeProjHistRowMapper;
 
@@ -54,7 +53,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	@Override
 	public List<EmployeeProjHist> checkActiveAssignments(String empid) {
 		try {
-			String whereClause = " WHERE EPH.RELEASESTATUS IN (1,2) AND EMPLOYEEID = ?";
+			String whereClause = " WHERE EPH.RELEASESTATUS IN (1,2) AND EMPLOYEEID = ? ORDER BY ID";
 			String query = QueryConstants.EMPPROJHIST_SELECT + whereClause;
 			RowMapper<EmployeeProjHist> rowMapper = new EmployeeProjHistRowMapper();
 			return this.jdbcTemplate.query(query, rowMapper,empid);
@@ -72,7 +71,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 				employeeProjectHist.getCountryId(),employeeProjectHist.getStartDate(),
 				employeeProjectHist.getMovementId(),employeeProjectHist.getExperience(),
 				employeeProjectHist.getSkillSet(),employeeProjectHist.getSkillSummary(),employeeProjectHist.getApprovalStatusId(),employeeProjectHist.getReleaseStatusId(),
-				AbstractController.APPINFO.getLoggedInUserId());
+				employeeProjectHist.getOnboardRequester());
 	}
 
 	
@@ -179,7 +178,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	@Override
 	public Integer offboardEmployee(EmployeeProjHist employeeProjectHist,Integer Id) {
 		return jdbcTemplate.update(QueryConstants.REQUEST_OFFBOARD_UPDATE,employeeProjectHist.getReleaseStatusId(),employeeProjectHist.getReleaseDate(),
-				employeeProjectHist.getReasonForOffboarding(),AbstractController.APPINFO.getLoggedInUserId(),employeeProjectHist.getOffboardProcessor(),Id);
+				employeeProjectHist.getReasonForOffboarding(),employeeProjectHist.getOffboardRequester(),employeeProjectHist.getOffboardProcessor(),Id);
 	}
 	
 	

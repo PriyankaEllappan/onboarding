@@ -3,10 +3,7 @@ package com.cts.nw.onboarding.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,6 +23,20 @@ public class ReleaseController extends AbstractController {
 	@Autowired
 	ReleaseService releaseService;
 
+	
+	/**
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/releaselist", method = RequestMethod.GET)
+	public ModelAndView releaseAllList() {
+		ModelAndView modelView;
+		modelView = bindViewwithUserInfo("terminate/releaseList");
+		modelView.addObject("employees", releaseService.getEmployeestobeReleased());
+		return modelView;
+	}
+	
 	/**
 	 * @param resource
 	 * @param empProjHistId
@@ -48,70 +59,11 @@ public class ReleaseController extends AbstractController {
 	 * @return
 	 */
 	@RequestMapping(value = "/processrelease", method = RequestMethod.POST)
-	public ModelAndView releaseResource(@ModelAttribute("employee") EmployeeProjHist employee, BindingResult result) {
-		ModelAndView modelView;
-		releaseService.releaseAnEmployee(employee);
-		modelView = bindViewwithUserInfo("commons/detailsSaved");
-		modelView.addObject("employee", employee);
-		return modelView;
+	public String releaseResource(@RequestBody EmployeeProjHist employeeJson) {
+		releaseService.releaseAnEmployee(employeeJson);
+		return "redirect:releaselist";
 	}
 
-	/**
-	 * Updates the Resource Details
-	 * 
-	 * @param id
-	 * @param model
-	 * @return 
-	 * @return
-	 */
-	@PostMapping(value = "/processreleasebyteam", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public @ResponseBody EmployeeProjHist releaseResourcebyTeam(@RequestBody EmployeeProjHist employeeJson) {
-		releaseService.releaseEmployeesByTeam(employeeJson);
-		return employeeJson;
-	}
-	
-	/**
-	 * Updates the Resource Details
-	 * 
-	 * @param id
-	 * @param model
-	 * @return 
-	 * @return
-	 */
-	@PostMapping(value = "/processreleasebyproject", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public @ResponseBody EmployeeProjHist releaseResourcebyProject(@RequestBody EmployeeProjHist employeeJson) {
-		releaseService.releaseEmployeesByProject(employeeJson);
-		return employeeJson;
-	}
-	
-	/**
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping(value = "/getreleasesummary", method = RequestMethod.GET)
-	public @ResponseBody List<ReleaseSummary> getAllReleaseSummary() {
-		List<ReleaseSummary> statList = null;
-		try {
-			return releaseService.getAllReleaseSummary();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return statList;
-	}
-	
-	/**
-	 * @param id
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping(value = "/releaselist", method = RequestMethod.GET)
-	public ModelAndView releaseAllList() {
-		ModelAndView modelView;
-		modelView = bindViewwithUserInfo("terminate/releaseList");
-		modelView.addObject("employees", releaseService.getEmployeestobeReleased());
-		return modelView;
-	}
-	
 	/**
 	 * @param id
 	 * @param model
@@ -125,6 +77,21 @@ public class ReleaseController extends AbstractController {
 	}
 	
 	/**
+	 * Updates the Resource Details
+	 * 
+	 * @param id
+	 * @param model
+	 * @return 
+	 * @return
+	 */
+	@PostMapping(value = "/processreleasebyteam")
+	public String releaseResourcebyTeam(@RequestBody EmployeeProjHist employeeJson) {
+		releaseService.releaseEmployeesByTeam(employeeJson);
+		return "redirect:releaselist";
+	}
+	
+	
+	/**
 	 * @param id
 	 * @param model
 	 * @return
@@ -135,6 +102,21 @@ public class ReleaseController extends AbstractController {
 		modelView = bindViewwithUserInfo("terminate/releaseListbyProj");
 		return modelView;
 	}
+	
+	/**
+	 * Updates the Resource Details
+	 * 
+	 * @param id
+	 * @param model
+	 * @return 
+	 * @return
+	 */
+	@PostMapping(value = "/processreleasebyproject")
+	public String releaseResourcebyProject(@RequestBody EmployeeProjHist employeeJson) {
+		releaseService.releaseEmployeesByProject(employeeJson);
+		return "redirect:releaselist";
+	}
+	
 		
 	/**
 	 * @param
@@ -143,15 +125,10 @@ public class ReleaseController extends AbstractController {
 	@RequestMapping(value = "/getresourcesbyteam/{teamId}", method = RequestMethod.GET)
 	public @ResponseBody List<EmployeeProjHist> getResourcesbyTeam(@PathVariable("teamId") String teamId) {
 		List<EmployeeProjHist> releaseList;
-		try {
-			releaseList = releaseService.getEmployeestobeReleasedbyTeam(teamId);
-			if (releaseList.size() > 0) {
-				return releaseList;
-			} else {
-				return null;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		releaseList = releaseService.getEmployeestobeReleasedbyTeam(teamId);
+		if (releaseList.size() > 0) {
+			return releaseList;
+		} else {
 			return null;
 		}
 	}
@@ -163,21 +140,33 @@ public class ReleaseController extends AbstractController {
 	@RequestMapping(value = "/getresourcesbyproject/{projectId}", method = RequestMethod.GET)
 	public @ResponseBody List<EmployeeProjHist> getResourcesAvailablebyProject(@PathVariable("projectId") String projectId) {
 		List<EmployeeProjHist> releaseList;
-		try {
-			releaseList = releaseService.getEmployeestobeReleasedbyProject(projectId);
-			if (releaseList.size() > 0) {
-				return releaseList;
-			} else {
-				return null;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		releaseList = releaseService.getEmployeestobeReleasedbyProject(projectId);
+		if (releaseList.size() > 0) {
+			return releaseList;
+		} else {
 			return null;
 		}
 	}
 	
 	/**
-	 * Displays the Update Form.
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/getreleasesummary", method = RequestMethod.GET)
+	public @ResponseBody List<ReleaseSummary> getAllReleaseSummary() {
+		List<ReleaseSummary> summaryList ;
+		summaryList = releaseService.getAllReleaseSummary();
+		if (summaryList.size() > 0) {
+			return summaryList;
+		} else {
+			return null;
+		}
+		
+	}
+	
+	
+	/**
+	 * Displays the Resource Details.
 	 * 
 	 * @param id
 	 * @param model

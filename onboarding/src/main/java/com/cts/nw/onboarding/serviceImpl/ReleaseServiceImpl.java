@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.cts.nw.onboarding.bo.EmployeeProjHist;
 import com.cts.nw.onboarding.bo.ProjectMapping;
 import com.cts.nw.onboarding.bo.ReleaseSummary;
+import com.cts.nw.onboarding.controllers.AbstractController;
 import com.cts.nw.onboarding.dao.EmployeeProjHistDAO;
 import com.cts.nw.onboarding.dao.ProjectMappingDAO;
 import com.cts.nw.onboarding.dao.ReleaseSummaryDAO;
@@ -57,20 +58,20 @@ public class ReleaseServiceImpl implements ReleaseService {
 	}
 
 	@Override
-	public EmployeeProjHist releaseAnEmployee(EmployeeProjHist employeeProjHist) {
+	public Integer releaseAnEmployee(EmployeeProjHist employeeProjHist) {
 		ProjectMapping projDetail = projectMappingDAO.getProcesssorPerProjectId(String.valueOf(employeeProjHist.getProjectId()));
 		employeeProjHist.setOffboardProcessor(String.valueOf(projDetail.getProcessorId()));
+		employeeProjHist.setOffboardRequester(AbstractController.APPINFO.getLoggedInUserId());
 		Integer rowsAffected = 0;
 		rowsAffected = employeeProjHistDAO.offboardEmployee(employeeProjHist,employeeProjHist.getId());
 		if (rowsAffected > 0) {
 			if (employeeProjHist.getReleaseStatusId() == 2) {
-				// mailService.offBoardingInitiated(employeeProjHist);
+				 mailService.offBoardingInitiated(employeeProjHist);
 			} else if (employeeProjHist.getReleaseStatusId() == 3) {
-				// mailService.offBoardingCompleted(employeeProjHist);
+				 mailService.offBoardingCompleted(employeeProjHist);
 			}
-			return employeeProjHist;
 		}
-		return null;
+		return rowsAffected;
 
 	}
 
@@ -80,44 +81,26 @@ public class ReleaseServiceImpl implements ReleaseService {
 	}
 
 	@Override
-	public EmployeeProjHist releaseEmployeesByTeam(EmployeeProjHist employeeProjHist) {
-		ProjectMapping projDetail = projectMappingDAO.getProcesssorPerProjectId(String.valueOf(employeeProjHist.getProjectId()));
+	public Integer releaseEmployeesByTeam(EmployeeProjHist employeeProjHist) {
+		Integer rowsAffected = 0;
 		List<EmployeeProjHist> listofResources = employeeProjHistDAO
 				.getEmployeestobeReleasedbyTeam(String.valueOf(employeeProjHist.getTeamId()));
 		for (EmployeeProjHist resource : listofResources) {
-			Integer rowsAffected = 0;
-			rowsAffected = employeeProjHistDAO.offboardEmployee(employeeProjHist, resource.getId());
-			if (rowsAffected > 0) {
-				if (resource.getReleaseStatusId() == 2) {
-					resource.setProcessorId(projDetail.getProcessorId());
-					// mailService.offBoardingInitiated(employeeProjHist);
-				} else if (resource.getReleaseStatusId() == 3) {
-					resource.setProcessorId(projDetail.getProcessorId());
-					// mailService.offBoardingCompleted(employeeProjHist);
-				}
-			}
+			rowsAffected = rowsAffected + releaseAnEmployee(resource);
 		}
-
-		return employeeProjHist;
+		return rowsAffected;
 	}
 
 	@Override
-	public EmployeeProjHist releaseEmployeesByProject(EmployeeProjHist employeeProjHist) {
+	public Integer releaseEmployeesByProject(EmployeeProjHist employeeProjHist) {
+		Integer rowsAffected = 0;
 		List<EmployeeProjHist> listofResources = employeeProjHistDAO
 				.getEmployeestobeReleasedbyProj(String.valueOf(employeeProjHist.getProjectId()));
 		for (EmployeeProjHist resource : listofResources) {
-			Integer rowsAffected = 0;
-			rowsAffected = employeeProjHistDAO.offboardEmployee(employeeProjHist, resource.getId());
-			if (rowsAffected > 0) {
-				if (employeeProjHist.getReleaseStatusId() == 2) {
-					// mailService.offBoardingInitiated(employeeProjHist);
-				} else if (employeeProjHist.getReleaseStatusId() == 3) {
-					// mailService.offBoardingCompleted(employeeProjHist);
-				}
-			}
+			rowsAffected = rowsAffected + releaseAnEmployee(resource);
 		}
 
-		return employeeProjHist;
+		return rowsAffected;
 	}
 
 }

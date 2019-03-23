@@ -83,7 +83,7 @@ body {
 }
 
 .resizeTabCont {
-	width: 85%;
+	width: 95%;
 }
 
 .footer-style {
@@ -177,6 +177,10 @@ select option[disabled]:first-child {
 
 .to-click {
 	cursor: pointer;
+}
+
+.not-to-click {
+	cursor: text;
 }
 
 .icon-image {

@@ -25,6 +25,8 @@ public class SendMail {
 	private Environment environment;
 	
 	public void send(MailDetail mailDetail) {
+		System.out.println(mailDetail.toString());
+		/*
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", environment.getRequiredProperty("mail.auth") );
 		props.put("mail.smtp.starttls.enable",environment.getRequiredProperty("mail.starttls") );
@@ -59,5 +61,5 @@ public class SendMail {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	*/}
 }

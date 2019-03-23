@@ -15,16 +15,16 @@ public interface ReleaseService {
 
 	EmployeeProjHist getEmployeetoRelease(String empProjHistId);
 
-	EmployeeProjHist releaseAnEmployee(EmployeeProjHist employeeProjHist);
-
 	List<ReleaseSummary> getAllReleaseSummary();
 
 	List<EmployeeProjHist> getEmployeestobeReleasedbyTeam(String teamId);
 
 	List<EmployeeProjHist> getEmployeestobeReleasedbyProject(String projectId);
+	
+	Integer releaseAnEmployee(EmployeeProjHist employeeProjHist);
 
-	EmployeeProjHist releaseEmployeesByTeam(EmployeeProjHist employeeJson);
+	Integer releaseEmployeesByTeam(EmployeeProjHist employeeJson);
 
-	EmployeeProjHist releaseEmployeesByProject(EmployeeProjHist employeeJson);
+	Integer releaseEmployeesByProject(EmployeeProjHist employeeJson);
 
 }

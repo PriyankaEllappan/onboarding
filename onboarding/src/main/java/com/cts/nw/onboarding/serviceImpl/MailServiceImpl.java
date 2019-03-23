@@ -42,11 +42,11 @@ public class MailServiceImpl implements MailService {
 		mailDetail = new MailDetail();
 		toList = new ArrayList<>();
 		ccList = new ArrayList<>();
-
-		toList.add("Priyanka.Ellappan@cognizant.com");
-		toList.add("Suresh.Baskar2@cognizant.com");
+		
+		toList.add(String.valueOf(resource.getProcessorId()));
 		mailDetail.setReceiver(toList);
-		ccList.add("Priyanka.Ellappan@cognizant.com");
+		ccList.add(AbstractController.APPINFO.getLoggedInUserId());
+		ccList.add(String.valueOf(resource.getRequesterId()));
 		mailDetail.setCc(ccList);
 
 		emailContent = emailContent.replaceAll("<<EMPID>>", String.valueOf(resource.getEmployeeId()));
@@ -54,10 +54,7 @@ public class MailServiceImpl implements MailService {
 		emailContent = emailContent.replace("<<PROJID>>", String.valueOf(resource.getProjectId()));
 		emailContent = emailContent.replace("<<PROJNAME>>", resource.getProjectName());
 		emailContent = emailContent.replace("<<URL>>", AbstractController.APPINFO.getAppUrl());
-		employeeDetail = lDAPService.getEmployee(String.valueOf(resource.getProcessorId()));
-		System.out.println("-------" + employeeDetail.getEmailId());
 
-		System.out.println(emailContent);
 		mailDetail.setContent(emailContent);
 		mailDetail.setSubject("Request Mail.. !!!");
 		sendMail.send(mailDetail);
@@ -72,10 +69,10 @@ public class MailServiceImpl implements MailService {
 		toList = new ArrayList<>();
 		ccList = new ArrayList<>();
 
-		toList.add("Priyanka.Ellappan@cognizant.com");
-		toList.add("Suresh.Baskar2@cognizant.com");
+		toList.add(String.valueOf(resource.getRequesterId()));
+		toList.add(String.valueOf(resource.getOnboardRequester()));
 		mailDetail.setReceiver(toList);
-		ccList.add("Priyanka.Ellappan@cognizant.com");
+		ccList.add(String.valueOf(resource.getProcessorId()));
 		mailDetail.setCc(ccList);
 
 		emailContent = emailContent.replaceAll("<<EMPID>>", String.valueOf(resource.getEmployeeId()));
@@ -97,10 +94,11 @@ public class MailServiceImpl implements MailService {
 		toList = new ArrayList<>();
 		ccList = new ArrayList<>();
 
-		toList.add("Priyanka.Ellappan@cognizant.com");
-		toList.add("Suresh.Baskar2@cognizant.com");
+		toList.add(String.valueOf(resource.getRequesterId()));
+		toList.add(String.valueOf(resource.getOnboardRequester()));
+		toList.add(String.valueOf(resource.getEmployeeId()));
 		mailDetail.setReceiver(toList);
-		ccList.add("Priyanka.Ellappan@cognizant.com");
+		ccList.add(String.valueOf(resource.getProcessorId()));
 		mailDetail.setCc(ccList);
 
 		emailContent = emailContent.replace("<<NWID>>", resource.getNationwideId());
@@ -120,11 +118,9 @@ public class MailServiceImpl implements MailService {
 		toList = new ArrayList<>();
 		ccList = new ArrayList<>();
 
-		// toList.add("Priyanka.Ellappan@cognizant.com");
-		toList.add("Suresh.Baskar2@cognizant.com");
+		toList.add(String.valueOf(resource.getOffboardProcessor()));
 		mailDetail.setReceiver(toList);
-		ccList.add("Priyanka.Ellappan@cognizant.com");
-		ccList.add("Jambulingam.S@cognizant.com");
+		ccList.add(String.valueOf(resource.getOffboardRequester()));
 		mailDetail.setCc(ccList);
 
 		emailContent = emailContent.replaceAll("<<EMPID>>", String.valueOf(resource.getEmployeeId()));
@@ -133,7 +129,7 @@ public class MailServiceImpl implements MailService {
 		emailContent = emailContent.replace("<<PROJNAME>>", resource.getProjectName());
 		emailContent = emailContent.replace("<<URL>>", AbstractController.APPINFO.getAppUrl());
 		mailDetail.setContent(emailContent);
-		mailDetail.setSubject(" Resource ReleaseInitiated Mail.. !!!");
+		mailDetail.setSubject(" Resource Release Initiated Mail.. !!!");
 		sendMail.send(mailDetail);
 
 	}
@@ -147,11 +143,9 @@ public class MailServiceImpl implements MailService {
 		toList = new ArrayList<>();
 		ccList = new ArrayList<>();
 
-		// toList.add("Priyanka.Ellappan@cognizant.com");
-		toList.add("Suresh.Baskar2@cognizant.com");
+		toList.add(String.valueOf(resource.getOffboardRequester()));
 		mailDetail.setReceiver(toList);
-		ccList.add("Priyanka.Ellappan@cognizant.com");
-		ccList.add("Jambulingam.S@cognizant.com");
+		ccList.add(String.valueOf(resource.getOffboardProcessor()));
 		mailDetail.setCc(ccList);
 
 		emailContent = emailContent.replaceAll("<<EMPID>>", String.valueOf(resource.getEmployeeId()));
@@ -160,7 +154,7 @@ public class MailServiceImpl implements MailService {
 		emailContent = emailContent.replace("<<PROJNAME>>", resource.getProjectName());
 		emailContent = emailContent.replace("<<URL>>", AbstractController.APPINFO.getAppUrl());
 		mailDetail.setContent(emailContent);
-		mailDetail.setSubject(" Resource OffBoarding Mail.. !!!");
+		mailDetail.setSubject(" Resource OffBoarded Mail.. !!!");
 		sendMail.send(mailDetail);
 
 	}
