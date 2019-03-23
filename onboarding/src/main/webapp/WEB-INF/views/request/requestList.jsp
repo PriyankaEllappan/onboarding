@@ -34,7 +34,8 @@
 							<th>Project Id</th>
 							<th>Project Name</th>
 							<th>Team Name</th>
-							<th></th>
+							<th>Approval Status</th>
+							<th>Release Status</th>
 							<th></th>
 						</tr>
 					</thead>
@@ -60,6 +61,17 @@
 								</c:when>
 								<c:when test="${employee.getApprovalStatus() == 'CLOSED'}">
 									<td><button class="btn-default">PROCESSED</button></td>
+								</c:when>
+							</c:choose>
+							<c:choose>
+								<c:when test="${employee.getReleaseStatus() == 'YET TO RELEASE'}">
+									<td><button class="btn-success">Active</button></td>
+								</c:when>
+								<c:when test="${employee.getReleaseStatus() == 'RELEASE INITIATED'}">
+									<td><button class="btn-warning">Release Initiated</button></td>
+								</c:when>
+								<c:when test="${employee.getReleaseStatus() == 'RELEASED'}">
+									<td><button class="btn-danger">Released</button></td>
 								</c:when>
 							</c:choose>
 							<td><img class="icon-image to-click"

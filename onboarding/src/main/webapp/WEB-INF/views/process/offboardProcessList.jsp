@@ -31,7 +31,7 @@
 					<th>Project Id</th>
 					<th>Project Name</th>
 					<th>Team Name</th>
-					<th></th>
+					<th>Release Status</th>
 					<th></th>
 				</tr>
 			</thead>
@@ -50,7 +50,7 @@
 							<td><button class="btn-danger">Released</button></td>
 						</c:when>
 					</c:choose>
-					<td><img class="icon-image to-click" src="/onboarding/resources/icons/show" onclick="location.href='offboard/${employee.getId()}'"></td>
+					<td><img class="icon-image to-click" src="/onboarding/resources/icons/show" onclick="location.href='show/${employee.getId()}'"></td>
 				</tr>
 			</c:forEach>
 		</table>
