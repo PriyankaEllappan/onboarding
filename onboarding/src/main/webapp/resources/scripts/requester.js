@@ -123,11 +123,13 @@ function checkForanEmployee(empID) {
 }
 
 function checkForanActiveAssignment(empID) {
+	var counter = 0;
 	$.ajax({
 		type : 'GET',
 		url : "/onboarding/request/checkactiveassignments/" + empID,
 		dataType : "text",
 		success : function(resultData) {
+			
 			if (!$.trim(resultData)) {
 				window.location = "/onboarding/request/mapproject/" + $("#availEmpID").text();
 			} else {
@@ -135,13 +137,18 @@ function checkForanActiveAssignment(empID) {
 				console.log("Response has data");
 				console.log(returnedData);
 				$.each(returnedData, function(key, value) {
+					counter = counter + 1;
 					$('#availableProjects').append(
 							'<tr><td>&nbsp;&nbsp;' + value.name +
 							'</td><td>&nbsp;&nbsp;'
 									+ value.projectName + '</td><td>&nbsp;&nbsp;'
 									+ value.teamName + '</td></tr>');
 				});
-				$('#ActiveAssignment').modal('show');
+				if(counter >= 2){
+					window.location = "/onboarding/request/assignmentexceeded";
+				}else{
+					$('#ActiveAssignment').modal('show');
+				}
 			}
 		}
 	});

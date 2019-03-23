@@ -109,6 +109,18 @@ public class RequesterController extends AbstractController {
 	}
 	
 	/**
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/request/assignmentexceeded", method = RequestMethod.GET)
+	public ModelAndView moreAssignments() {
+		ModelAndView modelView;
+		modelView = bindViewwithUserInfo("errors/assignmentsExceeded");
+		return modelView;
+	}
+	
+	
+	/**
 	 * @param employeeJson
 	 * @return
 	 */

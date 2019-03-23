@@ -213,10 +213,10 @@
 			</div>
 		</div>
 	</div>
-	<div id="loadingDiv"
+	<!-- <div id="loadingDiv"
 		style="position: fixed; right: 0px; top: 0px; width: 100%; height: 100%; background-color: rgb(102, 102, 102); z-index: 30001; opacity: 0.8;">
 		 <div style="padding-top:20em;padding-left:40em;"><img src="/onboarding/resources/icons/loading.gif"></div>
-	</div>
+	</div> -->
 	<jsp:include page="../layouts/footer.jsp" />
 </body>
 </html>

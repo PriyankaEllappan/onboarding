@@ -88,8 +88,9 @@ public class AbstractController {
 					}
 				} else {
 					APPINFO.setLoggedInUserId(currentUserName);
-					APPINFO.setLoggedInUserName(lDAPService.getEmployee(currentUserName) != null
-							? lDAPService.getEmployee(currentUserName).getName() : "User");
+					/*APPINFO.setLoggedInUserName(lDAPService.getEmployee(currentUserName) != null
+							? lDAPService.getEmployee(currentUserName).getName() : "User");*/
+					APPINFO.setLoggedInUserName("User");
 					for (GrantedAuthority auth : currentUserNameAuthorities) {
 						APPINFO.setLoggedInUserRole(auth.getAuthority().replaceAll("ROLE_", ""));
 					}
