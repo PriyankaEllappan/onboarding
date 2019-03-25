@@ -15,6 +15,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import com.cts.nw.onboarding.bo.MailDetail;
+import com.cts.nw.onboarding.service.LDAPService;
 
 @PropertySource(value = { "classpath:mail.properties" })
 
@@ -24,9 +25,12 @@ public class SendMail {
 	@Autowired
 	private Environment environment;
 	
+	@Autowired
+	LDAPService lDAPService;
+	
 	public void send(MailDetail mailDetail) {
 		System.out.println(mailDetail.toString());
-		/*
+		
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", environment.getRequiredProperty("mail.auth") );
 		props.put("mail.smtp.starttls.enable",environment.getRequiredProperty("mail.starttls") );
@@ -43,11 +47,11 @@ public class SendMail {
 		try {
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(environment.getRequiredProperty("mail.from")));
-			for (String toAddr : mailDetail.getReceiver()) {
-				message.addRecipient(Message.RecipientType.TO, new InternetAddress(toAddr));
+			for (String toId : mailDetail.getReceiver()) {
+				message.addRecipient(Message.RecipientType.TO, new InternetAddress(getEmailAddress(toId)));
 			}
-			for (String ccAddr : mailDetail.getCc()) {
-				message.addRecipient(Message.RecipientType.CC, new InternetAddress(ccAddr));
+			for (String ccId : mailDetail.getCc()) {
+				message.addRecipient(Message.RecipientType.CC, new InternetAddress(getEmailAddress(ccId)));
 			}
 			message.setSubject(mailDetail.getSubject());
 			message.setText("Sent updated message successfully....  ");
@@ -55,11 +59,22 @@ public class SendMail {
 			
 			Transport transport = session.getTransport(environment.getRequiredProperty("mail.server"));
 			transport.connect(environment.getRequiredProperty("mail.host"), environment.getRequiredProperty("mail.from"), environment.getRequiredProperty("mail.password"));
-			transport.sendMessage(message, message.getAllRecipients());
+			
+			/*transport.sendMessage(message, message.getAllRecipients());*/
 			transport.close();
 			System.out.println("Sent message successfully....");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	*/}
+	}
+
+	/**
+	 * @param empId
+	 * @return
+	 */
+	private String getEmailAddress(String empId) {
+		String emailId = lDAPService.getEmployee(empId).getEmailId();
+		System.out.println(emailId);
+		return emailId;
+	}
 }

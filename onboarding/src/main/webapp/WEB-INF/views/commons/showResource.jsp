@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -122,6 +123,12 @@
 				<td>Comments</td>
 				<td>${employee.getComments()}</td>
 			</tr>
+			<c:if test="{not empty employee.getAttachmentId()}">
+				<tr>
+					<td>Attachment</td>
+					<td><img class="icon-image to-click" src="/onboarding/resources/icons/download.png" onclick="location.href='/onboarding/attachment/getfile/${employee.getAttachmentId()}'"></td>
+				</tr>
+			</c:if>
 		</table>
 	</div>
 	<jsp:include page="../layouts/footer.jsp" />

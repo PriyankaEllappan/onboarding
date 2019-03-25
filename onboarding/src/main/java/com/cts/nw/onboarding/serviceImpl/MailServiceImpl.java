@@ -13,7 +13,6 @@ import com.cts.nw.onboarding.bo.EmployeeProjHist;
 import com.cts.nw.onboarding.bo.MailDetail;
 import com.cts.nw.onboarding.controllers.AbstractController;
 import com.cts.nw.onboarding.mailers.SendMail;
-import com.cts.nw.onboarding.service.LDAPService;
 import com.cts.nw.onboarding.service.MailService;
 
 @PropertySource(value = { "classpath:mail.properties" })
@@ -27,8 +26,7 @@ public class MailServiceImpl implements MailService {
 	@Autowired
 	private Environment environment;
 
-	@Autowired
-	LDAPService lDAPService;
+	
 
 	List<String> toList;
 	List<String> ccList;
