@@ -48,9 +48,11 @@ public class SendMail {
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(environment.getRequiredProperty("mail.from")));
 			for (String toId : mailDetail.getReceiver()) {
+				System.out.println(toId);
 				message.addRecipient(Message.RecipientType.TO, new InternetAddress(getEmailAddress(toId)));
 			}
 			for (String ccId : mailDetail.getCc()) {
+				System.out.println(ccId);
 				message.addRecipient(Message.RecipientType.CC, new InternetAddress(getEmailAddress(ccId)));
 			}
 			message.setSubject(mailDetail.getSubject());
@@ -73,6 +75,7 @@ public class SendMail {
 	 * @return
 	 */
 	private String getEmailAddress(String empId) {
+		System.out.println(empId);
 		String emailId = lDAPService.getEmployee(empId).getEmailId();
 		System.out.println(emailId);
 		return emailId;

@@ -43,7 +43,7 @@ public class MailServiceImpl implements MailService {
 		
 		toList.add(String.valueOf(resource.getProcessorId()));
 		mailDetail.setReceiver(toList);
-		ccList.add(AbstractController.APPINFO.getLoggedInUserId());
+		ccList.add(resource.getOnboardRequester());
 		ccList.add(String.valueOf(resource.getRequesterId()));
 		mailDetail.setCc(ccList);
 
