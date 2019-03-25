@@ -1,34 +1,42 @@
-.header-style {
+/* Header Content Footer Alignments */
+
+.header-section{
+	height: 20%;
 	position: absolute;
-	top: 0px;
-	left: 0px;
+	width: 100%;
+}
+
+.header-banner{
+	width: inherit;
 	padding: 0 0 0 15px;
-	height: 65px;
 	right: 0px;
 	overflow: hidden;
 	border: 1px solid #ccc;
 	border-top: none;
+	border-bottom: #0039a6;
+	border-right: #0039a6;
+	border-left: #0039a6;
 	background-color: #0039a6;
 }
 
-.header-image {
+.header-homeicon {
 	width: 33px;
-	padding-top: 24px;
+	padding-top: 25px;
 	opacity: 0.6;
 }
 
-.header-image:hover {
+.header-homeicon:hover {
 	opacity: 1.0;
 }
 
-.header-imageback{
-	width: 48px;
-    padding-top: 15px;
-    margin-left: 25px;
+.header-backicon{
+	width: 100%;
+    padding-top: 24px;
+    margin-left: 15px;
     opacity: 0.6;
 }
 
-.header-imageback:hover {
+.header-backicon:hover {
 	opacity: 1.0;
 }
 
@@ -60,19 +68,12 @@
 	overflow: visible;
 	padding-top: 0;
 	padding-bottom: 0;
-	/* margin-right: 1; */
 }
 
-body {
-	height: 95%;
-	width: 95%;
-	font-family: Arial;
-}
-
-.content-style {
+ .content-style {
 	position: absolute;
-	top: 65px;
-	bottom: 20px;
+	top: 19%;
+	bottom: 4%;
 	left: 0px;
 	right: 0px;
 	overflow: auto;
@@ -82,21 +83,105 @@ body {
 	padding-bottom: 10px;
 }
 
-.resizeTabCont {
-	width: 95%;
-}
-
 .footer-style {
 	position: absolute;
 	bottom: 0px;
-	height: 20px;
-	left: 0px;
-	right: 0px;
+	height: 4%;
+	width:100%;
 	overflow: hidden;
 	background-color: #0039a6;
 	color: #32CD32;
 }
 
+/* Navigation Bar Properties */
+
+.navigbar {
+  overflow: hidden;
+  background-color: rgba(192,192,192, 0.2);
+}
+
+.navigbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropitdown {
+  float: left;
+}
+
+.dropitdown .dropbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: rgba(0, 151, 19, 1);;
+  padding: 14px 16px;
+  background-color: rgba(0, 151, 19, 1);
+  color: rgba(255,255,255,1);
+  font-family: inherit;
+  margin: 0;
+  width: 20em;
+}
+
+.navigbar a:hover, .dropitdown:hover .dropbtn {
+	font-weight: bold;
+  color: rgba(255,255,255,1);
+  background-color: rgba(0, 151, 19, 0.8);
+}
+
+.dropitdown-content {
+  display: none;
+  position: absolute;
+  /* background-color: rgba(0, 151, 19, 0.6); */
+  background-color: rgba(255, 255, 255, 1);
+  min-width: 30em;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropitdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  font-size: 13px;  
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropitdown-content a:hover {
+  background-color: rgba(0, 151, 19, 0.6);
+}
+
+.dropitdown:hover .dropitdown-content {
+  display: block;
+}
+
+/* Carousel Properties */
+
+.carousel {
+	 height: 450px;
+}
+.carousel .item {
+  height: 450px;
+}
+
+.carousel-inner > .item > img {
+  width:640px;
+  height:450px;
+}
+
+
+/* Other Customized Alignments */
+
+.resizeTabCont {
+	width: 95%;
+}
+
+/* Status messages */
 .has-error {
 	color: red
 }
@@ -105,10 +190,11 @@ body {
 	color: green
 }
 
-.button-fixedwidth {
-	width: 100%;
+.is-required {
+	color: red
 }
 
+/* Display options */
 .hideElements {
 	display: none;
 }
@@ -127,6 +213,7 @@ body {
 .tab button.active {
     background-color: rgba(34, 139, 34, 0.9) !important;
 }
+
 
 /* Style the buttons inside the tab */
 .tab button {
@@ -155,26 +242,19 @@ body {
 	font-size: small;
 }
 
+/* Set default option inactive */
+
 select option[disabled]:first-child {
 	display: none;
 }
 
-.form-control {
-	border-radius: 0px !important;
-}
 
-.btn {
-	border-radius: 0px !important;
-}
-
+/* Table Design */
 .table {
 	font-size: small !important;
 }
 
-.is-required {
-	color: red
-}
-
+/* Cursor Options */
 .to-click {
 	cursor: pointer;
 }
@@ -183,21 +263,29 @@ select option[disabled]:first-child {
 	cursor: text;
 }
 
-.icon-image {
-	height: 23px;
-}
-
+/* Pills Design */
 .next-symbol{
 	background-color: #228B22;
 	color:000000;
 	border: none;
 }
-.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, 
+
+.nav-pills>li.active>a:hover{
 	background-color: #228B22 !important;
 }
+
+/* Customized Submit Button */
 
 .btn-submit {
     color: #fff;
     background-color: #228B22;
     border-color: #228B22;
+}
+
+
+/* Icon Styles */
+.icon-image {
+height: 23px;
 }

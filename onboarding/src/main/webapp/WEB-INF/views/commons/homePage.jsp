@@ -9,7 +9,7 @@
 <link rel="stylesheet"
 	href="/onboarding/resources/stylesheets/bootstrap.min.css">
 <link rel="stylesheet"
-	href="/onboarding/resources/stylesheets/homepage.css">
+	href="/onboarding/resources/stylesheets/application.css">
 <script src="/onboarding/resources/scripts/jquery.min.js"></script>
 <script src="/onboarding/resources/scripts/bootstrap.min.js"></script>
 <style type="text/css">
@@ -21,37 +21,6 @@ a {
 <body>
 	<jsp:include page="../layouts/header.jsp" />
 	<div class="content-style">
-		<div class="navigbar">
-			<div class="dropitdown">
-				<button class="dropbtn">Onboarding Resources</button>
-				<div class="dropitdown-content">
-					<a href="/onboarding/request/check">Raise a Request to On-Board
-						a Resource</a> <a href="/onboarding/request/requestlist">View
-						Request List</a>
-				</div>
-			</div>
-			<c:if test="${appInfo.loggedInUserRole == 'ADMIN' || appInfo.loggedInUserRole == 'PROCESSOR'}">
-			<div class="dropitdown">
-				<button class="dropbtn">Processing Requests</button>
-				<div class="dropitdown-content">
-					<a href="/onboarding/process/onboardlist">Process On-Boarding
-						Requests</a> <a href="/onboarding/process/offboardlist">Process
-						Off-Boarding Requests</a>
-				</div>
-			</div>
-			</c:if>
-			<div class="dropitdown">
-				<button class="dropbtn">Offboarding Resources</button>
-				<div class="dropitdown-content">
-					<a href="/onboarding/release/releaselist">Raise a Request to
-						Off-Board a Single Resource</a> <a
-						href="/onboarding/release/releaselistbyteam">Bulk Release - Raise a Request
-						to Off-Board Resources(By Team)</a> <a
-						href="/onboarding/release/releaselistbyproject">Bulk Release - Raise a
-						Request to Off-Board a Resources(By Project)</a>
-				</div>
-			</div>
-		</div>
 			<div id="myCarousel" class="carousel slide" data-ride="carousel">
 				<ol class="carousel-indicators">
 					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
