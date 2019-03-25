@@ -123,7 +123,7 @@
 				<td>Comments</td>
 				<td>${employee.getComments()}</td>
 			</tr>
-			<c:if test="{not empty employee.getAttachmentId()}">
+			<c:if test="${not empty employee.getAttachmentId()}">
 				<tr>
 					<td>Attachment</td>
 					<td><img class="icon-image to-click" src="/onboarding/resources/icons/download.png" onclick="location.href='/onboarding/attachment/getfile/${employee.getAttachmentId()}'"></td>
