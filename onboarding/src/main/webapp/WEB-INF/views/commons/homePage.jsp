@@ -25,9 +25,9 @@ a {
 			<div class="dropitdown">
 				<button class="dropbtn">Onboarding Resources</button>
 				<div class="dropitdown-content">
-					<a href="/onboarding/request/check">Raise a request to On-Board
-						a resource</a> <a href="/onboarding/request/requestlist">View
-						request list</a>
+					<a href="/onboarding/request/check">Raise a Request to On-Board
+						a Resource</a> <a href="/onboarding/request/requestlist">View
+						Request List</a>
 				</div>
 			</div>
 			<c:if test="${appInfo.loggedInUserRole == 'ADMIN' || appInfo.loggedInUserRole == 'PROCESSOR'}">
@@ -35,20 +35,20 @@ a {
 				<button class="dropbtn">Processing Requests</button>
 				<div class="dropitdown-content">
 					<a href="/onboarding/process/onboardlist">Process On-Boarding
-						requests</a> <a href="/onboarding/process/offboardlist">Process
-						Off-Boarding requests</a>
+						Requests</a> <a href="/onboarding/process/offboardlist">Process
+						Off-Boarding Requests</a>
 				</div>
 			</div>
 			</c:if>
 			<div class="dropitdown">
 				<button class="dropbtn">Offboarding Resources</button>
 				<div class="dropitdown-content">
-					<a href="/onboarding/release/releaselist">Raise a request to
-						Off-Board a resource</a> <a
-						href="/onboarding/release/releaselistbyteam">Raise an request
-						to Off-Board by team</a> <a
-						href="/onboarding/release/releaselistbyproject">Raise an
-						request to Off-Board by Project</a>
+					<a href="/onboarding/release/releaselist">Raise a Request to
+						Off-Board a Single Resource</a> <a
+						href="/onboarding/release/releaselistbyteam">Bulk Release - Raise a Request
+						to Off-Board Resources(By Team)</a> <a
+						href="/onboarding/release/releaselistbyproject">Bulk Release - Raise a
+						Request to Off-Board a Resources(By Project)</a>
 				</div>
 			</div>
 		</div>
