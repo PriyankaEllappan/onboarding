@@ -103,7 +103,6 @@
 
 .navigbar {
   overflow: hidden;
-  /* background-color: rgba(192,192,192, 0.2); */
   background-color: rgba(0, 151, 19, 1);
   height:35%;
 }
@@ -124,11 +123,11 @@
 .dropitdown .dropbtn {
   font-family:Georgia;
   font-size: 14px;  
- /*  font-weight: bold; */
+  font-weight: bold;
   border: none;
   outline: none;
-  color: rgba(0, 151, 19, 1);
   padding: 10px;
+  text-align: left;	
   background-color: rgba(0, 151, 19, 1);
   color: rgba(255,255,255,1);
   margin: 0;
@@ -137,33 +136,40 @@
 }
 
 .navigbar a:hover, .dropitdown:hover .dropbtn {
-	/* font-size: 16px;   */
-  color: rgba(255,255,255,1);
-  background-color: rgba(0, 151, 19, 0.8);
+  background-color: rgba(240,255,240, 1);
+  color: rgba(0,0,0,1);
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
 }
 
 .dropitdown-content {
+  font-family:Georgia;
+  font-size: 10px;  
+  font-weight: bold;
   display: none;
   position: absolute;
-  background-color: rgba(0, 151, 19, 0.6);
-  background-color: rgba(255, 255, 255, 1);
+  background-color: rgba(240,255,240, 1);
+  color: rgba(0,0,0,1);
   min-width: 30em;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
 
 .dropitdown-content a {
+  font-family:Georgia;
+  font-size: 13px; 
+  font-weight: normal; 
+  color: rgba(0,0,0,1);
   float: none;
-  color: black;
   padding: 12px 16px;
-  font-size: 13px;  
-  text-decoration: none;
   display: block;
   text-align: left;
 }
 
 .dropitdown-content a:hover {
-  background-color: rgba(0, 151, 19, 0.6);
+  background-color: rgba(240,255,240, 1);
+  color: rgba(0,0,0,1);
+  font-weight: bold;
 }
 
 .dropitdown:hover .dropitdown-content {
