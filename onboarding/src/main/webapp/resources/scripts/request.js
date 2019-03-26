@@ -111,7 +111,7 @@ function checkForanEmployee(empID) {
 				/*$('#NoResourceModal').modal('show');*/
 				var empId = $('#checkEmpId').val();
 				loadEmployeeDetails(empId);
-				$("#resourceNonAvailable").show();
+				
 			} else {
 				var returnedData = JSON.parse(resultData);
 				$('#availEmpID').text(returnedData.employeeId);
@@ -187,6 +187,7 @@ function loadEmployeeDetails(empId){
 				$('#newEmpEmail').val(returnedData.emailId);
 				$('#newEmpFName').val(returnedData.name.split(" ")[0]);
 				$('#newEmpLName').val(returnedData.name.split(" ")[1]);
+				$("#resourceNonAvailable").show();
 			}
 		}
 	});
