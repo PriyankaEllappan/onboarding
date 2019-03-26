@@ -5,6 +5,7 @@ var roleMappings = {}
 var roles = {}
 var jsonRequest = {}
 var movementList = {}
+var bsaList ={}
 var selectedTeam = [];
 
 $(document).ready(function() {
@@ -16,6 +17,7 @@ $(document).ready(function() {
 	loadApprovalStatus();
 	loadReleaseStatus();
 	loadMovementDetails();
+	loadBsaDetails();
 	
 	document.getElementById("projTab").click();
 	$("#teamList").prop('disabled', true);
@@ -41,7 +43,6 @@ $(document).ready(function() {
 				$('#requesterID').val(value.requesterId);
 				$('#processor').val(value.processorName);
 				$('#processorID').val(value.processorId);
-				$('#bsaInfo').val(value.bsaName);
 				$('#projectMapID').val(value.projMapId);
 				loadTeamList(value.projMapId);
 			}
@@ -251,6 +252,23 @@ function loadMovementDetails(){
 	});
 }
 
+function loadBsaDetails(){
+	$.ajax({
+		type : 'GET',
+		url : "/onboarding/team/getactivebsa" ,
+		dataType : "text",
+		success : function(resultData) {
+			bsaList = JSON.parse(resultData);
+			$.each(bsaList, function(key,value) {   
+			     $('#bsaInfo')
+			         .append($("<option></option>")
+			                    .attr("value",value.bsaId)
+			                    .text(value.bsaName)); 
+			});
+		}
+	});
+}
+
 /* Project Register Submit */
 $(function() {
 	$('#projectRegisterFormSubmit').click(
@@ -315,6 +333,7 @@ function setRequestParams(){
 	jsonRequest["movementId"] = $('#movementId').val();
 	jsonRequest["pplManager"] = $('#pplInfo').val();
 	jsonRequest["experience"] = $('#experience').val();
+	jsonRequest["bsaId"] = $('#bsaInfo').val();
 }
 
 function validateForm() {

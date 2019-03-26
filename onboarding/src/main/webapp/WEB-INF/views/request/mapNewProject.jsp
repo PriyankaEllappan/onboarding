@@ -287,8 +287,9 @@
 									<label for="bsaInfo">BSA</label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" id="bsaInfo" name="bsaInfo"
-										placeholder="Enter BSA Info" readonly autocomplete="off" />
+									<select class="form-control" id="bsaInfo" name="bsaInfo">
+										<option value="" selected disabled>Select</option>
+									</select>										
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
