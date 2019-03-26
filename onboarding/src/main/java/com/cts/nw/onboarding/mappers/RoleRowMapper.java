@@ -22,6 +22,7 @@ public class RoleRowMapper implements RowMapper<Roles> {
 		Roles role = new Roles();
 		role.setId(rs.getInt("ID"));
 		role.setRoleName(rs.getString("ROLENAME"));
+		role.setParentRole(rs.getString("PARENTROLE"));
 		return role;
 	}
 

@@ -172,6 +172,11 @@ function loadAllRoles(){
 		success : function(resultData) {
 			roleMappings = JSON.parse(resultData);
 			$.each(roleMappings, function(key,value) {   
+				
+                $('#role')
+                .append($("<optgroup></optgroup>")
+                       .attr("label",value.parentRole));
+
 				$('#role')
 		         .append($("<option></option>")
 		                    .attr("value",value.id)

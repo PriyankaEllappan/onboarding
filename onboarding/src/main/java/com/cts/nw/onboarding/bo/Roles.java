@@ -11,6 +11,8 @@ public class Roles {
 	
 	private Integer id;
 	private String roleName;
+	private String parentRole;
+	
 	/**
 	 * @return the id
 	 */
@@ -35,14 +37,26 @@ public class Roles {
 	public void setRoleName(String roleName) {
 		this.roleName = roleName;
 	}
+	/**
+	 * @return the parentRole
+	 */
+	public String getParentRole() {
+		return parentRole;
+	}
+	/**
+	 * @param parentRole the parentRole to set
+	 */
+	public void setParentRole(String parentRole) {
+		this.parentRole = parentRole;
+	}
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "Roles [id=" + id + ", roleName=" + roleName + "]";
+		return "Roles [id=" + id + ", roleName=" + roleName + ", parentRole=" + parentRole + "]";
 	}
-	
 	
 
 }
