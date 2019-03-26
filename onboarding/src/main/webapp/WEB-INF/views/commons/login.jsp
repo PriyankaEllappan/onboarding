@@ -22,11 +22,11 @@
 						src="/onboarding/resources/images/cognizantLogo.png"
 						alt="Cognizant Logo">
 				</div>
-				<div class="col-md-7 header-text" align="center">
-					<br>
-					<p>Nationwide Resource Onboarding</p>
+				<div class="col-md-8" align="center">
+					<img class="header-title"
+					src="/onboarding/resources/images/headerText.png">
 				</div>
-				<div class="col-md-2 welcome-text"></div>
+				<div class="col-md-1"></div>
 				<div class="col-md-1"></div>
 				<div class="col-md-1"></div>
 			</div>

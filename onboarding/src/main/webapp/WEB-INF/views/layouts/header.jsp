@@ -16,9 +16,11 @@
 					src="/onboarding/resources/images/cognizantLogo.png"
 					alt="Cognizant Logo">
 			</div>
-			<div class="col-md-7 header-text" align="center">
-				<br>
-				<p>Nationwide Resource Onboarding</p>
+			<div class="col-md-7" align="center">
+				<!-- <br>
+				<p>Nationwide Resource Onboarding</p> -->
+				<img class="header-title"
+					src="/onboarding/resources/images/headerText.png">
 			</div>
 			<div class="col-md-2 welcome-text" style="color: white;">
 				<c:if test="${not empty appInfo.loggedInUserName}">

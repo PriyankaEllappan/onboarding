@@ -6,6 +6,11 @@
 	width: 100%;
 }
 
+.header-title {
+	width: 80%;
+	padding-top: 5px;
+}
+
 .header-banner{
 	width: inherit;
 	padding: 0 0 0 15px;
