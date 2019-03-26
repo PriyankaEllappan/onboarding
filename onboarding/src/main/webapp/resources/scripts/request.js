@@ -42,11 +42,11 @@ $(document).ready(function() {
 	})
 	
 	/* Confirm to add resource function */
-	$("#confirmAddResource").click(function() {
+	/*$("#confirmAddResource").click(function() {
 		var empId = $('#checkEmpId').val();
 		loadEmployeeDetails(empId);
 		$("#resourceNonAvailable").show();
-	})
+	})*/
 
 	/* Employee Register Submit */
 	$(function() {
@@ -108,7 +108,10 @@ function checkForanEmployee(empID) {
 		dataType : "text",
 		success : function(resultData) {
 			if (!$.trim(resultData)) {
-				$('#NoResourceModal').modal('show');
+				/*$('#NoResourceModal').modal('show');*/
+				var empId = $('#checkEmpId').val();
+				loadEmployeeDetails(empId);
+				$("#resourceNonAvailable").show();
 			} else {
 				var returnedData = JSON.parse(resultData);
 				$('#availEmpID').text(returnedData.employeeId);
@@ -129,7 +132,6 @@ function checkForanActiveAssignment(empID) {
 		url : "/onboarding/request/checkactiveassignments/" + empID,
 		dataType : "text",
 		success : function(resultData) {
-			
 			if (!$.trim(resultData)) {
 				window.location = "/onboarding/request/mapproject/" + $("#availEmpID").text();
 			} else {
@@ -145,7 +147,7 @@ function checkForanActiveAssignment(empID) {
 									+ value.teamName + '</td></tr>');
 				});
 				if(counter >= 2){
-					window.location = "/onboarding/request/assignmentexceeded";
+					$('#errMessage').text("Resource is already tagged under two projects");
 				}else{
 					$('#ActiveAssignment').modal('show');
 				}

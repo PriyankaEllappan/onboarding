@@ -159,8 +159,8 @@
 				Project</button>
 		</div>
 	</div>
-	<!-- Resource Non Availability Modal -->
-	<div class="modal fade" id="NoResourceModal" tabindex="-1"
+	 <!-- Resource Non Availability Modal -->
+<!--	<div class="modal fade" id="NoResourceModal" tabindex="-1"
 		role="dialog" aria-labelledby="exampleModalCenterTitle"
 		aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
@@ -179,7 +179,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 	<!-- Active Assignment Non Availability Modal -->
 	<div class="modal fade" id="ActiveAssignment" tabindex="-1"
