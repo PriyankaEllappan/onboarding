@@ -37,6 +37,25 @@ public class OnboardingRequestValidator {
 				System.out.println("PPL Validation Failed");
 				return false;
 			}
+			if (employeeProjHist.getNationwideId() != null
+					&& !Pattern.matches("[a-zA-Z0-9\\s]*", employeeProjHist.getNationwideId())) {
+				System.out.println("NationwideId Validation Failed");
+				return false;
+			}
+			if (employeeProjHist.getWorkForceId() != null
+					&& !Pattern.matches("[a-zA-Z0-9\\s]*", employeeProjHist.getWorkForceId())) {
+				System.out.println("WorkForceId Validation Failed");
+				return false;
+			}
+			if (employeeProjHist.getScrumMaster() != null
+					&& !Pattern.matches("[a-zA-Z0-9\\s]*", employeeProjHist.getScrumMaster())) {
+				System.out.println("ScrumMaster Validation Failed");
+				return false;
+			}
+			if (employeeProjHist.getApm() != null && !Pattern.matches("[a-zA-Z0-9\\s]*", employeeProjHist.getApm())) {
+				System.out.println("Apm Validation Failed");
+				return false;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

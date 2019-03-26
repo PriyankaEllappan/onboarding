@@ -17,6 +17,7 @@ import com.cts.nw.onboarding.dao.MailAttachmentDAO;
 import com.cts.nw.onboarding.service.MailService;
 import com.cts.nw.onboarding.service.ProcessorService;
 import com.cts.nw.onboarding.service.ReleaseService;
+import com.cts.nw.onboarding.validators.OnboardingRequestValidator;
 
 /**
  * @author 656579
@@ -37,6 +38,8 @@ public class ProcessorServiceImpl implements ProcessorService {
 	@Autowired
 	ReleaseService releaseService;
 	
+	@Autowired
+	OnboardingRequestValidator onboardingRequestValidator;
 	
 	/*1. Resource Onboarding Operations*/
 	
@@ -47,27 +50,37 @@ public class ProcessorServiceImpl implements ProcessorService {
 	
 	@Override
 	public EmployeeProjHist onboardAnEmployee(EmployeeProjHist employeeProjHist) {
+
 		Integer rowsAffected = 0;
 		MailAttachment fileUploadObj;
 		Integer mailId = null;
-		
-		fileUploadObj = getFileUploadObject(employeeProjHist.getAttachment());
-		if(fileUploadObj != null){
-			mailId = mailAttachmentDAO.uploadAttachmentViaCallable(fileUploadObj);
-			employeeProjHist.setAttachmentId(mailId);
-		}
-		
-		rowsAffected = employeeProjHistDAO.onBoardEmployee(employeeProjHist);
-		if(rowsAffected > 0){
-			if (employeeProjHist.getApprovalStatusId() == 2) {
-				mailService.onBoardingAcknowledged(employeeProjHist);
-			} else if (employeeProjHist.getApprovalStatusId() == 3) {
-				mailService.onBoardingCompleted(employeeProjHist);
-				checkForAnyPrevAssignmentandRelease(employeeProjHist);
+		try {
+			if (onboardingRequestValidator.validate(employeeProjHist)) {
+				fileUploadObj = getFileUploadObject(employeeProjHist.getAttachment());
+				if (fileUploadObj != null) {
+					mailId = mailAttachmentDAO.uploadAttachmentViaCallable(fileUploadObj);
+					employeeProjHist.setAttachmentId(mailId);
+				}
+
+				rowsAffected = employeeProjHistDAO.onBoardEmployee(employeeProjHist);
+				if (rowsAffected > 0) {
+					if (employeeProjHist.getApprovalStatusId() == 2) {
+						mailService.onBoardingAcknowledged(employeeProjHist);
+					} else if (employeeProjHist.getApprovalStatusId() == 3) {
+						mailService.onBoardingCompleted(employeeProjHist);
+						checkForAnyPrevAssignmentandRelease(employeeProjHist);
+					}
+					return employeeProjHist;
+				}
+				return null;
+			} else {
+				System.out.println("Validation errors");
+				return null;
 			}
-			return employeeProjHist;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
 		}
-		return null;
 	}
 	
 	private void checkForAnyPrevAssignmentandRelease(EmployeeProjHist employeeProjHist) {
