@@ -229,7 +229,8 @@
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-2">
-									<label for="skill">Skill</label>
+									<label for="skill">Skill<span
+										class="is-required"> *</span></label>
 								</div>
 								<div class="col-md-3">
 									<input class="form-control" name="skill" id="skill"
@@ -237,7 +238,8 @@
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
-									<label for="skillSummary">Skill Summary</label>
+									<label for="skillSummary">Skill Summary<span
+										class="is-required"> *</span></label>
 								</div>
 								<div class="col-md-3">
 									<input class="form-control" name="skillSummary"
@@ -249,7 +251,8 @@
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-2">
-									<label for="experience">Experience</label>
+									<label for="experience">Experience<span
+										class="is-required"> *</span></label>
 								</div>
 								<div class="col-md-3">
 									<input class="form-control" type="number" name="experience"
@@ -284,7 +287,8 @@
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-2">
-									<label for="bsaInfo">BSA</label>
+									<label for="bsaInfo">BSA<span
+										class="is-required"> *</span></label>
 								</div>
 								<div class="col-md-3">
 									<select class="form-control" id="bsaInfo" name="bsaInfo">
