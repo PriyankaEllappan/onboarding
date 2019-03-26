@@ -56,6 +56,7 @@ import com.cts.nw.onboarding.bo.EmployeeProjHist;
 			employeeProjHist.setTeamId(rs.getInt("TEAMID"));
 			employeeProjHist.setTeamName(rs.getString("TEAMNAME"));
 			employeeProjHist.setBsaName(rs.getString("BSANAME"));
+			employeeProjHist.setBsaId(rs.getString("BSAID"));
 			employeeProjHist.setProjectMappingId(rs.getInt("PROJECTMAPPINGID"));
 			employeeProjHist.setProjectId(rs.getLong("PROJECTID"));
 			employeeProjHist.setProjectName(rs.getString("PROJECTNAME"));

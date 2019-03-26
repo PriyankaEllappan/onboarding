@@ -15,8 +15,6 @@ public class ProjectMapping {
 	private String requesterName;
 	private Integer processorId;
 	private String processorName;
-	private Integer bsaId;
-	private String bsaName;
 	private String projStatus;
 	private Integer projMapId;
 	
@@ -131,46 +129,12 @@ public class ProjectMapping {
 		this.processorName = processorName;
 	}
 
-
-	/**
-	 * @return the bsaId
-	 */
-	public Integer getBsaId() {
-		return bsaId;
-	}
-
-
-	/**
-	 * @param bsaId the bsaId to set
-	 */
-	public void setBsaId(Integer bsaId) {
-		this.bsaId = bsaId;
-	}
-
-
-	/**
-	 * @return the bsaName
-	 */
-	public String getBsaName() {
-		return bsaName;
-	}
-
-
-	/**
-	 * @param bsaName the bsaName to set
-	 */
-	public void setBsaName(String bsaName) {
-		this.bsaName = bsaName;
-	}
-
-
 	/**
 	 * @return the projStatus
 	 */
 	public String getProjStatus() {
 		return projStatus;
 	}
-
 
 	/**
 	 * @param projStatus the projStatus to set
@@ -187,8 +151,7 @@ public class ProjectMapping {
 	public String toString() {
 		return "ProjectMapping [projectId=" + projectId + ", projectName=" + projectName + ", requesterId="
 				+ requesterId + ", requesterName=" + requesterName + ", processorId=" + processorId + ", processorName="
-				+ processorName + ", bsaId=" + bsaId + ", bsaName=" + bsaName + ", projStatus=" + projStatus
-				+ ", projMapId=" + projMapId + "]";
+				+ processorName + ", projStatus=" + projStatus + ", projMapId=" + projMapId + "]";
 	}
 
 	

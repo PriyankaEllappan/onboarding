@@ -23,8 +23,6 @@ public class ProjectMappingRowMapper implements RowMapper<ProjectMapping> {
 		teamMapping.setRequesterName(rs.getString("REQUESTERNAME"));
 		teamMapping.setProcessorId(rs.getInt("PROCESSORID"));
 		teamMapping.setProcessorName(rs.getString("PROCESSORNAME"));
-		teamMapping.setBsaId(rs.getInt("BSAID"));
-		teamMapping.setBsaName(rs.getString("BSANAME"));
 		teamMapping.setProjStatus(rs.getString("PROJSTATUS"));
 		teamMapping.setProjMapId(rs.getInt("PROJMAPID"));
 		return teamMapping;

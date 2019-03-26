@@ -67,7 +67,8 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	 */
 	@Override
 	public Integer addEmployeeProjectInfo(EmployeeProjHist employeeProjectHist) {
-		return jdbcTemplate.update(QueryConstants.EMPPROJECTHIST_INSERT,employeeProjectHist.getId(),employeeProjectHist.getEmployeeId(),employeeProjectHist.getProjectMappingId(),employeeProjectHist.getTeamId(),employeeProjectHist.getRoleId(),
+		return jdbcTemplate.update(QueryConstants.EMPPROJECTHIST_INSERT,employeeProjectHist.getId(),employeeProjectHist.getEmployeeId(),employeeProjectHist.getProjectMappingId(),employeeProjectHist.getTeamId(),
+				employeeProjectHist.getRoleId(),employeeProjectHist.getBsaId(),
 				employeeProjectHist.getCountryId(),employeeProjectHist.getStartDate(),
 				employeeProjectHist.getMovementId(),employeeProjectHist.getExperience(),
 				employeeProjectHist.getSkillSet(),employeeProjectHist.getSkillSummary(),employeeProjectHist.getApprovalStatusId(),employeeProjectHist.getReleaseStatusId(),
