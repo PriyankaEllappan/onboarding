@@ -164,23 +164,21 @@ function loadTeamDetails() {
 	});
 }
 
-function loadAllRoles(){
+function loadAllRoles() {
 	$.ajax({
 		type : 'GET',
-		url : "/onboarding/role/getroles" ,
+		url : "/onboarding/role/getroles",
 		dataType : "text",
 		success : function(resultData) {
-			roleMappings = JSON.parse(resultData);
-			$.each(roleMappings, function(key,value) {   
-				
-                $('#role')
-                .append($("<optgroup></optgroup>")
-                       .attr("label",value.parentRole));
-
+			roles = JSON.parse(resultData);
+			$.each(roles, function(key, value) {
 				$('#role')
-		         .append($("<option></option>")
-		                    .attr("value",value.id)
-		                    .text(value.roleName)); 
+						.append($("<optgroup></optgroup>").attr("label", key))
+				$.each(value, function(key, valueInner) {
+					$('#role').append(
+							$("<option></option>").attr("value", valueInner.id)
+									.text(valueInner.roleName));
+				});
 			});
 		}
 	});
@@ -200,6 +198,7 @@ function loadAllRoleMappings(){
 function loadRateDetails(){
 	var selectedRoleID = $('#role').val();
 	var selectedCountryMapID = $('#countryMappingID').val();
+	
 	$.each(roleMappings, function(key,value) {   
 		if (selectedRoleID == value.roleId && selectedCountryMapID == value.countryId) {
 			$('#roleMappingID').val(value.roleId);

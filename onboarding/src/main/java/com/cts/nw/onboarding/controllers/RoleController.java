@@ -4,6 +4,7 @@
 package com.cts.nw.onboarding.controllers;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -52,8 +53,8 @@ public class RoleController extends AbstractController {
 	 * @return
 	 */
 	@RequestMapping(value = "/getroles", method = RequestMethod.GET)
-	public @ResponseBody List<Roles> getAllRoles() {
-		List<Roles> roleList;
+	public @ResponseBody Map<String, List<Roles>> getAllRoles() {
+		Map<String, List<Roles>> roleList;
 		try {
 			roleList = roleService.getRoleDetails();
 			if (roleList.size() > 0) {
