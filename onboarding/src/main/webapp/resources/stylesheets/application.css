@@ -126,6 +126,7 @@
   font-family: inherit;
   margin: 0;
   width: 20em;
+  height:100%;
 }
 
 .navigbar a:hover, .dropitdown:hover .dropbtn {
