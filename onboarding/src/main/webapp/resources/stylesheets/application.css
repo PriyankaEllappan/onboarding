@@ -17,6 +17,7 @@
 	border-right: #0039a6;
 	border-left: #0039a6;
 	background-color: #0039a6;
+	height :65%;
 }
 
 .header-homeicon {
@@ -98,6 +99,7 @@
 .navigbar {
   overflow: hidden;
   background-color: rgba(192,192,192, 0.2);
+  height:35%;
 }
 
 .navigbar a {

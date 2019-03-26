@@ -71,6 +71,8 @@ public class EmployeeProjHist {
 	private Integer teamId;
 	private String teamName;
 	private String bsaName;
+	private String bsaId;
+	
 	private Integer projectMappingId;
 	private Long projectId;
 	private String projectName;
@@ -93,6 +95,18 @@ public class EmployeeProjHist {
 	
 	
 	
+	/**
+	 * @return the bsaId
+	 */
+	public String getBsaId() {
+		return bsaId;
+	}
+	/**
+	 * @param bsaId the bsaId to set
+	 */
+	public void setBsaId(String bsaId) {
+		this.bsaId = bsaId;
+	}
 	/**
 	 * @return the onboardRequester
 	 */
@@ -763,12 +777,13 @@ public class EmployeeProjHist {
 				+ firstName + ", lastName=" + lastName + ", dateOfBirth=" + dateOfBirth + ", passportNumber="
 				+ passportNumber + ", email=" + email + ", countryId=" + countryId + ", countryName=" + countryName
 				+ ", location=" + location + ", roleId=" + roleId + ", role=" + role + ", rate=" + rate + ", teamId="
-				+ teamId + ", teamName=" + teamName + ", bsaName=" + bsaName + ", projectMappingId=" + projectMappingId
-				+ ", projectId=" + projectId + ", projectName=" + projectName + ", requesterId=" + requesterId
-				+ ", requesterName=" + requesterName + ", processorId=" + processorId + ", processorName="
-				+ processorName + ", movement=" + movement + ", fileName=" + fileName + ", fileData=" + fileData
-				+ ", bandId=" + bandId + ", band=" + band + ", onboardRequester=" + onboardRequester
-				+ ", offboardRequester=" + offboardRequester + ", offboardProcessor=" + offboardProcessor + "]";
+				+ teamId + ", teamName=" + teamName + ", bsaName=" + bsaName + ", bsaId=" + bsaId
+				+ ", projectMappingId=" + projectMappingId + ", projectId=" + projectId + ", projectName=" + projectName
+				+ ", requesterId=" + requesterId + ", requesterName=" + requesterName + ", processorId=" + processorId
+				+ ", processorName=" + processorName + ", movement=" + movement + ", fileName=" + fileName
+				+ ", fileData=" + fileData + ", bandId=" + bandId + ", band=" + band + ", onboardRequester="
+				+ onboardRequester + ", offboardRequester=" + offboardRequester + ", offboardProcessor="
+				+ offboardProcessor + "]";
 	}
 	
 }

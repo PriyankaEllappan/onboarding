@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cts.nw.onboarding.bo.BSA;
 import com.cts.nw.onboarding.bo.Teams;
+import com.cts.nw.onboarding.service.BSAService;
 import com.cts.nw.onboarding.service.TeamService;
 
 /**
@@ -25,6 +27,9 @@ public class TeamController extends AbstractController {
 	@Autowired
 	TeamService teamService;
 
+	@Autowired
+	BSAService bSAService;
+	
 	/**
 	 * @param teamname
 	 * @return
@@ -46,4 +51,25 @@ public class TeamController extends AbstractController {
 		}
 	}
 
+	/**
+	 * @param teamname
+	 * @return
+	 */
+	@RequestMapping(value = "/getactivebsa", method = RequestMethod.GET)
+	public @ResponseBody List<BSA> getAllBSADetails() {
+		List<BSA> basList = null;
+		try {
+			basList = bSAService.getActiveBsaDetails();
+			if (basList.size() > 0) {
+				return basList;
+			} else {
+				return null;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 }

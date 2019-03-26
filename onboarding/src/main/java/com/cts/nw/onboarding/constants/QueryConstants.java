@@ -24,7 +24,7 @@ public class QueryConstants {
 	 public static final String BANDS_SELECT ="SELECT B.ID AS ID, B.NAME AS BANDNAME FROM BANDS B " ;
 	 public static final String MOVEMENTS_SELECT ="SELECT M.ID AS ID ,M.VALUE AS MOVEMENT FROM  MOVEMENTINFO M " ;
 	 public static final String ROLES_SELECT = "SELECT RO.ID AS ID ,RO.ROLE AS ROLENAME FROM ROLES RO ";
-	 
+	 public static final String BSA_SELECT = "SELECT B.ID AS ID ,B.NAME AS BSANAME FROM BSA B";
 	 
 	 /*Insert Statements*/
 	 public static final String EMPLOYEEMASTER_INSERT = "INSERT INTO EMPLOYEEMASTER (ID, NAME, FIRSTNAME, LASTNAME, DOB, PASSPORTNUMBER,EMAIL) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -41,5 +41,6 @@ public class QueryConstants {
 	 /*Procedure Calls*/
 	 public static final String TEAMPROCEDURE_INSERT = "{call insertTeam(?,?,?,?)}";
 	 public static final String MAILPROCEDURE_INSERT = "{call insertMailObj(?,?,?)}";
+	
 	
 }
