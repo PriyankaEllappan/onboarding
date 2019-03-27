@@ -414,6 +414,9 @@
 							<form:input type="hidden" path="fileData" />
 							<form:input type="hidden" path="bandId" />
 							<form:input type="hidden" path="projectMappingId" />
+							<form:input type="hidden" path="onboardRequester" />
+							<form:input type="hidden" path="offboardRequester" />
+							<form:input type="hidden" path="offboardProcessor" />
 						</div>
 					</div>
 				</div>
