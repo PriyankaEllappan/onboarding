@@ -137,8 +137,6 @@
 
 .navigbar a:hover, .dropitdown:hover .dropbtn {
   background-color: rgba(240,255,240, 1);
- /*  color: rgba(0,0,0,1);
-  color: rgba(0, 151, 19, 1); */
   color: rgba(0,100,0, 1);
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
@@ -224,16 +222,16 @@
 /* Style the tab */
 .tab {
 	overflow: hidden;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	/* background-color: rgba(50,205,50, 0.8) */
+	border: 1px solid green;
+	border-top-left-radius: 4px;
+  	border-top-right-radius: 4px;
 	background-color: rgba(192,192,192, 0.2);
 	height: 8%;
 }
 
 .tab button.active {
-    /* background-color: rgba(34, 139, 34, 0.9) !important; */
     background-color: rgba(105,105,105, 0.9) !important;
+     color: rgba(255,255,255,0.9);
 }
 
 
@@ -248,6 +246,7 @@
 	transition: 0.3s;
 	font-size: 14px;
     font-weight: bold;
+    
 }
 
 /* Change background color of buttons on hover */
@@ -260,10 +259,12 @@
 .tabcontent {
 	display: none;
 	padding: 6px 12px;
-	border: 1px solid #ccc;
+	border: 1px solid green;
 	border-top: none;
 	font-size: small;
 	border-radius: 4px;
+	border-top-left-radius: 0px;
+  	border-top-right-radius: 0px;
 }
 
 /* Set default option inactive */
@@ -276,6 +277,7 @@ select option[disabled]:first-child {
 /* Table Design */
 .table {
 	font-size: small !important;
+	border: solid 2px green;
 }
 
 /* Cursor Options */
@@ -312,4 +314,11 @@ select option[disabled]:first-child {
 /* Icon Styles */
 .icon-image {
 height: 23px;
+}
+
+/* Font Style */
+.bold-font{
+  font-family:Georgia;
+  font-size: 13px; 
+  font-weight: bold; 
 }

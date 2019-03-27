@@ -23,8 +23,8 @@
 <body>
 	<jsp:include page="../layouts/header.jsp" />
 	<div class="container-fluid content-style">
-	<span class="has-error" id="errMessage"></span> 
-	<span class="is-success" id="statusSucessMessage"></span>
+		<span class="has-error" id="errMessage"></span> <span
+			class="is-success" id="statusSucessMessage"></span>
 		<div id="formDiv">
 			<div class="tab">
 				<button class="tablinks"
@@ -38,7 +38,8 @@
 					Details</button>
 			</div>
 			<form:form name="projectRegisterForm" method="post"
-				action="/onboarding/process/onboard" modelAttribute="employee" enctype="multipart/form-data">
+				action="/onboarding/process/onboard" modelAttribute="employee"
+				enctype="multipart/form-data">
 				<div id="basicInfo" class="tabcontent">
 					<div class="resizeTabCont">
 						<br>
@@ -49,14 +50,15 @@
 								</div>
 								<div class="col-md-3">
 									<form:input class="form-control" name="employeeId"
-										path="employeeId" readonly="true"/>
+										path="employeeId" readonly="true" />
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
 									<form:label path="email">Email</form:label>
 								</div>
 								<div class="col-md-3">
-									<form:input class="form-control" path="email" name="email" readonly="true"/>
+									<form:input class="form-control" path="email" name="email"
+										readonly="true" />
 								</div>
 							</div>
 						</div>
@@ -67,7 +69,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input class="form-control" path="firstName"
-										name="firstName" readonly="true"/>
+										name="firstName" readonly="true" />
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
@@ -75,7 +77,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input class="form-control" path="lastName"
-										name="lastName" readonly="true"/>
+										name="lastName" readonly="true" />
 								</div>
 							</div>
 						</div>
@@ -103,7 +105,9 @@
 						<div class="col-md-11"></div>
 						<div class="col-md-1">
 							<ul class="nav nav-pills">
-								<li class="active" onclick="openSpecificTabNext(event, 'projInfo')"><a href="#">Next >></a></li>
+								<li class="active"
+									onclick="openSpecificTabNext(event, 'projInfo')"><a
+									href="#">Next >></a></li>
 							</ul>
 						</div>
 					</div>
@@ -118,7 +122,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input class="form-control" path="teamName"
-										name="teamName" readonly="true"/>
+										name="teamName" readonly="true" />
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
@@ -126,7 +130,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input autocomplete="off" class="form-control"
-										name="startDate" path="startDate" readonly="true"/>
+										name="startDate" path="startDate" readonly="true" />
 								</div>
 							</div>
 						</div>
@@ -137,7 +141,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input class="form-control" path="projectId"
-										name="projectId" readonly="true"/>
+										name="projectId" readonly="true" />
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
@@ -145,7 +149,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input class="form-control" path="projectName"
-										name="projectName" readonly="true"/>
+										name="projectName" readonly="true" />
 								</div>
 							</div>
 						</div>
@@ -156,7 +160,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input class="form-control" path="requesterName"
-										name="requesterName" readonly="true"/>
+										name="requesterName" readonly="true" />
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
@@ -164,7 +168,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input class="form-control" name="processorName"
-										path="processorName" readonly="true"/>
+										path="processorName" readonly="true" />
 								</div>
 							</div>
 						</div>
@@ -175,7 +179,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input class="form-control" name="countryName"
-										path="countryName" readonly="true"/>
+										path="countryName" readonly="true" />
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
@@ -183,7 +187,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input class="form-control" name="location"
-										path="location" readonly="true"/>
+										path="location" readonly="true" />
 								</div>
 							</div>
 						</div>
@@ -201,7 +205,8 @@
 									<form:label path="rate">Rate</form:label>
 								</div>
 								<div class="col-md-3">
-									<form:input class="form-control" name="rate" path="rate" readonly="true"/>
+									<form:input class="form-control" name="rate" path="rate"
+										readonly="true" />
 								</div>
 							</div>
 						</div>
@@ -212,7 +217,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input class="form-control" name="skillSet"
-										path="skillSet" readonly="true"/>
+										path="skillSet" readonly="true" />
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
@@ -220,7 +225,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input class="form-control" name="skillSummary"
-										path="skillSummary" readonly="true"/>
+										path="skillSummary" readonly="true" />
 								</div>
 							</div>
 						</div>
@@ -231,7 +236,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input class="form-control" name="experience"
-										path="experience" readonly="true"/>
+										path="experience" readonly="true" />
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
@@ -239,7 +244,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input class="form-control" name="movementId"
-										path="movementId" readonly="true"/>
+										path="movementId" readonly="true" />
 								</div>
 							</div>
 						</div>
@@ -248,7 +253,9 @@
 						<div class="col-md-11"></div>
 						<div class="col-md-1">
 							<ul class="nav nav-pills">
-								<li class="active" onclick="openSpecificTabNext(event, 'customerInfo')"><a href="#">Next >></a></li>
+								<li class="active"
+									onclick="openSpecificTabNext(event, 'customerInfo')"><a
+									href="#">Next >></a></li>
 							</ul>
 						</div>
 					</div>
@@ -262,7 +269,8 @@
 									<form:label path="bsaName">BSA</form:label>
 								</div>
 								<div class="col-md-3">
-									<form:input class="form-control" path="bsaName" name="bsaName" readonly="true"/>
+									<form:input class="form-control" path="bsaName" name="bsaName"
+										readonly="true" />
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
@@ -270,7 +278,8 @@
 								</div>
 								<div class="col-md-3">
 									<form:select class="form-control" name="band" path="band">
-									<form:option value="" label="Select" selected="true" disabled="true" />
+										<form:option value="" label="Select" selected="true"
+											disabled="true" />
 									</form:select>
 								</div>
 							</div>
@@ -340,7 +349,8 @@
 								<div class="col-md-3">
 									<form:select class="form-control" name="approvalStatus"
 										path="approvalStatus">
-									<form:option value="" label="Select" selected="true" disabled="true" />	
+										<form:option value="" label="Select" selected="true"
+											disabled="true" />
 									</form:select>
 								</div>
 								<div class="col-md-1"></div>
@@ -367,8 +377,8 @@
 									<form:label path="attachment">Attachment</form:label>
 								</div>
 								<div class="col-md-3">
-								<form:input path="attachment" type="file"
-											name="attachment" size="60" />
+									<form:input path="attachment" type="file" name="attachment"
+										size="60" />
 								</div>
 							</div>
 						</div>
@@ -376,7 +386,9 @@
 							<div class="row">
 								<br />
 								<div class="col-md-6" style="text-align: right">
-									<input class="btn btn-submit" type="submit" onclick="return validateForm()" id="processorFormSubmit" value="Submit">
+									<input class="btn btn-submit" type="submit"
+										onclick="return validateForm()" id="processorFormSubmit"
+										value="Submit">
 								</div>
 								<div class="col-md-2">
 									<button class="btn btn-submit" id="processorFormReset"

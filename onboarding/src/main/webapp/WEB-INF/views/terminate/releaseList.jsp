@@ -29,17 +29,15 @@
 					</div>
 				</div>
 				<table class="table table-striped">
-					<thead>
-						<tr>
-							<th>Employee Id</th>
-							<th>Employee Name</th>
-							<th>Project Id</th>
-							<th>Project Name</th>
-							<th>Team Name</th>
-							<th></th>
-							<th></th>
-						</tr>
-					</thead>
+					<tr class="bold-font">
+						<th>Employee Id</th>
+						<th>Employee Name</th>
+						<th>Project Id</th>
+						<th>Project Name</th>
+						<th>Team Name</th>
+						<th></th>
+						<th></th>
+					</tr>
 					<c:forEach var="employee" items="${employees}">
 						<tr>
 							<td>${employee.getEmployeeId()}</td>
@@ -55,7 +53,8 @@
 								</c:when>
 								<c:when
 									test="${employee.getReleaseStatus() == 'RELEASE INITIATED'}">
-									<td><button class="btn-warning not-to-click">Release Initiated</button></td>
+									<td><button class="btn-warning not-to-click">Release
+											Initiated</button></td>
 								</c:when>
 							</c:choose>
 							<td><img class="icon-image to-click"

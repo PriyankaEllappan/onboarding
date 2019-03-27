@@ -27,18 +27,16 @@
 					</div>
 				</div>
 				<table class="table table-striped">
-					<thead>
-						<tr>
-							<th>Employee Id</th>
-							<th>Employee Name</th>
-							<th>Project Id</th>
-							<th>Project Name</th>
-							<th>Team Name</th>
-							<th>Approval Status</th>
-							<th>Release Status</th>
-							<th></th>
-						</tr>
-					</thead>
+					<tr class="bold-font">
+						<th>Employee Id</th>
+						<th>Employee Name</th>
+						<th>Project Id</th>
+						<th>Project Name</th>
+						<th>Team Name</th>
+						<th>Approval Status</th>
+						<th>Release Status</th>
+						<th></th>
+					</tr>
 					<c:forEach var="employee" items="${employees}">
 						<tr>
 							<td>${employee.getEmployeeId()}</td>
