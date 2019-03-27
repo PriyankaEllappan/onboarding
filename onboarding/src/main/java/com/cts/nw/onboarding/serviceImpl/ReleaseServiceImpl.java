@@ -116,6 +116,7 @@ public class ReleaseServiceImpl implements ReleaseService {
 			List<EmployeeProjHist> listofResources = employeeProjHistDAO
 					.getEmployeestobeReleasedbyTeam(String.valueOf(employeeProjHist.getTeamId()));
 			for (EmployeeProjHist resource : listofResources) {
+				setReleaseValues(employeeProjHist, resource);
 				rowsAffected = rowsAffected + releaseAnEmployee(resource);
 			}
 			return rowsAffected;	
@@ -132,6 +133,7 @@ public class ReleaseServiceImpl implements ReleaseService {
 			List<EmployeeProjHist> listofResources = employeeProjHistDAO
 					.getEmployeestobeReleasedbyProj(String.valueOf(employeeProjHist.getProjectId()));
 			for (EmployeeProjHist resource : listofResources) {
+				setReleaseValues(employeeProjHist, resource);
 				rowsAffected = rowsAffected + releaseAnEmployee(resource);
 			}
 
@@ -140,6 +142,16 @@ public class ReleaseServiceImpl implements ReleaseService {
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+	/**
+	 * @param employeeProjHist
+	 * @param resource
+	 */
+	private void setReleaseValues(EmployeeProjHist employeeProjHist, EmployeeProjHist resource) {
+		resource.setReleaseStatusId(employeeProjHist.getReleaseStatusId());
+		resource.setReasonForOffboarding(employeeProjHist.getReasonForOffboarding());
+		resource.setReleaseDate(employeeProjHist.getReleaseDate());
 	}
 
 }
