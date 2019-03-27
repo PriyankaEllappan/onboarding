@@ -20,42 +20,57 @@
 <body>
 	<jsp:include page="../layouts/header.jsp" />
 	<div class="content-style">
-		<div class="row">
-			<div class="col-md-12" align="center">
-				<h4>Release List</h4><br>
-			</div>
-		</div>
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>Employee Id</th>
-					<th>Employee Name</th>
-					<th>Project Id</th>
-					<th>Project Name</th>
-					<th>Team Name</th>
-					<th></th>
-					<th></th>
-				</tr>
-			</thead>
-			<c:forEach var="employee" items="${employees}">
-				<tr>
-					<td>${employee.getEmployeeId()}</td>
-					<td>${employee.getName()}</td>
-					<td>${employee.getProjectId()}</td>
-					<td>${employee.getProjectName()}</td>
-					<td>${employee.getTeamName()}</td>
-					<c:choose>
-						<c:when test="${employee.getReleaseStatus() == 'YET TO RELEASE'}">
-							<td><button class="btn-danger" onclick="location.href='requestrelease/${employee.getId()}'">Release</button></td>
-						</c:when>
-						<c:when test="${employee.getReleaseStatus() == 'RELEASE INITIATED'}">
-							<td><button class="btn-warning">Release Initiated</button></td>
-						</c:when>
-					</c:choose>
-					<td><img class="icon-image to-click" src="/onboarding/resources/icons/show" onclick="location.href='show/${employee.getId()}'"></td>
-				</tr>
-			</c:forEach>
-		</table>
+		<c:choose>
+			<c:when test="${not empty employees}">
+				<div class="row">
+					<div class="col-md-12" align="center">
+						<h4>Release List</h4>
+						<br>
+					</div>
+				</div>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Employee Id</th>
+							<th>Employee Name</th>
+							<th>Project Id</th>
+							<th>Project Name</th>
+							<th>Team Name</th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<c:forEach var="employee" items="${employees}">
+						<tr>
+							<td>${employee.getEmployeeId()}</td>
+							<td>${employee.getName()}</td>
+							<td>${employee.getProjectId()}</td>
+							<td>${employee.getProjectName()}</td>
+							<td>${employee.getTeamName()}</td>
+							<c:choose>
+								<c:when
+									test="${employee.getReleaseStatus() == 'YET TO RELEASE'}">
+									<td><button class="btn-danger to-click"
+											onclick="location.href='requestrelease/${employee.getId()}'">Release</button></td>
+								</c:when>
+								<c:when
+									test="${employee.getReleaseStatus() == 'RELEASE INITIATED'}">
+									<td><button class="btn-warning not-to-click">Release Initiated</button></td>
+								</c:when>
+							</c:choose>
+							<td><img class="icon-image to-click"
+								src="/onboarding/resources/icons/show"
+								onclick="location.href='show/${employee.getId()}'"></td>
+						</tr>
+					</c:forEach>
+				</table>
+			</c:when>
+			<c:otherwise>
+				<br>
+				<br>
+				<h4>No requests Available</h4>
+			</c:otherwise>
+		</c:choose>
 	</div>
 	<jsp:include page="../layouts/footer.jsp" />
 </body>

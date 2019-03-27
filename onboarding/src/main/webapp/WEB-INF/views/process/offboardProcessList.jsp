@@ -18,6 +18,8 @@
 <body>
 	<jsp:include page="../layouts/header.jsp" />
 	<div class="content-style">
+	<c:choose>
+			<c:when test="${not empty employees}">
 		<div class="row">
 			<div class="col-md-12" align="center">
 				<h4>Process List</h4><br>
@@ -54,6 +56,13 @@
 				</tr>
 			</c:forEach>
 		</table>
+		</c:when>
+			<c:otherwise>
+				<br>
+				<br>
+				<h4>No requests Available</h4>
+			</c:otherwise>
+		</c:choose>
 	</div>
 	<!-- Load Script Files -->
 	<jsp:include page="../layouts/footer.jsp" />
