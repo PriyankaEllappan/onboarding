@@ -151,7 +151,7 @@ public class MailServiceImpl implements MailService {
 	@Override
 	public void offBoardingCompleted(EmployeeProjHist resource) {
 		try {
-			String emailContent = environment.getRequiredProperty("mail.released");
+			String emailContent = environment.getRequiredProperty("mail.resourceOffBoarding");
 
 			employeeDetail = new EmployeeDetails();
 			mailDetail = new MailDetail();
