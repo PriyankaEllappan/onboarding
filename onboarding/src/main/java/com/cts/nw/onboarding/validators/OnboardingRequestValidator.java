@@ -56,6 +56,10 @@ public class OnboardingRequestValidator {
 				System.out.println("Apm Validation Failed");
 				return false;
 			}
+			if (employeeProjHist.getComments() != null && !Pattern.matches("[a-zA-Z0-9\\s]*", employeeProjHist.getComments())) {
+				System.out.println("Comments Validation Failed");
+				return false;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
