@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -59,7 +61,7 @@ public class ReleaseController extends AbstractController {
 	 * @return
 	 */
 	@RequestMapping(value = "/processrelease", method = RequestMethod.POST)
-	public String releaseResource(@RequestBody EmployeeProjHist employeeJson) {
+	public String releaseResource(@ModelAttribute("employee") EmployeeProjHist employeeJson, BindingResult result) {
 		releaseService.releaseAnEmployee(employeeJson);
 		return "redirect:releaselist";
 	}
