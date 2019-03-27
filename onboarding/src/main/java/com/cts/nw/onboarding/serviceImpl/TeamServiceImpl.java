@@ -24,7 +24,12 @@ public class TeamServiceImpl implements TeamService{
 	
 	@Override
 	public List<Teams> getAllTeams() {
-		return teamsDAO.getAllActiveTeams();
+		try {
+			return teamsDAO.getAllActiveTeams();
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }

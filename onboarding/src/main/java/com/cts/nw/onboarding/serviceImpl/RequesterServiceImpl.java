@@ -48,20 +48,30 @@ public class RequesterServiceImpl implements RequesterService {
 	/*1. Adding Resource*/
 	@Override
 	public EmployeeMaster getResourceByID(String employeeid) {
-		return employeeMasterDAO.getEmployeeMasterDetailsByID(employeeid);
+		try {
+			return employeeMasterDAO.getEmployeeMasterDetailsByID(employeeid);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
 	public EmployeeMaster addNewResource(EmployeeMaster employee) {
-		Integer rowsAffected;
-		if (employeeMasterValidator.validate(employee)) {
-			rowsAffected = employeeMasterDAO.addNewResource(employee);
-			if (rowsAffected > 0) {
-				return employee;
+		try {
+			Integer rowsAffected;
+			if (employeeMasterValidator.validate(employee)) {
+				rowsAffected = employeeMasterDAO.addNewResource(employee);
+				if (rowsAffected > 0) {
+					return employee;
+				} else {
+					return null;
+				}
 			} else {
 				return null;
 			}
-		} else {
+		} catch(Exception e) {
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -70,40 +80,55 @@ public class RequesterServiceImpl implements RequesterService {
 	
 	@Override
 	public EmployeeProjHist getEmployeeProjById(String empProjHistId) {
-		return employeeProjHistDAO.getSpecificEmployeeProjectHist(empProjHistId);
+		try {
+			return employeeProjHistDAO.getSpecificEmployeeProjectHist(empProjHistId);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
 	public List<EmployeeProjHist> checkActiveAssignments(String employeeid) {
-		return employeeProjHistDAO.checkActiveAssignments(employeeid);
+		try {
+			return employeeProjHistDAO.checkActiveAssignments(employeeid);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	@Override
 	public EmployeeProjHist addNewProject(EmployeeProjHist employeeProjHist) {
-		Integer rowsAffected = 0;
-		if (onboardingRequestValidator.validate(employeeProjHist)) {
-			employeeProjHist.setOnboardRequester(AbstractController.APPINFO.getLoggedInUserId());
-			if (employeeProjHist.getTeamId() == 0) {
-				Teams team = new Teams();
-				Integer teamId;
-				team.setTeamName(employeeProjHist.getTeamName());
-				team.setProjMapId(employeeProjHist.getProjectMappingId());
-				team.setStatus("ACTIVE");
-				teamId = teamsDAO.insertNewViaCallable(team);
-				if (teamId != null) {
-					employeeProjHist.setTeamId(teamId);
+		try {
+			Integer rowsAffected = 0;
+			if (onboardingRequestValidator.validate(employeeProjHist)) {
+				employeeProjHist.setOnboardRequester(AbstractController.APPINFO.getLoggedInUserId());
+				if (employeeProjHist.getTeamId() == 0) {
+					Teams team = new Teams();
+					Integer teamId;
+					team.setTeamName(employeeProjHist.getTeamName());
+					team.setProjMapId(employeeProjHist.getProjectMappingId());
+					team.setStatus("ACTIVE");
+					teamId = teamsDAO.insertNewViaCallable(team);
+					if (teamId != null) {
+						employeeProjHist.setTeamId(teamId);
+						rowsAffected = employeeProjHistDAO.addEmployeeProjectInfo(employeeProjHist);
+					}
+				} else {
 					rowsAffected = employeeProjHistDAO.addEmployeeProjectInfo(employeeProjHist);
 				}
-			} else {
-				rowsAffected = employeeProjHistDAO.addEmployeeProjectInfo(employeeProjHist);
-			}
-			if (rowsAffected > 0) {
-				mailService.onBoardingInitiated(employeeProjHist);
-				return employeeProjHist;
+				if (rowsAffected > 0) {
+					mailService.onBoardingInitiated(employeeProjHist);
+					return employeeProjHist;
+				} else {
+					return null;
+				}
 			} else {
 				return null;
 			}
-		} else {
+		} catch(Exception e) {
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -112,7 +137,12 @@ public class RequesterServiceImpl implements RequesterService {
 	
 	@Override
 	public List<EmployeeProjHist> getEmployeesPerRequester(String requesterId) {
-		return employeeProjHistDAO.getEmployeesPerRequester(requesterId);
+		try {
+			return employeeProjHistDAO.getEmployeesPerRequester(requesterId);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 }

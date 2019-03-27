@@ -22,7 +22,13 @@ public class AttachementServiceImpl implements AttachmentService {
 
 	@Override
 	public MailAttachment downloadAttachment(String id) {
-		return mailAttachmentDAO.downloadAttachment(id);
+		try {
+			return mailAttachmentDAO.downloadAttachment(id);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		
 	}
 
 }

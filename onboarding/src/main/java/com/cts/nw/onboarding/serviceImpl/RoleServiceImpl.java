@@ -27,15 +27,25 @@ public class RoleServiceImpl implements RoleService{
 	
 	@Override
 	public List<RoleMapping> getAllRoleMappings() {
-		return roleMappingDAO.getAllRoleMappingDetails();
+		try {
+			return roleMappingDAO.getAllRoleMappingDetails();
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
 	public Map<String, List<Roles>> getRoleDetails() {
-		Map<String, List<Roles>> roleCategory = new HashMap<>();
-		List<Roles> roleList = roleMappingDAO.getRoleDetails();
-		roleCategory =  roleList.stream().collect(Collectors.groupingBy(Roles::getParentRole));
-		return roleCategory;
+		try {
+			Map<String, List<Roles>> roleCategory = new HashMap<>();
+			List<Roles> roleList = roleMappingDAO.getRoleDetails();
+			roleCategory =  roleList.stream().collect(Collectors.groupingBy(Roles::getParentRole));
+			return roleCategory;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	

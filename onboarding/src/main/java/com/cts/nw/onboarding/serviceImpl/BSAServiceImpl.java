@@ -24,7 +24,12 @@ public class BSAServiceImpl implements BSAService{
 	
 	@Override
 	public List<BSA> getActiveBsaDetails() {
-		return bsaDao.getActiveBsaDetails();
+		try {
+			return bsaDao.getActiveBsaDetails();
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }

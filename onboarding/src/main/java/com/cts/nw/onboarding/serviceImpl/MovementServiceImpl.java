@@ -24,6 +24,11 @@ public class MovementServiceImpl implements MovementService{
 
 	@Override
 	public List<Movement> getMovementDetails() {
-		return movementDAO.getMovementDetails();
+		try {
+			return movementDAO.getMovementDetails();
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

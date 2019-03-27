@@ -48,7 +48,8 @@ public class MailAttachmentDAOImpl implements MailAttachmentDAO {
 	public Integer uploadAttachmentViaCallable(MailAttachment mailAttachment) {
 		Integer returnValue = null;
 		try {
-			CallableStatement cstmt = jdbcTemplate.getDataSource().getConnection().prepareCall(QueryConstants.MAILPROCEDURE_INSERT);
+			CallableStatement cstmt = jdbcTemplate.getDataSource().getConnection()
+					.prepareCall(QueryConstants.MAILPROCEDURE_INSERT);
 			cstmt.setString(2, mailAttachment.getFileName());
 			cstmt.setBytes(3, mailAttachment.getData());
 			cstmt.registerOutParameter(1, Types.INTEGER);
@@ -56,8 +57,10 @@ public class MailAttachmentDAOImpl implements MailAttachmentDAO {
 			returnValue = cstmt.getInt(1);
 		} catch (SQLException e) {
 			new GlobalExceptionHandler().handleSQLException(e);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return returnValue;
 	}
-	
+
 }

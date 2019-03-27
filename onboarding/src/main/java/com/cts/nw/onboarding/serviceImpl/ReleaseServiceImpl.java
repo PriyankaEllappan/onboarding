@@ -39,22 +39,42 @@ public class ReleaseServiceImpl implements ReleaseService {
 
 	@Override
 	public List<EmployeeProjHist> getEmployeestobeReleased() {
-		return employeeProjHistDAO.getEmployeestobeReleased();
+		try {
+			return employeeProjHistDAO.getEmployeestobeReleased();	
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
 	public List<EmployeeProjHist> getEmployeestobeReleasedbyTeam(String teamId) {
-		return employeeProjHistDAO.getEmployeestobeReleasedbyTeam(teamId);
+		try {
+			return employeeProjHistDAO.getEmployeestobeReleasedbyTeam(teamId);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
 	public List<EmployeeProjHist> getEmployeestobeReleasedbyProject(String projectId) {
-		return employeeProjHistDAO.getEmployeestobeReleasedbyProj(projectId);
+		try {
+			return employeeProjHistDAO.getEmployeestobeReleasedbyProj(projectId);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
 	public EmployeeProjHist getEmployeetoRelease(String empProjHistId) {
-		return employeeProjHistDAO.getSpecificEmployeeProjectHist(empProjHistId);
+		try {
+			return employeeProjHistDAO.getSpecificEmployeeProjectHist(empProjHistId);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
@@ -81,30 +101,45 @@ public class ReleaseServiceImpl implements ReleaseService {
 
 	@Override
 	public List<ReleaseSummary> getAllReleaseSummary() {
-		return releaseSummaryDAO.getAllReleaseSummary();
+		try {
+			return releaseSummaryDAO.getAllReleaseSummary();	
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
 	public Integer releaseEmployeesByTeam(EmployeeProjHist employeeProjHist) {
-		Integer rowsAffected = 0;
-		List<EmployeeProjHist> listofResources = employeeProjHistDAO
-				.getEmployeestobeReleasedbyTeam(String.valueOf(employeeProjHist.getTeamId()));
-		for (EmployeeProjHist resource : listofResources) {
-			rowsAffected = rowsAffected + releaseAnEmployee(resource);
+		try {
+			Integer rowsAffected = 0;
+			List<EmployeeProjHist> listofResources = employeeProjHistDAO
+					.getEmployeestobeReleasedbyTeam(String.valueOf(employeeProjHist.getTeamId()));
+			for (EmployeeProjHist resource : listofResources) {
+				rowsAffected = rowsAffected + releaseAnEmployee(resource);
+			}
+			return rowsAffected;	
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
 		}
-		return rowsAffected;
 	}
 
 	@Override
 	public Integer releaseEmployeesByProject(EmployeeProjHist employeeProjHist) {
-		Integer rowsAffected = 0;
-		List<EmployeeProjHist> listofResources = employeeProjHistDAO
-				.getEmployeestobeReleasedbyProj(String.valueOf(employeeProjHist.getProjectId()));
-		for (EmployeeProjHist resource : listofResources) {
-			rowsAffected = rowsAffected + releaseAnEmployee(resource);
-		}
+		try {
+			Integer rowsAffected = 0;
+			List<EmployeeProjHist> listofResources = employeeProjHistDAO
+					.getEmployeestobeReleasedbyProj(String.valueOf(employeeProjHist.getProjectId()));
+			for (EmployeeProjHist resource : listofResources) {
+				rowsAffected = rowsAffected + releaseAnEmployee(resource);
+			}
 
-		return rowsAffected;
+			return rowsAffected;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }

@@ -23,7 +23,12 @@ public class CountryServiceImpl  implements CountryService {
 
 	@Override
 	public List<CountryMapping> getAllCountryDetails() {
-		return countryMappingDAO.getAllCountryMapping();
+		try {
+			return countryMappingDAO.getAllCountryMapping();
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 

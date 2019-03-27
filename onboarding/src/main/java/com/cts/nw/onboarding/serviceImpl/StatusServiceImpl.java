@@ -29,12 +29,22 @@ public class StatusServiceImpl implements StatusService {
 	
 	@Override
 	public List<ReleaseStatus> getAllReleaseStatus() {
-		return releaseStatusDAO.getAllReleaseStatus();
+		try {
+			return releaseStatusDAO.getAllReleaseStatus();
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
 	public List<ApprovalStatus> getAllApprovalStatus() {
-		return approvalStatusDAO.getAllApprovalStatus();
+		try {
+			return approvalStatusDAO.getAllApprovalStatus();
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }

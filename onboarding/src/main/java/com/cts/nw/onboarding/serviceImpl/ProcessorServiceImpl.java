@@ -45,7 +45,12 @@ public class ProcessorServiceImpl implements ProcessorService {
 	
 	@Override
 	public List<EmployeeProjHist> getRecordsPerProcessortoOnboard(String processorid) {
-		return employeeProjHistDAO.getRecordsPerProcessortoOnboard(processorid);
+		try {
+			return employeeProjHistDAO.getRecordsPerProcessortoOnboard(processorid);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	@Override
@@ -84,13 +89,17 @@ public class ProcessorServiceImpl implements ProcessorService {
 	}
 	
 	private void checkForAnyPrevAssignmentandRelease(EmployeeProjHist employeeProjHist) {
-		List<EmployeeProjHist> activeAssignmentList = employeeProjHistDAO.checkActiveAssignments(String.valueOf(employeeProjHist.getEmployeeId()));
-		if(activeAssignmentList != null && activeAssignmentList.size() > 1){
-			EmployeeProjHist activeAssignment = activeAssignmentList.get(0);
-			activeAssignment.setReleaseStatusId(2);
-			activeAssignment.setReasonForOffboarding(6);
-			activeAssignment.setReleaseDate(Calendar.getInstance().getTime());
-			releaseService.releaseAnEmployee(activeAssignment);
+		try {
+			List<EmployeeProjHist> activeAssignmentList = employeeProjHistDAO.checkActiveAssignments(String.valueOf(employeeProjHist.getEmployeeId()));
+			if(activeAssignmentList != null && activeAssignmentList.size() > 1){
+				EmployeeProjHist activeAssignment = activeAssignmentList.get(0);
+				activeAssignment.setReleaseStatusId(2);
+				activeAssignment.setReasonForOffboarding(6);
+				activeAssignment.setReleaseDate(Calendar.getInstance().getTime());
+				releaseService.releaseAnEmployee(activeAssignment);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -98,41 +107,61 @@ public class ProcessorServiceImpl implements ProcessorService {
 	
 	@Override
 	public List<EmployeeProjHist> getRecordsPerProcessortoOffboard(String processorid) {
-		return employeeProjHistDAO.getRecordsPerProcessortoOffboard(processorid);
+		try {
+			return employeeProjHistDAO.getRecordsPerProcessortoOffboard(processorid);	
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	@Override
 	public EmployeeProjHist offboardAnEmployee(EmployeeProjHist employeeProjHist) {
-		Integer rowsAffected = 0;
-		rowsAffected = employeeProjHistDAO.processOffboardEmployee(employeeProjHist, employeeProjHist.getId());
-		if(rowsAffected > 0){
-			return employeeProjHist;
+		try {
+			Integer rowsAffected = 0;
+			rowsAffected = employeeProjHistDAO.processOffboardEmployee(employeeProjHist, employeeProjHist.getId());
+			if(rowsAffected > 0){
+				return employeeProjHist;
+			}
+			return null;	
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
 		}
-		return null;
 	}
 	
 	/*3. Display Resource details*/
 	@Override
 	public EmployeeProjHist getEmployeeDetails(String empProjHistId) {
-		return employeeProjHistDAO.getSpecificEmployeeProjectHist(empProjHistId);
+		try {
+			return employeeProjHistDAO.getSpecificEmployeeProjectHist(empProjHistId);	
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	
 	public MailAttachment getFileUploadObject(CommonsMultipartFile[] attachFileObj) {
-		MailAttachment fileUploadObj = null;
-		if ((attachFileObj != null) && (attachFileObj.length > 0) && (!attachFileObj.equals(""))) {
-			for (CommonsMultipartFile aFile : attachFileObj) {
-				if(aFile.isEmpty()) {
-					continue;
-				} else {
-					if (!aFile.getOriginalFilename().equals("")) {
-						fileUploadObj = new MailAttachment();
-						fileUploadObj.setFileName(aFile.getOriginalFilename());
-						fileUploadObj.setData(aFile.getBytes());
+		try {
+			MailAttachment fileUploadObj = null;
+			if ((attachFileObj != null) && (attachFileObj.length > 0) && (!attachFileObj.equals(""))) {
+				for (CommonsMultipartFile aFile : attachFileObj) {
+					if(aFile.isEmpty()) {
+						continue;
+					} else {
+						if (!aFile.getOriginalFilename().equals("")) {
+							fileUploadObj = new MailAttachment();
+							fileUploadObj.setFileName(aFile.getOriginalFilename());
+							fileUploadObj.setData(aFile.getBytes());
+						}
 					}
 				}
 			}
+			return fileUploadObj;	
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
 		}
-		return fileUploadObj;
 	}
 }

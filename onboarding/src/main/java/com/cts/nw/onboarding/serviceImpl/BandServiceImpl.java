@@ -24,6 +24,11 @@ public class BandServiceImpl implements BandService{
 
 	@Override
 	public List<Bands> getBandDetails() {
-		return bandsDAO.getAllBandDetails();
+		try {
+			return bandsDAO.getAllBandDetails();
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

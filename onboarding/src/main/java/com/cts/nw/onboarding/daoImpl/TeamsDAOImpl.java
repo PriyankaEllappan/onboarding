@@ -27,28 +27,29 @@ import com.cts.nw.onboarding.mappers.TeamsRowMapper;
  */
 @Transactional
 @Repository
-public class TeamsDAOImpl implements TeamsDAO{
+public class TeamsDAOImpl implements TeamsDAO {
 
 	@Autowired
-    private JdbcTemplate jdbcTemplate;
-	
+	private JdbcTemplate jdbcTemplate;
+
 	@Override
 	public List<Teams> getAllActiveTeams() {
 		try {
 			String whereClause = " WHERE  T.STATUS = 'ACTIVE'";
 			String query = QueryConstants.TEAMS_SELECT + whereClause;
 			RowMapper<Teams> rowMapper = new TeamsRowMapper();
-			return this.jdbcTemplate.query(query,rowMapper);
+			return this.jdbcTemplate.query(query, rowMapper);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
 	}
-	
+
 	@Override
 	public Integer insertNewViaCallable(Teams team) {
 		Integer returnValue = null;
 		try {
-			CallableStatement cstmt = jdbcTemplate.getDataSource().getConnection().prepareCall(QueryConstants.TEAMPROCEDURE_INSERT);
+			CallableStatement cstmt = jdbcTemplate.getDataSource().getConnection()
+					.prepareCall(QueryConstants.TEAMPROCEDURE_INSERT);
 			cstmt.setString(2, team.getTeamName());
 			cstmt.setLong(3, team.getProjMapId());
 			cstmt.setString(4, team.getStatus());
@@ -57,8 +58,10 @@ public class TeamsDAOImpl implements TeamsDAO{
 			returnValue = cstmt.getInt(1);
 		} catch (SQLException e) {
 			new GlobalExceptionHandler().handleSQLException(e);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return returnValue;
 	}
-	
+
 }

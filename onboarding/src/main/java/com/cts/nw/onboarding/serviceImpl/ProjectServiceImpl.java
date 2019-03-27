@@ -23,7 +23,12 @@ public class ProjectServiceImpl implements ProjectService {
 
 	@Override
 	public List<ProjectMapping> getAllActiveProjects() {
-		return projectMappingDAO.getAllActiveProjectDetails();
+		try {
+			return projectMappingDAO.getAllActiveProjectDetails();	
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }
