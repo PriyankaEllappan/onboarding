@@ -59,10 +59,11 @@ public class ReleaseServiceImpl implements ReleaseService {
 
 	@Override
 	public Integer releaseAnEmployee(EmployeeProjHist employeeProjHist) {
+		Integer rowsAffected = 0;
+		try{
 		ProjectMapping projDetail = projectMappingDAO.getProcesssorPerProjectId(String.valueOf(employeeProjHist.getProjectId()));
 		employeeProjHist.setOffboardProcessor(String.valueOf(projDetail.getProcessorId()));
 		employeeProjHist.setOffboardRequester(AbstractController.APPINFO.getLoggedInUserId());
-		Integer rowsAffected = 0;
 		rowsAffected = employeeProjHistDAO.offboardEmployee(employeeProjHist,employeeProjHist.getId());
 		if (rowsAffected > 0) {
 			if (employeeProjHist.getReleaseStatusId() == 2) {
@@ -70,6 +71,9 @@ public class ReleaseServiceImpl implements ReleaseService {
 			} else if (employeeProjHist.getReleaseStatusId() == 3) {
 				 mailService.offBoardingCompleted(employeeProjHist);
 			}
+		}
+		}catch(Exception e){
+			e.printStackTrace();
 		}
 		return rowsAffected;
 

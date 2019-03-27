@@ -52,10 +52,12 @@ public class EmployeeMasterDAOImpl implements EmployeeMasterDAO {
 
 	@Override
 	public Integer addNewResource(EmployeeMaster employeeMaster) {
-		return jdbcTemplate.update(QueryConstants.EMPLOYEEMASTER_INSERT, employeeMaster.getEmployeeId(), employeeMaster.getName(), employeeMaster.getFirstName(),
-				employeeMaster.getLastName(), employeeMaster.getDateOfBirth(), employeeMaster.getPassportNumber(), employeeMaster.getEmail());
+		try{
+			return jdbcTemplate.update(QueryConstants.EMPLOYEEMASTER_INSERT, employeeMaster.getEmployeeId(), employeeMaster.getName(), employeeMaster.getFirstName(),
+					employeeMaster.getLastName(), employeeMaster.getDateOfBirth(), employeeMaster.getPassportNumber(), employeeMaster.getEmail());
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
 	}
-
-	
-	
 }
