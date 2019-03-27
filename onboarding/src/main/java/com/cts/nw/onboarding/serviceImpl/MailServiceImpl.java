@@ -36,7 +36,7 @@ public class MailServiceImpl implements MailService {
 	@Override
 	public void onBoardingInitiated(EmployeeProjHist resource) {
 		try {
-			String emailContent = environment.getRequiredProperty("mail.request");
+			String emailContent = environment.getRequiredProperty("mail.onboardinginit");
 			employeeDetail = new EmployeeDetails();
 			mailDetail = new MailDetail();
 			toList = new ArrayList<>();
@@ -65,7 +65,7 @@ public class MailServiceImpl implements MailService {
 	@Override
 	public void onBoardingAcknowledged(EmployeeProjHist resource) {
 		try {
-			String emailContent = environment.getRequiredProperty("mail.inprogress");
+			String emailContent = environment.getRequiredProperty("mail.onboardingack");
 
 			employeeDetail = new EmployeeDetails();
 			mailDetail = new MailDetail();
@@ -94,7 +94,7 @@ public class MailServiceImpl implements MailService {
 	@Override
 	public void onBoardingCompleted(EmployeeProjHist resource) {
 		try {
-			String emailContent = environment.getRequiredProperty("mail.complete");
+			String emailContent = environment.getRequiredProperty("mail.onboardingcomp");
 
 			employeeDetail = new EmployeeDetails();
 			mailDetail = new MailDetail();
@@ -122,7 +122,7 @@ public class MailServiceImpl implements MailService {
 	@Override
 	public void offBoardingInitiated(EmployeeProjHist resource) {
 		try {
-			String emailContent = environment.getRequiredProperty("mail.releaseinitiated");
+			String emailContent = environment.getRequiredProperty("mail.offboardinginit");
 
 			employeeDetail = new EmployeeDetails();
 			mailDetail = new MailDetail();
@@ -151,7 +151,7 @@ public class MailServiceImpl implements MailService {
 	@Override
 	public void offBoardingCompleted(EmployeeProjHist resource) {
 		try {
-			String emailContent = environment.getRequiredProperty("mail.resourceOffBoarding");
+			String emailContent = environment.getRequiredProperty("mail.offboardingcomp");
 
 			employeeDetail = new EmployeeDetails();
 			mailDetail = new MailDetail();
