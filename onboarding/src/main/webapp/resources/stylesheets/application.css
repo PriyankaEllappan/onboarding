@@ -137,7 +137,9 @@
 
 .navigbar a:hover, .dropitdown:hover .dropbtn {
   background-color: rgba(240,255,240, 1);
-  color: rgba(0,0,0,1);
+ /*  color: rgba(0,0,0,1);
+  color: rgba(0, 151, 19, 1); */
+  color: rgba(0,100,0, 1);
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
 }

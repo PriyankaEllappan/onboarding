@@ -4,9 +4,11 @@ $(document).ready(function() {
 	loadReleaseStatus();
 	loadReleaseReason();
 	$("#teamName").change(function() {
+		$("#releaseTeamTable").empty();
 		loadTeamTable();
 	})
 	$("#projectName").change(function() {
+		$("#releaseProjTable").empty();
 		loadProjTable();
 	})
 	$("#releaseTeamDropDown").hide();
@@ -118,6 +120,7 @@ function loadTeamDetails() {
 		success : function(resultData) {
 			teamHierarchy = JSON.parse(resultData);
 			$.each(teamHierarchy, function(key, value) {
+				$('#releaseTeamTable').append("<thead><tr><th>Employee Id</th><th>Employee Name</th><th>Project Id</th><th>Project Name</th><th>Team Name</th></tr></thead>");
 				$('#teamName').append(
 						$("<option></option>").attr("value", value.id).text(
 								value.teamName));
@@ -158,6 +161,7 @@ function loadTeamTable() {
 					} else {
 						var returnedData = JSON.parse(resultData);
 						$("#releaseTeamDropDown").show();
+						$('#releaseTeamTable').append("<thead><tr><th>Employee Id</th><th>Employee Name</th><th>Project Id</th><th>Project Name</th><th>Team Name</th></tr></thead>");
 						$('#releaseTeamTable').append("<tbody>");
 						$.each(returnedData, function(key, value) {
 							$('#releaseTeamTable').append(
@@ -187,6 +191,7 @@ function loadProjTable() {
 			} else {
 				var returnedData = JSON.parse(resultData);
 				$("#releaseProjDropDown").show();
+                $('#releaseProjTable').append("<thead><tr><th>Employee Id</th><th>Employee Name</th><th>Project Id</th><th>Project Name</th><th>Team Name</th></tr></thead>");
 				$('#releaseProjTable').append("<tbody>");
 				$.each(returnedData, function(key, value) {
 					$('#releaseProjTable').append(

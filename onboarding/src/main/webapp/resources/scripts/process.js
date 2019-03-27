@@ -151,18 +151,22 @@ function loadMovementDetails(){
 }
 
 function validateForm() {
-	alert("Inside");
-	/*if ($('#newEmpID').val() == null || $('#newEmpID').val() == "") {
-		$('#errMessage').text("Employee ID cannot be null or empty");
+
+	if (($('#approvalStatus').val() != 2) && ($('#approvalStatus').val() != 3)) {
+		$('#errMessage')
+				.text(
+						"Approval Status must be selected with either value as InProgress or Completed.");
 		return false;
-	} 
-	if ($('#newEmpDOB').val() == null || $('#newEmpDOB').val() == "") {
-		$('#errMessage').text("Date of Birth cannot be null or empty");
-		return false;
-	} 
-	if ($('#newEmpPPNo').val() == null || $('#newEmpPPNo').val() == "") {
-		$('#errMessage').text("Passport number cannot be null or empty");
-		return false;
-	} */
+	}
+
+	if ($('#nationwideId').val() != null && $('#nationwideId').val() != "") {
+		if ($('#approvalStatus').val() != 3) {
+			$('#errMessage')
+					.text(
+							"If NationWide ID is generated, then Approval Status must be selected with value as Completed.");
+			return false;
+		}
+	}
+
 	return true;
 }

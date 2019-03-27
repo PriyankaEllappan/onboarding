@@ -76,15 +76,6 @@
 					</div>
 				</div>
 				<table class="table table-striped" id="releaseTeamTable">
-					<thead>
-						<tr>
-							<th>Employee Id</th>
-							<th>Employee Name</th>
-							<th>Project Id</th>
-							<th>Project Name</th>
-							<th>Team Name</th>
-						</tr>
-					</thead>
 					</tbody>
 				</table>
 			</div>

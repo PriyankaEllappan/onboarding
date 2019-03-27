@@ -114,7 +114,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	@Override
 	public List<EmployeeProjHist> getRecordsPerProcessortoOffboard(String processorid) {
 		try {
-			String whereClause = " WHERE PR.PROCESSORID = ? OR EPH.OFFBOARDPROCESSOR = ? AND EPH.RELEASESTATUS IN (2,3)";
+			String whereClause = " WHERE ( PR.PROCESSORID = ? OR EPH.OFFBOARDPROCESSOR = ? ) AND EPH.RELEASESTATUS IN (2,3)";
 			String query = QueryConstants.EMPPROJHIST_SELECT + whereClause;
 			RowMapper<EmployeeProjHist> rowMapper = new EmployeeProjHistRowMapper();
 			return this.jdbcTemplate.query(query, rowMapper,processorid,processorid);
