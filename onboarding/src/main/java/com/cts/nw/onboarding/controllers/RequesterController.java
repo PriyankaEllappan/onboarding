@@ -76,10 +76,10 @@ public class RequesterController extends AbstractController {
            try{
                   EmployeeMaster employee = requesterService.getResourceByID(empid);
                   if(employee != null){
-                        ajaxResponse.setStatus("success");
+                	  	ajaxResponse.setStatus("SUCCESS");
                         ajaxResponse.setResponseObj(employee);
                   }else{
-                        ajaxResponse.setStatus("success");
+                	  	ajaxResponse.setStatus("failure");
                         ajaxResponse.setResponseObj(null);
                   }
            } catch(Exception e){
@@ -99,11 +99,14 @@ public class RequesterController extends AbstractController {
 		try {
 			EmployeeMaster employee = requesterService.addNewResource(employeeJson);
             if(employee != null){
-                ajaxResponse.setStatus("success");
+                ajaxResponse.setStatus("SUCCESS");
                 ajaxResponse.setResponseObj(employee);
+                ajaxResponse.setStatusMessage("Resource Registered.");
+                
           }else{
-                ajaxResponse.setStatus("success");
+        	  	ajaxResponse.setStatus("failure");
                 ajaxResponse.setResponseObj(null);
+                ajaxResponse.setStatusMessage("Resource Not Registered.");
           }
 		} catch (CustomException e) {
             ajaxResponse.setStatus("failure");

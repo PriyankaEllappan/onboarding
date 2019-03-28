@@ -55,20 +55,35 @@ $(document).ready(function() {
 					contentType : 'application/json; charset=utf-8',
 					success : function(resultData) {
 						console.log(resultData);
-						if (!$.trim(resultData)) {
-							$('#errMessage').text("Resource Not Registered. Incorrect details entered.");
-							$('#resourceRegisterFormSubmit').prop('disabled', false);
-							$('#resourceRegisterFormSubmit').css('cursor', 'pointer');
-						} else {
+						if (resultData.status == "SUCCESS") {
 							$("#resourceNonAvailable").hide();
-							$('#statusSucessMessage').text("Resource Registered");
-							$('#addedResEmpID').text(resultData.employeeId);
-							$('#addedResEmpName').text(resultData.name);
-							$('#addedResEmpDOB').text(resultData.dateOfBirth);
-							$('#addedResEmpEmail').text(resultData.email);
-							$('#addedResEmpPPNo').text(resultData.passportNumber);
+							$('#statusSucessMessage').text(resultData.statusMessage);
+							$('#addedResEmpID').text(resultData.responseObj.employeeId);
+							$('#addedResEmpName').text(resultData.responseObj.name);
+							$('#addedResEmpDOB').text(resultData.responseObj.dateOfBirth);
+							$('#addedResEmpEmail').text(resultData.responseObj.email);
+							$('#addedResEmpPPNo').text(resultData.responseObj.passportNumber);
 							$("#resourceAddedSubmit").show();
 						}
+						else {
+							$('#errMessage').text(resultData.statusMessage);
+							$('#resourceRegisterFormSubmit').prop('disabled', false);
+							$('#resourceRegisterFormSubmit').css('cursor', 'pointer');
+						}
+						//if (!$.trim(resultData.responseObj)) {
+/*							$('#errMessage').text("Resource Not Registered. Incorrect details entered.");
+							$('#resourceRegisterFormSubmit').prop('disabled', false);
+							$('#resourceRegisterFormSubmit').css('cursor', 'pointer');*/
+						//} else {
+							/*$("#resourceNonAvailable").hide();
+							$('#statusSucessMessage').text("Resource Registered");
+							$('#addedResEmpID').text(resultData.responseObj.employeeId);
+							$('#addedResEmpName').text(resultData.responseObj.name);
+							$('#addedResEmpDOB').text(resultData.responseObj.dateOfBirth);
+							$('#addedResEmpEmail').text(resultData.responseObj.email);
+							$('#addedResEmpPPNo').text(resultData.responseObj.passportNumber);
+							$("#resourceAddedSubmit").show();*/
+						//}
 					},
 					error : function() {
 						$('#errMessage').text("Resource Not Registered. Incorrect details entered.");
@@ -87,19 +102,21 @@ function checkForanEmployee(empID) {
        $.ajax({
               type : 'GET',
               url : "/onboarding/request/check/" + empID,
-              dataType : "text",
+              dataType : "json",
               success : function(resultData) {
-                     var returnedData = JSON.parse(resultData);
-                     if (!$.trim(returnedData.responseObj)) {
+            	  alert(resultData.status);
+            	  console.log(resultData);
+            	  	if (resultData.status == "SUCCESS") {
+                    	 
+                    	 $('#availEmpID').text(resultData.responseObj.employeeId);
+                         $('#availEmpName').text(resultData.responseObj.name);
+                         $('#availEmpDOB').text(resultData.responseObj.dateOfBirth);
+                         $('#availEmpEmail').text(resultData.responseObj.email);
+                         $('#availEmpPPNo').text(resultData.responseObj.passportNumber);
+                         $("#resourceAvailable").show();
+                     } else {
                            var empId = $('#checkEmpId').val();
                            loadEmployeeDetails(empId);
-                     } else {
-                           $('#availEmpID').text(returnedData.responseObj.employeeId);
-                           $('#availEmpName').text(returnedData.responseObj.name);
-                           $('#availEmpDOB').text(returnedData.responseObj.dateOfBirth);
-                           $('#availEmpEmail').text(returnedData.responseObj.email);
-                           $('#availEmpPPNo').text(returnedData.responseObj.passportNumber);
-                           $("#resourceAvailable").show();
                      }
               }
        });
