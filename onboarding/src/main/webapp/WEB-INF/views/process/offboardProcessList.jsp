@@ -44,11 +44,11 @@
 							<td>${employee.getTeamName()}</td>
 							<c:choose>
 								<c:when
-									test="${employee.getReleaseStatus() == 'RELEASE INITIATED'}">
+									test="${employee.getReleaseStatus() == 'Release Initiated'}">
 									<td><button class="btn-warning to-click"
 											onclick="location.href='offboard/${employee.getId()}'">Approve</button></td>
 								</c:when>
-								<c:when test="${employee.getReleaseStatus() == 'RELEASED'}">
+								<c:when test="${employee.getReleaseStatus() == 'Released'}">
 									<td><span class="customized-span-danger">Released</span></td>
 								</c:when>
 							</c:choose>

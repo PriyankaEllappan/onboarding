@@ -45,12 +45,12 @@
 							<td>${employee.getTeamName()}</td>
 							<c:choose>
 								<c:when
-									test="${employee.getReleaseStatus() == 'YET TO RELEASE'}">
+									test="${employee.getReleaseStatus() == 'Yet to Release'}">
 									<td><button class="btn-danger to-click"
 											onclick="location.href='requestrelease/${employee.getId()}'">Release</button></td>
 								</c:when>
 								<c:when
-									test="${employee.getReleaseStatus() == 'RELEASE INITIATED'}">
+									test="${employee.getReleaseStatus() == 'Release Initiated'}">
 									<td><span class="customized-span-warning">Release
 											Initiated</span></td>
 								</c:when>

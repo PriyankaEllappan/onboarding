@@ -45,29 +45,29 @@
 							<td>${employee.getProjectName()}</td>
 							<td>${employee.getTeamName()}</td>
 							<c:choose>
-								<c:when test="${employee.getApprovalStatus() == 'NEW'}">
+								<c:when test="${employee.getApprovalStatus() == 'New'}">
 									<td><span class="customized-span-requested">Requested</span></td>
 								</c:when>
-								<c:when test="${employee.getApprovalStatus() == 'INPROGRESS'}">
+								<c:when test="${employee.getApprovalStatus() == 'In Progress'}">
 									<td><span class="customized-span-warning">Acknowledged</span></td>
 								</c:when>
-								<c:when test="${employee.getApprovalStatus() == 'COMPLETED'}">
+								<c:when test="${employee.getApprovalStatus() == 'Completed'}">
 									<td><span class="customized-span-success">Processed</span></td>
 								</c:when>
-								<c:when test="${employee.getApprovalStatus() == 'REJECTED'}">
+								<c:when test="${employee.getApprovalStatus() == 'Rejected'}">
 									<td><span class="customized-span-danger">Rejected</span></td>
 								</c:when>
 							</c:choose>
 							<c:choose>
 								<c:when
-									test="${employee.getReleaseStatus() == 'YET TO RELEASE'}">
+									test="${employee.getReleaseStatus() == 'Yet to Release'}">
 									<td><span class="customized-span-success">Active</span></td>
 								</c:when>
 								<c:when
-									test="${employee.getReleaseStatus() == 'RELEASE INITIATED'}">
+									test="${employee.getReleaseStatus() == 'Release Initiated'}">
 									<td><span class="customized-span-warning">Release Initiated</span></td>
 								</c:when>
-								<c:when test="${employee.getReleaseStatus() == 'RELEASED'}">
+								<c:when test="${employee.getReleaseStatus() == 'Released'}">
 									<td><span class="customized-span-danger">Released</span></td>
 								</c:when>
 							</c:choose>
