@@ -16,6 +16,7 @@ import com.cts.nw.onboarding.controllers.AbstractController;
 import com.cts.nw.onboarding.dao.EmployeeMasterDAO;
 import com.cts.nw.onboarding.dao.EmployeeProjHistDAO;
 import com.cts.nw.onboarding.dao.TeamsDAO;
+import com.cts.nw.onboarding.exception.CustomException;
 import com.cts.nw.onboarding.service.MailService;
 import com.cts.nw.onboarding.service.RequesterService;
 import com.cts.nw.onboarding.validators.EmployeeMasterValidator;
@@ -61,7 +62,7 @@ public class RequesterServiceImpl implements RequesterService {
 	}
 
 	@Override
-	public EmployeeMaster addNewResource(EmployeeMaster employee) {
+	public EmployeeMaster addNewResource(EmployeeMaster employee) throws CustomException {
 		try {
 			Integer rowsAffected;
 			if (employeeMasterValidator.validate(employee)) {
@@ -77,7 +78,7 @@ public class RequesterServiceImpl implements RequesterService {
 		} catch(Exception e) {
 			log.error(e.getCause());
 			e.printStackTrace();
-			return null;
+			throw new CustomException("Error in Inserting",e);
 		}
 	}
 
@@ -106,7 +107,7 @@ public class RequesterServiceImpl implements RequesterService {
 	}
 	
 	@Override
-	public EmployeeProjHist addNewProject(EmployeeProjHist employeeProjHist) {
+	public EmployeeProjHist addNewProject(EmployeeProjHist employeeProjHist) throws CustomException {
 		try {
 			Integer rowsAffected = 0;
 			if (onboardingRequestValidator.validate(employeeProjHist)) {
@@ -137,7 +138,7 @@ public class RequesterServiceImpl implements RequesterService {
 		} catch(Exception e) {
 			log.error(e.getCause());
 			e.printStackTrace();
-			return null;
+			throw new CustomException("Error in Inserting",e);
 		}
 	}
 

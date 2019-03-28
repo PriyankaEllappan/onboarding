@@ -17,13 +17,13 @@ public interface EmployeeProjHistDAO {
 	/*Requester Operations*/
 	List<EmployeeProjHist> getEmployeesPerRequester(String requesterId);
 	List<EmployeeProjHist> checkActiveAssignments(String empid);
-	Integer addEmployeeProjectInfo(EmployeeProjHist employeeProjectHist);
+	Integer addEmployeeProjectInfo(EmployeeProjHist employeeProjectHist) throws CustomException;
 	
 	/*Processor Operations*/
 	List<EmployeeProjHist> getRecordsPerProcessortoOnboard(String processorid);
-	Integer onBoardEmployee(EmployeeProjHist employeeProjectHist);
+	Integer onBoardEmployee(EmployeeProjHist employeeProjectHist) throws CustomException;
 	List<EmployeeProjHist> getRecordsPerProcessortoOffboard(String processorid);
-	Integer processOffboardEmployee(EmployeeProjHist employeeProjectHist, Integer Id);
+	Integer processOffboardEmployee(EmployeeProjHist employeeProjectHist, Integer Id) throws CustomException;
 	
 	/*Release Operations*/
 	List<EmployeeProjHist> getEmployeestobeReleased();

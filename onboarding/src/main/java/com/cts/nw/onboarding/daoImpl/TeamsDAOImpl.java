@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cts.nw.onboarding.bo.Teams;
 import com.cts.nw.onboarding.constants.QueryConstants;
 import com.cts.nw.onboarding.dao.TeamsDAO;
+import com.cts.nw.onboarding.exception.CustomException;
 import com.cts.nw.onboarding.exception.GlobalExceptionHandler;
 import com.cts.nw.onboarding.mappers.TeamsRowMapper;
 
@@ -47,7 +48,7 @@ public class TeamsDAOImpl implements TeamsDAO {
 	}
 
 	@Override
-	public Integer insertNewViaCallable(Teams team) {
+	public Integer insertNewViaCallable(Teams team) throws CustomException {
 		Integer returnValue = null;
 		try {
 			CallableStatement cstmt = jdbcTemplate.getDataSource().getConnection()
@@ -58,11 +59,9 @@ public class TeamsDAOImpl implements TeamsDAO {
 			cstmt.registerOutParameter(1, Types.INTEGER);
 			cstmt.execute();
 			returnValue = cstmt.getInt(1);
-		} catch (SQLException e) {
-			new GlobalExceptionHandler().handleSQLException(e);
-		} catch (Exception e) {
+		}  catch (Exception e) {
 			log.error(e.getCause());
-			e.printStackTrace();
+			throw new CustomException("Error in Inserting",e);
 		}
 		return returnValue;
 	}

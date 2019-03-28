@@ -87,20 +87,27 @@ public class ReleaseServiceImpl implements ReleaseService {
 
 	@Override
 	public Integer releaseAnEmployee(EmployeeProjHist employeeProjHist) throws CustomException {
-		Integer rowsAffected = 0;
-		ProjectMapping projDetail = projectMappingDAO.getProcesssorPerProjectId(String.valueOf(employeeProjHist.getProjectId()));
-		employeeProjHist.setOffboardProcessor(String.valueOf(projDetail.getProcessorId()));
-		employeeProjHist.setOffboardRequester(AbstractController.APPINFO.getLoggedInUserId());
-		rowsAffected = employeeProjHistDAO.offboardEmployee(employeeProjHist,employeeProjHist.getId());
-		if (rowsAffected > 0) {
-			if (employeeProjHist.getReleaseStatusId() == 2) {
-				 mailService.offBoardingInitiated(employeeProjHist);
-			} else if (employeeProjHist.getReleaseStatusId() == 3) {
-				 mailService.offBoardingCompleted(employeeProjHist);
-			}
-		}
-		return rowsAffected;
 
+		try {
+			Integer rowsAffected = 0;
+			ProjectMapping projDetail = projectMappingDAO
+					.getProcesssorPerProjectId(String.valueOf(employeeProjHist.getProjectId()));
+			employeeProjHist.setOffboardProcessor(String.valueOf(projDetail.getProcessorId()));
+			employeeProjHist.setOffboardRequester(AbstractController.APPINFO.getLoggedInUserId());
+			rowsAffected = employeeProjHistDAO.offboardEmployee(employeeProjHist, employeeProjHist.getId());
+			if (rowsAffected > 0) {
+				if (employeeProjHist.getReleaseStatusId() == 2) {
+					mailService.offBoardingInitiated(employeeProjHist);
+				} else if (employeeProjHist.getReleaseStatusId() == 3) {
+					mailService.offBoardingCompleted(employeeProjHist);
+				}
+			}
+			return rowsAffected;
+		} catch (Exception e) {
+			log.error(e.getCause());
+			e.printStackTrace();
+			throw new CustomException("Error in Inserting",e);
+		}
 	}
 
 	@Override

@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cts.nw.onboarding.bo.MailAttachment;
 import com.cts.nw.onboarding.constants.QueryConstants;
 import com.cts.nw.onboarding.dao.MailAttachmentDAO;
+import com.cts.nw.onboarding.exception.CustomException;
 import com.cts.nw.onboarding.exception.GlobalExceptionHandler;
 import com.cts.nw.onboarding.mappers.FileUploadRowMapper;
 
@@ -48,7 +49,7 @@ public class MailAttachmentDAOImpl implements MailAttachmentDAO {
 	}
 
 	@Override
-	public Integer uploadAttachmentViaCallable(MailAttachment mailAttachment) {
+	public Integer uploadAttachmentViaCallable(MailAttachment mailAttachment) throws CustomException {
 		Integer returnValue = null;
 		try {
 			CallableStatement cstmt = jdbcTemplate.getDataSource().getConnection()
@@ -58,11 +59,9 @@ public class MailAttachmentDAOImpl implements MailAttachmentDAO {
 			cstmt.registerOutParameter(1, Types.INTEGER);
 			cstmt.execute();
 			returnValue = cstmt.getInt(1);
-		} catch (SQLException e) {
-			new GlobalExceptionHandler().handleSQLException(e);
-		} catch (Exception e) {
+		}  catch (Exception e) {
 			log.error(e.getCause());
-			e.printStackTrace();
+			throw new CustomException("Error in Inserting",e);
 		}
 		return returnValue;
 	}

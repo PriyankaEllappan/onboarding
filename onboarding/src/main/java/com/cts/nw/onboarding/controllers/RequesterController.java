@@ -5,6 +5,7 @@ package com.cts.nw.onboarding.controllers;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.cts.nw.onboarding.bean.AjaxResponse;
 import com.cts.nw.onboarding.bo.EmployeeMaster;
 import com.cts.nw.onboarding.bo.EmployeeProjHist;
+import com.cts.nw.onboarding.exception.CustomException;
 import com.cts.nw.onboarding.service.RequesterService;
 
 /**
@@ -30,6 +32,8 @@ import com.cts.nw.onboarding.service.RequesterService;
 @Controller
 public class RequesterController extends AbstractController {
 
+	Logger log = Logger.getLogger(RequesterController.class);
+	
 	@Autowired
 	RequesterService requesterService;
 	
@@ -90,8 +94,22 @@ public class RequesterController extends AbstractController {
 	 * @return
 	 */
 	@PostMapping(value = "/request/addresource", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public @ResponseBody EmployeeMaster createUser(@RequestBody EmployeeMaster employeeJson) {
-		return requesterService.addNewResource(employeeJson);
+	public @ResponseBody AjaxResponse createUser(@RequestBody EmployeeMaster employeeJson) {
+		AjaxResponse ajaxResponse = new AjaxResponse();
+		try {
+			EmployeeMaster employee = requesterService.addNewResource(employeeJson);
+            if(employee != null){
+                ajaxResponse.setStatus("success");
+                ajaxResponse.setResponseObj(employee);
+          }else{
+                ajaxResponse.setStatus("success");
+                ajaxResponse.setResponseObj(null);
+          }
+		} catch (CustomException e) {
+            ajaxResponse.setStatus("failure");
+            ajaxResponse.setStatusMessage("Exception Occurred.");
+		}
+		 return ajaxResponse;
 	}
 
 	/**
@@ -144,8 +162,22 @@ public class RequesterController extends AbstractController {
 	 * @return
 	 */
 	@PostMapping(value = "/request/mapproject", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public @ResponseBody EmployeeProjHist assignProject(@RequestBody EmployeeProjHist employeeProjJson,ModelMap model) {
-		return requesterService.addNewProject(employeeProjJson);
+	public @ResponseBody AjaxResponse assignProject(@RequestBody EmployeeProjHist employeeProjJson,ModelMap model) {
+		AjaxResponse ajaxResponse = new AjaxResponse();
+		try {
+			EmployeeProjHist employee = requesterService.addNewProject(employeeProjJson);
+            if(employee != null){
+                ajaxResponse.setStatus("success");
+                ajaxResponse.setResponseObj(employee);
+          }else{
+                ajaxResponse.setStatus("success");
+                ajaxResponse.setResponseObj(null);
+          }
+		} catch (CustomException e) {
+            ajaxResponse.setStatus("failure");
+            ajaxResponse.setStatusMessage("Exception Occurred.");
+		}
+		return ajaxResponse;
 	}
 
 	/**

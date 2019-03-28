@@ -81,7 +81,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	 * cts.nw.onboarding.bo.EmployeeProjHist)
 	 */
 	@Override
-	public Integer addEmployeeProjectInfo(EmployeeProjHist employeeProjectHist) {
+	public Integer addEmployeeProjectInfo(EmployeeProjHist employeeProjectHist) throws CustomException {
 		try {
 			return jdbcTemplate.update(QueryConstants.EMPPROJECTHIST_INSERT, employeeProjectHist.getId(),
 					employeeProjectHist.getEmployeeId(), employeeProjectHist.getProjectMappingId(),
@@ -93,8 +93,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 					employeeProjectHist.getOnboardRequester());
 		} catch (Exception e) {
 			log.error(e.getCause());
-			e.printStackTrace();
-			return null;
+			throw new CustomException("Error in Inserting",e);
 		}
 	}
 
@@ -126,7 +125,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	 * EmployeeProjHist)
 	 */
 	@Override
-	public Integer onBoardEmployee(EmployeeProjHist employeeProjectHist) {
+	public Integer onBoardEmployee(EmployeeProjHist employeeProjectHist) throws CustomException {
 		try {
 			return jdbcTemplate.update(QueryConstants.ONBOARDPROCESS_UPDATE, employeeProjectHist.getNationwideId(),
 					employeeProjectHist.getNationwideIdCreatedDate(), employeeProjectHist.getFgOnBoardingDate(),
@@ -136,8 +135,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 					employeeProjectHist.getApprovalStatusId(), employeeProjectHist.getId());
 		} catch (Exception e) {
 			log.error(e.getCause());
-			e.printStackTrace();
-			return null;
+			throw new CustomException("Error in Inserting",e);
 		}
 	}
 
@@ -160,14 +158,13 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	}
 
 	@Override
-	public Integer processOffboardEmployee(EmployeeProjHist employeeProjectHist, Integer Id) {
+	public Integer processOffboardEmployee(EmployeeProjHist employeeProjectHist, Integer Id) throws CustomException {
 		try {
 			return jdbcTemplate.update(QueryConstants.PROCESS_OFFBOARD_UPDATE, employeeProjectHist.getReleaseStatusId(),
 					Id);
 		} catch (Exception e) {
 			log.error(e.getCause());
-			e.printStackTrace();
-			return null;
+			throw new CustomException("Error in Inserting",e);
 		}
 	}
 

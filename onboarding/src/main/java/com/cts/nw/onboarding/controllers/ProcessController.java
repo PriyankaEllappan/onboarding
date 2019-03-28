@@ -3,6 +3,7 @@
  */
 package com.cts.nw.onboarding.controllers;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cts.nw.onboarding.bo.EmployeeProjHist;
+import com.cts.nw.onboarding.exception.CustomException;
 import com.cts.nw.onboarding.service.ProcessorService;
 
 /**
@@ -25,6 +27,8 @@ import com.cts.nw.onboarding.service.ProcessorService;
 public class ProcessController extends AbstractController {
 
 
+	Logger log = Logger.getLogger(ProcessController.class);
+	
 	@Autowired
 	ProcessorService processorService;
 	
@@ -71,10 +75,19 @@ public class ProcessController extends AbstractController {
 	public ModelAndView onboardResource(@ModelAttribute("employee") EmployeeProjHist employee, BindingResult result) {
 		ModelAndView modelView;
 		System.out.println(employee.toString());
-		processorService.onboardAnEmployee(employee);
-		modelView = bindViewwithUserInfo("commons/detailsSaved");
-		modelView.addObject("employee", employee);
-		return modelView;
+		try {
+			processorService.onboardAnEmployee(employee);
+			modelView = bindViewwithUserInfo("commons/detailsSaved");
+			modelView.addObject("employee", employee);
+			return modelView;
+		} catch (CustomException e) {
+			modelView = new ModelAndView("errors/errorPage");
+			modelView.addObject("errMessage", e.getMessage());
+			log.error(e.getMessage());
+			e.printStackTrace();
+			return modelView;
+		}
+
 	}
 
 	/*2. Perform the Off boarding operations*/
@@ -119,10 +132,19 @@ public class ProcessController extends AbstractController {
 	@RequestMapping(value = "/process/offboard", method = RequestMethod.POST)
 	public ModelAndView offboardResource(@ModelAttribute("employee") EmployeeProjHist employee, BindingResult result) {
 		ModelAndView modelView;
-		processorService.offboardAnEmployee(employee);
-		modelView = bindViewwithUserInfo("commons/detailsSaved");
-		modelView.addObject("employee", employee);
-		return modelView;
+		try {
+			processorService.offboardAnEmployee(employee);
+			modelView = bindViewwithUserInfo("commons/detailsSaved");
+			modelView.addObject("employee", employee);
+			return modelView;
+		} catch (CustomException e) {
+			modelView = new ModelAndView("errors/errorPage");
+			modelView.addObject("errMessage", e.getMessage());
+			log.error(e.getMessage());
+			e.printStackTrace();
+			return modelView;
+		}
+		
 	}
 	
 	

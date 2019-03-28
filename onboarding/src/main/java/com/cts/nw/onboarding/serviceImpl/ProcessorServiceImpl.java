@@ -15,6 +15,7 @@ import com.cts.nw.onboarding.bo.EmployeeProjHist;
 import com.cts.nw.onboarding.bo.MailAttachment;
 import com.cts.nw.onboarding.dao.EmployeeProjHistDAO;
 import com.cts.nw.onboarding.dao.MailAttachmentDAO;
+import com.cts.nw.onboarding.exception.CustomException;
 import com.cts.nw.onboarding.service.MailService;
 import com.cts.nw.onboarding.service.ProcessorService;
 import com.cts.nw.onboarding.service.ReleaseService;
@@ -58,7 +59,7 @@ public class ProcessorServiceImpl implements ProcessorService {
 	}
 	
 	@Override
-	public EmployeeProjHist onboardAnEmployee(EmployeeProjHist employeeProjHist) {
+	public EmployeeProjHist onboardAnEmployee(EmployeeProjHist employeeProjHist) throws CustomException {
 
 		Integer rowsAffected = 0;
 		MailAttachment fileUploadObj;
@@ -89,7 +90,7 @@ public class ProcessorServiceImpl implements ProcessorService {
 		} catch (Exception e) {
 			log.error(e.getCause());
 			e.printStackTrace();
-			return null;
+			throw new CustomException("Error in Inserting",e);
 		}
 	}
 	
@@ -123,7 +124,7 @@ public class ProcessorServiceImpl implements ProcessorService {
 	}
 	
 	@Override
-	public EmployeeProjHist offboardAnEmployee(EmployeeProjHist employeeProjHist) {
+	public EmployeeProjHist offboardAnEmployee(EmployeeProjHist employeeProjHist) throws CustomException {
 		try {
 			Integer rowsAffected = 0;
 			rowsAffected = employeeProjHistDAO.processOffboardEmployee(employeeProjHist, employeeProjHist.getId());
@@ -134,7 +135,7 @@ public class ProcessorServiceImpl implements ProcessorService {
 		} catch(Exception e) {
 			log.error(e.getCause());
 			e.printStackTrace();
-			return null;
+			throw new CustomException("Error in Inserting",e);
 		}
 	}
 	

@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cts.nw.onboarding.bo.EmployeeMaster;
 import com.cts.nw.onboarding.constants.QueryConstants;
 import com.cts.nw.onboarding.dao.EmployeeMasterDAO;
+import com.cts.nw.onboarding.exception.CustomException;
 import com.cts.nw.onboarding.mappers.EmployeeMasterRowMapper;
 
 /**
@@ -53,14 +54,13 @@ public class EmployeeMasterDAOImpl implements EmployeeMasterDAO {
 	}
 
 	@Override
-	public Integer addNewResource(EmployeeMaster employeeMaster) {
+	public Integer addNewResource(EmployeeMaster employeeMaster) throws CustomException{
 		try{
 			return jdbcTemplate.update(QueryConstants.EMPLOYEEMASTER_INSERT, employeeMaster.getEmployeeId(), employeeMaster.getName(), employeeMaster.getFirstName(),
 					employeeMaster.getLastName(), employeeMaster.getDateOfBirth(), employeeMaster.getPassportNumber(), employeeMaster.getEmail());
 		}catch(Exception e){
 			log.error(e.getCause());
-			e.printStackTrace();
-			return null;
+			throw new CustomException("Error in Inserting",e);
 		}
 	}
 }
