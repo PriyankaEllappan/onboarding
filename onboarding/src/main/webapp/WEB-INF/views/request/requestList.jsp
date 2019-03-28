@@ -57,19 +57,25 @@
 								<c:when test="${employee.getApprovalStatus() == 'Rejected'}">
 									<td><span class="customized-span-danger">Rejected</span></td>
 								</c:when>
+								<c:otherwise>
+								<td><span class="customized-span-requested"></span></td>
+								</c:otherwise>
 							</c:choose>
 							<c:choose>
 								<c:when
-									test="${employee.getReleaseStatus() == 'Yet to Release'}">
+									test="${employee.getReleaseStatus() == 'Yet to Release' && employee.getApprovalStatus() == 'Completed'}">
 									<td><span class="customized-span-success">Active</span></td>
 								</c:when>
 								<c:when
-									test="${employee.getReleaseStatus() == 'Release Initiated'}">
+									test="${employee.getReleaseStatus() == 'Release Initiated' && employee.getApprovalStatus() == 'Completed'}">
 									<td><span class="customized-span-warning">Release Initiated</span></td>
 								</c:when>
-								<c:when test="${employee.getReleaseStatus() == 'Released'}">
+								<c:when test="${employee.getReleaseStatus() == 'Released' && employee.getApprovalStatus() == 'Completed'}">
 									<td><span class="customized-span-danger">Released</span></td>
 								</c:when>
+								<c:otherwise>
+								<td><span class="customized-span-requested"></span></td>
+								</c:otherwise>
 							</c:choose>
 							<td><img class="icon-image to-click"
 								src="/onboarding/resources/icons/show"

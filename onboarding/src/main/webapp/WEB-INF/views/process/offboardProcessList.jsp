@@ -44,7 +44,7 @@
 							<td>${employee.getTeamName()}</td>
 							<c:choose>
 								<c:when
-									test="${employee.getReleaseStatus() == 'Release Initiated'}">
+									test="${employee.getReleaseStatus() == 'Release Initiated' && employee.getApprovalStatus() == 'Completed'}">
 									<td><button class="btn-warning to-click"
 											onclick="location.href='offboard/${employee.getId()}'">Approve</button></td>
 								</c:when>
