@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cts.nw.onboarding.bean.AjaxResponse;
 import com.cts.nw.onboarding.bo.EmployeeMaster;
 import com.cts.nw.onboarding.bo.EmployeeProjHist;
 import com.cts.nw.onboarding.service.RequesterService;
@@ -55,12 +56,35 @@ public class RequesterController extends AbstractController {
 	/**
 	 * @param model
 	 * @return
-	 */
+	 *//*
 	@RequestMapping(value = "/request/check/{empid}", method = RequestMethod.GET)
 	public @ResponseBody EmployeeMaster employeeAvailability(@PathVariable String empid) {
 		return requesterService.getResourceByID(empid);
-	}
+	}*/
 
+	/**
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/request/check/{empid}", method = RequestMethod.GET)
+	public @ResponseBody AjaxResponse employeeAvailability(@PathVariable String empid) {
+		AjaxResponse ajaxResponse = new AjaxResponse();
+		try{
+			EmployeeMaster employee = requesterService.getResourceByID(empid);
+			if(employee != null){
+				ajaxResponse.setStatus("success");
+				ajaxResponse.setResponseObj(employee);
+			}else{
+				ajaxResponse.setStatus("success");
+				ajaxResponse.setResponseObj(new EmployeeMaster());
+			}
+		}catch(Exception e){
+			ajaxResponse.setStatus("failure");
+			ajaxResponse.setStatusMessage("Exception Occurred.");
+		}
+		return ajaxResponse;
+	}
+	
 	/**
 	 * @param employeeJson
 	 * @return
