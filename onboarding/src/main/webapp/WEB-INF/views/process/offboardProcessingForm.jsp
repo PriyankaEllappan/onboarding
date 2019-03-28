@@ -19,6 +19,7 @@
 <script src="/onboarding/resources/scripts/bootstrap-datepicker.min.js"></script>
 <script src="/onboarding/resources/scripts/bootstrap.min.js"></script>
 <script src="/onboarding/resources/scripts/release.js"></script>
+<script src="/onboarding/resources/scripts/application.js"></script>
 </head>
 <body>
 	<jsp:include page="../layouts/header.jsp" />
@@ -412,7 +413,7 @@
 								</div>
 								<div class="col-md-3">
 									<form:input autocomplete="off" class="form-control"
-										name="releaseDate" id="fakeRelDate" readonly="true" path="releaseDate" />
+										name="releaseDate" readonly="true" path="releaseDate" />
 								</div>
 							</div>
 						</div>

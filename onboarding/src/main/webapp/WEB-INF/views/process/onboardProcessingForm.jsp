@@ -19,6 +19,7 @@
 <script src="/onboarding/resources/scripts/bootstrap-datepicker.min.js"></script>
 <script src="/onboarding/resources/scripts/bootstrap.min.js"></script>
 <script src="/onboarding/resources/scripts/process.js"></script>
+<script src="/onboarding/resources/scripts/application.js"></script>
 </head>
 <body>
 	<jsp:include page="../layouts/header.jsp" />
@@ -317,7 +318,7 @@
 									<form:label path="nationwideIdCreatedDate">Nationwide ID Created Date</form:label>
 								</div>
 								<div class="col-md-3">
-									<form:input autocomplete="off" class="form-control"
+									<form:input autocomplete="off" class="form-control load-date-picker"
 										name="nationwideIdCreatedDate" path="nationwideIdCreatedDate" />
 								</div>
 							</div>
@@ -358,7 +359,7 @@
 									<form:label path="fgOnBoardingDate">FG Onboarding Date</form:label>
 								</div>
 								<div class="col-md-3">
-									<form:input autocomplete="off" class="form-control"
+									<form:input autocomplete="off" class="form-control load-date-picker"
 										name="fgOnBoardingDate" path="fgOnBoardingDate" />
 								</div>
 							</div>

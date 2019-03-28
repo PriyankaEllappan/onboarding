@@ -277,6 +277,9 @@ select option[disabled]:first-child {
 /* Table Design */
 .table {
 	font-size: small !important;
+}
+
+.bordered {
 	border: solid 2px green;
 }
 
@@ -321,4 +324,38 @@ height: 23px;
   font-family:Georgia;
   font-size: 13px; 
   font-weight: bold; 
+}
+
+/* Customized Span  */
+
+.customized-span-danger  {
+	font-family: Georgia;
+	font-size: 12px;
+	font-weight: bold;
+	color: #f75975;
+	text-align: center;
+}
+
+.customized-span-success  {
+	font-family: Georgia;
+	font-size: 12px;
+	font-weight: bold;
+	color: #2cc561;
+	text-align: center;
+}
+
+.customized-span-warning  {
+	font-family: Georgia;
+	font-size: 12px;
+	font-weight: bold;
+	color: #b0ac0b;
+	text-align: center;
+}
+
+.customized-span-requested  {
+	font-family: Georgia;
+	font-size: 12px;
+	font-weight: bold;
+	color: #0ba9f4;
+	text-align: center;
 }

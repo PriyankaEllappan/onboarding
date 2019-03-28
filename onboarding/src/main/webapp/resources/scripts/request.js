@@ -1,16 +1,5 @@
 $(document).ready(function() {
 	
-	/* DatePicker Options */
-	var dateOfBirth = $('#newEmpDOB');
-	var container = $('.content-style');
-	var options = {
-		format : 'yyyy-mm-dd',
-		container : container,
-		todayHighlight : true,
-		autoclose : true,
-	};
-	dateOfBirth.datepicker(options);
-	
 	/*Default Hide Tags*/
 	$("#resourceNonAvailable").hide();
 	$("#resourceAvailable").hide();
@@ -41,13 +30,6 @@ $(document).ready(function() {
 		window.location = "/onboarding/request/mapproject/" + $("#availEmpID").text();
 	})
 	
-	/* Confirm to add resource function */
-	/*$("#confirmAddResource").click(function() {
-		var empId = $('#checkEmpId').val();
-		loadEmployeeDetails(empId);
-		$("#resourceNonAvailable").show();
-	})*/
-
 	/* Employee Register Submit */
 	$(function() {
 		$('#resourceRegisterFormSubmit').click(function(e) {
@@ -108,7 +90,6 @@ function checkForanEmployee(empID) {
 		dataType : "text",
 		success : function(resultData) {
 			if (!$.trim(resultData)) {
-				/*$('#NoResourceModal').modal('show');*/
 				var empId = $('#checkEmpId').val();
 				loadEmployeeDetails(empId);
 				

@@ -15,6 +15,7 @@
 <script src="/onboarding/resources/scripts/bootstrap-datepicker.min.js"></script>
 <script src="/onboarding/resources/scripts/bootstrap.min.js"></script>
 <script src="/onboarding/resources/scripts/request.js"></script>
+<script src="/onboarding/resources/scripts/application.js"></script>
 </head>
 <body>
 	<jsp:include page="../layouts/header.jsp" />
@@ -71,7 +72,7 @@
 							<label for="newEmpDOB">Date Of Birth</label>
 						</div>
 						<div class="col-md-3">
-							<input autocomplete="off" class="form-control" name="newEmpDOB"
+							<input autocomplete="off" class="form-control load-date-picker" name="newEmpDOB"
 								id="newEmpDOB" placeholder="Enter Date of Birth (YYYY-MM-DD)" />
 						</div>
 						<div class="col-md-1"></div>
