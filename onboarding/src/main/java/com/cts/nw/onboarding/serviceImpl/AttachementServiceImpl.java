@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.cts.nw.onboarding.bo.MailAttachment;
 import com.cts.nw.onboarding.dao.MailAttachmentDAO;
+import com.cts.nw.onboarding.exception.CustomException;
 import com.cts.nw.onboarding.service.AttachmentService;
 
 /**
@@ -24,13 +25,13 @@ public class AttachementServiceImpl implements AttachmentService {
 	MailAttachmentDAO mailAttachmentDAO;
 
 	@Override
-	public MailAttachment downloadAttachment(String id) {
+	public MailAttachment downloadAttachment(String id) throws CustomException {
 		try {
 			return mailAttachmentDAO.downloadAttachment(id);
 		} catch(Exception e) {
 			log.error(e.getCause());
 			e.printStackTrace();
-			return null;
+			throw new CustomException("Error in Inserting",e);
 		}
 		
 	}

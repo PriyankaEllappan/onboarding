@@ -2,6 +2,7 @@ package com.cts.nw.onboarding.controllers;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -16,12 +17,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cts.nw.onboarding.bo.EmployeeProjHist;
 import com.cts.nw.onboarding.bo.ReleaseSummary;
+import com.cts.nw.onboarding.exception.CustomException;
 import com.cts.nw.onboarding.service.ReleaseService;
 
 @Controller
 @RequestMapping("/release")
 public class ReleaseController extends AbstractController {
 
+	Logger log = Logger.getLogger(ReleaseController.class);
+	
 	@Autowired
 	ReleaseService releaseService;
 
@@ -61,9 +65,18 @@ public class ReleaseController extends AbstractController {
 	 * @return
 	 */
 	@RequestMapping(value = "/processrelease", method = RequestMethod.POST)
-	public String releaseResource(@ModelAttribute("employee") EmployeeProjHist employeeJson, BindingResult result) {
-		releaseService.releaseAnEmployee(employeeJson);
-		return "redirect:releaselist";
+	public ModelAndView releaseResource(@ModelAttribute("employee") EmployeeProjHist employeeJson, BindingResult result) {
+		try{
+			releaseService.releaseAnEmployee(employeeJson);
+			return releaseAllList();
+		}catch(CustomException e){
+			ModelAndView modelView;
+			modelView = new ModelAndView("errors/errorPage");
+			modelView.addObject("errMessage", e.getMessage());
+			log.error(e.getMessage());
+			e.printStackTrace();
+			return modelView;
+		}
 	}
 
 	/**

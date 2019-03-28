@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.cts.nw.onboarding.bo.EmployeeProjHist;
 import com.cts.nw.onboarding.bo.ReleaseSummary;
+import com.cts.nw.onboarding.exception.CustomException;
 
 /**
  * @author 656579
@@ -21,7 +22,7 @@ public interface ReleaseService {
 
 	List<EmployeeProjHist> getEmployeestobeReleasedbyProject(String projectId);
 	
-	Integer releaseAnEmployee(EmployeeProjHist employeeProjHist);
+	Integer releaseAnEmployee(EmployeeProjHist employeeProjHist) throws CustomException;
 
 	Integer releaseEmployeesByTeam(EmployeeProjHist employeeJson);
 

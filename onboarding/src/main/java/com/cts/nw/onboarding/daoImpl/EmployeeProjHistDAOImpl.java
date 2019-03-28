@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cts.nw.onboarding.bo.EmployeeProjHist;
 import com.cts.nw.onboarding.constants.QueryConstants;
 import com.cts.nw.onboarding.dao.EmployeeProjHistDAO;
+import com.cts.nw.onboarding.exception.CustomException;
 import com.cts.nw.onboarding.mappers.EmployeeProjHistRowMapper;
 
 /**
@@ -199,7 +200,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	@Override
 	public List<EmployeeProjHist> getEmployeestobeReleasedbyTeam(String teamId) {
 		try {
-			String whereClause = " WHERE EPH.RELEASESTATUS IN (1,2) AND EPH.TEAM = ?";
+			String whereClause = " WHERE EPH.RELEASESTATUS IN (1,2) AND EPH.APPROVALSTATUS IN (3,4) AND EPH.TEAM = ?";
 			String query = QueryConstants.EMPPROJHIST_SELECT + whereClause;
 			RowMapper<EmployeeProjHist> rowMapper = new EmployeeProjHistRowMapper();
 			return this.jdbcTemplate.query(query, rowMapper, teamId);
@@ -217,7 +218,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	@Override
 	public List<EmployeeProjHist> getEmployeestobeReleasedbyProj(String projectId) {
 		try {
-			String whereClause = " WHERE EPH.RELEASESTATUS IN (1,2) AND PM.PROJECTID = ?";
+			String whereClause = " WHERE EPH.RELEASESTATUS IN (1,2) AND EPH.APPROVALSTATUS IN (3,4) AND PM.PROJECTID = ?";
 			String query = QueryConstants.EMPPROJHIST_SELECT + whereClause;
 			RowMapper<EmployeeProjHist> rowMapper = new EmployeeProjHistRowMapper();
 			return this.jdbcTemplate.query(query, rowMapper, projectId);
@@ -227,15 +228,14 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	}
 
 	@Override
-	public Integer offboardEmployee(EmployeeProjHist employeeProjectHist, Integer Id) {
+	public Integer offboardEmployee(EmployeeProjHist employeeProjectHist, Integer Id) throws CustomException {
 		try {
 			return jdbcTemplate.update(QueryConstants.REQUEST_OFFBOARD_UPDATE, employeeProjectHist.getReleaseStatusId(),
 					employeeProjectHist.getReleaseDate(), employeeProjectHist.getReasonForOffboarding(),
 					employeeProjectHist.getOffboardRequester(), employeeProjectHist.getOffboardProcessor(), Id);
 		} catch (Exception e) {
 			log.error(e.getCause());
-			e.printStackTrace();
-			return null;
+			throw new CustomException("Error in Inserting",e);
 		}
 	}
 

@@ -16,6 +16,7 @@ import com.cts.nw.onboarding.controllers.AbstractController;
 import com.cts.nw.onboarding.dao.EmployeeProjHistDAO;
 import com.cts.nw.onboarding.dao.ProjectMappingDAO;
 import com.cts.nw.onboarding.dao.ReleaseSummaryDAO;
+import com.cts.nw.onboarding.exception.CustomException;
 import com.cts.nw.onboarding.service.MailService;
 import com.cts.nw.onboarding.service.ReleaseService;
 
@@ -85,9 +86,8 @@ public class ReleaseServiceImpl implements ReleaseService {
 	}
 
 	@Override
-	public Integer releaseAnEmployee(EmployeeProjHist employeeProjHist) {
+	public Integer releaseAnEmployee(EmployeeProjHist employeeProjHist) throws CustomException {
 		Integer rowsAffected = 0;
-		try{
 		ProjectMapping projDetail = projectMappingDAO.getProcesssorPerProjectId(String.valueOf(employeeProjHist.getProjectId()));
 		employeeProjHist.setOffboardProcessor(String.valueOf(projDetail.getProcessorId()));
 		employeeProjHist.setOffboardRequester(AbstractController.APPINFO.getLoggedInUserId());
@@ -98,10 +98,6 @@ public class ReleaseServiceImpl implements ReleaseService {
 			} else if (employeeProjHist.getReleaseStatusId() == 3) {
 				 mailService.offBoardingCompleted(employeeProjHist);
 			}
-		}
-		}catch(Exception e){
-			log.error(e.getCause());
-			e.printStackTrace();
 		}
 		return rowsAffected;
 

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cts.nw.onboarding.bo.MailAttachment;
+import com.cts.nw.onboarding.exception.CustomException;
 import com.cts.nw.onboarding.service.AttachmentService;
 
 /**
@@ -29,11 +30,18 @@ public class MailAttachmentController extends AbstractController {
 
 	@GetMapping(value = "/getfile/{attachmentID}")
 	public @ResponseBody HttpEntity<byte[]> downloadFileFromDatabase(@PathVariable("attachmentID") String attachmentID) {
-		MailAttachment filedetail = attachmentService.downloadAttachment(attachmentID);
-		HttpHeaders header = new HttpHeaders();
-        header.setContentType(new MediaType("application", "txt"));
-        header.set("Content-Disposition", "inline; filename=" + filedetail.getFileName());
-        return new HttpEntity<byte[]>(filedetail.getData(), header);
+		MailAttachment filedetail;
+		try {
+			filedetail = attachmentService.downloadAttachment(attachmentID);
+			HttpHeaders header = new HttpHeaders();
+	        header.setContentType(new MediaType("application", "txt"));
+	        header.set("Content-Disposition", "inline; filename=" + filedetail.getFileName());
+	        return new HttpEntity<byte[]>(filedetail.getData(), header);
+		} catch (CustomException e) {
+			e.printStackTrace();
+			return null;
+		}
+		
 	}
 	
 }
