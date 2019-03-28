@@ -5,6 +5,7 @@ package com.cts.nw.onboarding.serviceImpl;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,8 @@ import com.cts.nw.onboarding.service.StatusService;
  */
 @Service
 public class StatusServiceImpl implements StatusService {
+	
+	Logger log = Logger.getLogger(StatusServiceImpl.class) ;
 
 	@Autowired
 	ApprovalStatusDAO approvalStatusDAO;
@@ -32,6 +35,7 @@ public class StatusServiceImpl implements StatusService {
 		try {
 			return releaseStatusDAO.getAllReleaseStatus();
 		} catch(Exception e) {
+			log.error(e.getCause());
 			e.printStackTrace();
 			return null;
 		}
@@ -42,6 +46,7 @@ public class StatusServiceImpl implements StatusService {
 		try {
 			return approvalStatusDAO.getAllApprovalStatus();
 		} catch(Exception e) {
+			log.error(e.getCause());
 			e.printStackTrace();
 			return null;
 		}

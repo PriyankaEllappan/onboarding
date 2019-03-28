@@ -5,6 +5,7 @@ package com.cts.nw.onboarding.serviceImpl;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,8 @@ import com.cts.nw.onboarding.service.CountryService;
  */
 @Service
 public class CountryServiceImpl  implements CountryService {
+	
+	Logger log = Logger.getLogger(CountryServiceImpl.class) ;
 	@Autowired
 	CountryMappingDAO countryMappingDAO;
 
@@ -26,6 +29,7 @@ public class CountryServiceImpl  implements CountryService {
 		try {
 			return countryMappingDAO.getAllCountryMapping();
 		} catch(Exception e) {
+			log.error(e.getCause());
 			e.printStackTrace();
 			return null;
 		}

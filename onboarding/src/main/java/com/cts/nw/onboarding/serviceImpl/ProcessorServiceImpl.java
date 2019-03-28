@@ -6,6 +6,7 @@ package com.cts.nw.onboarding.serviceImpl;
 import java.util.Calendar;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
@@ -26,6 +27,8 @@ import com.cts.nw.onboarding.validators.OnboardingRequestValidator;
 @Service
 public class ProcessorServiceImpl implements ProcessorService {
 
+	Logger log = Logger.getLogger(ProcessorServiceImpl.class) ;
+	
 	@Autowired
 	EmployeeProjHistDAO employeeProjHistDAO;
 
@@ -48,6 +51,7 @@ public class ProcessorServiceImpl implements ProcessorService {
 		try {
 			return employeeProjHistDAO.getRecordsPerProcessortoOnboard(processorid);
 		} catch(Exception e) {
+			log.error(e.getCause());
 			e.printStackTrace();
 			return null;
 		}
@@ -83,7 +87,8 @@ public class ProcessorServiceImpl implements ProcessorService {
 				return null;
 			}
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			log.error(e.getCause());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -99,6 +104,7 @@ public class ProcessorServiceImpl implements ProcessorService {
 				releaseService.releaseAnEmployee(activeAssignment);
 			}
 		} catch(Exception e) {
+			log.error(e.getCause());
 			e.printStackTrace();
 		}
 	}
@@ -110,6 +116,7 @@ public class ProcessorServiceImpl implements ProcessorService {
 		try {
 			return employeeProjHistDAO.getRecordsPerProcessortoOffboard(processorid);	
 		} catch(Exception e) {
+			log.error(e.getCause());
 			e.printStackTrace();
 			return null;
 		}
@@ -125,6 +132,7 @@ public class ProcessorServiceImpl implements ProcessorService {
 			}
 			return null;	
 		} catch(Exception e) {
+			log.error(e.getCause());
 			e.printStackTrace();
 			return null;
 		}
@@ -136,6 +144,7 @@ public class ProcessorServiceImpl implements ProcessorService {
 		try {
 			return employeeProjHistDAO.getSpecificEmployeeProjectHist(empProjHistId);	
 		} catch(Exception e) {
+			log.error(e.getCause());
 			e.printStackTrace();
 			return null;
 		}
@@ -160,6 +169,7 @@ public class ProcessorServiceImpl implements ProcessorService {
 			}
 			return fileUploadObj;	
 		} catch(Exception e) {
+			log.error(e.getCause());
 			e.printStackTrace();
 			return null;
 		}

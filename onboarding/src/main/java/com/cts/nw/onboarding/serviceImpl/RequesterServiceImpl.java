@@ -5,6 +5,7 @@ package com.cts.nw.onboarding.serviceImpl;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,8 @@ import com.cts.nw.onboarding.validators.OnboardingRequestValidator;
  */
 @Service
 public class RequesterServiceImpl implements RequesterService {
+	
+	Logger log = Logger.getLogger(RequesterServiceImpl.class) ;
 
 	@Autowired
 	private EmployeeMasterDAO employeeMasterDAO;
@@ -51,6 +54,7 @@ public class RequesterServiceImpl implements RequesterService {
 		try {
 			return employeeMasterDAO.getEmployeeMasterDetailsByID(employeeid);
 		} catch(Exception e) {
+			log.error(e.getCause());
 			e.printStackTrace();
 			return null;
 		}
@@ -71,6 +75,7 @@ public class RequesterServiceImpl implements RequesterService {
 				return null;
 			}
 		} catch(Exception e) {
+			log.error(e.getCause());
 			e.printStackTrace();
 			return null;
 		}
@@ -83,6 +88,7 @@ public class RequesterServiceImpl implements RequesterService {
 		try {
 			return employeeProjHistDAO.getSpecificEmployeeProjectHist(empProjHistId);
 		} catch(Exception e) {
+			log.error(e.getCause());
 			e.printStackTrace();
 			return null;
 		}
@@ -93,6 +99,7 @@ public class RequesterServiceImpl implements RequesterService {
 		try {
 			return employeeProjHistDAO.checkActiveAssignments(employeeid);
 		} catch(Exception e) {
+			log.error(e.getCause());
 			e.printStackTrace();
 			return null;
 		}
@@ -128,6 +135,7 @@ public class RequesterServiceImpl implements RequesterService {
 				return null;
 			}
 		} catch(Exception e) {
+			log.error(e.getCause());
 			e.printStackTrace();
 			return null;
 		}
@@ -140,6 +148,7 @@ public class RequesterServiceImpl implements RequesterService {
 		try {
 			return employeeProjHistDAO.getEmployeesPerRequester(requesterId);
 		} catch(Exception e) {
+			log.error(e.getCause());
 			e.printStackTrace();
 			return null;
 		}

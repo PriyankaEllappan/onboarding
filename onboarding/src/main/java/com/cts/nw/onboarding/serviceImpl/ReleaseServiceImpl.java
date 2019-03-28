@@ -5,6 +5,7 @@ package com.cts.nw.onboarding.serviceImpl;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,8 @@ import com.cts.nw.onboarding.service.ReleaseService;
  */
 @Service
 public class ReleaseServiceImpl implements ReleaseService {
+	
+	Logger log = Logger.getLogger(ReleaseServiceImpl.class) ;
 
 	@Autowired
 	EmployeeProjHistDAO employeeProjHistDAO;
@@ -42,6 +45,7 @@ public class ReleaseServiceImpl implements ReleaseService {
 		try {
 			return employeeProjHistDAO.getEmployeestobeReleased();	
 		} catch(Exception e) {
+			log.error(e.getCause());
 			e.printStackTrace();
 			return null;
 		}
@@ -52,6 +56,7 @@ public class ReleaseServiceImpl implements ReleaseService {
 		try {
 			return employeeProjHistDAO.getEmployeestobeReleasedbyTeam(teamId);
 		} catch(Exception e) {
+			log.error(e.getCause());
 			e.printStackTrace();
 			return null;
 		}
@@ -62,6 +67,7 @@ public class ReleaseServiceImpl implements ReleaseService {
 		try {
 			return employeeProjHistDAO.getEmployeestobeReleasedbyProj(projectId);
 		} catch(Exception e) {
+			log.error(e.getCause());
 			e.printStackTrace();
 			return null;
 		}
@@ -72,6 +78,7 @@ public class ReleaseServiceImpl implements ReleaseService {
 		try {
 			return employeeProjHistDAO.getSpecificEmployeeProjectHist(empProjHistId);
 		} catch(Exception e) {
+			log.error(e.getCause());
 			e.printStackTrace();
 			return null;
 		}
@@ -93,6 +100,7 @@ public class ReleaseServiceImpl implements ReleaseService {
 			}
 		}
 		}catch(Exception e){
+			log.error(e.getCause());
 			e.printStackTrace();
 		}
 		return rowsAffected;
@@ -104,6 +112,7 @@ public class ReleaseServiceImpl implements ReleaseService {
 		try {
 			return releaseSummaryDAO.getAllReleaseSummary();	
 		} catch(Exception e) {
+			log.error(e.getCause());
 			e.printStackTrace();
 			return null;
 		}
@@ -121,6 +130,7 @@ public class ReleaseServiceImpl implements ReleaseService {
 			}
 			return rowsAffected;	
 		} catch(Exception e) {
+			log.error(e.getCause());
 			e.printStackTrace();
 			return null;
 		}
@@ -139,6 +149,7 @@ public class ReleaseServiceImpl implements ReleaseService {
 
 			return rowsAffected;
 		} catch(Exception e) {
+			log.error(e.getCause());
 			e.printStackTrace();
 			return null;
 		}

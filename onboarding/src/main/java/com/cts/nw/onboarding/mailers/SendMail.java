@@ -9,6 +9,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -22,6 +23,7 @@ import com.cts.nw.onboarding.service.LDAPService;
 
 @Service
 public class SendMail {
+	Logger log = Logger.getLogger(SendMail.class) ;
 	
 	@Autowired
 	private Environment environment;
@@ -67,6 +69,7 @@ public class SendMail {
 			transport.close();
 			System.out.println("Sent message successfully....");
 		} catch (Exception e) {
+			log.error(e.getCause());
 			e.printStackTrace();
 		}
 	}
