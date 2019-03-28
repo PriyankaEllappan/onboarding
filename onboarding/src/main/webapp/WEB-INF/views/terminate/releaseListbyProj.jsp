@@ -65,7 +65,7 @@
 							<label for="releaseDate">Release Date</label>
 						</div>
 						<div class="col-md-2">
-							<input autocomplete="off" class="form-control" name="releaseDate"
+							<input autocomplete="off" class="form-control load-date-picker" name="releaseDate"
 								id="releaseDate" />
 						</div>
 						<div class="col-md-1" style="text-align: right">
