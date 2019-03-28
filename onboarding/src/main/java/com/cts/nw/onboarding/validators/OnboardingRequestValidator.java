@@ -5,6 +5,7 @@ package com.cts.nw.onboarding.validators;
 
 import java.util.regex.Pattern;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.cts.nw.onboarding.bo.EmployeeProjHist;
@@ -15,6 +16,8 @@ import com.cts.nw.onboarding.bo.EmployeeProjHist;
  */
 @Service
 public class OnboardingRequestValidator {
+
+	Logger log = Logger.getLogger(OnboardingRequestValidator.class) ;
 
 	public boolean validate(EmployeeProjHist employeeProjHist) {
 		try {
@@ -61,6 +64,7 @@ public class OnboardingRequestValidator {
 				return false;
 			}
 		} catch (Exception e) {
+			log.error(e.getCause());
 			e.printStackTrace();
 		}
 		return true;

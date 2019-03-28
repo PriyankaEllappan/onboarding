@@ -3,6 +3,7 @@
  */
 package com.cts.nw.onboarding.serviceImpl;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,8 @@ import com.cts.nw.onboarding.service.AttachmentService;
 @Service
 public class AttachementServiceImpl implements AttachmentService {
 
+	Logger log = Logger.getLogger(AttachementServiceImpl.class) ;
+	
 	@Autowired
 	MailAttachmentDAO mailAttachmentDAO;
 
@@ -25,6 +28,7 @@ public class AttachementServiceImpl implements AttachmentService {
 		try {
 			return mailAttachmentDAO.downloadAttachment(id);
 		} catch(Exception e) {
+			log.error(e.getCause());
 			e.printStackTrace();
 			return null;
 		}

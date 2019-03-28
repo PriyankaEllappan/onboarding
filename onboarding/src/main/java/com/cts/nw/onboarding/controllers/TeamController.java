@@ -5,6 +5,7 @@ package com.cts.nw.onboarding.controllers;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,8 @@ import com.cts.nw.onboarding.service.TeamService;
 @Controller
 @RequestMapping("/team")
 public class TeamController extends AbstractController {
+	
+	Logger log = Logger.getLogger(TeamController.class) ;
 
 	@Autowired
 	TeamService teamService;
@@ -46,6 +49,7 @@ public class TeamController extends AbstractController {
 			}
 
 		} catch (Exception e) {
+			log.error(e.getCause());
 			e.printStackTrace();
 			return null;
 		}
@@ -67,6 +71,7 @@ public class TeamController extends AbstractController {
 			}
 
 		} catch (Exception e) {
+			log.error(e.getCause());
 			e.printStackTrace();
 			return null;
 		}

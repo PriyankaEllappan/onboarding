@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,9 @@ import com.cts.nw.onboarding.service.RoleService;
  */
 @Service
 public class RoleServiceImpl implements RoleService{
+	
+	Logger log = Logger.getLogger(RoleServiceImpl.class) ;
+	
 	@Autowired
 	RoleMappingDAO roleMappingDAO;
 	
@@ -30,6 +34,7 @@ public class RoleServiceImpl implements RoleService{
 		try {
 			return roleMappingDAO.getAllRoleMappingDetails();
 		} catch(Exception e) {
+			log.error(e.getCause());
 			e.printStackTrace();
 			return null;
 		}
@@ -43,6 +48,7 @@ public class RoleServiceImpl implements RoleService{
 			roleCategory =  roleList.stream().collect(Collectors.groupingBy(Roles::getParentRole));
 			return roleCategory;
 		} catch(Exception e) {
+			log.error(e.getCause());
 			e.printStackTrace();
 			return null;
 		}

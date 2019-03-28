@@ -5,6 +5,7 @@ package com.cts.nw.onboarding.daoImpl;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -24,6 +25,9 @@ import com.cts.nw.onboarding.mappers.EmployeeProjHistRowMapper;
 @Transactional
 @Repository
 public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
+	
+	Logger log = Logger.getLogger(EmployeeProjHistDAOImpl.class) ;
+
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -87,6 +91,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 					employeeProjectHist.getApprovalStatusId(), employeeProjectHist.getReleaseStatusId(),
 					employeeProjectHist.getOnboardRequester());
 		} catch (Exception e) {
+			log.error(e.getCause());
 			e.printStackTrace();
 			return null;
 		}
@@ -129,6 +134,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 					employeeProjectHist.getAttachmentId(), employeeProjectHist.getComments(),
 					employeeProjectHist.getApprovalStatusId(), employeeProjectHist.getId());
 		} catch (Exception e) {
+			log.error(e.getCause());
 			e.printStackTrace();
 			return null;
 		}
@@ -158,6 +164,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 			return jdbcTemplate.update(QueryConstants.PROCESS_OFFBOARD_UPDATE, employeeProjectHist.getReleaseStatusId(),
 					Id);
 		} catch (Exception e) {
+			log.error(e.getCause());
 			e.printStackTrace();
 			return null;
 		}
@@ -226,6 +233,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 					employeeProjectHist.getReleaseDate(), employeeProjectHist.getReasonForOffboarding(),
 					employeeProjectHist.getOffboardRequester(), employeeProjectHist.getOffboardProcessor(), Id);
 		} catch (Exception e) {
+			log.error(e.getCause());
 			e.printStackTrace();
 			return null;
 		}

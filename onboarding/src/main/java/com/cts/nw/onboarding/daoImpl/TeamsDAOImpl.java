@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -29,6 +30,7 @@ import com.cts.nw.onboarding.mappers.TeamsRowMapper;
 @Repository
 public class TeamsDAOImpl implements TeamsDAO {
 
+	Logger log = Logger.getLogger(TeamsDAOImpl.class) ;
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
@@ -59,6 +61,7 @@ public class TeamsDAOImpl implements TeamsDAO {
 		} catch (SQLException e) {
 			new GlobalExceptionHandler().handleSQLException(e);
 		} catch (Exception e) {
+			log.error(e.getCause());
 			e.printStackTrace();
 		}
 		return returnValue;

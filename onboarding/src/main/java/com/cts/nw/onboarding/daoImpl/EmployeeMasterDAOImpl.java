@@ -5,6 +5,7 @@ package com.cts.nw.onboarding.daoImpl;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -25,6 +26,7 @@ import com.cts.nw.onboarding.mappers.EmployeeMasterRowMapper;
 @Repository
 public class EmployeeMasterDAOImpl implements EmployeeMasterDAO {
 
+	Logger log = Logger.getLogger(EmployeeMasterDAOImpl.class) ;
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
@@ -56,6 +58,7 @@ public class EmployeeMasterDAOImpl implements EmployeeMasterDAO {
 			return jdbcTemplate.update(QueryConstants.EMPLOYEEMASTER_INSERT, employeeMaster.getEmployeeId(), employeeMaster.getName(), employeeMaster.getFirstName(),
 					employeeMaster.getLastName(), employeeMaster.getDateOfBirth(), employeeMaster.getPassportNumber(), employeeMaster.getEmail());
 		}catch(Exception e){
+			log.error(e.getCause());
 			e.printStackTrace();
 			return null;
 		}

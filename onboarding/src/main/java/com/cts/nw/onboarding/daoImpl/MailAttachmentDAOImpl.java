@@ -7,6 +7,7 @@ import java.sql.CallableStatement;
 import java.sql.SQLException;
 import java.sql.Types;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -27,7 +28,9 @@ import com.cts.nw.onboarding.mappers.FileUploadRowMapper;
 @Transactional
 @Repository
 public class MailAttachmentDAOImpl implements MailAttachmentDAO {
-
+	
+	Logger log = Logger.getLogger(MailAttachmentDAOImpl.class) ;
+	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
@@ -58,6 +61,7 @@ public class MailAttachmentDAOImpl implements MailAttachmentDAO {
 		} catch (SQLException e) {
 			new GlobalExceptionHandler().handleSQLException(e);
 		} catch (Exception e) {
+			log.error(e.getCause());
 			e.printStackTrace();
 		}
 		return returnValue;

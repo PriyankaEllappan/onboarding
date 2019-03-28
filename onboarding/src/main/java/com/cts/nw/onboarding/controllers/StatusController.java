@@ -5,6 +5,7 @@ package com.cts.nw.onboarding.controllers;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,7 @@ import com.cts.nw.onboarding.service.StatusService;
 @RequestMapping("/status")
 public class StatusController extends AbstractController {
 
+	Logger log = Logger.getLogger(StatusController.class) ;
 	@Autowired
 	StatusService statusService;
 
@@ -41,6 +43,7 @@ public class StatusController extends AbstractController {
 				return null;
 			}
 		} catch (Exception e) {
+			log.error(e.getCause());
 			e.printStackTrace();
 			return null;
 		}
@@ -62,6 +65,7 @@ public class StatusController extends AbstractController {
 				return null;
 			}
 		} catch (Exception e) {
+			log.error(e.getCause());
 			e.printStackTrace();
 			return null;
 		}
