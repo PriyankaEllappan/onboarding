@@ -83,27 +83,26 @@ $(document).ready(function() {
 })
 
 function checkForanEmployee(empID) {
-	console.log("checkForanEmployee");
-	$.ajax({
-		type : 'GET',
-		url : "/onboarding/request/check/" + empID,
-		dataType : "text",
-		success : function(resultData) {
-			if (!$.trim(resultData)) {
-				var empId = $('#checkEmpId').val();
-				loadEmployeeDetails(empId);
-				
-			} else {
-				var returnedData = JSON.parse(resultData);
-				$('#availEmpID').text(returnedData.employeeId);
-				$('#availEmpName').text(returnedData.name);
-				$('#availEmpDOB').text(returnedData.dateOfBirth);
-				$('#availEmpEmail').text(returnedData.email);
-				$('#availEmpPPNo').text(returnedData.passportNumber);
-				$("#resourceAvailable").show();
-			}
-		}
-	});
+       console.log("checkForanEmployee");
+       $.ajax({
+              type : 'GET',
+              url : "/onboarding/request/check/" + empID,
+              dataType : "text",
+              success : function(resultData) {
+                     var returnedData = JSON.parse(resultData);
+                     if (!$.trim(returnedData.responseObj)) {
+                           var empId = $('#checkEmpId').val();
+                           loadEmployeeDetails(empId);
+                     } else {
+                           $('#availEmpID').text(returnedData.responseObj.employeeId);
+                           $('#availEmpName').text(returnedData.responseObj.name);
+                           $('#availEmpDOB').text(returnedData.responseObj.dateOfBirth);
+                           $('#availEmpEmail').text(returnedData.responseObj.email);
+                           $('#availEmpPPNo').text(returnedData.responseObj.passportNumber);
+                           $("#resourceAvailable").show();
+                     }
+              }
+       });
 }
 
 function checkForanActiveAssignment(empID) {

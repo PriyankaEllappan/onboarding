@@ -66,24 +66,24 @@ public class RequesterController extends AbstractController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/request/check/{empid}", method = RequestMethod.GET)
-	public @ResponseBody AjaxResponse employeeAvailability(@PathVariable String empid) {
-		AjaxResponse ajaxResponse = new AjaxResponse();
-		try{
-			EmployeeMaster employee = requesterService.getResourceByID(empid);
-			if(employee != null){
-				ajaxResponse.setStatus("success");
-				ajaxResponse.setResponseObj(employee);
-			}else{
-				ajaxResponse.setStatus("success");
-				ajaxResponse.setResponseObj(new EmployeeMaster());
-			}
-		}catch(Exception e){
-			ajaxResponse.setStatus("failure");
-			ajaxResponse.setStatusMessage("Exception Occurred.");
-		}
-		return ajaxResponse;
-	}
+    @RequestMapping(value = "/request/check/{empid}", method = RequestMethod.GET)
+    public @ResponseBody AjaxResponse employeeAvailability(@PathVariable String empid) {
+           AjaxResponse ajaxResponse = new AjaxResponse();
+           try{
+                  EmployeeMaster employee = requesterService.getResourceByID(empid);
+                  if(employee != null){
+                        ajaxResponse.setStatus("success");
+                        ajaxResponse.setResponseObj(employee);
+                  }else{
+                        ajaxResponse.setStatus("success");
+                        ajaxResponse.setResponseObj(null);
+                  }
+           } catch(Exception e){
+                  ajaxResponse.setStatus("failure");
+                  ajaxResponse.setStatusMessage("Exception Occurred.");
+           }
+           return ajaxResponse;
+    }
 	
 	/**
 	 * @param employeeJson
