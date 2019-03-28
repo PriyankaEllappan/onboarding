@@ -75,7 +75,7 @@
 						</div>
 					</div>
 				</div>
-				<table class="table table-striped" id="releaseTeamTable">
+				<table class="table table-striped bordered" id="releaseTeamTable">
 					</tbody>
 				</table>
 			</div>

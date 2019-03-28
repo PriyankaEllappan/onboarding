@@ -73,7 +73,7 @@
 						</div>
 					</div>
 				</div>
-				<table class="table table-striped" id="releaseProjTable">
+				<table class="table table-striped bordered" id="releaseProjTable">
 					</tbody>
 				</table>
 			</div>

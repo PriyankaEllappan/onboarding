@@ -35,7 +35,7 @@
 						<th>Project Id</th>
 						<th>Project Name</th>
 						<th>Team Name</th>
-						<th></th>
+						<th> Release Status</th>
 						<th></th>
 					</tr>
 					<c:forEach var="employee" items="${employees}">
@@ -53,8 +53,8 @@
 								</c:when>
 								<c:when
 									test="${employee.getReleaseStatus() == 'RELEASE INITIATED'}">
-									<td><button class="btn-warning not-to-click">Release
-											Initiated</button></td>
+									<td><span class="customized-span-warning">Release
+											Initiated</span></td>
 								</c:when>
 							</c:choose>
 							<td><img class="icon-image to-click"

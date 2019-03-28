@@ -26,7 +26,7 @@
 						<br>
 					</div>
 				</div>
-				<table class="table table-striped">
+				<table class="table table-striped bordered">
 					<tr class="bold-font">
 						<th>Employee Id</th>
 						<th>Employee Name</th>
@@ -50,7 +50,7 @@
 											onclick="location.href='offboard/${employee.getId()}'">Approve</button></td>
 								</c:when>
 								<c:when test="${employee.getReleaseStatus() == 'RELEASED'}">
-									<td><button class="btn-danger not-to-click">Released</button></td>
+									<td><span class="customized-span-danger">Released</span></td>
 								</c:when>
 							</c:choose>
 							<td><img class="icon-image to-click"

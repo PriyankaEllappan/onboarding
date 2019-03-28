@@ -26,7 +26,7 @@
 						<br>
 					</div>
 				</div>
-				<table class="table table-striped">
+				<table class="table table-striped bordered">
 					<tr class="bold-font">
 						<th>Employee Id</th>
 						<th>Employee Name</th>
@@ -54,21 +54,21 @@
 											onclick="location.href='onboard/${employee.getId()}'">Processing</button></td>
 								</c:when>
 								<c:when test="${employee.getApprovalStatus() == 'COMPLETED'}">
-									<td><button class="btn-success not-to-click">PROCESSED</button></td>
+									<td><span class="customized-span-success">PROCESSED</span></td>
 								</c:when>
 							</c:choose>
 							<c:choose>
 								<c:when
 									test="${employee.getReleaseStatus() == 'YET TO RELEASE'}">
-									<td><button class="btn-success not-to-click">Active</button></td>
+									<td><span class="customized-span-success">Active</span></td>
 								</c:when>
 								<c:when
 									test="${employee.getReleaseStatus() == 'RELEASE INITIATED'}">
-									<td><button class="btn-warning not-to-click">Release
-											Initiated</button></td>
+									<td><span class="customized-span-warning">Release
+											Initiated</span></td>
 								</c:when>
 								<c:when test="${employee.getReleaseStatus() == 'RELEASED'}">
-									<td><button class="btn-danger not-to-click">Released</button></td>
+									<td><span class="customized-span-danger">Released</span></td>
 								</c:when>
 							</c:choose>
 							<td><img class="icon-image to-click"
