@@ -420,7 +420,7 @@
 							<div class="row">
 								<br /> <br />
 								<div class="col-md-6" style="text-align: right">
-									<button class="btn btn-submit" id="releaseFormSubmit">
+									<button class="btn btn-submit" id="releaseFormSubmit" onclick="return validateForm()">
 										Submit</button>
 								</div>
 								<div class="col-md-2">

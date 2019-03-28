@@ -152,21 +152,43 @@ function loadMovementDetails(){
 
 function validateForm() {
 
-	if (($('#approvalStatus').val() != 2) && ($('#approvalStatus').val() != 3)) {
-		$('#errMessage')
-				.text(
-						"Approval Status must be selected with either value as InProgress or Completed.");
+	if (($('#approvalStatus').val() != 2) && ($('#approvalStatus').val() != 3) && ($('#approvalStatus').val() != 5)) {
+		$('#errMessage').text("Approval Status must be selected with either value as InProgress or Completed or Rejected.");
 		return false;
 	}
 
 	if ($('#nationwideId').val() != null && $('#nationwideId').val() != "") {
 		if ($('#approvalStatus').val() != 3) {
-			$('#errMessage')
-					.text(
-							"If NationWide ID is generated, then Approval Status must be selected with value as Completed.");
+			$('#errMessage').text("If NationWide ID is generated, then Approval Status must be selected with value as Completed.");
+			return false;
+		}
+	}
+
+	if ($('#approvalStatus').val() == 3) {
+		
+		if ($('#nationwideId').val() == null || $('#nationwideId').val() == "") {
+			$('#errMessage').text("Nationwide ID cannot be null or empty");
+			return false;
+		}
+		
+		if ($('#nationwideIdCreatedDate').val() == null || $('#nationwideIdCreatedDate').val() == "") {
+			$('#errMessage').text("Nationwide ID Created Date cannot be null or empty");
+			return false;
+		}
+	}
+
+	if ($('#approvalStatus').val() == 5) {
+		if ($('#comments').val() == null || $('#comments').val() == "") {
+			$('#errMessage').text("Comments cannot be null or empty. Please fill in the reason for the rejection in comments field.");
+			return false;
+		}
+
+		if ($('#nationwideIdCreatedDate').val() != null && $('#nationwideIdCreatedDate').val() != "") {
+			$('#errMessage').text("You have selected Rejected as Approval Status. For a Rejected request, there will not be any Nationwide ID Created Date.");
 			return false;
 		}
 	}
 
 	return true;
+
 }

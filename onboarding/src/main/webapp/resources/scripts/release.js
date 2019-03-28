@@ -134,11 +134,24 @@ function loadReleaseStatus(){
 		success : function(resultData) {
 			releaseStat = JSON.parse(resultData);
 			$.each(releaseStat, function(key,value) {   
-				$('#releaseStatus')
+				/*$('#releaseStatus')
 		         .append($("<option></option>")
 		                    .attr("value",value.id)
-		                    .text(value.status)); 
-			});
+		                    .text(value.status)); */
+                if(value.id == 1){
+                    $('#releaseStatus')
+                .append($("<option></option>")
+                           .attr("value",value.id)
+                           .attr("disabled", true)
+                           .text(value.status));
+                } else {
+                    $('#releaseStatus')
+                .append($("<option></option>")
+                           .attr("value",value.id)
+                           .text(value.status));
+             }
+
+		});
 			$('select[name="releaseStatus"]').find('option[value='+ $('#releaseStatusId').val() +']').attr("selected",true);
 		}
 	});
@@ -161,3 +174,23 @@ function loadReleaseReason(){
 		}
 	});
 }
+
+
+function validateForm() {
+    if (($('#releaseStatus').val() != 2) && ($('#releaseStatus').val() != 3)) {
+           $('#errMessage').text("Release Status must be selected with either value as RELEASE INITIATED or RELEASED.");
+           return false;
+    }
+    
+    if ($('#releaseSummary').val() == null || $('#releaseSummary').val() == "") {
+           $('#errMessage').text("Release Summary cannot be null or empty");
+           return false;
+    } 
+    
+    if ($('#releaseDate').val() == null || $('#releaseDate').val() == "") {
+           $('#errMessage').text("Release Date cannot be null or empty");
+           return false;
+    } 
+    return true;
+}
+
