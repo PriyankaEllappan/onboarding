@@ -174,7 +174,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	@Override
 	public List<EmployeeProjHist> getEmployeestobeReleased() {
 		try {
-			String whereClause = " WHERE EPH.RELEASESTATUS IN (1,2)";
+			String whereClause = " WHERE EPH.RELEASESTATUS IN (1,2) AND EPH.APPROVALSTATUS IN (3,4) ";
 			String query = QueryConstants.EMPPROJHIST_SELECT + whereClause;
 			RowMapper<EmployeeProjHist> rowMapper = new EmployeeProjHistRowMapper();
 			return this.jdbcTemplate.query(query, rowMapper);
