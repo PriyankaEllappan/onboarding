@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.cts.nw.onboarding.bean.AjaxResponse;
 import com.cts.nw.onboarding.bo.EmployeeMaster;
 import com.cts.nw.onboarding.bo.EmployeeProjHist;
+import com.cts.nw.onboarding.constants.AppConstants;
 import com.cts.nw.onboarding.exception.CustomException;
 import com.cts.nw.onboarding.service.RequesterService;
 
@@ -76,14 +77,14 @@ public class RequesterController extends AbstractController {
            try{
                   EmployeeMaster employee = requesterService.getResourceByID(empid);
                   if(employee != null){
-                	  	ajaxResponse.setStatus("SUCCESS");
+                	  	ajaxResponse.setStatus(AppConstants.AJAXSUCCESS);
                         ajaxResponse.setResponseObj(employee);
+                        
                   }else{
-                	  	ajaxResponse.setStatus("failure");
-                        ajaxResponse.setResponseObj(null);
+                	  	ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
                   }
            } catch(Exception e){
-                  ajaxResponse.setStatus("failure");
+        	   ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
                   ajaxResponse.setStatusMessage("Exception Occurred.");
            }
            return ajaxResponse;
@@ -99,17 +100,16 @@ public class RequesterController extends AbstractController {
 		try {
 			EmployeeMaster employee = requesterService.addNewResource(employeeJson);
             if(employee != null){
-                ajaxResponse.setStatus("SUCCESS");
+            	ajaxResponse.setStatus(AppConstants.AJAXSUCCESS);
                 ajaxResponse.setResponseObj(employee);
                 ajaxResponse.setStatusMessage("Resource Registered.");
                 
           }else{
-        	  	ajaxResponse.setStatus("failure");
-                ajaxResponse.setResponseObj(null);
+        	  	ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
                 ajaxResponse.setStatusMessage("Resource Not Registered.");
           }
 		} catch (CustomException e) {
-            ajaxResponse.setStatus("failure");
+			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
             ajaxResponse.setStatusMessage("Exception Occurred.");
 		}
 		 return ajaxResponse;
