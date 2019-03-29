@@ -4,7 +4,6 @@
 package com.cts.nw.onboarding.daoImpl;
 
 import java.sql.CallableStatement;
-import java.sql.SQLException;
 import java.sql.Types;
 import java.util.List;
 
@@ -20,7 +19,6 @@ import com.cts.nw.onboarding.bo.Teams;
 import com.cts.nw.onboarding.constants.QueryConstants;
 import com.cts.nw.onboarding.dao.TeamsDAO;
 import com.cts.nw.onboarding.exception.CustomException;
-import com.cts.nw.onboarding.exception.GlobalExceptionHandler;
 import com.cts.nw.onboarding.mappers.TeamsRowMapper;
 
 /**

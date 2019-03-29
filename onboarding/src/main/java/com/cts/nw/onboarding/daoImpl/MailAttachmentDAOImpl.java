@@ -4,7 +4,6 @@
 package com.cts.nw.onboarding.daoImpl;
 
 import java.sql.CallableStatement;
-import java.sql.SQLException;
 import java.sql.Types;
 
 import org.apache.log4j.Logger;
@@ -19,7 +18,6 @@ import com.cts.nw.onboarding.bo.MailAttachment;
 import com.cts.nw.onboarding.constants.QueryConstants;
 import com.cts.nw.onboarding.dao.MailAttachmentDAO;
 import com.cts.nw.onboarding.exception.CustomException;
-import com.cts.nw.onboarding.exception.GlobalExceptionHandler;
 import com.cts.nw.onboarding.mappers.FileUploadRowMapper;
 
 /**
