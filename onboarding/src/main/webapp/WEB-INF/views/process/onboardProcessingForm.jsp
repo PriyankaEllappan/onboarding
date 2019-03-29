@@ -24,6 +24,7 @@
 <body>
 	<jsp:include page="../layouts/header.jsp" />
 	<div class="container-fluid content-style">
+	<span class="has-error">${errMessage}</span> 
 		<span class="has-error" id="errMessage"></span> <span
 			class="is-success" id="statusSucessMessage"></span>
 		<div id="formDiv">

@@ -10,6 +10,8 @@ $(document).ready(function() {
 		container : container,
 		todayHighlight : true,
 		autoclose : true,
+		startDate: '-3d',
+		endDate: '+3d'
 	};
 	
 	datePicker.datepicker(options);
