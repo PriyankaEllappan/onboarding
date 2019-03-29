@@ -210,17 +210,25 @@ function loadReleaseStatus() {
 	$.ajax({
 		type : 'GET',
 		url : "/onboarding/status/getallreleasestatus",
-		dataType : "text",
+		dataType : "json",
 		success : function(resultData) {
-			releaseStat = JSON.parse(resultData);
-			$.each(releaseStat, function(key, value) {
-				$('#releaseStatus').append(
-						$("<option></option>").attr("value", value.id).text(
-								value.status));
-			});
-			$('select[name="releaseStatus"]').find(
-					'option[value=' + $('#releaseStatusId').val() + ']').attr(
-					"selected", true);
+			console.log(resultData);
+			console.log(resultData.responseList);
+			if (releaseStat.status == "SUCCESS") {
+				alert("getallreleasestatus success Call");
+				//releaseStat = JSON.parse(resultData);
+				$.each(releaseStat, function(key, value) {
+					$('#releaseStatus').append(
+							$("<option></option>").attr("value", value.id).text(
+									value.status));
+				});
+				$('select[name="releaseStatus"]').find(
+						'option[value=' + $('#releaseStatusId').val() + ']').attr(
+						"selected", true);
+			} else {
+						alert("getallreleasestatus failure Call");
+						console.log("getallreleasestatus failure Call");
+					}
 		}
 	});
 }

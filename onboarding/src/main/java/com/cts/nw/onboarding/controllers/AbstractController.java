@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cts.nw.onboarding.bean.AppInfo;
+import com.cts.nw.onboarding.bean.EmployeeDetails;
 import com.cts.nw.onboarding.service.LDAPService;
 
 /**
@@ -88,9 +89,13 @@ public class AbstractController {
 					}
 				} else {
 					APPINFO.setLoggedInUserId(currentUserName);
-					APPINFO.setLoggedInUserName(lDAPService.getEmployee(currentUserName) != null
-							? lDAPService.getEmployee(currentUserName).getName() : "User");
-					/*APPINFO.setLoggedInUserName("User");*/
+					EmployeeDetails currUserLdap = lDAPService.getEmployee(currentUserName);
+					if(currUserLdap != null && currUserLdap.getName() != null){
+						String[] name = currUserLdap.getName().trim().split("\\s+");
+						APPINFO.setLoggedInUserName(name[0]);
+					}else{
+						APPINFO.setLoggedInUserName("User");
+					}
 					for (GrantedAuthority auth : currentUserNameAuthorities) {
 						APPINFO.setLoggedInUserRole(auth.getAuthority().replaceAll("ROLE_", ""));
 					}

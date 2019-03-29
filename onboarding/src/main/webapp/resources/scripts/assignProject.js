@@ -211,14 +211,23 @@ function loadApprovalStatus(){
 	$.ajax({
 		type : 'GET',
 		url : "/onboarding/status/getallapprovalstatus",
-		dataType : "text",
+		dataType : "json",
 		success : function(resultData) {
-			approvalStat = JSON.parse(resultData);
-			$.each(approvalStat, function(key,value) {   
-				if (value.status == "NEW") {
-					$('#approvalStatus').val(value.id);
-				}
-			});
+			//approvalStat = JSON.parse(resultData);
+			//$.each(approvalStat, function(key,value) {   
+			console.log(resultData);
+			console.log(resultData.responseList);
+			if (resultData.status == "SUCCESS") {
+				alert("getallapprovalstatus success Call");
+				$.each(resultData.responseList, function(key,value) {   
+					if (value.status == "NEW") {
+						$('#approvalStatus').val(value.id);
+					}
+				});
+			} else {
+				alert("getallapprovalstatus failure Call");
+				console.log("getallapprovalstatus failure Call");
+			}
 		}
 	});
 }
@@ -227,14 +236,24 @@ function loadReleaseStatus(){
 	$.ajax({
 		type : 'GET',
 		url : "/onboarding/status/getallreleasestatus" ,
-		dataType : "text",
+		dataType : "json",
 		success : function(resultData) {
-			releaseStat = JSON.parse(resultData);
-			$.each(releaseStat, function(key,value) {  
-				if (value.status == "YET TO RELEASE") {
-					$('#releaseStatusId').val(value.id);
-				}
-			});
+			console.log(resultData);
+			console.log(resultData.responseList);
+			if (resultData.status == "SUCCESS") {
+				//releaseStat = JSON.parse(resultData);
+				alert("getallreleasestatus success Call");
+				//$.each(releaseStat, function(key,value) {
+				$.each(resultData.responseList, function(key,value) {  
+					if (value.status == "YET TO RELEASE") {
+						$('#releaseStatusId').val(value.id);
+					}
+				});
+			} else {
+						alert("getallreleasestatus failure Call");
+						console.log("getallreleasestatus failure Call");
+					}
+
 		}
 	});
 }
@@ -243,15 +262,25 @@ function loadMovementDetails(){
 	$.ajax({
 		type : 'GET',
 		url : "/onboarding/movement/getmovements" ,
-		dataType : "text",
+		dataType : "json",
 		success : function(resultData) {
-			movementList = JSON.parse(resultData);
-			$.each(movementList, function(key,value) {   
-			     $('#movementID')
-			         .append($("<option></option>")
-			                    .attr("value",value.id)
-			                    .text(value.movement)); 
-			});
+			console.log(resultData);
+			console.log(resultData.responseList);
+			if (resultData.status == "SUCCESS") {
+				alert("getmovements success Call");
+				//movementList = JSON.parse(resultData);
+				$.each(resultData.responseList, function(key,value) {   
+				     $('#movementID')
+				         .append($("<option></option>")
+				                    .attr("value",value.id)
+				                    .text(value.movement)); 
+				});
+			} else {
+				alert("getmovements failure Call");
+				console.log("getmovements failure Call");
+			}	
+				
+			
 		}
 	});
 }

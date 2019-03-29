@@ -69,6 +69,9 @@
 								<c:when test="${employee.getReleaseStatus() == 'Released' && employee.getApprovalStatus() == 'Completed'}">
 									<td><span class="customized-span-danger">Released</span></td>
 								</c:when>
+								<c:otherwise>
+								<td><span class="customized-span-requested">Not Applicable</span></td>
+								</c:otherwise>
 							</c:choose>
 							<td><img class="icon-image to-click"
 								src="/onboarding/resources/icons/show"

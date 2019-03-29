@@ -12,7 +12,7 @@ $(document).ready(function() {
 	
 	$("#band").change(function() {
 		var selectedVal = $("#band").val();
-		$.each(bandDetails, function(key,value) {  
+		$.each(bandDetails.responseList, function(key,value) {
 			if(selectedVal == value.id ){
 				 $("#bandId").val(value.id);
 			}
@@ -21,7 +21,7 @@ $(document).ready(function() {
 	
 	$("#approvalStatus").change(function() {
 		var selectedVal = $("#approvalStatus").val();
-		$.each(approvalStat, function(key,value) {  
+		$.each(approvalStat.responseList, function(key,value) { 
 			if(selectedVal == value.id ){
 				 $("#approvalStatusId").val(value.id);
 			}
@@ -33,23 +33,32 @@ function loadApprovalStatus(){
 	$.ajax({
 		type : 'GET',
 		url : "/onboarding/status/getallapprovalstatus",
-		dataType : "text",
+		dataType : "json",
 		success : function(resultData) {
-			approvalStat = JSON.parse(resultData);
-			$.each(approvalStat, function(key,value) {  
-				if(value.id == 1 || value.id == 4){
-					$('#approvalStatus')
-			         .append($("<option></option>")
-			                    .attr("value",value.id)
-			                    .attr("disabled", true)
-			                    .text(value.status));
-				}else{
-					$('#approvalStatus')
-			         .append($("<option></option>")
-			                    .attr("value",value.id)
-			                    .text(value.status));
-				}
-			});
+			
+			approvalStat = resultData; //setting the value for the global JS object "approvalStat"
+			console.log(resultData);
+			console.log(resultData.responseList);
+			if (approvalStat.status == "SUCCESS") {
+				alert("getallapprovalstatus success Call");
+				$.each(approvalStat.responseList, function(key,value) {  
+					if(value.id == 1 || value.id == 4){
+						$('#approvalStatus')
+				         .append($("<option></option>")
+				                    .attr("value",value.id)
+				                    .attr("disabled", true)
+				                    .text(value.status));
+					}else{
+						$('#approvalStatus')
+				         .append($("<option></option>")
+				                    .attr("value",value.id)
+				                    .text(value.status));
+					}
+				});
+			} else {
+				alert("getallapprovalstatus failure Call");
+				console.log("getallapprovalstatus failure Call");
+			}
 			$('select[name="approvalStatus"]').find('option[value='+ $('#approvalStatusId').val() +']').attr("selected",true);
 		}
 	});
@@ -59,14 +68,24 @@ function loadReleaseStatus(){
 	$.ajax({
 		type : 'GET',
 		url : "/onboarding/status/getallreleasestatus" ,
-		dataType : "text",
+		dataType : "json",
 		success : function(resultData) {
-			releaseStat = JSON.parse(resultData);
-			$.each(releaseStat, function(key,value) {  
-				if (value.status == "YET TO RELEASE") {
-					$('#releaseStatus').val(releaseStat.id);
-				}
-			});
+			//releaseStat = JSON.parse(resultData);
+
+			releaseStat = resultData; //setting the value for the global JS object "releaseStat"
+			console.log(resultData);
+			console.log(resultData.responseList);
+			if (releaseStat.status == "SUCCESS") {
+				alert("getallreleasestatus success Call");
+				$.each(releaseStat.responseList, function(key,value) {  
+					if (value.status == "YET TO RELEASE") {
+						$('#releaseStatus').val(value.id);
+					}
+				});
+			} else {
+				alert("getallreleasestatus failure Call");
+				console.log("getallreleasestatus failure Call");
+			}
 		}
 	});
 }
@@ -75,15 +94,30 @@ function loadBands(){
 	$.ajax({
 		type : 'GET',
 		url : "/onboarding/band/getbands" ,
-		dataType : "text",
+		dataType : "json",
 		success : function(resultData) {
-			bandDetails = JSON.parse(resultData);
-			$.each(bandDetails, function(key,value) {   
+		//	bandDetails = JSON.parse(resultData);
+/*			$.each(bandDetails, function(key,value) {   
 			     $('#band')
 			         .append($("<option></option>")
 			                    .attr("value",value.id)
 			                    .text(value.bandName)); 
-			});
+			});*/
+			
+			bandDetails = resultData; //setting the value for the global JS object "bandDetails"
+			console.log(resultData);
+			console.log(resultData.responseList);
+			if (bandDetails.status == "SUCCESS") {
+				alert("bands success Call");
+				$.each(bandDetails.responseList, function(key, value) {
+					$('#band').append(
+							$("<option></option>").attr("value", value.id)
+									.text(value.bandName));
+				});
+			} else {
+				alert("bands failure Call");
+				console.log("bands failure Call");
+			}
 		}
 	});
 }
@@ -94,12 +128,20 @@ function loadMovementDetails(){
 		url : "/onboarding/movement/getmovements" ,
 		dataType : "text",
 		success : function(resultData) {
-			movementList = JSON.parse(resultData);
-			$.each(movementList, function(key,value) {  
-				if($("#movementId").val() == value.id ){
-					 $('#movement').val(value.movement)
-				}
-			});
+			console.log(resultData);
+			console.log(resultData.responseList);
+			if (resultData.status == "SUCCESS") {
+				alert("getmovements success Call");
+				//movementList = JSON.parse(resultData);
+				$.each(resultData.responseList, function(key,value) {  
+					if($("#movementId").val() == value.id ){
+						 $('#movement').val(value.movement)
+					}
+				});
+			} else {
+				alert("getmovements failure Call");
+				console.log("getmovements failure Call");
+			}
 		}
 	});
 }

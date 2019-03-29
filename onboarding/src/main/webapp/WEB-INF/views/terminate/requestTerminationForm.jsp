@@ -24,6 +24,8 @@
 <body>
 	<jsp:include page="../layouts/header.jsp" />
 	<div class="container-fluid content-style">
+				<span class="has-error" id="errMessage"></span> <span
+			class="is-success" id="statusSucessMessage"></span>
 		<div id="formDiv">
 			<div class="tab">
 				<button class="tablinks"
@@ -422,7 +424,7 @@
 							<div class="row">
 								<br /> <br />
 								<div class="col-md-6" style="text-align: right">
-									<button class="btn btn-submit" id="releaseFormSubmit">
+									<button class="btn btn-submit" id="releaseFormSubmit" onclick="return validateForm()">
 										Submit</button>
 								</div>
 								<div class="col-md-2">

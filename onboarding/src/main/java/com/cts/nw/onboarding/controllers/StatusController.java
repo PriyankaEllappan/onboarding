@@ -3,6 +3,7 @@
  */
 package com.cts.nw.onboarding.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -12,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cts.nw.onboarding.bean.AjaxResponse;
 import com.cts.nw.onboarding.bo.ApprovalStatus;
 import com.cts.nw.onboarding.bo.ReleaseStatus;
+import com.cts.nw.onboarding.constants.AppConstants;
 import com.cts.nw.onboarding.service.StatusService;
 
 /**
@@ -33,21 +36,23 @@ public class StatusController extends AbstractController {
 	 * @return
 	 */
 	@RequestMapping(value = "/getallapprovalstatus", method = RequestMethod.GET)
-	public @ResponseBody List<ApprovalStatus> getAllApprovalStatus() {
+	public @ResponseBody AjaxResponse getAllApprovalStatus() {
 		List<ApprovalStatus> statList = null;
+		AjaxResponse ajaxResponse = new AjaxResponse();
 		try {
 			statList = statusService.getAllApprovalStatus();
 			if (statList.size() > 0) {
-				return statList;
+				ajaxResponse.setStatus(AppConstants.AJAXSUCCESS);
+				List<Object> objectList = new ArrayList<Object>(statList);
+				ajaxResponse.setResponseList(objectList);
 			} else {
-				return null;
+				ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
 			}
 		} catch (Exception e) {
-			log.error(e.getCause());
-			e.printStackTrace();
-			return null;
+			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
+			ajaxResponse.setStatusMessage("Exception Occurred.");
 		}
-
+		return ajaxResponse;
 	}
 
 	/**
@@ -55,19 +60,22 @@ public class StatusController extends AbstractController {
 	 * @return
 	 */
 	@RequestMapping(value = "/getallreleasestatus", method = RequestMethod.GET)
-	public @ResponseBody List<ReleaseStatus> getAllReleaseStatus() {
+	public @ResponseBody AjaxResponse getAllReleaseStatus() {
 		List<ReleaseStatus> statList = null;
+		AjaxResponse ajaxResponse = new AjaxResponse();
 		try {
 			statList = statusService.getAllReleaseStatus();
 			if (statList.size() > 0) {
-				return statList;
+				ajaxResponse.setStatus(AppConstants.AJAXSUCCESS);
+				List<Object> objectList = new ArrayList<Object>(statList);
+				ajaxResponse.setResponseList(objectList);
 			} else {
-				return null;
+				ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
 			}
 		} catch (Exception e) {
-			log.error(e.getCause());
-			e.printStackTrace();
-			return null;
+			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
+			ajaxResponse.setStatusMessage("Exception Occurred.");
 		}
+		return ajaxResponse;		
 	}
 }

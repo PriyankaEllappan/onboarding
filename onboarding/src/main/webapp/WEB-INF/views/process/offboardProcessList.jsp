@@ -17,6 +17,8 @@
 <body>
 	<jsp:include page="../layouts/header.jsp" />
 	<div class="content-style">
+			<span class="has-error" id="errMessage"></span> <span
+			class="is-success" id="statusSucessMessage"></span>
 		<c:choose>
 			<c:when test="${not empty employees}">
 				<div class="row">

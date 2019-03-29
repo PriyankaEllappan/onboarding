@@ -160,27 +160,6 @@
 				Project</button>
 		</div>
 	</div>
-	 <!-- Resource Non Availability Modal -->
-<!--	<div class="modal fade" id="NoResourceModal" tabindex="-1"
-		role="dialog" aria-labelledby="exampleModalCenterTitle"
-		aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-body">
-					<br>
-					<p>Requested resource is not available in Nationwide Account.
-						Click OK to add the resource</p>
-					<br>
-					<div align="right">
-						<button type="button" class="btn btn-primary"
-							id="confirmAddResource" data-dismiss="modal">OK</button>
-						<button type="button" class="btn btn-secondary"
-							data-dismiss="modal">Cancel</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> -->
 
 	<!-- Active Assignment Non Availability Modal -->
 	<div class="modal fade" id="ActiveAssignment" tabindex="-1"
@@ -195,13 +174,6 @@
 					<br>
 					<table class="resizeTabCont table .table-borderless"
 						id="availableProjects">
-						<thead>
-							<tr>
-								<th>Name</th>
-								<th>Project Name</th>
-								<th>Team Name</th>
-							</tr>
-						</thead>
 					</table>
 					<div id="projTagConf">
 						<div align="right">
@@ -214,10 +186,6 @@
 			</div>
 		</div>
 	</div>
-	<!-- <div id="loadingDiv"
-		style="position: fixed; right: 0px; top: 0px; width: 100%; height: 100%; background-color: rgb(102, 102, 102); z-index: 30001; opacity: 0.8;">
-		 <div style="padding-top:20em;padding-left:40em;"><img src="/onboarding/resources/icons/loading.gif"></div>
-	</div> -->
 	<jsp:include page="../layouts/footer.jsp" />
 </body>
 </html>

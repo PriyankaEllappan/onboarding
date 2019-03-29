@@ -15,6 +15,7 @@ $(document).ready(function() {
 	})
 
 	$("#availableAssignProj").click(function() {
+		$("#availableProjects").empty();
 		$('#availableAssignProj').css('cursor', 'not-allowed');
 		var empId = $("#availEmpID").text();
 		checkForanActiveAssignment(empId);
@@ -70,20 +71,6 @@ $(document).ready(function() {
 							$('#resourceRegisterFormSubmit').prop('disabled', false);
 							$('#resourceRegisterFormSubmit').css('cursor', 'pointer');
 						}
-						//if (!$.trim(resultData.responseObj)) {
-/*							$('#errMessage').text("Resource Not Registered. Incorrect details entered.");
-							$('#resourceRegisterFormSubmit').prop('disabled', false);
-							$('#resourceRegisterFormSubmit').css('cursor', 'pointer');*/
-						//} else {
-							/*$("#resourceNonAvailable").hide();
-							$('#statusSucessMessage').text("Resource Registered");
-							$('#addedResEmpID').text(resultData.responseObj.employeeId);
-							$('#addedResEmpName').text(resultData.responseObj.name);
-							$('#addedResEmpDOB').text(resultData.responseObj.dateOfBirth);
-							$('#addedResEmpEmail').text(resultData.responseObj.email);
-							$('#addedResEmpPPNo').text(resultData.responseObj.passportNumber);
-							$("#resourceAddedSubmit").show();*/
-						//}
 					},
 					error : function() {
 						$('#errMessage').text("Resource Not Registered. Incorrect details entered.");
@@ -135,6 +122,7 @@ function checkForanActiveAssignment(empID) {
 				var returnedData = JSON.parse(resultData);
 				console.log("Response has data");
 				console.log(returnedData);
+				$('#availableProjects').append("<thead><tr><th>Name</th><th>Project Name</th><th>Team Name</th></tr></thead>");  
 				$.each(returnedData, function(key, value) {
 					counter = counter + 1;
 					$('#availableProjects').append(
@@ -173,19 +161,34 @@ function loadEmployeeDetails(empId){
 	$.ajax({
 		type : 'GET',
 		url : "/onboarding/resource/getemployee?empId=" + empId,
-		dataType : "text",
+		dataType : "json",
 		success : function(resultData) {
-			if (!$.trim(resultData)) {
-				$('#errMessage').text("Resource not available in Cognizant Directory. Please check the Employee ID");
-			} else {
-				var returnedData = JSON.parse(resultData);
+			//if (!$.trim(resultData)) {
+				//$('#errMessage').text("Resource not available in Cognizant Directory. Please check the Employee ID");
+			//} else {
+/*				var returnedData = JSON.parse(resultData);
 				$('#newEmpID').val(empId);
 				$('#newEmpName').val(returnedData.name);
 				$('#newEmpEmail').val(returnedData.emailId);
 				$('#newEmpFName').val(returnedData.name.split(" ")[0]);
 				$('#newEmpLName').val(returnedData.name.split(" ")[1]);
+				$("#resourceNonAvailable").show();*/
+			//}
+			
+			alert(resultData.status);
+			console.log(resultData);
+			if (resultData.status == "SUCCESS") {
+				alert("ldap call success");
+				$('#newEmpID').val(empId);
+				$('#newEmpName').val(resultData.responseObj.name);
+				$('#newEmpEmail').val(resultData.responseObj.emailId);
+				$('#newEmpFName').val(resultData.responseObj.name.split(" ")[0]);
+				$('#newEmpLName').val(resultData.responseObj.name.split(" ")[1]);
 				$("#resourceNonAvailable").show();
-			}
+			 } else {
+				 alert("ldap call failure");
+					$('#errMessage').text("Resource not available in Cognizant Directory. Please check the Employee ID");
+			 }
 		}
 	});
 }
