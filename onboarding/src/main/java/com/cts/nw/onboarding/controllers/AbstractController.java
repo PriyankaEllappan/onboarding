@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -67,7 +68,16 @@ public class AbstractController {
 	 * 
 	 */
 	@ModelAttribute
-	public void setApplicationInfo(HttpServletRequest request) {
+	public void setApplicationInfo(HttpServletRequest request,HttpServletResponse response) {
+		 response.addHeader("Cache-Control","no-cache, no-store, must-revalidate, pre-check=0, post-check=0, max-age=0, s-maxage=0");
+         response.addHeader("Pragma","no-cache");
+         response.addHeader("X-XSS-Protection","1; mode = block");
+         response.addHeader("X-Frame-Options","DENY or SAME ORIGIN");
+         response.addHeader("Strict-Transport-Security","max-age=31536000; includeSubDomains");
+         response.addHeader("X-Content-Type-Options","no-sniff");
+         request.getRequestURI();
+         String contextPath = ((HttpServletRequest) request).getContextPath();
+         response.addHeader("Set-Cookie",  "JSESSIONID=" + ((HttpServletRequest)request).getSession().getId() + ";Path="+contextPath+";Secure;HttpOnly");
 		setAppUrl(request);
 		setLoggedinUserInfo();
 	}
@@ -124,5 +134,5 @@ public class AbstractController {
 		modelView.addObject("appInfo", APPINFO);
 		return modelView;
 	}
-
+	
 }

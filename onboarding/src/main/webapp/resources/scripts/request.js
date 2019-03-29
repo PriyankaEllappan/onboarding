@@ -86,6 +86,7 @@ $(document).ready(function() {
 
 function checkForanEmployee(empID) {
        console.log("checkForanEmployee");
+       $('#errMessage').text("");
        $.ajax({
               type : 'GET',
               url : "/onboarding/request/check/" + empID,
@@ -163,18 +164,6 @@ function loadEmployeeDetails(empId){
 		url : "/onboarding/resource/getemployee?empId=" + empId,
 		dataType : "json",
 		success : function(resultData) {
-			//if (!$.trim(resultData)) {
-				//$('#errMessage').text("Resource not available in Cognizant Directory. Please check the Employee ID");
-			//} else {
-/*				var returnedData = JSON.parse(resultData);
-				$('#newEmpID').val(empId);
-				$('#newEmpName').val(returnedData.name);
-				$('#newEmpEmail').val(returnedData.emailId);
-				$('#newEmpFName').val(returnedData.name.split(" ")[0]);
-				$('#newEmpLName').val(returnedData.name.split(" ")[1]);
-				$("#resourceNonAvailable").show();*/
-			//}
-			
 			alert(resultData.status);
 			console.log(resultData);
 			if (resultData.status == "SUCCESS") {
@@ -187,6 +176,10 @@ function loadEmployeeDetails(empId){
 				$("#resourceNonAvailable").show();
 			 } else {
 				 alert("ldap call failure");
+				 	$("#checkEmpId").val("");
+				 	$("#checkEmpId").prop('disabled', false);
+					$('#checkEmpIdSubmit').prop('disabled', false);
+					$('#checkEmpIdSubmit').css('cursor', 'pointer');
 					$('#errMessage').text("Resource not available in Cognizant Directory. Please check the Employee ID");
 			 }
 		}

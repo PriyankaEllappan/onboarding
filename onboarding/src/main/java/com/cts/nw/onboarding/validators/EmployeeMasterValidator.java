@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 import org.springframework.stereotype.Service;
 
 import com.cts.nw.onboarding.bo.EmployeeMaster;
+import com.cts.nw.onboarding.exception.ValidatorException;
 
 /**
  * @author 656579
@@ -16,24 +17,27 @@ import com.cts.nw.onboarding.bo.EmployeeMaster;
 @Service
 public class EmployeeMasterValidator {
 
-	public boolean validate(EmployeeMaster employee) {
+	public boolean validate(EmployeeMaster employee) throws ValidatorException {
 		if(employee.getEmployeeId() <= 0){
-			return false;
+			throw new ValidatorException("Employee ID Cant be Negative");
 		}
 		if(employee.getFirstName() == null || !Pattern.matches("[a-zA-Z0-9\\s]*", employee.getFirstName())){
-			return false;
+			throw new ValidatorException("First Name can only contain alphabets");
 		}
 		if(employee.getLastName() == null || !Pattern.matches("[a-zA-Z0-9\\s]*", employee.getLastName())){
-			return false;
+			throw new ValidatorException("Last Name can only contain alphabets");
 		}
 		if(employee.getName() == null || !Pattern.matches("[a-zA-Z0-9\\s]*", employee.getName())){
-			return false;
+			throw new ValidatorException("Employee Name can only contain alphabets");
 		}
 		if(employee.getPassportNumber() == null || employee.getPassportNumber().length() != 4){
-			return false;
+			throw new ValidatorException("Passport or SSN Number should be Numeric and 4 digits long");
 		}
 		if(employee.getDateOfBirth() == null){
-			return false;
+			throw new ValidatorException("Date of Birth Can't be empty");
+		}
+		if(employee.getEmail() == null || !Pattern.matches("^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$", employee.getEmail())){
+			throw new ValidatorException("Invalid Email ID Entered");
 		}
 		return true;
 	}

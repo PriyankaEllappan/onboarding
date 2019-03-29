@@ -24,6 +24,7 @@ import com.cts.nw.onboarding.bo.EmployeeMaster;
 import com.cts.nw.onboarding.bo.EmployeeProjHist;
 import com.cts.nw.onboarding.constants.AppConstants;
 import com.cts.nw.onboarding.exception.CustomException;
+import com.cts.nw.onboarding.exception.ValidatorException;
 import com.cts.nw.onboarding.service.RequesterService;
 
 /**
@@ -99,20 +100,23 @@ public class RequesterController extends AbstractController {
 		AjaxResponse ajaxResponse = new AjaxResponse();
 		try {
 			EmployeeMaster employee = requesterService.addNewResource(employeeJson);
-            if(employee != null){
-            	ajaxResponse.setStatus(AppConstants.AJAXSUCCESS);
-                ajaxResponse.setResponseObj(employee);
-                ajaxResponse.setStatusMessage("Resource Registered.");
-                
-          }else{
-        	  	ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
-                ajaxResponse.setStatusMessage("Resource Not Registered.");
-          }
+			if (employee != null) {
+				ajaxResponse.setStatus(AppConstants.AJAXSUCCESS);
+				ajaxResponse.setResponseObj(employee);
+				ajaxResponse.setStatusMessage("Resource Registered.");
+
+			} else {
+				ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
+				ajaxResponse.setStatusMessage("Resource Not Registered.");
+			}
+		} catch (ValidatorException e) {
+			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
+			ajaxResponse.setStatusMessage(e.getMessage());
 		} catch (CustomException e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
-            ajaxResponse.setStatusMessage("Exception Occurred.");
+			ajaxResponse.setStatusMessage("Exception Occurred.");
 		}
-		 return ajaxResponse;
+		return ajaxResponse;
 	}
 
 	/**

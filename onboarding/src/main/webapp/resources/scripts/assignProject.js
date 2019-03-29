@@ -22,17 +22,6 @@ $(document).ready(function() {
 	document.getElementById("projTab").click();
 	$("#teamList").prop('disabled', true);
 	
-	/* DatePicker Options */
-	var dateOfBirth = $('#startDate');
-	var container = $('.content-style');
-	var options = {
-		format : 'yyyy-mm-dd',
-		container : container,
-		todayHighlight : true,
-		autoclose : true,
-	};
-	dateOfBirth.datepicker(options);
-	
 	$("#projectName").change(function() {
 		var selectedProject = $("#projectName").val();
 		$("#teamList").prop('disabled', false);
@@ -60,52 +49,12 @@ $(document).ready(function() {
 	
 });
 
-function openSpecificTab(evt, tabName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-           tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-           tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-
-function openSpecificTabNext(evt, tabName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-           tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-           tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-    document.getElementById(tabName).style.display = "block";
-    if(tabName == "projInfo"){
-    	document.getElementById("projTab").className += " active";
-    }
-    if(tabName == "customerInfo"){
-    	document.getElementById("custTab").className += " active";
-    }
-}
-
 function loadProjectHierarchy(){
 	$.ajax({
 		type : 'GET',
 		url : "/onboarding/projects/getactiveprojects" ,
 		dataType : "json",
 		success : function(resultData) {
-			/*projectHierarchy = JSON.parse(resultData);
-			$.each(projectHierarchy, function(key,value) {   
-			     $('#projectName')
-			         .append($("<option></option>")
-			                    .attr("value",value.projectName)
-			                    .text(value.projectName)); 
-			});*/
 			projectHierarchy = resultData; //setting the value for the global JS object "bandDetails"
 			console.log(resultData);
 			console.log(resultData.responseList);
@@ -146,13 +95,6 @@ function loadCountryHierarchy(){
 		url : "/onboarding/country/getcountries" ,
 		dataType : "json",
 		success : function(resultData) {
-			/*countryHierarchy = JSON.parse(resultData);
-			$.each(countryHierarchy, function(key,value) {   
-			     $('#country')
-			         .append($("<option></option>")
-			                    .attr("value",value.countryName)
-			                    .text(value.countryName)); 
-			});*/
 			countryHierarchy = resultData; //setting the value for the global JS object "bandDetails"
 			console.log(resultData);
 			console.log(resultData.responseList);
@@ -241,8 +183,6 @@ function loadApprovalStatus(){
 		url : "/onboarding/status/getallapprovalstatus",
 		dataType : "json",
 		success : function(resultData) {
-			//approvalStat = JSON.parse(resultData);
-			//$.each(approvalStat, function(key,value) {   
 			console.log(resultData);
 			console.log(resultData.responseList);
 			if (resultData.status == "SUCCESS") {
@@ -269,9 +209,7 @@ function loadReleaseStatus(){
 			console.log(resultData);
 			console.log(resultData.responseList);
 			if (resultData.status == "SUCCESS") {
-				//releaseStat = JSON.parse(resultData);
 				alert("getallreleasestatus success Call");
-				//$.each(releaseStat, function(key,value) {
 				$.each(resultData.responseList, function(key,value) {  
 					if (value.status == "Yet to Release") {
 						$('#releaseStatusId').val(value.id);
@@ -296,7 +234,6 @@ function loadMovementDetails(){
 			console.log(resultData.responseList);
 			if (resultData.status == "SUCCESS") {
 				alert("getmovements success Call");
-				//movementList = JSON.parse(resultData);
 				$.each(resultData.responseList, function(key,value) {   
 				     $('#movementID')
 				         .append($("<option></option>")
@@ -319,14 +256,6 @@ function loadBsaDetails(){
 		url : "/onboarding/team/getactivebsa" ,
 		dataType : "json",
 		success : function(resultData) {
-			//bsaList = JSON.parse(resultData);
-			/*$.each(bsaList, function(key,value) {   
-			     $('#bsaInfo')
-			         .append($("<option></option>")
-			                    .attr("value",value.bsaId)
-			                    .text(value.bsaName)); 
-			});*/
-
 			bsaList = resultData; //setting the value for the global JS object "bandDetails"
 			console.log(resultData);
 			console.log(resultData.responseList);
@@ -438,10 +367,25 @@ function validateForm() {
 		$('#projTab').click(openSpecificTabNext(event, 'projInfo'));
 		return false;
 	} 
-	if ($('#experience').val() != null && isNaN($('#experience').val())) {
+	if ($('#experience').val() == null || $('#experience').val() == "" || isNaN($('#experience').val())) {
 		$('#errMessage').text("Experience Should be Numeric Value");
 		$('#projTab').click(openSpecificTabNext(event, 'projInfo'));
 		return false;
 	} 
+	if ($('#skill').val() == null || $('#skill').val() == "") {
+        $('#errMessage').text("Skill Set needs to be entered");
+        $('#projTab').click(openSpecificTabNext(event, 'projInfo'));
+        return false;
+	} 
+	if ($('#skillSummary').val() == null || $('#skillSummary').val() == "") {
+        $('#errMessage').text("Skill Summary needs to be entered");
+        $('#projTab').click(openSpecificTabNext(event, 'projInfo'));
+        return false;
+	} 
+	if ($('#bsaInfo').val() == null || $('#bsaInfo').val() == "") {
+        $('#errMessage').text("BSA needs to be selected");
+        $('#projTab').click(openSpecificTabNext(event, 'customerInfo'));
+        return false;
+	}
 	return true;
 }

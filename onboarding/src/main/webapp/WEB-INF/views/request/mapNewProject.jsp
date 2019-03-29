@@ -17,6 +17,7 @@
 <script src="/onboarding/resources/scripts/bootstrap-datepicker.min.js"></script>
 <script src="/onboarding/resources/scripts/bootstrap.min.js"></script>
 <script src="/onboarding/resources/scripts/assignProject.js"></script>
+<script src="/onboarding/resources/scripts/application.js"></script>
 </head>
 <body>
 	<jsp:include page="../layouts/header.jsp" />
@@ -178,7 +179,7 @@
 										class="is-required"> *</span></label>
 								</div>
 								<div class="col-md-3">
-									<input autocomplete="off" class="form-control" name="startDate"
+									<input autocomplete="off" class="form-control load-date-picker" name="startDate"
 										id="startDate" placeholder="Enter Start Date (YYYY-MM-DD)" />
 								</div>
 							</div>

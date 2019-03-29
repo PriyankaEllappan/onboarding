@@ -17,6 +17,7 @@ import com.cts.nw.onboarding.dao.EmployeeMasterDAO;
 import com.cts.nw.onboarding.dao.EmployeeProjHistDAO;
 import com.cts.nw.onboarding.dao.TeamsDAO;
 import com.cts.nw.onboarding.exception.CustomException;
+import com.cts.nw.onboarding.exception.ValidatorException;
 import com.cts.nw.onboarding.service.MailService;
 import com.cts.nw.onboarding.service.RequesterService;
 import com.cts.nw.onboarding.validators.EmployeeMasterValidator;
@@ -62,7 +63,7 @@ public class RequesterServiceImpl implements RequesterService {
 	}
 
 	@Override
-	public EmployeeMaster addNewResource(EmployeeMaster employee) throws CustomException {
+	public EmployeeMaster addNewResource(EmployeeMaster employee) throws CustomException, ValidatorException {
 		try {
 			Integer rowsAffected;
 			if (employeeMasterValidator.validate(employee)) {
@@ -75,10 +76,12 @@ public class RequesterServiceImpl implements RequesterService {
 			} else {
 				return null;
 			}
-		} catch(Exception e) {
+		} catch(ValidatorException e) {
 			log.error(e.getCause());
 			e.printStackTrace();
-			throw new CustomException("Error in Inserting",e);
+			throw new ValidatorException(e.getMessage());
+		} catch(Exception e){
+			throw new ValidatorException("Exception Occurred",e);
 		}
 	}
 
