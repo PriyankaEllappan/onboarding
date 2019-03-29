@@ -149,15 +149,24 @@ function loadReleaseReason(){
 	$.ajax({
 		type : 'GET',
 		url : "/onboarding/release/getreleasesummary",
-		dataType : "text",
+		dataType : "json",
 		success : function(resultData) {
-			releaseReason = JSON.parse(resultData);
-			$.each(releaseReason, function(key,value) {   
+			console.log(resultData);
+			console.log(resultData.responseList);
+			if(resultData.status == "SUCCESS")
+				{
+			//releaseReason = JSON.parse(resultData);
+			releaseReason = resultData;
+			$.each(resultData.responseList, function(key,value) {   
 				$('#releaseSummary')
 		         .append($("<option></option>")
 		                    .attr("value",value.id)
 		                    .text(value.summary)); 
 			});
+		} else {
+			alert("releaseSummary failure Call");
+			console.log("releaseSummary failure Call");
+		}
 			$('select[name="releaseSummary"]').find('option[value='+ $('#reasonForOffboarding').val() +']').attr("selected",true);
 		}
 	});

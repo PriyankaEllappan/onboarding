@@ -97,15 +97,29 @@ function loadProjectHierarchy(){
 	$.ajax({
 		type : 'GET',
 		url : "/onboarding/projects/getactiveprojects" ,
-		dataType : "text",
+		dataType : "json",
 		success : function(resultData) {
-			projectHierarchy = JSON.parse(resultData);
+			/*projectHierarchy = JSON.parse(resultData);
 			$.each(projectHierarchy, function(key,value) {   
 			     $('#projectName')
 			         .append($("<option></option>")
 			                    .attr("value",value.projectName)
 			                    .text(value.projectName)); 
-			});
+			});*/
+			projectHierarchy = resultData; //setting the value for the global JS object "bandDetails"
+			console.log(resultData);
+			console.log(resultData.responseList);
+			if (projectHierarchy.status == "SUCCESS") {
+				alert("projectHierarchy success Call");
+				$.each(projectHierarchy.responseList, function(key, value) {
+					$('#projectName').append(
+							$("<option></option>").attr("value", value.projectName)
+									.text(value.projectName));
+				});
+			} else {
+				alert("projectHierarchy failure Call");
+				console.log("projectHierarchy failure Call");
+			}
 		}
 	});
 }
@@ -130,15 +144,29 @@ function loadCountryHierarchy(){
 	$.ajax({
 		type : 'GET',
 		url : "/onboarding/country/getcountries" ,
-		dataType : "text",
+		dataType : "json",
 		success : function(resultData) {
-			countryHierarchy = JSON.parse(resultData);
+			/*countryHierarchy = JSON.parse(resultData);
 			$.each(countryHierarchy, function(key,value) {   
 			     $('#country')
 			         .append($("<option></option>")
 			                    .attr("value",value.countryName)
 			                    .text(value.countryName)); 
-			});
+			});*/
+			countryHierarchy = resultData; //setting the value for the global JS object "bandDetails"
+			console.log(resultData);
+			console.log(resultData.responseList);
+			if (countryHierarchy.status == "SUCCESS") {
+				alert("Country success Call");
+				$.each(countryHierarchy.responseList, function(key, value) {
+					$('#country').append(
+							$("<option></option>").attr("value", value.countryName)
+									.text(value.countryName));
+				});
+			} else {
+				alert("CountryHierarchy failure Call");
+				console.log("CountryHierarchy failure Call");
+			}
 		}
 	});
 }
@@ -220,7 +248,7 @@ function loadApprovalStatus(){
 			if (resultData.status == "SUCCESS") {
 				alert("getallapprovalstatus success Call");
 				$.each(resultData.responseList, function(key,value) {   
-					if (value.status == "NEW") {
+					if (value.status == "New") {
 						$('#approvalStatus').val(value.id);
 					}
 				});
@@ -245,7 +273,7 @@ function loadReleaseStatus(){
 				alert("getallreleasestatus success Call");
 				//$.each(releaseStat, function(key,value) {
 				$.each(resultData.responseList, function(key,value) {  
-					if (value.status == "YET TO RELEASE") {
+					if (value.status == "Yet to Release") {
 						$('#releaseStatusId').val(value.id);
 					}
 				});
@@ -289,15 +317,30 @@ function loadBsaDetails(){
 	$.ajax({
 		type : 'GET',
 		url : "/onboarding/team/getactivebsa" ,
-		dataType : "text",
+		dataType : "json",
 		success : function(resultData) {
-			bsaList = JSON.parse(resultData);
-			$.each(bsaList, function(key,value) {   
+			//bsaList = JSON.parse(resultData);
+			/*$.each(bsaList, function(key,value) {   
 			     $('#bsaInfo')
 			         .append($("<option></option>")
 			                    .attr("value",value.bsaId)
 			                    .text(value.bsaName)); 
-			});
+			});*/
+
+			bsaList = resultData; //setting the value for the global JS object "bandDetails"
+			console.log(resultData);
+			console.log(resultData.responseList);
+			if (bsaList.status == "SUCCESS") {
+				alert("bsaList success Call");
+				$.each(bsaList.responseList, function(key, value) {
+					$('#bsaInfo').append(
+							$("<option></option>").attr("value", value.bsaId)
+									.text(value.bsaName));
+				});
+			} else {
+				alert("bsaList failure Call");
+				console.log("bsaList failure Call");
+			}
 		}
 	});
 }

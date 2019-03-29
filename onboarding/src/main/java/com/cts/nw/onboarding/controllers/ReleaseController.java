@@ -1,5 +1,6 @@
 package com.cts.nw.onboarding.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -15,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cts.nw.onboarding.bean.AjaxResponse;
 import com.cts.nw.onboarding.bo.EmployeeProjHist;
 import com.cts.nw.onboarding.bo.ReleaseSummary;
+import com.cts.nw.onboarding.constants.AppConstants;
 import com.cts.nw.onboarding.exception.CustomException;
 import com.cts.nw.onboarding.service.ReleaseService;
 
@@ -25,11 +28,10 @@ import com.cts.nw.onboarding.service.ReleaseService;
 public class ReleaseController extends AbstractController {
 
 	Logger log = Logger.getLogger(ReleaseController.class);
-	
+
 	@Autowired
 	ReleaseService releaseService;
 
-	
 	/**
 	 * @param id
 	 * @param model
@@ -42,7 +44,7 @@ public class ReleaseController extends AbstractController {
 		modelView.addObject("employees", releaseService.getEmployeestobeReleased());
 		return modelView;
 	}
-	
+
 	/**
 	 * @param resource
 	 * @param empProjHistId
@@ -65,11 +67,12 @@ public class ReleaseController extends AbstractController {
 	 * @return
 	 */
 	@RequestMapping(value = "/processrelease", method = RequestMethod.POST)
-	public ModelAndView releaseResource(@ModelAttribute("employee") EmployeeProjHist employeeJson, BindingResult result) {
-		try{
+	public ModelAndView releaseResource(@ModelAttribute("employee") EmployeeProjHist employeeJson,
+			BindingResult result) {
+		try {
 			releaseService.releaseAnEmployee(employeeJson);
 			return releaseAllList();
-		}catch(CustomException e){
+		} catch (CustomException e) {
 			ModelAndView modelView;
 			modelView = new ModelAndView("errors/errorPage");
 			modelView.addObject("errMessage", e.getMessage());
@@ -90,13 +93,13 @@ public class ReleaseController extends AbstractController {
 		modelView = bindViewwithUserInfo("terminate/releaseListbyTeam");
 		return modelView;
 	}
-	
+
 	/**
 	 * Updates the Resource Details
 	 * 
 	 * @param id
 	 * @param model
-	 * @return 
+	 * @return
 	 * @return
 	 */
 	@PostMapping(value = "/processreleasebyteam")
@@ -104,8 +107,7 @@ public class ReleaseController extends AbstractController {
 		releaseService.releaseEmployeesByTeam(employeeJson);
 		return "redirect:releaselist";
 	}
-	
-	
+
 	/**
 	 * @param id
 	 * @param model
@@ -117,13 +119,13 @@ public class ReleaseController extends AbstractController {
 		modelView = bindViewwithUserInfo("terminate/releaseListbyProj");
 		return modelView;
 	}
-	
+
 	/**
 	 * Updates the Resource Details
 	 * 
 	 * @param id
 	 * @param model
-	 * @return 
+	 * @return
 	 * @return
 	 */
 	@PostMapping(value = "/processreleasebyproject")
@@ -131,55 +133,79 @@ public class ReleaseController extends AbstractController {
 		releaseService.releaseEmployeesByProject(employeeJson);
 		return "redirect:releaselist";
 	}
-	
-		
+
 	/**
 	 * @param
 	 * @return
 	 */
 	@RequestMapping(value = "/getresourcesbyteam/{teamId}", method = RequestMethod.GET)
-	public @ResponseBody List<EmployeeProjHist> getResourcesbyTeam(@PathVariable("teamId") String teamId) {
+	public @ResponseBody AjaxResponse getResourcesbyTeam(@PathVariable("teamId") String teamId) {
 		List<EmployeeProjHist> releaseList;
-		releaseList = releaseService.getEmployeestobeReleasedbyTeam(teamId);
-		if (releaseList.size() > 0) {
-			return releaseList;
-		} else {
-			return null;
+		AjaxResponse ajaxResponse = new AjaxResponse();
+		try {
+			releaseList = releaseService.getEmployeestobeReleasedbyTeam(teamId);
+			if (releaseList.size() > 0) {
+				ajaxResponse.setStatus(AppConstants.AJAXSUCCESS);
+				List<Object> objectList = new ArrayList<Object>(releaseList);
+				ajaxResponse.setResponseList(objectList);
+			} else {
+				ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
+			}
+		} catch (Exception e) {
+			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
+			ajaxResponse.setStatusMessage("Exception Occurred.");
 		}
+		return ajaxResponse;
 	}
-	
+
 	/**
 	 * @param
 	 * @return
 	 */
 	@RequestMapping(value = "/getresourcesbyproject/{projectId}", method = RequestMethod.GET)
-	public @ResponseBody List<EmployeeProjHist> getResourcesAvailablebyProject(@PathVariable("projectId") String projectId) {
+	public @ResponseBody AjaxResponse getResourcesAvailablebyProject(@PathVariable("projectId") String projectId) {
 		List<EmployeeProjHist> releaseList;
-		releaseList = releaseService.getEmployeestobeReleasedbyProject(projectId);
-		if (releaseList.size() > 0) {
-			return releaseList;
-		} else {
-			return null;
+		AjaxResponse ajaxResponse = new AjaxResponse();
+		try {
+			releaseList = releaseService.getEmployeestobeReleasedbyProject(projectId);
+			if (releaseList.size() > 0) {
+				ajaxResponse.setStatus(AppConstants.AJAXSUCCESS);
+				List<Object> objectList = new ArrayList<Object>(releaseList);
+				ajaxResponse.setResponseList(objectList);
+			} else {
+				ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
+			}
+		} catch (Exception e) {
+			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
+			ajaxResponse.setStatusMessage("Exception Occurred.");
 		}
+		return ajaxResponse;
 	}
-	
+
 	/**
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value = "/getreleasesummary", method = RequestMethod.GET)
-	public @ResponseBody List<ReleaseSummary> getAllReleaseSummary() {
-		List<ReleaseSummary> summaryList ;
-		summaryList = releaseService.getAllReleaseSummary();
-		if (summaryList.size() > 0) {
-			return summaryList;
-		} else {
-			return null;
+	public @ResponseBody AjaxResponse getAllReleaseSummary() {
+		List<ReleaseSummary> summaryList;
+		AjaxResponse ajaxResponse = new AjaxResponse();
+		try {
+			summaryList = releaseService.getAllReleaseSummary();
+			if (summaryList.size() > 0) {
+				ajaxResponse.setStatus(AppConstants.AJAXSUCCESS);
+				List<Object> objectList = new ArrayList<Object>(summaryList);
+				ajaxResponse.setResponseList(objectList);
+			} else {
+				ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
+			}
+		} catch (Exception e) {
+			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
+			ajaxResponse.setStatusMessage("Exception Occurred.");
 		}
-		
+		return ajaxResponse;
 	}
-	
-	
+
 	/**
 	 * Displays the Resource Details.
 	 * 
