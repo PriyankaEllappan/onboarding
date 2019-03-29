@@ -36,7 +36,7 @@ $(document).ready(function() {
 	$("#projectName").change(function() {
 		var selectedProject = $("#projectName").val();
 		$("#teamList").prop('disabled', false);
-		$.each(projectHierarchy, function(key,value) {  
+		$.each(projectHierarchy.responseList, function(key,value) {  
 			if (selectedProject == value.projectName) {
 				$('#projectID').val(value.projectId);
 				$('#requester').val(value.requesterName);
@@ -127,7 +127,7 @@ function loadProjectHierarchy(){
 function loadTeamList(selectedProjectMapId){
 	var dataList = $('#teamName');
 	dataList.empty();
-	$.each(teamHierarchy, function(key,value) { 
+	$.each(teamHierarchy.responseList, function(key,value) { 
 		if(selectedProjectMapId == value.projMapId){
 			var selectedTeamTemp = {};
 			selectedTeamTemp["id"] = value.id;
@@ -173,7 +173,7 @@ function loadCountryHierarchy(){
 
 function loadLocDetails() {
 	var selectedCountry = $('#country').val();
-	$.each(countryHierarchy, function(key, value) {
+	$.each(countryHierarchy.responseList, function(key, value) {
 		if (selectedCountry == value.countryName) {
 			$('#countryMappingID').val(value.countryMappingID);
 			$('#location').val(value.locationName);
@@ -227,7 +227,7 @@ function loadRateDetails(){
 	var selectedRoleID = $('#role').val();
 	var selectedCountryMapID = $('#countryMappingID').val();
 	
-	$.each(roleMappings, function(key,value) {   
+	$.each(roleMappings.responseList, function(key,value) {   
 		if (selectedRoleID == value.roleId && selectedCountryMapID == value.countryId) {
 			$('#roleMappingID').val(value.roleId);
 			$('#rate').val(value.rate);

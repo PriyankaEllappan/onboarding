@@ -125,7 +125,7 @@ function loadTeamDetails() {
 			if(teamHierarchy.status == "SUCCESS")
 				{
 				alert("teamHierarchy success Call");
-				$.each(teamHierarchy, function(key, value) {
+				$.each(teamHierarchy.responseList, function(key, value) {
 					$('#releaseTeamTable').append("<thead><tr><th>Employee Id</th><th>Employee Name</th><th>Project Id</th><th>Project Name</th><th>Team Name</th></tr></thead>");
 					$('#teamName').append(
 							$("<option></option>").attr("value", value.id).text(
@@ -245,10 +245,10 @@ function loadReleaseStatus() {
 		success : function(resultData) {
 			console.log(resultData);
 			console.log(resultData.responseList);
-			if (releaseStat.status == "SUCCESS") {
+			if (resultData.status == "SUCCESS") {
 				alert("getallreleasestatus success Call");
 				//releaseStat = JSON.parse(resultData);
-				$.each(releaseStat, function(key, value) {
+				$.each(resultData.responseList, function(key, value) {
 					$('#releaseStatus').append(
 							$("<option></option>").attr("value", value.id).text(
 									value.status));
