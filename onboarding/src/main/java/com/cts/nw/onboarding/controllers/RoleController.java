@@ -3,6 +3,7 @@
  */
 package com.cts.nw.onboarding.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -13,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cts.nw.onboarding.bean.AjaxResponse;
 import com.cts.nw.onboarding.bo.RoleMapping;
 import com.cts.nw.onboarding.bo.Roles;
+import com.cts.nw.onboarding.constants.AppConstants;
 import com.cts.nw.onboarding.service.RoleService;
 
 /**
@@ -24,36 +27,39 @@ import com.cts.nw.onboarding.service.RoleService;
 @Controller
 @RequestMapping("/role")
 public class RoleController extends AbstractController {
-	
-	Logger log = Logger.getLogger(RoleController.class) ;
+
+	Logger log = Logger.getLogger(RoleController.class);
 
 	@Autowired
 	RoleService roleService;
 
 	/**
-	 * @param 
+	 * @param
 	 * @return
 	 */
 	@RequestMapping(value = "/getrolemappings", method = RequestMethod.GET)
-	public @ResponseBody List<RoleMapping> getAllRoleMappings() {
-		List<RoleMapping> roleMappingList;
+	public @ResponseBody AjaxResponse getAllRoleMappings() {
+		List<RoleMapping> roleMappingList = null;
+		AjaxResponse ajaxResponse = new AjaxResponse();
 		try {
 			roleMappingList = roleService.getAllRoleMappings();
 			if (roleMappingList.size() > 0) {
-				return roleMappingList;
+				ajaxResponse.setStatus(AppConstants.AJAXSUCCESS);
+				List<Object> objectList = new ArrayList<Object>(roleMappingList);
+				ajaxResponse.setResponseList(objectList);
 			} else {
-				return null;
+				ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
 			}
-
 		} catch (Exception e) {
-			log.error(e.getCause());
-			e.printStackTrace();
-			return null;
+			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
+			ajaxResponse.setStatusMessage("Exception Occurred.");
 		}
+		return ajaxResponse;
+
 	}
 
 	/**
-	 * @param 
+	 * @param
 	 * @return
 	 */
 	@RequestMapping(value = "/getroles", method = RequestMethod.GET)

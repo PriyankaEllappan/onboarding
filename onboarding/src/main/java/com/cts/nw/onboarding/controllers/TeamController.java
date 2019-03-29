@@ -3,6 +3,7 @@
  */
 package com.cts.nw.onboarding.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -12,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cts.nw.onboarding.bean.AjaxResponse;
 import com.cts.nw.onboarding.bo.BSA;
 import com.cts.nw.onboarding.bo.Teams;
+import com.cts.nw.onboarding.constants.AppConstants;
 import com.cts.nw.onboarding.service.BSAService;
 import com.cts.nw.onboarding.service.TeamService;
 
@@ -24,35 +27,37 @@ import com.cts.nw.onboarding.service.TeamService;
 @Controller
 @RequestMapping("/team")
 public class TeamController extends AbstractController {
-	
-	Logger log = Logger.getLogger(TeamController.class) ;
+
+	Logger log = Logger.getLogger(TeamController.class);
 
 	@Autowired
 	TeamService teamService;
 
 	@Autowired
 	BSAService bSAService;
-	
+
 	/**
 	 * @param teamname
 	 * @return
 	 */
 	@RequestMapping(value = "/getactiveteams", method = RequestMethod.GET)
-	public @ResponseBody List<Teams> getAllTeamDetails() {
+	public @ResponseBody AjaxResponse getAllTeamDetails() {
 		List<Teams> teamList = null;
+		AjaxResponse ajaxResponse = new AjaxResponse();
 		try {
 			teamList = teamService.getAllTeams();
 			if (teamList.size() > 0) {
-				return teamList;
+				ajaxResponse.setStatus(AppConstants.AJAXSUCCESS);
+				List<Object> objectList = new ArrayList<Object>(teamList);
+				ajaxResponse.setResponseList(objectList);
 			} else {
-				return null;
+				ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
 			}
-
 		} catch (Exception e) {
-			log.error(e.getCause());
-			e.printStackTrace();
-			return null;
+			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
+			ajaxResponse.setStatusMessage("Exception Occurred.");
 		}
+		return ajaxResponse;
 	}
 
 	/**
@@ -60,21 +65,23 @@ public class TeamController extends AbstractController {
 	 * @return
 	 */
 	@RequestMapping(value = "/getactivebsa", method = RequestMethod.GET)
-	public @ResponseBody List<BSA> getAllBSADetails() {
+	public @ResponseBody AjaxResponse getAllBSADetails() {
 		List<BSA> basList = null;
+		AjaxResponse ajaxResponse = new AjaxResponse();
 		try {
 			basList = bSAService.getActiveBsaDetails();
 			if (basList.size() > 0) {
-				return basList;
+				ajaxResponse.setStatus(AppConstants.AJAXSUCCESS);
+				List<Object> objectList = new ArrayList<Object>(basList);
+				ajaxResponse.setResponseList(objectList);
 			} else {
-				return null;
+				ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
 			}
-
 		} catch (Exception e) {
-			log.error(e.getCause());
-			e.printStackTrace();
-			return null;
+			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
+			ajaxResponse.setStatusMessage("Exception Occurred.");
 		}
+		return ajaxResponse;
 	}
-	
+
 }

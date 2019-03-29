@@ -78,7 +78,7 @@ function loadReleaseStatus(){
 			if (releaseStat.status == "SUCCESS") {
 				alert("getallreleasestatus success Call");
 				$.each(releaseStat.responseList, function(key,value) {  
-					if (value.status == "YET TO RELEASE") {
+					if (value.status == "Yet to Release") {
 						$('#releaseStatus').val(value.id);
 					}
 				});

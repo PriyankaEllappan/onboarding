@@ -116,15 +116,26 @@ function loadTeamDetails() {
 	$.ajax({
 		type : 'GET',
 		url : "/onboarding/team/getactiveteams",
-		dataType : "text",
+		dataType : "json",
 		success : function(resultData) {
-			teamHierarchy = JSON.parse(resultData);
-			$.each(teamHierarchy, function(key, value) {
-				$('#releaseTeamTable').append("<thead><tr><th>Employee Id</th><th>Employee Name</th><th>Project Id</th><th>Project Name</th><th>Team Name</th></tr></thead>");
-				$('#teamName').append(
-						$("<option></option>").attr("value", value.id).text(
-								value.teamName));
-			});
+			//teamHierarchy = JSON.parse(resultData);
+			teamHierarchy = resultData;
+			console.log(resultData);
+			console.log(resultData.responseList);
+			if(teamHierarchy.status == "SUCCESS")
+				{
+				alert("teamHierarchy success Call");
+				$.each(teamHierarchy, function(key, value) {
+					$('#releaseTeamTable').append("<thead><tr><th>Employee Id</th><th>Employee Name</th><th>Project Id</th><th>Project Name</th><th>Team Name</th></tr></thead>");
+					$('#teamName').append(
+							$("<option></option>").attr("value", value.id).text(
+									value.teamName));
+				});
+				} else {
+					alert("teamHierarchy failure Call");
+					console.log("teamHierarchy failure Call");
+				}
+			
 		}
 	});
 }
@@ -132,15 +143,29 @@ function loadTeamDetails() {
 function loadProjectHierarchy() {
 	$.ajax({
 		type : 'GET',
-		url : "/onboarding/projects/getactiveprojects",
-		dataType : "text",
+		url : "/onboarding/projects/getactiveprojects" ,
+		dataType : "json",
 		success : function(resultData) {
-			projectHierarchy = JSON.parse(resultData);
+			/*projectHierarchy = JSON.parse(resultData);
 			$.each(projectHierarchy, function(key, value) {
 				$('#projectName').append(
 						$("<option></option>").attr("value", value.projectId)
 								.text(value.projectName));
-			});
+			});*/
+			projectHierarchy = resultData; //setting the value for the global JS object "bandDetails"
+			console.log(resultData);
+			console.log(resultData.responseList);
+			if (projectHierarchy.status == "SUCCESS") {
+				alert("projectHierarchy success Call");
+				$.each(projectHierarchy.responseList, function(key, value) {
+					$('#projectName').append(
+							$("<option></option>").attr("value", value.projectId)
+									.text(value.projectName));
+				});
+			} else {
+				alert("projectHierarchy failure Call");
+				console.log("projectHierarchy failure Call");
+			}
 		}
 	});
 }
@@ -152,18 +177,15 @@ function loadTeamTable() {
 			.ajax({
 				type : 'GET',
 				url : "/onboarding/release/getresourcesbyteam/" + teamId,
-				dataType : "text",
+				dataType : "json",
 				success : function(resultData) {
-					if (!$.trim(resultData)) {
-						console.log("Empty Response");
-						$("#statusMessage").text(
-								"No Resources Available in this Team");
-					} else {
-						var returnedData = JSON.parse(resultData);
+					console.log(resultData);
+					console.log(resultData.responseList);
+					if (resultData.status == "SUCCESS") {
 						$("#releaseTeamDropDown").show();
 						$('#releaseTeamTable').append("<thead><tr><th>Employee Id</th><th>Employee Name</th><th>Project Id</th><th>Project Name</th><th>Team Name</th></tr></thead>");
 						$('#releaseTeamTable').append("<tbody>");
-						$.each(returnedData, function(key, value) {
+						$.each(resultData.responseList, function(key, value) {
 							$('#releaseTeamTable').append(
 									"<tr><td>" + value.employeeId + "</td><td>"
 											+ value.name + "</td><td>"
@@ -172,7 +194,13 @@ function loadTeamTable() {
 											+ value.teamName + "</td></tr>");
 						});
 					}
-				}
+					else
+						{
+						console.log("Empty Response");
+						$("#statusMessage").text(
+								"No Resources Available in this Team");
+						}
+					}
 			});
 }
 
@@ -182,18 +210,15 @@ function loadProjTable() {
 	$.ajax({
 		type : 'GET',
 		url : "/onboarding/release/getresourcesbyproject/" + projId,
-		dataType : "text",
+		dataType : "json",
 		success : function(resultData) {
-			if (!$.trim(resultData)) {
-				console.log("Empty Response");
-				$("#statusMessage").text(
-						"No Resources Available in this Project");
-			} else {
-				var returnedData = JSON.parse(resultData);
+			console.log(resultData);
+			console.log(resultData.responseList);
+			if (resultData.status == "SUCCESS") {
 				$("#releaseProjDropDown").show();
                 $('#releaseProjTable').append("<thead><tr><th>Employee Id</th><th>Employee Name</th><th>Project Id</th><th>Project Name</th><th>Team Name</th></tr></thead>");
 				$('#releaseProjTable').append("<tbody>");
-				$.each(returnedData, function(key, value) {
+				$.each(resultData.responseList, function(key, value) {
 					$('#releaseProjTable').append(
 							"<tr><td>" + value.employeeId + "</td><td>"
 									+ value.name + "</td><td>"
@@ -202,6 +227,12 @@ function loadProjTable() {
 									+ value.teamName + "</td></tr>");
 				});
 			}
+			else
+				{		
+				console.log("Empty Response");
+				$("#statusMessage").text(
+						"No Resources Available in this Project");
+			} 
 		}
 	});
 }
@@ -237,14 +268,24 @@ function loadReleaseReason() {
 	$.ajax({
 		type : 'GET',
 		url : "/onboarding/release/getreleasesummary",
-		dataType : "text",
+		dataType : "json",
 		success : function(resultData) {
-			releaseReason = JSON.parse(resultData);
-			$.each(releaseReason, function(key, value) {
-				$('#releaseSummary').append(
-						$("<option></option>").attr("value", value.id).text(
-								value.summary));
+			console.log(resultData);
+			console.log(resultData.responseList);
+			if(resultData.status == "SUCCESS")
+				{
+			//releaseReason = JSON.parse(resultData);
+			releaseReason = resultData;
+			$.each(resultData.responseList, function(key,value) {   
+				$('#releaseSummary')
+		         .append($("<option></option>")
+		                    .attr("value",value.id)
+		                    .text(value.summary)); 
 			});
+		} else {
+			alert("releaseSummary failure Call");
+			console.log("releaseSummary failure Call");
+		}
 		}
 	});
 }

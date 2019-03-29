@@ -3,6 +3,7 @@
  */
 package com.cts.nw.onboarding.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cts.nw.onboarding.bean.AjaxResponse;
 import com.cts.nw.onboarding.bo.ProjectMapping;
+import com.cts.nw.onboarding.constants.AppConstants;
 import com.cts.nw.onboarding.service.ProjectService;
 
 /**
@@ -33,19 +36,22 @@ public class ProjectController extends AbstractController {
 	 * @return
 	 */
 	@RequestMapping(value = "/getactiveprojects", method = RequestMethod.GET)
-	public @ResponseBody List<ProjectMapping> getactiveprojects() {
+	public @ResponseBody AjaxResponse getactiveprojects() {
 		List<ProjectMapping> teamList = null;
+		AjaxResponse ajaxResponse = new AjaxResponse();
 		try {
 			teamList = projectService.getAllActiveProjects();
 			if (teamList.size() > 0) {
-				return teamList;
+				ajaxResponse.setStatus(AppConstants.AJAXSUCCESS);
+				List<Object> objectList = new ArrayList<Object>(teamList);
+				ajaxResponse.setResponseList(objectList);
 			} else {
-				return null;
+				ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
 			}
-		} catch (Exception e) {
-			log.error(e.getCause());
-			e.printStackTrace();
-			return null;
+		}catch (Exception e) {
+			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
+			ajaxResponse.setStatusMessage("Exception Occurred.");
 		}
+		return ajaxResponse;
 	}
 }
