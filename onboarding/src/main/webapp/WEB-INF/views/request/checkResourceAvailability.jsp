@@ -72,7 +72,7 @@
 							<label for="newEmpDOB">Date Of Birth</label>
 						</div>
 						<div class="col-md-3">
-							<input autocomplete="off" class="form-control load-date-picker" name="newEmpDOB"
+							<input autocomplete="off" class="form-control load-dob-picker" name="newEmpDOB"
 								id="newEmpDOB" placeholder="Enter Date of Birth (YYYY-MM-DD)" />
 						</div>
 						<div class="col-md-1"></div>

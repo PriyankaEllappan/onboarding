@@ -41,12 +41,14 @@ public class RequesterController extends AbstractController {
 	
 	@GetMapping(value = "/request/requestlist")
 	public ModelAndView getAllEmployees(ModelMap model) {
-		String requesterId = APPINFO.getLoggedInUserId();
-		ModelAndView modelView;
-		modelView = bindViewwithUserInfo("request/requestList");
+		ModelAndView modelView = null;
 		try {
+			String requesterId = APPINFO.getLoggedInUserId();
+			modelView = bindViewwithUserInfo("request/requestList");
 			modelView.addObject("employees", requesterService.getEmployeesPerRequester(requesterId));
 		} catch (CustomException e) {
+			modelView = bindViewwithUserInfo("errors/errorPage");
+			modelView.addObject("errMessage", e.getMessage());
 			log.error(e.getMessage());
 		}
 		return modelView;
@@ -59,41 +61,40 @@ public class RequesterController extends AbstractController {
 	@RequestMapping(value = "/request/check", method = RequestMethod.GET)
 	public ModelAndView index() {
 		ModelAndView modelView;
-		modelView = bindViewwithUserInfo("request/checkResourceAvailability");
+		try {
+			modelView = bindViewwithUserInfo("request/checkResourceAvailability");
+		} catch (Exception e) {
+			modelView = bindViewwithUserInfo("errors/errorPage");
+			modelView.addObject("errMessage", e.getMessage());
+			log.error(e.getMessage());
+		}
 		return modelView;
 	}
 
 	/**
 	 * @param model
 	 * @return
-	 *//*
-	@RequestMapping(value = "/request/check/{empid}", method = RequestMethod.GET)
-	public @ResponseBody EmployeeMaster employeeAvailability(@PathVariable String empid) {
-		return requesterService.getResourceByID(empid);
-	}*/
-
-	/**
-	 * @param model
-	 * @return
 	 */
     @RequestMapping(value = "/request/check/{empid}", method = RequestMethod.GET)
-    public @ResponseBody AjaxResponse employeeAvailability(@PathVariable String empid) {
-           AjaxResponse ajaxResponse = new AjaxResponse();
-           try{
-                  EmployeeMaster employee = requesterService.getResourceByID(empid);
-                  if(employee != null){
-                	  	ajaxResponse.setStatus(AppConstants.AJAXSUCCESS);
-                        ajaxResponse.setResponseObj(employee);
-                        
-                  }else{
-                	  	ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
-                  }
-           } catch(Exception e){
-        	   ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
-                  ajaxResponse.setStatusMessage("Exception Occurred.");
-           }
-           return ajaxResponse;
-    }
+	public @ResponseBody AjaxResponse employeeAvailability(@PathVariable String empid) {
+		AjaxResponse ajaxResponse = new AjaxResponse();
+		try {
+			EmployeeMaster employee = requesterService.getResourceByID(empid);
+			if (employee != null) {
+				ajaxResponse.setStatus(AppConstants.AJAXSUCCESS);
+				ajaxResponse.setResponseObj(employee);
+
+			} else {
+				ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
+				log.info(empid + "Employee Not available in nationwide. ");
+			}
+		} catch (Exception e) {
+			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
+			ajaxResponse.setStatusMessage("Exception Occurred.");
+			log.error(e.getMessage());
+		}
+		return ajaxResponse;
+	}
 	
 	/**
 	 * @param employeeJson
@@ -119,6 +120,7 @@ public class RequesterController extends AbstractController {
 		} catch (CustomException e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
 			ajaxResponse.setStatusMessage("Exception Occurred.");
+			log.error(e.getMessage());
 		}
 		return ajaxResponse;
 	}

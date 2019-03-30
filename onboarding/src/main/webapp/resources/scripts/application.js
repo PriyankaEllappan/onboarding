@@ -7,26 +7,26 @@ $(document).ready(function() {
 	
 	var container = $('.content-style');
 	
-	var options1 = {
+	var commonPickerOptions = {
 		format : 'yyyy-mm-dd',
 		container : container,
 		todayHighlight : true,
 		autoclose : true,
-		startDate: '-3d',
-		endDate: '+3d' //Start Date 2019 Jan --> 2050
+        startDate: '1950-01-01',
+        endDate: '2050-01-01' 
 	};
 	
-	var options2 = {
+	var dobPickerOptions = {
 			format : 'yyyy-mm-dd',
 			container : container,
 			todayHighlight : true,
 			autoclose : true,
-			startDate: '-3d',
-			endDate: '1d' //Start Date 1950 --> End date Today
+			startDate: '1950-01-01',
+            endDate: 'd' 
 		};
 	
-	dateofBirthPicker.datepicker(options1);
-	commonDatePicker.datepicker(options2);
+	dateofBirthPicker.datepicker(dobPickerOptions);
+	commonDatePicker.datepicker(commonPickerOptions);
 	
 });
 
