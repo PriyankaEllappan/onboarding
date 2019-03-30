@@ -80,6 +80,7 @@
 				</table>
 			</div>
 		</div>
+	<div  id="statusMessage" ></div>
 	</div>
 	<jsp:include page="../layouts/footer.jsp" />
 </body>
