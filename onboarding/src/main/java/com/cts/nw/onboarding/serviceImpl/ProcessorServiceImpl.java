@@ -61,7 +61,7 @@ public class ProcessorServiceImpl implements ProcessorService {
 		MailAttachment fileUploadObj;
 		Integer mailId = null;
 		try {
-			if (onboardingRequestValidator.validate(employeeProjHist)) {
+			if (onboardingRequestValidator.validateProcessorForm(employeeProjHist)) {
 				fileUploadObj = getFileUploadObject(employeeProjHist.getAttachment());
 				if (fileUploadObj != null) {
 					mailId = mailAttachmentDAO.uploadAttachmentViaCallable(fileUploadObj);
@@ -118,7 +118,7 @@ public class ProcessorServiceImpl implements ProcessorService {
 			throws CustomException, ValidatorException {
 		Integer rowsAffected = 0;
 		try {
-			if (onboardingRequestValidator.validate(employeeProjHist)) {
+			if (onboardingRequestValidator.validateReleaseForm(employeeProjHist)) {
 				rowsAffected = employeeProjHistDAO.processOffboardEmployee(employeeProjHist, employeeProjHist.getId());
 				if (rowsAffected > 0) {
 					return employeeProjHist;

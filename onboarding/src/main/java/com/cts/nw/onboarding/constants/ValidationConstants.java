@@ -46,6 +46,14 @@ public class ValidationConstants {
 	public static final String STARTDATEDATEVALIDATION = "StartDate can't be empty";
 		
 	public static final String WORKFORCEIDVALIDATION = "WorkForceId can only contains alphanumeric";
+
+	public static final String TEAMNAMEVALIDATION = "Team Name can't be null and can only contain alphabets";
+
+	public static final String RELEASESTATUSVALIDATION = "Release Status can't be null";
+
+	public static final String RELEASESUMMARYVALIDATION = "Release Summary can't be null";
+
+	public static final String RELEASEDATEVALIDATION = "Release Date can't be null";
 	
 	
 

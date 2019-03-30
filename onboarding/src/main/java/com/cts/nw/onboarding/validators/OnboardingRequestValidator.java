@@ -19,7 +19,49 @@ import com.cts.nw.onboarding.exception.ValidatorException;
 @Service
 public class OnboardingRequestValidator {
 
-	public boolean validate(EmployeeProjHist employeeProjHist) throws ValidatorException, CustomException {
+	/**
+	 * @param employeeProjHist
+	 * @return
+	 * @throws ValidatorException
+	 * @throws CustomException
+	 */
+	public boolean validateRequesterForm(EmployeeProjHist employeeProjHist) throws ValidatorException, CustomException {
+		try {
+			if (employeeProjHist.getTeamName() == null
+					|| !Pattern.matches("[a-zA-Z\\s]*", employeeProjHist.getTeamName())) {
+				throw new ValidatorException(ValidationConstants.TEAMNAMEVALIDATION);
+			}
+			if (employeeProjHist.getStartDate() == null) {
+				throw new ValidatorException(ValidationConstants.STARTDATEDATEVALIDATION);
+			}
+			if (employeeProjHist.getSkillSet() == null
+					|| !Pattern.matches("[a-zA-Z\\s]*", employeeProjHist.getSkillSet())) {
+				throw new ValidatorException(ValidationConstants.SKILLSETVALIDATION);
+			}
+			if (employeeProjHist.getSkillSummary() == null
+					|| !Pattern.matches("[a-zA-Z\\s]*", employeeProjHist.getSkillSummary())) {
+				throw new ValidatorException(ValidationConstants.SKILLSUMMARYVALIDATION);
+			}
+			if (employeeProjHist.getExperience() == null || employeeProjHist.getExperience() < 0) {
+				throw new ValidatorException(ValidationConstants.EXPERIENCEVALIDATION);
+			}
+			if (employeeProjHist.getPplManager() == null
+					&& !Pattern.matches("[a-zA-Z\\s]*", employeeProjHist.getPplManager())) {
+				throw new ValidatorException(ValidationConstants.PPLVALIDATION);
+			}
+		} catch (Exception e) {
+			throw new CustomException(e.getMessage());
+		}
+		return true;
+	}
+
+	/**
+	 * @param employeeProjHist
+	 * @return
+	 * @throws ValidatorException
+	 * @throws CustomException
+	 */
+	public boolean validateProcessorForm(EmployeeProjHist employeeProjHist) throws ValidatorException, CustomException {
 		try {
 			if (employeeProjHist.getPplManager() == null
 					&& !Pattern.matches("[a-zA-Z\\s]*", employeeProjHist.getPplManager())) {
@@ -50,21 +92,29 @@ public class OnboardingRequestValidator {
 					&& !Pattern.matches("[a-zA-Z0-9\\s]*", employeeProjHist.getComments())) {
 				throw new ValidatorException(ValidationConstants.COMMENTSVALIDATION);
 			}
-			if (employeeProjHist.getStartDate() == null) {
-				throw new ValidatorException(ValidationConstants.STARTDATEDATEVALIDATION);
+		} catch (Exception e) {
+			throw new CustomException(e.getMessage());
+		}
+		return true;
+	}
+
+	/**
+	 * @param employeeProjHist
+	 * @return
+	 * @throws ValidatorException
+	 * @throws CustomException
+	 */
+	public boolean validateReleaseForm(EmployeeProjHist employeeProjHist) throws ValidatorException, CustomException {
+		try {
+			if (employeeProjHist.getReleaseStatusId() == null) {
+				throw new ValidatorException(ValidationConstants.RELEASESTATUSVALIDATION);
 			}
-			if (employeeProjHist.getSkillSet() != null
-					&& !Pattern.matches("[a-zA-Z\\s]*", employeeProjHist.getSkillSet())) {
-				throw new ValidatorException(ValidationConstants.SKILLSETVALIDATION);
+			if (employeeProjHist.getReleaseSummary() == null) {
+				throw new ValidatorException(ValidationConstants.RELEASESUMMARYVALIDATION);
 			}
-			if (employeeProjHist.getSkillSummary() != null
-					&& !Pattern.matches("[a-zA-Z\\s]*", employeeProjHist.getSkillSummary())) {
-				throw new ValidatorException(ValidationConstants.SKILLSUMMARYVALIDATION);
+			if (employeeProjHist.getReleaseDate() == null) {
+				throw new ValidatorException(ValidationConstants.RELEASEDATEVALIDATION);
 			}
-			if (employeeProjHist.getExperience() != null && employeeProjHist.getExperience() < 0) {
-				throw new ValidatorException(ValidationConstants.EXPERIENCEVALIDATION);
-			}
-					
 		} catch (Exception e) {
 			throw new CustomException(e.getMessage());
 		}

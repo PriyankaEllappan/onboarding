@@ -92,7 +92,7 @@ public class ReleaseServiceImpl implements ReleaseService {
 	public Integer releaseAnEmployee(EmployeeProjHist employeeProjHist) throws CustomException, ValidatorException {
 		Integer rowsAffected = 0;
 		try {
-			if(onboardingRequestValidator.validate(employeeProjHist)){
+			if(onboardingRequestValidator.validateReleaseForm(employeeProjHist)){
 				
 				ProjectMapping projDetail = projectMappingDAO
 						.getProcesssorPerProjectId(String.valueOf(employeeProjHist.getProjectId()));
@@ -168,7 +168,7 @@ public class ReleaseServiceImpl implements ReleaseService {
 	 */
 	private void setReleaseValues(EmployeeProjHist employeeProjHist, EmployeeProjHist resource) throws ValidatorException, CustomException {
 		try{
-			if(onboardingRequestValidator.validate(employeeProjHist)){
+			if(onboardingRequestValidator.validateReleaseForm(employeeProjHist)){
 				resource.setReleaseStatusId(employeeProjHist.getReleaseStatusId());
 				resource.setReasonForOffboarding(employeeProjHist.getReasonForOffboarding());
 				resource.setReleaseDate(employeeProjHist.getReleaseDate());

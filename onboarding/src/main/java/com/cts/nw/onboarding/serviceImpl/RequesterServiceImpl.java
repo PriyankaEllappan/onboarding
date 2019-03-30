@@ -102,7 +102,7 @@ public class RequesterServiceImpl implements RequesterService {
 	public EmployeeProjHist addNewProject(EmployeeProjHist employeeProjHist) throws CustomException,ValidatorException {
 		try {
 			Integer rowsAffected = 0;
-			if (onboardingRequestValidator.validate(employeeProjHist)) {
+			if (onboardingRequestValidator.validateRequesterForm(employeeProjHist)) {
 				employeeProjHist.setOnboardRequester(AbstractController.APPINFO.getLoggedInUserId());
 				if (employeeProjHist.getTeamId() == 0) {
 					Teams team = new Teams();
