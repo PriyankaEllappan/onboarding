@@ -18,6 +18,7 @@ import com.cts.nw.onboarding.bean.AjaxResponse;
 import com.cts.nw.onboarding.bo.RoleMapping;
 import com.cts.nw.onboarding.bo.Roles;
 import com.cts.nw.onboarding.constants.AppConstants;
+import com.cts.nw.onboarding.constants.ErrorConstants;
 import com.cts.nw.onboarding.service.RoleService;
 
 /**
@@ -49,11 +50,11 @@ public class RoleController extends AbstractController {
 				ajaxResponse.setResponseList(objectList);
 			} else {
 				ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
-				log.error("Role Mapping List is empty");
+				log.error(ErrorConstants.ROLEMAPPINGLISTERROR);
 			}
 		} catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
-			ajaxResponse.setStatusMessage("Exception Occurred.");
+			ajaxResponse.setStatusMessage(ErrorConstants.COMMONERROR);
 			log.error(e.getMessage());
 		}
 		return ajaxResponse;
@@ -70,7 +71,7 @@ public class RoleController extends AbstractController {
 		try {
 			roleList = roleService.getRoleDetails();
 			if (roleList.size() == 0) {
-				log.error("Role Mapping List is empty");
+				log.error(ErrorConstants.ROLELISTERROR);
 			} 
 		} catch (Exception e) {
 			log.error(e.getMessage());

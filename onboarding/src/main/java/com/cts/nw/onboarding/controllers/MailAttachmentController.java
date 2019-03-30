@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cts.nw.onboarding.bo.MailAttachment;
+import com.cts.nw.onboarding.constants.ErrorConstants;
 import com.cts.nw.onboarding.exception.CustomException;
 import com.cts.nw.onboarding.service.AttachmentService;
 
@@ -41,7 +42,7 @@ public class MailAttachmentController extends AbstractController {
 	        header.set("Content-Disposition", "inline; filename=" + filedetail.getFileName());
 	        return new HttpEntity<byte[]>(filedetail.getData(), header);
 		} catch (CustomException e) {
-			log.error("Requested attachment is not available.");
+			log.error(ErrorConstants.ATTACHMENTERROR);
 			return null;
 		}
 		

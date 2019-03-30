@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.cts.nw.onboarding.bean.AjaxResponse;
 import com.cts.nw.onboarding.bo.CountryMapping;
 import com.cts.nw.onboarding.constants.AppConstants;
+import com.cts.nw.onboarding.constants.ErrorConstants;
 import com.cts.nw.onboarding.service.CountryService;
 
 /**
@@ -47,11 +48,11 @@ public class CountryController extends AbstractController {
 				ajaxResponse.setResponseList(objectList);
 			} else {
 				ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
-				log.error("Country List is empty");
+				log.error(ErrorConstants.COUNTRYLISTERROR);
 			}
 		} catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
-			ajaxResponse.setStatusMessage("Exception Occurred.");
+			ajaxResponse.setStatusMessage(ErrorConstants.COMMONERROR);
 			log.error(e.getMessage());
 		}
 		return ajaxResponse;

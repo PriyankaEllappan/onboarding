@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.cts.nw.onboarding.bean.AjaxResponse;
 import com.cts.nw.onboarding.bean.EmployeeDetails;
 import com.cts.nw.onboarding.constants.AppConstants;
+import com.cts.nw.onboarding.constants.ErrorConstants;
 import com.cts.nw.onboarding.service.LDAPService;
 
 /**
@@ -41,11 +42,11 @@ public class ResourceController extends AbstractController {
 
 			} else {
 				ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
-				log.error(empId + " Not found in Cognizant Directory");
+				log.error(empId + ErrorConstants.LDAPERROR);
 			}
 		} catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
-			ajaxResponse.setStatusMessage("Exception Occurred.");
+			ajaxResponse.setStatusMessage(ErrorConstants.COMMONERROR);
 			log.error(e.getMessage());
 		}
 		return ajaxResponse;

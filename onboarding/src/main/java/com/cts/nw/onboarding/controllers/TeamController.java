@@ -17,6 +17,7 @@ import com.cts.nw.onboarding.bean.AjaxResponse;
 import com.cts.nw.onboarding.bo.BSA;
 import com.cts.nw.onboarding.bo.Teams;
 import com.cts.nw.onboarding.constants.AppConstants;
+import com.cts.nw.onboarding.constants.ErrorConstants;
 import com.cts.nw.onboarding.service.BSAService;
 import com.cts.nw.onboarding.service.TeamService;
 
@@ -52,11 +53,11 @@ public class TeamController extends AbstractController {
 				ajaxResponse.setResponseList(objectList);
 			} else {
 				ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
-				log.error("Teams list is empty");
+				log.error(ErrorConstants.TEAMLISTERROR);
 			}
 		} catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
-			ajaxResponse.setStatusMessage("Exception Occurred.");
+			ajaxResponse.setStatusMessage(ErrorConstants.COMMONERROR);
 			log.error(e.getMessage());
 		}
 		return ajaxResponse;
@@ -78,11 +79,11 @@ public class TeamController extends AbstractController {
 				ajaxResponse.setResponseList(objectList);
 			} else {
 				ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
-				log.error("BSA list is empty");
+				log.error(ErrorConstants.BSALISTERROR);
 			}
 		} catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
-			ajaxResponse.setStatusMessage("Exception Occurred.");
+			ajaxResponse.setStatusMessage(ErrorConstants.COMMONERROR);
 			log.error(e.getMessage());
 		}
 		return ajaxResponse;

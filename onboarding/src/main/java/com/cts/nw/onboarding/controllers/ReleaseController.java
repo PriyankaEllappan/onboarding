@@ -20,6 +20,7 @@ import com.cts.nw.onboarding.bean.AjaxResponse;
 import com.cts.nw.onboarding.bo.EmployeeProjHist;
 import com.cts.nw.onboarding.bo.ReleaseSummary;
 import com.cts.nw.onboarding.constants.AppConstants;
+import com.cts.nw.onboarding.constants.ErrorConstants;
 import com.cts.nw.onboarding.exception.CustomException;
 import com.cts.nw.onboarding.service.ReleaseService;
 
@@ -170,7 +171,7 @@ public class ReleaseController extends AbstractController {
 			}
 		} catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
-			ajaxResponse.setStatusMessage("Exception Occurred.");
+			ajaxResponse.setStatusMessage(ErrorConstants.COMMONERROR);
 		}
 		return ajaxResponse;
 	}
@@ -194,7 +195,7 @@ public class ReleaseController extends AbstractController {
 			}
 		} catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
-			ajaxResponse.setStatusMessage("Exception Occurred.");
+			ajaxResponse.setStatusMessage(ErrorConstants.COMMONERROR);
 		}
 		return ajaxResponse;
 	}
@@ -218,7 +219,7 @@ public class ReleaseController extends AbstractController {
 			}
 		} catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
-			ajaxResponse.setStatusMessage("Exception Occurred.");
+			ajaxResponse.setStatusMessage(ErrorConstants.COMMONERROR);
 		}
 		return ajaxResponse;
 	}
