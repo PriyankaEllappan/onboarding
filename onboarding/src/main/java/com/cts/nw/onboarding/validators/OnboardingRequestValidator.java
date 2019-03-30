@@ -5,7 +5,6 @@ package com.cts.nw.onboarding.validators;
 
 import java.util.regex.Pattern;
 
-import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.cts.nw.onboarding.bo.EmployeeProjHist;
@@ -19,8 +18,6 @@ import com.cts.nw.onboarding.exception.ValidatorException;
  */
 @Service
 public class OnboardingRequestValidator {
-
-	Logger log = Logger.getLogger(OnboardingRequestValidator.class);
 
 	public boolean validate(EmployeeProjHist employeeProjHist) throws ValidatorException, CustomException {
 		try {

@@ -29,10 +29,12 @@ public interface EmployeeProjHistDAO {
 	List<EmployeeProjHist> getEmployeestobeReleased() throws CustomException;
 	List<EmployeeProjHist> getEmployeestobeReleasedbyTeam(String teamId) throws CustomException;
 	List<EmployeeProjHist> getEmployeestobeReleasedbyProj(String projectId) throws CustomException;
+	List<EmployeeProjHist> getEmployeestobeReleasedbyId(String empID) throws CustomException;
 	Integer offboardEmployee(EmployeeProjHist employeeProjHist,Integer Id) throws CustomException;
 	
 	/*Common Operations*/
 	EmployeeProjHist getSpecificEmployeeProjectHist(String empProjHistId) throws CustomException;
 	List<EmployeeProjHist> getAllEmployeeProjectInfo() throws CustomException;
+	
 	
 }

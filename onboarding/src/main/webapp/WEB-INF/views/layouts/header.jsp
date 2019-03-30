@@ -65,7 +65,7 @@
 		<div class="dropitdown">
 			<button class="dropbtn">Offboarding Resources</button>
 			<div class="dropitdown-content">
-				<a href="/onboarding/release/releaselist">Raise a Request to
+				<a href="/onboarding/release/releasebyid">Raise a Request to
 					Off-Board a Single Resource</a> <a
 					href="/onboarding/release/releaselistbyteam">Bulk Release -
 					Raise a Request to Off-Board Resources(By Team)</a> <a

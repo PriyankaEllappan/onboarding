@@ -19,6 +19,8 @@ public interface ReleaseService {
 
 	List<ReleaseSummary> getAllReleaseSummary() throws CustomException;
 
+	List<EmployeeProjHist> getEmployeestobeReleasedbyId(String empID) throws CustomException;
+	
 	List<EmployeeProjHist> getEmployeestobeReleasedbyTeam(String teamId) throws CustomException;
 
 	List<EmployeeProjHist> getEmployeestobeReleasedbyProject(String projectId) throws CustomException;

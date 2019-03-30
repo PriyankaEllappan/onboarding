@@ -191,6 +191,21 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 		}
 	}
 
+	@Override
+	public List<EmployeeProjHist> getEmployeestobeReleasedbyId(String empID) throws CustomException {
+		try {
+			String whereClause = " WHERE EPH.RELEASESTATUS IN (1,2) AND EPH.APPROVALSTATUS IN (3,4) AND EPH.EMPLOYEEID = ? ";
+			String query = QueryConstants.EMPPROJHIST_SELECT + whereClause;
+			RowMapper<EmployeeProjHist> rowMapper = new EmployeeProjHistRowMapper();
+			return this.jdbcTemplate.query(query, rowMapper,empID);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}catch(Exception e){
+			throw new CustomException(e.getMessage());
+		}
+	}
+
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -283,5 +298,5 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 			throw new CustomException(e.getMessage());
 		}
 	}
-
+	
 }

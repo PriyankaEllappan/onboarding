@@ -53,6 +53,15 @@ public class ReleaseServiceImpl implements ReleaseService {
 	}
 
 	@Override
+	public List<EmployeeProjHist> getEmployeestobeReleasedbyId(String empID) throws CustomException {
+		try {
+			return employeeProjHistDAO.getEmployeestobeReleasedbyId(empID);
+		} catch (Exception e) {
+			throw new CustomException(e.getMessage());
+		}
+	}
+	
+	@Override
 	public List<EmployeeProjHist> getEmployeestobeReleasedbyTeam(String teamId) throws CustomException {
 		try {
 			return employeeProjHistDAO.getEmployeestobeReleasedbyTeam(teamId);
