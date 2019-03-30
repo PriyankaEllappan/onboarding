@@ -55,6 +55,10 @@
 								<c:when test="${employee.getApprovalStatus() == 'Completed'}">
 									<td><span class="customized-span-success">PROCESSED</span></td>
 								</c:when>
+								<c:otherwise>
+									<td><span class="customized-span-requested"></span></td>
+								</c:otherwise>
+
 							</c:choose>
 							<c:choose>
 								<c:when
@@ -66,11 +70,13 @@
 									<td><span class="customized-span-warning">Release
 											Initiated</span></td>
 								</c:when>
-								<c:when test="${employee.getReleaseStatus() == 'Released' && employee.getApprovalStatus() == 'Completed'}">
+								<c:when
+									test="${employee.getReleaseStatus() == 'Released' && employee.getApprovalStatus() == 'Completed'}">
 									<td><span class="customized-span-danger">Released</span></td>
 								</c:when>
 								<c:otherwise>
-								<td><span class="customized-span-requested">Not Applicable</span></td>
+									<td><span class="customized-span-requested">Not
+											Applicable</span></td>
 								</c:otherwise>
 							</c:choose>
 							<td><img class="icon-image to-click"

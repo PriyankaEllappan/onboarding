@@ -17,7 +17,7 @@
 <body>
 	<jsp:include page="../layouts/header.jsp" />
 	<div class="content-style">
-			<span class="has-error" id="errMessage"></span> <span
+		<span class="has-error" id="errMessage"></span> <span
 			class="is-success" id="statusSucessMessage"></span>
 		<c:choose>
 			<c:when test="${not empty employees}">
@@ -53,6 +53,10 @@
 								<c:when test="${employee.getReleaseStatus() == 'Released'}">
 									<td><span class="customized-span-danger">Released</span></td>
 								</c:when>
+								<c:otherwise>
+									<td><span class="customized-span-requested"></span></td>
+								</c:otherwise>
+
 							</c:choose>
 							<td><img class="icon-image to-click"
 								src="/onboarding/resources/icons/show"
