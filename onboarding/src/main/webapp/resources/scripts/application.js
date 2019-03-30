@@ -2,19 +2,31 @@
 
 $(document).ready(function() {
 	/* DatePicker Options */
-	var datePicker = $('.load-date-picker');
+	var dateofBirthPicker = $('.load-dob-picker');
+	var commonDatePicker = $('.load-date-picker');
+	
 	var container = $('.content-style');
 	
-	var options = {
+	var options1 = {
 		format : 'yyyy-mm-dd',
 		container : container,
 		todayHighlight : true,
 		autoclose : true,
 		startDate: '-3d',
-		endDate: '+3d'
+		endDate: '+3d' //Start Date 2019 Jan --> 2050
 	};
 	
-	datePicker.datepicker(options);
+	var options2 = {
+			format : 'yyyy-mm-dd',
+			container : container,
+			todayHighlight : true,
+			autoclose : true,
+			startDate: '-3d',
+			endDate: '1d' //Start Date 1950 --> End date Today
+		};
+	
+	dateofBirthPicker.datepicker(options1);
+	commonDatePicker.datepicker(options2);
 	
 });
 
