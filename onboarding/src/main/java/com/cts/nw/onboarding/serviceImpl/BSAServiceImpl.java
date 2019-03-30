@@ -5,12 +5,12 @@ package com.cts.nw.onboarding.serviceImpl;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cts.nw.onboarding.bo.BSA;
 import com.cts.nw.onboarding.dao.BSADAO;
+import com.cts.nw.onboarding.exception.CustomException;
 import com.cts.nw.onboarding.service.BSAService;
 
 /**
@@ -20,19 +20,16 @@ import com.cts.nw.onboarding.service.BSAService;
 @Service
 public class BSAServiceImpl implements BSAService{
 	
-	Logger log = Logger.getLogger(BSAServiceImpl.class) ;
 
 	@Autowired
 	BSADAO bsaDao;
 	
 	@Override
-	public List<BSA> getActiveBsaDetails() {
+	public List<BSA> getActiveBsaDetails() throws CustomException {
 		try {
 			return bsaDao.getActiveBsaDetails();
-		} catch(Exception e) {
-			log.error(e.getCause());
-			e.printStackTrace();
-			return null;
+		} catch(Exception e){
+			throw new CustomException(e.getMessage());
 		}
 	}
 

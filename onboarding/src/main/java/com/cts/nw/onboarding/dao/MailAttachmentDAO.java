@@ -12,6 +12,6 @@ import com.cts.nw.onboarding.exception.CustomException;
  */
 public interface MailAttachmentDAO {
 
-	MailAttachment downloadAttachment(String id);
+	MailAttachment downloadAttachment(String id) throws CustomException;
 	Integer uploadAttachmentViaCallable(MailAttachment mailAttachment) throws CustomException;
 }

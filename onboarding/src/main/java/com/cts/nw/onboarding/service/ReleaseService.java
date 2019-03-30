@@ -12,20 +12,20 @@ import com.cts.nw.onboarding.exception.CustomException;
  */
 public interface ReleaseService {
 
-	List<EmployeeProjHist> getEmployeestobeReleased();
+	List<EmployeeProjHist> getEmployeestobeReleased() throws CustomException;
 
-	EmployeeProjHist getEmployeetoRelease(String empProjHistId);
+	EmployeeProjHist getEmployeetoRelease(String empProjHistId) throws CustomException;
 
-	List<ReleaseSummary> getAllReleaseSummary();
+	List<ReleaseSummary> getAllReleaseSummary() throws CustomException;
 
-	List<EmployeeProjHist> getEmployeestobeReleasedbyTeam(String teamId);
+	List<EmployeeProjHist> getEmployeestobeReleasedbyTeam(String teamId) throws CustomException;
 
-	List<EmployeeProjHist> getEmployeestobeReleasedbyProject(String projectId);
+	List<EmployeeProjHist> getEmployeestobeReleasedbyProject(String projectId) throws CustomException;
 	
 	Integer releaseAnEmployee(EmployeeProjHist employeeProjHist) throws CustomException;
 
-	Integer releaseEmployeesByTeam(EmployeeProjHist employeeJson);
+	Integer releaseEmployeesByTeam(EmployeeProjHist employeeJson) throws CustomException;
 
-	Integer releaseEmployeesByProject(EmployeeProjHist employeeJson);
+	Integer releaseEmployeesByProject(EmployeeProjHist employeeJson) throws CustomException;
 
 }

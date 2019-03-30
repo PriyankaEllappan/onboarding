@@ -9,6 +9,9 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.cts.nw.onboarding.bo.EmployeeProjHist;
+import com.cts.nw.onboarding.constants.ValidationConstants;
+import com.cts.nw.onboarding.exception.CustomException;
+import com.cts.nw.onboarding.exception.ValidatorException;
 
 /**
  * @author 656579
@@ -17,13 +20,12 @@ import com.cts.nw.onboarding.bo.EmployeeProjHist;
 @Service
 public class OnboardingRequestValidator {
 
-	Logger log = Logger.getLogger(OnboardingRequestValidator.class) ;
+	Logger log = Logger.getLogger(OnboardingRequestValidator.class);
 
-	public boolean validate(EmployeeProjHist employeeProjHist) {
+	public boolean validate(EmployeeProjHist employeeProjHist) throws ValidatorException, CustomException {
 		try {
 			if (employeeProjHist.getExperience() != null && employeeProjHist.getExperience() < 0) {
-				System.out.println("Exp Validation Failed");
-				return false;
+				throw new ValidatorException(ValidationConstants.EXPERIENCEVALIDATION);
 			}
 			if (employeeProjHist.getSkillSet() != null
 					&& !Pattern.matches("[a-zA-Z0-9\\s]*", employeeProjHist.getSkillSet())) {
@@ -59,13 +61,13 @@ public class OnboardingRequestValidator {
 				System.out.println("Apm Validation Failed");
 				return false;
 			}
-			if (employeeProjHist.getComments() != null && !Pattern.matches("[a-zA-Z0-9\\s]*", employeeProjHist.getComments())) {
+			if (employeeProjHist.getComments() != null
+					&& !Pattern.matches("[a-zA-Z0-9\\s]*", employeeProjHist.getComments())) {
 				System.out.println("Comments Validation Failed");
 				return false;
 			}
 		} catch (Exception e) {
-			log.error(e.getCause());
-			e.printStackTrace();
+			throw new CustomException(e.getMessage());
 		}
 		return true;
 	}

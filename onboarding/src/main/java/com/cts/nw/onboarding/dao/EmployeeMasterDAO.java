@@ -14,8 +14,8 @@ import com.cts.nw.onboarding.exception.CustomException;
  */
 public interface EmployeeMasterDAO {
 
-	List<EmployeeMaster> getAllEmployeeMasterDetails();
-	EmployeeMaster getEmployeeMasterDetailsByID(String id);
+	List<EmployeeMaster> getAllEmployeeMasterDetails() throws CustomException;
+	EmployeeMaster getEmployeeMasterDetailsByID(String id) throws CustomException;
 	Integer addNewResource(EmployeeMaster employeeMaster) throws CustomException;
 	
 }

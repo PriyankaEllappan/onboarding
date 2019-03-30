@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cts.nw.onboarding.bo.Movement;
 import com.cts.nw.onboarding.constants.QueryConstants;
 import com.cts.nw.onboarding.dao.MovementDAO;
+import com.cts.nw.onboarding.exception.CustomException;
 import com.cts.nw.onboarding.mappers.MovementRowMapper;
 
 /**
@@ -31,12 +32,14 @@ public class MovementDAOImpl implements MovementDAO{
     private JdbcTemplate jdbcTemplate;
 	
 	@Override
-	public List<Movement> getMovementDetails() {
+	public List<Movement> getMovementDetails() throws CustomException {
 		try {
 			RowMapper<Movement> rowMapper = new MovementRowMapper();
 			return this.jdbcTemplate.query(QueryConstants.MOVEMENTS_SELECT,rowMapper);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
+		} catch(Exception e){
+			throw new CustomException(e.getMessage());
 		}
 	}
 

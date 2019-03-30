@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cts.nw.onboarding.bo.ApprovalStatus;
 import com.cts.nw.onboarding.constants.QueryConstants;
 import com.cts.nw.onboarding.dao.ApprovalStatusDAO;
+import com.cts.nw.onboarding.exception.CustomException;
 import com.cts.nw.onboarding.mappers.ApprovalStatusRowMapper;
 
 /**
@@ -28,7 +29,7 @@ public class ApprovalStatusDAOImpl implements ApprovalStatusDAO {
 	private JdbcTemplate jdbcTemplate;
 	
 	@Override
-	public ApprovalStatus getApprovalStatusbyID(String id) {
+	public ApprovalStatus getApprovalStatusbyID(String id) throws CustomException {
 		String whereClause=" WHERE APS.ID = ?";
 		String query = QueryConstants.APPROVALSTATUS_SELECT + whereClause;
 		try {
@@ -36,11 +37,13 @@ public class ApprovalStatusDAOImpl implements ApprovalStatusDAO {
 			return this.jdbcTemplate.queryForObject(query, rowMapper,id);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
-		} 
+		} catch(Exception e){
+			throw new CustomException(e.getMessage());
+		}
 	}
 
 	@Override
-	public ApprovalStatus getApprovalStatus(String status) {
+	public ApprovalStatus getApprovalStatus(String status) throws CustomException {
 		String whereClause=" WHERE APS.STATUS = ?";
 		String query = QueryConstants.APPROVALSTATUS_SELECT + whereClause;
 		try {
@@ -48,16 +51,20 @@ public class ApprovalStatusDAOImpl implements ApprovalStatusDAO {
 			return this.jdbcTemplate.queryForObject(query, rowMapper,status);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
+		}catch(Exception e){
+			throw new CustomException(e.getMessage());
 		}
 	}
 
 	@Override
-	public List<ApprovalStatus> getAllApprovalStatus() {
+	public List<ApprovalStatus> getAllApprovalStatus() throws CustomException {
 		try {
 			RowMapper<ApprovalStatus> rowMapper = new ApprovalStatusRowMapper();
 			return this.jdbcTemplate.query(QueryConstants.APPROVALSTATUS_SELECT, rowMapper);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
+		}catch(Exception e){
+			throw new CustomException(e.getMessage());
 		}
 	}
 }

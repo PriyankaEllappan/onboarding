@@ -6,7 +6,6 @@ package com.cts.nw.onboarding.daoImpl;
 import java.sql.CallableStatement;
 import java.sql.Types;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -28,13 +27,11 @@ import com.cts.nw.onboarding.mappers.FileUploadRowMapper;
 @Repository
 public class MailAttachmentDAOImpl implements MailAttachmentDAO {
 	
-	Logger log = Logger.getLogger(MailAttachmentDAOImpl.class) ;
-	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
-	public MailAttachment downloadAttachment(String id) {
+	public MailAttachment downloadAttachment(String id) throws CustomException {
 		try {
 			String whereClause = "WHERE ID = ?";
 			String query = QueryConstants.MAILATTACHMENT_SELECT + whereClause;
@@ -42,6 +39,8 @@ public class MailAttachmentDAOImpl implements MailAttachmentDAO {
 			return this.jdbcTemplate.queryForObject(query, rowMapper, id);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
+		} catch(Exception e){
+			throw new CustomException(e.getMessage());
 		}
 
 	}
@@ -57,9 +56,8 @@ public class MailAttachmentDAOImpl implements MailAttachmentDAO {
 			cstmt.registerOutParameter(1, Types.INTEGER);
 			cstmt.execute();
 			returnValue = cstmt.getInt(1);
-		}  catch (Exception e) {
-			log.error(e.getCause());
-			throw new CustomException("Error in Inserting",e);
+		} catch(Exception e){
+			throw new CustomException(e.getMessage());
 		}
 		return returnValue;
 	}

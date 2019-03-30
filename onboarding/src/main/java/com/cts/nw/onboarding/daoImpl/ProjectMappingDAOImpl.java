@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cts.nw.onboarding.bo.ProjectMapping;
 import com.cts.nw.onboarding.constants.QueryConstants;
 import com.cts.nw.onboarding.dao.ProjectMappingDAO;
+import com.cts.nw.onboarding.exception.CustomException;
 import com.cts.nw.onboarding.mappers.ProjectMappingRowMapper;
 
 /**
@@ -29,7 +30,7 @@ public class ProjectMappingDAOImpl implements ProjectMappingDAO {
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
-	public List<ProjectMapping> getAllActiveProjectDetails() {
+	public List<ProjectMapping> getAllActiveProjectDetails() throws CustomException {
 		String whereClause = " WHERE PM.STATUS = 'ACTIVE' ";
 		String query = QueryConstants.PROJECTHIERARCHY_SELECT + whereClause;
 		try {
@@ -37,12 +38,14 @@ public class ProjectMappingDAOImpl implements ProjectMappingDAO {
 			return this.jdbcTemplate.query(query, rowMapper);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
+		} catch(Exception e){
+			throw new CustomException(e.getMessage());
 		}
 
 	}
 
 	@Override
-	public ProjectMapping getProcesssorPerProjectId(String projectId) {
+	public ProjectMapping getProcesssorPerProjectId(String projectId) throws CustomException {
 		
 		String whereClause = " WHERE PM.PROJECTID = ? AND PM.STATUS = 'ACTIVE' ";
 		String query = QueryConstants.PROJECTHIERARCHY_SELECT + whereClause;
@@ -51,6 +54,8 @@ public class ProjectMappingDAOImpl implements ProjectMappingDAO {
 			return this.jdbcTemplate.queryForObject(query, rowMapper,projectId);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
+		} catch(Exception e){
+			throw new CustomException(e.getMessage());
 		}
 	}
 

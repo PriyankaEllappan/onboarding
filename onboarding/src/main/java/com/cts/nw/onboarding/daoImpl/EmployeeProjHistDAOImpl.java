@@ -5,7 +5,6 @@ package com.cts.nw.onboarding.daoImpl;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -27,9 +26,6 @@ import com.cts.nw.onboarding.mappers.EmployeeProjHistRowMapper;
 @Repository
 public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	
-	Logger log = Logger.getLogger(EmployeeProjHistDAOImpl.class) ;
-
-
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
@@ -43,7 +39,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	 * java.lang.String)
 	 */
 	@Override
-	public List<EmployeeProjHist> getEmployeesPerRequester(String requesterId) {
+	public List<EmployeeProjHist> getEmployeesPerRequester(String requesterId) throws CustomException {
 		try {
 			String whereClause = " WHERE RQ.REQUESTERID = ? OR EPH.ONBOARDREQUESTER = ?  ";
 			String query = QueryConstants.EMPPROJHIST_SELECT + whereClause;
@@ -51,6 +47,8 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 			return this.jdbcTemplate.query(query, rowMapper, requesterId, requesterId);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
+		} catch(Exception e){
+			throw new CustomException(e.getMessage());
 		}
 	}
 
@@ -62,7 +60,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	 * .lang.String)
 	 */
 	@Override
-	public List<EmployeeProjHist> checkActiveAssignments(String empid) {
+	public List<EmployeeProjHist> checkActiveAssignments(String empid) throws CustomException {
 		try {
 			String whereClause = " WHERE EPH.RELEASESTATUS IN (1,2) AND EMPLOYEEID = ? ORDER BY ID";
 			String query = QueryConstants.EMPPROJHIST_SELECT + whereClause;
@@ -70,6 +68,8 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 			return this.jdbcTemplate.query(query, rowMapper, empid);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
+		} catch(Exception e){
+			throw new CustomException(e.getMessage());
 		}
 	}
 
@@ -91,9 +91,8 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 					employeeProjectHist.getSkillSet(), employeeProjectHist.getSkillSummary(),
 					employeeProjectHist.getApprovalStatusId(), employeeProjectHist.getReleaseStatusId(),
 					employeeProjectHist.getOnboardRequester());
-		} catch (Exception e) {
-			log.error(e.getCause());
-			throw new CustomException("Error in Inserting",e);
+		} catch(Exception e){
+			throw new CustomException(e.getMessage());
 		}
 	}
 
@@ -106,7 +105,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	 * getRecordsPerProcessortoOnboard(java.lang.String)
 	 */
 	@Override
-	public List<EmployeeProjHist> getRecordsPerProcessortoOnboard(String processorid) {
+	public List<EmployeeProjHist> getRecordsPerProcessortoOnboard(String processorid) throws CustomException {
 		try {
 			String whereClause = " WHERE PR.PROCESSORID = ? OR EPH.OFFBOARDPROCESSOR = ? ORDER BY EPH.APPROVALSTATUS";
 			String query = QueryConstants.EMPPROJHIST_SELECT + whereClause;
@@ -114,6 +113,8 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 			return this.jdbcTemplate.query(query, rowMapper, processorid, processorid);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
+		} catch(Exception e){
+			throw new CustomException(e.getMessage());
 		}
 	}
 
@@ -133,9 +134,8 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 					employeeProjectHist.getApm(), employeeProjectHist.getPplManager(), employeeProjectHist.getBandId(),
 					employeeProjectHist.getAttachmentId(), employeeProjectHist.getComments(),
 					employeeProjectHist.getApprovalStatusId(), employeeProjectHist.getId());
-		} catch (Exception e) {
-			log.error(e.getCause());
-			throw new CustomException("Error in Inserting",e);
+		} catch(Exception e){
+			throw new CustomException(e.getMessage());
 		}
 	}
 
@@ -146,7 +146,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	 * getRecordsPerProcessortoOffboard(java.lang.String)
 	 */
 	@Override
-	public List<EmployeeProjHist> getRecordsPerProcessortoOffboard(String processorid) {
+	public List<EmployeeProjHist> getRecordsPerProcessortoOffboard(String processorid) throws CustomException {
 		try {
 			String whereClause = " WHERE ( PR.PROCESSORID = ? OR EPH.OFFBOARDPROCESSOR = ? ) AND EPH.RELEASESTATUS IN (2,3)";
 			String query = QueryConstants.EMPPROJHIST_SELECT + whereClause;
@@ -154,6 +154,8 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 			return this.jdbcTemplate.query(query, rowMapper, processorid, processorid);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
+		} catch(Exception e){
+			throw new CustomException(e.getMessage());
 		}
 	}
 
@@ -162,9 +164,8 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 		try {
 			return jdbcTemplate.update(QueryConstants.PROCESS_OFFBOARD_UPDATE, employeeProjectHist.getReleaseStatusId(),
 					Id);
-		} catch (Exception e) {
-			log.error(e.getCause());
-			throw new CustomException("Error in Inserting",e);
+		} catch(Exception e){
+			throw new CustomException(e.getMessage());
 		}
 	}
 
@@ -177,7 +178,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	 * com.cts.nw.onboarding.dao.EmployeeProjHistDAO#getEmployeestobeReleased()
 	 */
 	@Override
-	public List<EmployeeProjHist> getEmployeestobeReleased() {
+	public List<EmployeeProjHist> getEmployeestobeReleased() throws CustomException {
 		try {
 			String whereClause = " WHERE EPH.RELEASESTATUS IN (1,2) AND EPH.APPROVALSTATUS IN (3,4) ";
 			String query = QueryConstants.EMPPROJHIST_SELECT + whereClause;
@@ -185,6 +186,8 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 			return this.jdbcTemplate.query(query, rowMapper);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
+		}catch(Exception e){
+			throw new CustomException(e.getMessage());
 		}
 	}
 
@@ -195,7 +198,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	 * getEmployeestobeReleasedbyTeam(java.lang.String)
 	 */
 	@Override
-	public List<EmployeeProjHist> getEmployeestobeReleasedbyTeam(String teamId) {
+	public List<EmployeeProjHist> getEmployeestobeReleasedbyTeam(String teamId) throws CustomException {
 		try {
 			String whereClause = " WHERE EPH.RELEASESTATUS IN (1,2) AND EPH.APPROVALSTATUS IN (3,4) AND EPH.TEAM = ?";
 			String query = QueryConstants.EMPPROJHIST_SELECT + whereClause;
@@ -203,6 +206,8 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 			return this.jdbcTemplate.query(query, rowMapper, teamId);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
+		}catch(Exception e){
+			throw new CustomException(e.getMessage());
 		}
 	}
 
@@ -213,7 +218,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	 * getEmployeestobeReleasedbyProj(java.lang.String)
 	 */
 	@Override
-	public List<EmployeeProjHist> getEmployeestobeReleasedbyProj(String projectId) {
+	public List<EmployeeProjHist> getEmployeestobeReleasedbyProj(String projectId) throws CustomException {
 		try {
 			String whereClause = " WHERE EPH.RELEASESTATUS IN (1,2) AND EPH.APPROVALSTATUS IN (3,4) AND PM.PROJECTID = ?";
 			String query = QueryConstants.EMPPROJHIST_SELECT + whereClause;
@@ -221,6 +226,8 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 			return this.jdbcTemplate.query(query, rowMapper, projectId);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
+		} catch(Exception e){
+			throw new CustomException(e.getMessage());
 		}
 	}
 
@@ -230,9 +237,8 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 			return jdbcTemplate.update(QueryConstants.REQUEST_OFFBOARD_UPDATE, employeeProjectHist.getReleaseStatusId(),
 					employeeProjectHist.getReleaseDate(), employeeProjectHist.getReasonForOffboarding(),
 					employeeProjectHist.getOffboardRequester(), employeeProjectHist.getOffboardProcessor(), Id);
-		} catch (Exception e) {
-			log.error(e.getCause());
-			throw new CustomException("Error in Inserting",e);
+		} catch(Exception e){
+			throw new CustomException(e.getMessage());
 		}
 	}
 
@@ -245,7 +251,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	 * getSpecificEmployeeProjectHist(java.lang.String)
 	 */
 	@Override
-	public EmployeeProjHist getSpecificEmployeeProjectHist(String empProjHistId) {
+	public EmployeeProjHist getSpecificEmployeeProjectHist(String empProjHistId) throws CustomException {
 		try {
 			String whereClause = " WHERE EPH.ID = ?";
 			String query = QueryConstants.EMPPROJHIST_SELECT + whereClause;
@@ -255,6 +261,8 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 			return emp;
 		} catch (EmptyResultDataAccessException e) {
 			return null;
+		}catch(Exception e){
+			throw new CustomException(e.getMessage());
 		}
 	}
 
@@ -265,12 +273,14 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	 * com.cts.nw.onboarding.dao.EmployeeProjHistDAO#getAllEmployeeProjectInfo()
 	 */
 	@Override
-	public List<EmployeeProjHist> getAllEmployeeProjectInfo() {
+	public List<EmployeeProjHist> getAllEmployeeProjectInfo() throws CustomException {
 		try {
 			RowMapper<EmployeeProjHist> rowMapper = new EmployeeProjHistRowMapper();
 			return this.jdbcTemplate.query(QueryConstants.EMPPROJHIST_SELECT, rowMapper);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
+		} catch(Exception e){
+			throw new CustomException(e.getMessage());
 		}
 	}
 

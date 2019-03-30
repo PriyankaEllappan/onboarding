@@ -6,7 +6,6 @@ package com.cts.nw.onboarding.serviceImpl;
 import java.util.Calendar;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
@@ -16,6 +15,7 @@ import com.cts.nw.onboarding.bo.MailAttachment;
 import com.cts.nw.onboarding.dao.EmployeeProjHistDAO;
 import com.cts.nw.onboarding.dao.MailAttachmentDAO;
 import com.cts.nw.onboarding.exception.CustomException;
+import com.cts.nw.onboarding.exception.ValidatorException;
 import com.cts.nw.onboarding.service.MailService;
 import com.cts.nw.onboarding.service.ProcessorService;
 import com.cts.nw.onboarding.service.ReleaseService;
@@ -28,8 +28,6 @@ import com.cts.nw.onboarding.validators.OnboardingRequestValidator;
 @Service
 public class ProcessorServiceImpl implements ProcessorService {
 
-	Logger log = Logger.getLogger(ProcessorServiceImpl.class) ;
-	
 	@Autowired
 	EmployeeProjHistDAO employeeProjHistDAO;
 
@@ -48,19 +46,17 @@ public class ProcessorServiceImpl implements ProcessorService {
 	/*1. Resource Onboarding Operations*/
 	
 	@Override
-	public List<EmployeeProjHist> getRecordsPerProcessortoOnboard(String processorid) {
+	public List<EmployeeProjHist> getRecordsPerProcessortoOnboard(String processorid) throws CustomException {
 		try {
 			return employeeProjHistDAO.getRecordsPerProcessortoOnboard(processorid);
-		} catch(Exception e) {
-			log.error(e.getCause());
-			e.printStackTrace();
-			return null;
+		} catch(Exception e){
+			throw new CustomException(e.getMessage());
 		}
 	}
 	
 	@Override
-	public EmployeeProjHist onboardAnEmployee(EmployeeProjHist employeeProjHist) throws CustomException {
-
+	public EmployeeProjHist onboardAnEmployee(EmployeeProjHist employeeProjHist)
+			throws CustomException, ValidatorException {
 		Integer rowsAffected = 0;
 		MailAttachment fileUploadObj;
 		Integer mailId = null;
@@ -80,21 +76,18 @@ public class ProcessorServiceImpl implements ProcessorService {
 						mailService.onBoardingCompleted(employeeProjHist);
 						checkForAnyPrevAssignmentandRelease(employeeProjHist);
 					}
-					return employeeProjHist;
 				}
 				return null;
-			} else {
-				System.out.println("Validation errors");
-				return null;
 			}
+		} catch (ValidatorException e) {
+			throw new ValidatorException(e.getMessage());
 		} catch (Exception e) {
-			log.error(e.getCause());
-			e.printStackTrace();
-			throw new CustomException("Error in Inserting",e);
+			throw new CustomException(e.getMessage());
 		}
+		return employeeProjHist;
 	}
 	
-	private void checkForAnyPrevAssignmentandRelease(EmployeeProjHist employeeProjHist) {
+	private void checkForAnyPrevAssignmentandRelease(EmployeeProjHist employeeProjHist) throws CustomException {
 		try {
 			List<EmployeeProjHist> activeAssignmentList = employeeProjHistDAO.checkActiveAssignments(String.valueOf(employeeProjHist.getEmployeeId()));
 			if(activeAssignmentList != null && activeAssignmentList.size() > 1){
@@ -104,22 +97,19 @@ public class ProcessorServiceImpl implements ProcessorService {
 				activeAssignment.setReleaseDate(Calendar.getInstance().getTime());
 				releaseService.releaseAnEmployee(activeAssignment);
 			}
-		} catch(Exception e) {
-			log.error(e.getCause());
-			e.printStackTrace();
+		} catch (Exception e) {
+			throw new CustomException(e.getMessage());
 		}
 	}
 
 	/*2. Resource Off boarding Operations*/
 	
 	@Override
-	public List<EmployeeProjHist> getRecordsPerProcessortoOffboard(String processorid) {
+	public List<EmployeeProjHist> getRecordsPerProcessortoOffboard(String processorid) throws CustomException {
 		try {
 			return employeeProjHistDAO.getRecordsPerProcessortoOffboard(processorid);	
-		} catch(Exception e) {
-			log.error(e.getCause());
-			e.printStackTrace();
-			return null;
+		} catch (Exception e) {
+			throw new CustomException(e.getMessage());
 		}
 	}
 	
@@ -132,27 +122,23 @@ public class ProcessorServiceImpl implements ProcessorService {
 				return employeeProjHist;
 			}
 			return null;	
-		} catch(Exception e) {
-			log.error(e.getCause());
-			e.printStackTrace();
-			throw new CustomException("Error in Inserting",e);
+		} catch (Exception e) {
+			throw new CustomException(e.getMessage());
 		}
 	}
 	
 	/*3. Display Resource details*/
 	@Override
-	public EmployeeProjHist getEmployeeDetails(String empProjHistId) {
+	public EmployeeProjHist getEmployeeDetails(String empProjHistId) throws CustomException {
 		try {
 			return employeeProjHistDAO.getSpecificEmployeeProjectHist(empProjHistId);	
-		} catch(Exception e) {
-			log.error(e.getCause());
-			e.printStackTrace();
-			return null;
+		} catch (Exception e) {
+			throw new CustomException(e.getMessage());
 		}
 	}
 	
 	
-	public MailAttachment getFileUploadObject(CommonsMultipartFile[] attachFileObj) {
+	public MailAttachment getFileUploadObject(CommonsMultipartFile[] attachFileObj) throws CustomException {
 		try {
 			MailAttachment fileUploadObj = null;
 			if ((attachFileObj != null) && (attachFileObj.length > 0) && (!attachFileObj.equals(""))) {
@@ -169,10 +155,8 @@ public class ProcessorServiceImpl implements ProcessorService {
 				}
 			}
 			return fileUploadObj;	
-		} catch(Exception e) {
-			log.error(e.getCause());
-			e.printStackTrace();
-			return null;
+		} catch (Exception e) {
+			throw new CustomException(e.getMessage());
 		}
 	}
 }

@@ -34,7 +34,7 @@ public class TeamsDAOImpl implements TeamsDAO {
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
-	public List<Teams> getAllActiveTeams() {
+	public List<Teams> getAllActiveTeams() throws CustomException {
 		try {
 			String whereClause = " WHERE  T.STATUS = 'ACTIVE'";
 			String query = QueryConstants.TEAMS_SELECT + whereClause;
@@ -42,6 +42,8 @@ public class TeamsDAOImpl implements TeamsDAO {
 			return this.jdbcTemplate.query(query, rowMapper);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
+		} catch(Exception e){
+			throw new CustomException(e.getMessage());
 		}
 	}
 
@@ -57,9 +59,8 @@ public class TeamsDAOImpl implements TeamsDAO {
 			cstmt.registerOutParameter(1, Types.INTEGER);
 			cstmt.execute();
 			returnValue = cstmt.getInt(1);
-		}  catch (Exception e) {
-			log.error(e.getCause());
-			throw new CustomException("Error in Inserting",e);
+		}  catch(Exception e){
+			throw new CustomException(e.getMessage());
 		}
 		return returnValue;
 	}

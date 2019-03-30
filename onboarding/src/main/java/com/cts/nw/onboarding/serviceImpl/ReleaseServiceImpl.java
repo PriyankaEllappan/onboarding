@@ -5,7 +5,6 @@ package com.cts.nw.onboarding.serviceImpl;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,8 +26,6 @@ import com.cts.nw.onboarding.service.ReleaseService;
 @Service
 public class ReleaseServiceImpl implements ReleaseService {
 	
-	Logger log = Logger.getLogger(ReleaseServiceImpl.class) ;
-
 	@Autowired
 	EmployeeProjHistDAO employeeProjHistDAO;
 
@@ -42,46 +39,38 @@ public class ReleaseServiceImpl implements ReleaseService {
 	MailService mailService;
 
 	@Override
-	public List<EmployeeProjHist> getEmployeestobeReleased() {
+	public List<EmployeeProjHist> getEmployeestobeReleased() throws CustomException {
 		try {
 			return employeeProjHistDAO.getEmployeestobeReleased();	
-		} catch(Exception e) {
-			log.error(e.getCause());
-			e.printStackTrace();
-			return null;
+		} catch (Exception e) {
+			throw new CustomException(e.getMessage());
 		}
 	}
 
 	@Override
-	public List<EmployeeProjHist> getEmployeestobeReleasedbyTeam(String teamId) {
+	public List<EmployeeProjHist> getEmployeestobeReleasedbyTeam(String teamId) throws CustomException {
 		try {
 			return employeeProjHistDAO.getEmployeestobeReleasedbyTeam(teamId);
-		} catch(Exception e) {
-			log.error(e.getCause());
-			e.printStackTrace();
-			return null;
+		} catch (Exception e) {
+			throw new CustomException(e.getMessage());
 		}
 	}
 
 	@Override
-	public List<EmployeeProjHist> getEmployeestobeReleasedbyProject(String projectId) {
+	public List<EmployeeProjHist> getEmployeestobeReleasedbyProject(String projectId) throws CustomException {
 		try {
 			return employeeProjHistDAO.getEmployeestobeReleasedbyProj(projectId);
-		} catch(Exception e) {
-			log.error(e.getCause());
-			e.printStackTrace();
-			return null;
+		} catch (Exception e) {
+			throw new CustomException(e.getMessage());
 		}
 	}
 
 	@Override
-	public EmployeeProjHist getEmployeetoRelease(String empProjHistId) {
+	public EmployeeProjHist getEmployeetoRelease(String empProjHistId) throws CustomException {
 		try {
 			return employeeProjHistDAO.getSpecificEmployeeProjectHist(empProjHistId);
-		} catch(Exception e) {
-			log.error(e.getCause());
-			e.printStackTrace();
-			return null;
+		} catch (Exception e) {
+			throw new CustomException(e.getMessage());
 		}
 	}
 
@@ -104,25 +93,21 @@ public class ReleaseServiceImpl implements ReleaseService {
 			}
 			return rowsAffected;
 		} catch (Exception e) {
-			log.error(e.getCause());
-			e.printStackTrace();
-			throw new CustomException("Error in Inserting",e);
+			throw new CustomException(e.getMessage());
 		}
 	}
 
 	@Override
-	public List<ReleaseSummary> getAllReleaseSummary() {
+	public List<ReleaseSummary> getAllReleaseSummary() throws CustomException {
 		try {
 			return releaseSummaryDAO.getAllReleaseSummary();	
-		} catch(Exception e) {
-			log.error(e.getCause());
-			e.printStackTrace();
-			return null;
+		} catch (Exception e) {
+			throw new CustomException(e.getMessage());
 		}
 	}
 
 	@Override
-	public Integer releaseEmployeesByTeam(EmployeeProjHist employeeProjHist) {
+	public Integer releaseEmployeesByTeam(EmployeeProjHist employeeProjHist) throws CustomException {
 		try {
 			Integer rowsAffected = 0;
 			List<EmployeeProjHist> listofResources = employeeProjHistDAO
@@ -132,15 +117,13 @@ public class ReleaseServiceImpl implements ReleaseService {
 				rowsAffected = rowsAffected + releaseAnEmployee(resource);
 			}
 			return rowsAffected;	
-		} catch(Exception e) {
-			log.error(e.getCause());
-			e.printStackTrace();
-			return null;
+		} catch (Exception e) {
+			throw new CustomException(e.getMessage());
 		}
 	}
 
 	@Override
-	public Integer releaseEmployeesByProject(EmployeeProjHist employeeProjHist) {
+	public Integer releaseEmployeesByProject(EmployeeProjHist employeeProjHist) throws CustomException {
 		try {
 			Integer rowsAffected = 0;
 			List<EmployeeProjHist> listofResources = employeeProjHistDAO
@@ -151,21 +134,24 @@ public class ReleaseServiceImpl implements ReleaseService {
 			}
 
 			return rowsAffected;
-		} catch(Exception e) {
-			log.error(e.getCause());
-			e.printStackTrace();
-			return null;
+		} catch (Exception e) {
+			throw new CustomException(e.getMessage());
 		}
 	}
 
 	/**
 	 * @param employeeProjHist
 	 * @param resource
+	 * @throws CustomException 
 	 */
-	private void setReleaseValues(EmployeeProjHist employeeProjHist, EmployeeProjHist resource) {
+	private void setReleaseValues(EmployeeProjHist employeeProjHist, EmployeeProjHist resource) throws CustomException {
+		try{
 		resource.setReleaseStatusId(employeeProjHist.getReleaseStatusId());
 		resource.setReasonForOffboarding(employeeProjHist.getReasonForOffboarding());
 		resource.setReleaseDate(employeeProjHist.getReleaseDate());
+		} catch (Exception e) {
+			throw new CustomException(e.getMessage());
+		}
 	}
 
 }

@@ -5,7 +5,6 @@ package com.cts.nw.onboarding.serviceImpl;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,8 +29,6 @@ import com.cts.nw.onboarding.validators.OnboardingRequestValidator;
 @Service
 public class RequesterServiceImpl implements RequesterService {
 	
-	Logger log = Logger.getLogger(RequesterServiceImpl.class) ;
-
 	@Autowired
 	private EmployeeMasterDAO employeeMasterDAO;
 
@@ -52,13 +49,11 @@ public class RequesterServiceImpl implements RequesterService {
 
 	/*1. Adding Resource*/
 	@Override
-	public EmployeeMaster getResourceByID(String employeeid) {
+	public EmployeeMaster getResourceByID(String employeeid) throws CustomException {
 		try {
 			return employeeMasterDAO.getEmployeeMasterDetailsByID(employeeid);
-		} catch(Exception e) {
-			log.error(e.getCause());
-			e.printStackTrace();
-			return null;
+		} catch (Exception e) {
+			throw new CustomException(e.getMessage());
 		}
 	}
 
@@ -77,35 +72,29 @@ public class RequesterServiceImpl implements RequesterService {
 				return null;
 			}
 		} catch(ValidatorException e) {
-			log.error(e.getCause());
-			e.printStackTrace();
 			throw new ValidatorException(e.getMessage());
-		} catch(Exception e){
-			throw new ValidatorException("Exception Occurred",e);
+		} catch (Exception e) {
+			throw new CustomException(e.getMessage());
 		}
 	}
 
 	/*2. Map a Project*/
 	
 	@Override
-	public EmployeeProjHist getEmployeeProjById(String empProjHistId) {
+	public EmployeeProjHist getEmployeeProjById(String empProjHistId) throws CustomException {
 		try {
 			return employeeProjHistDAO.getSpecificEmployeeProjectHist(empProjHistId);
-		} catch(Exception e) {
-			log.error(e.getCause());
-			e.printStackTrace();
-			return null;
+		}catch (Exception e) {
+			throw new CustomException(e.getMessage());
 		}
 	}
 
 	@Override
-	public List<EmployeeProjHist> checkActiveAssignments(String employeeid) {
+	public List<EmployeeProjHist> checkActiveAssignments(String employeeid) throws CustomException {
 		try {
 			return employeeProjHistDAO.checkActiveAssignments(employeeid);
-		} catch(Exception e) {
-			log.error(e.getCause());
-			e.printStackTrace();
-			return null;
+		} catch (Exception e) {
+			throw new CustomException(e.getMessage());
 		}
 	}
 	
@@ -138,23 +127,19 @@ public class RequesterServiceImpl implements RequesterService {
 			} else {
 				return null;
 			}
-		} catch(Exception e) {
-			log.error(e.getCause());
-			e.printStackTrace();
-			throw new CustomException("Error in Inserting",e);
+		} catch (Exception e) {
+			throw new CustomException(e.getMessage());
 		}
 	}
 
 	/*3. Requester list*/
 	
 	@Override
-	public List<EmployeeProjHist> getEmployeesPerRequester(String requesterId) {
+	public List<EmployeeProjHist> getEmployeesPerRequester(String requesterId) throws CustomException {
 		try {
 			return employeeProjHistDAO.getEmployeesPerRequester(requesterId);
-		} catch(Exception e) {
-			log.error(e.getCause());
-			e.printStackTrace();
-			return null;
+		} catch (Exception e) {
+			throw new CustomException(e.getMessage());
 		}
 	}
 	

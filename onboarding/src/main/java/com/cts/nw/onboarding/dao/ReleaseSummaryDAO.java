@@ -6,6 +6,7 @@ package com.cts.nw.onboarding.dao;
 import java.util.List;
 
 import com.cts.nw.onboarding.bo.ReleaseSummary;
+import com.cts.nw.onboarding.exception.CustomException;
 
 /**
  * @author 616550
@@ -13,6 +14,6 @@ import com.cts.nw.onboarding.bo.ReleaseSummary;
  */
 public interface ReleaseSummaryDAO {
 	
-	List<ReleaseSummary> getAllReleaseSummary();
+	List<ReleaseSummary> getAllReleaseSummary() throws CustomException;
 
 }

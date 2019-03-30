@@ -16,12 +16,12 @@ import com.cts.nw.onboarding.exception.ValidatorException;
  */
 public interface RequesterService {
 
-	List<EmployeeProjHist> getEmployeesPerRequester(String requesterId);
+	List<EmployeeProjHist> getEmployeesPerRequester(String requesterId) throws CustomException;
 	
-	EmployeeMaster getResourceByID(String employeeid);
+	EmployeeMaster getResourceByID(String employeeid) throws CustomException;
 	EmployeeMaster addNewResource(EmployeeMaster employee) throws CustomException, ValidatorException;
 	EmployeeProjHist addNewProject(EmployeeProjHist employeeProjHist) throws CustomException;
-	List<EmployeeProjHist> checkActiveAssignments(String employeeid);
-	EmployeeProjHist getEmployeeProjById(String empProjHistId);
+	List<EmployeeProjHist> checkActiveAssignments(String employeeid) throws CustomException;
+	EmployeeProjHist getEmployeeProjById(String empProjHistId) throws CustomException;
 	
 }

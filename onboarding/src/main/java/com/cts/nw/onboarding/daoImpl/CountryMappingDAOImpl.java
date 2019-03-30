@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cts.nw.onboarding.bo.CountryMapping;
 import com.cts.nw.onboarding.constants.QueryConstants;
 import com.cts.nw.onboarding.dao.CountryMappingDAO;
+import com.cts.nw.onboarding.exception.CustomException;
 import com.cts.nw.onboarding.mappers.CountryMappingRowMapper;
 
 /**
@@ -29,7 +30,7 @@ public class CountryMappingDAOImpl implements CountryMappingDAO {
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
-	public List<CountryMapping> getAllCountryMapping() {
+	public List<CountryMapping> getAllCountryMapping() throws CustomException {
 
 		try {
 			String allCountryInfo = QueryConstants.COUNTRYMAPPING_SELECT;
@@ -37,6 +38,8 @@ public class CountryMappingDAOImpl implements CountryMappingDAO {
 			return this.jdbcTemplate.query(allCountryInfo, rowMapper);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
+		} catch(Exception e){
+			throw new CustomException(e.getMessage());
 		}
 	}
 

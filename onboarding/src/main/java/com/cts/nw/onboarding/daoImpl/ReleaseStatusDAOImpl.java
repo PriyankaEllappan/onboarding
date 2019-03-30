@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cts.nw.onboarding.bo.ReleaseStatus;
 import com.cts.nw.onboarding.constants.QueryConstants;
 import com.cts.nw.onboarding.dao.ReleaseStatusDAO;
+import com.cts.nw.onboarding.exception.CustomException;
 import com.cts.nw.onboarding.mappers.ReleaseStatusRowMapper;
 
 /**
@@ -29,7 +30,7 @@ public class ReleaseStatusDAOImpl implements ReleaseStatusDAO {
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
-	public List<ReleaseStatus> getAllReleaseStatus() {
+	public List<ReleaseStatus> getAllReleaseStatus() throws CustomException {
 
 		try {
 			String releaseStatus = QueryConstants.RELEASESTATUS_SELECT;
@@ -37,6 +38,8 @@ public class ReleaseStatusDAOImpl implements ReleaseStatusDAO {
 			return this.jdbcTemplate.query(releaseStatus, rowMapper);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
+		} catch(Exception e){
+			throw new CustomException(e.getMessage());
 		}
 	}
 

@@ -16,6 +16,7 @@ import com.cts.nw.onboarding.bo.RoleMapping;
 import com.cts.nw.onboarding.bo.Roles;
 import com.cts.nw.onboarding.constants.QueryConstants;
 import com.cts.nw.onboarding.dao.RoleMappingDAO;
+import com.cts.nw.onboarding.exception.CustomException;
 import com.cts.nw.onboarding.mappers.RoleMappingRowMapper;
 import com.cts.nw.onboarding.mappers.RoleRowMapper;
 
@@ -30,22 +31,26 @@ public class RoleMappingDAOImpl implements RoleMappingDAO {
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
-	public List<RoleMapping> getAllRoleMappingDetails() {
+	public List<RoleMapping> getAllRoleMappingDetails() throws CustomException {
 		try {
 			RowMapper<RoleMapping> rowMapper = new RoleMappingRowMapper();
 			return this.jdbcTemplate.query(QueryConstants.ROLEMAPPING_SELECT, rowMapper);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
+		} catch(Exception e){
+			throw new CustomException(e.getMessage());
 		}
 	}
 
 	@Override
-	public List<Roles> getRoleDetails() {
+	public List<Roles> getRoleDetails() throws CustomException {
 		try {
 			RowMapper<Roles> rowMapper = new RoleRowMapper();
 			return this.jdbcTemplate.query(QueryConstants.ROLES_SELECT, rowMapper);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
+		} catch(Exception e){
+			throw new CustomException(e.getMessage());
 		}
 
 	}

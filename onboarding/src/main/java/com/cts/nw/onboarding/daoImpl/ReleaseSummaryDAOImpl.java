@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cts.nw.onboarding.bo.ReleaseSummary;
 import com.cts.nw.onboarding.constants.QueryConstants;
 import com.cts.nw.onboarding.dao.ReleaseSummaryDAO;
+import com.cts.nw.onboarding.exception.CustomException;
 import com.cts.nw.onboarding.mappers.ReleaseSummaryRowMapper;
 
 /**
@@ -30,13 +31,15 @@ public class ReleaseSummaryDAOImpl implements ReleaseSummaryDAO {
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
-	public List<ReleaseSummary> getAllReleaseSummary() {
+	public List<ReleaseSummary> getAllReleaseSummary() throws CustomException {
 		try {
 			String releaseSummaryInfo = QueryConstants.RELEASESUMMARY_SELECT;
 			RowMapper<ReleaseSummary> rowMapper = new ReleaseSummaryRowMapper();
 			return this.jdbcTemplate.query(releaseSummaryInfo, rowMapper);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
+		} catch(Exception e){
+			throw new CustomException(e.getMessage());
 		}
 	}
 

@@ -5,12 +5,12 @@ package com.cts.nw.onboarding.serviceImpl;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cts.nw.onboarding.bo.ProjectMapping;
 import com.cts.nw.onboarding.dao.ProjectMappingDAO;
+import com.cts.nw.onboarding.exception.CustomException;
 import com.cts.nw.onboarding.service.ProjectService;
 
 /**
@@ -20,19 +20,15 @@ import com.cts.nw.onboarding.service.ProjectService;
 @Service
 public class ProjectServiceImpl implements ProjectService {
 	
-	Logger log = Logger.getLogger(ProjectServiceImpl.class) ;
-	
 	@Autowired
 	ProjectMappingDAO projectMappingDAO;
 
 	@Override
-	public List<ProjectMapping> getAllActiveProjects() {
+	public List<ProjectMapping> getAllActiveProjects() throws CustomException {
 		try {
 			return projectMappingDAO.getAllActiveProjectDetails();	
-		} catch(Exception e) {
-			log.error(e.getCause());
-			e.printStackTrace();
-			return null;
+		} catch (Exception e) {
+			throw new CustomException(e.getMessage());
 		}
 	}
 

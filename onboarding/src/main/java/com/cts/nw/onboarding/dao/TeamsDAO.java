@@ -14,6 +14,6 @@ import com.cts.nw.onboarding.exception.CustomException;
  */
 public interface TeamsDAO {
 
-	List<Teams> getAllActiveTeams();
+	List<Teams> getAllActiveTeams() throws CustomException;
 	Integer insertNewViaCallable(Teams team) throws CustomException;
 }

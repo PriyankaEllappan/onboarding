@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cts.nw.onboarding.bo.EmployeeProjHist;
 import com.cts.nw.onboarding.exception.CustomException;
+import com.cts.nw.onboarding.exception.ValidatorException;
 import com.cts.nw.onboarding.service.ProcessorService;
 
 /**
@@ -43,9 +44,14 @@ public class ProcessController extends AbstractController {
 	public ModelAndView getAllEmployeestobeOnboarded(ModelMap model) {
 		String processorId;
 		ModelAndView modelView;
-		modelView = bindViewwithUserInfo("process/onboardProcessList");
-		processorId = APPINFO.getLoggedInUserId();
-		modelView.addObject("employees", processorService.getRecordsPerProcessortoOnboard(processorId));
+		try {
+			modelView = bindViewwithUserInfo("process/onboardProcessList");
+			processorId = APPINFO.getLoggedInUserId();
+			modelView.addObject("employees", processorService.getRecordsPerProcessortoOnboard(processorId));
+		} catch (CustomException e) {
+			modelView = bindViewwithUserInfo("errors/errorPage");
+			modelView.addObject("errMessage", e.getMessage());
+		}
 		return modelView;
 	}
 
@@ -59,8 +65,13 @@ public class ProcessController extends AbstractController {
 	@RequestMapping(value = "/process/onboard/{empProjHistId}", method = RequestMethod.GET)
 	public ModelAndView showOnboardForm(@PathVariable("empProjHistId") String empProjHistId) {
 		ModelAndView modelView;
-		modelView = bindViewwithUserInfo("process/onboardProcessingForm");
-		modelView.addObject("employee", processorService.getEmployeeDetails(empProjHistId));
+		try {
+			modelView = bindViewwithUserInfo("process/onboardProcessingForm");
+			modelView.addObject("employee", processorService.getEmployeeDetails(empProjHistId));
+		} catch (CustomException e) {
+			modelView = bindViewwithUserInfo("errors/errorPage");
+			modelView.addObject("errMessage", e.getMessage());
+		}
 		return modelView;
 	}
 
@@ -80,14 +91,16 @@ public class ProcessController extends AbstractController {
 			modelView = bindViewwithUserInfo("commons/detailsSaved");
 			modelView.addObject("employee", employee);
 			return modelView;
+		}  catch (ValidatorException e) {
+			modelView = bindViewwithUserInfo("process/onboardProcessingForm");
+			modelView.addObject("errMessage", e.getMessage());
+			log.error(e.getMessage());
 		} catch (CustomException e) {
 			modelView = new ModelAndView("errors/errorPage");
 			modelView.addObject("errMessage", e.getMessage());
 			log.error(e.getMessage());
-			e.printStackTrace();
-			return modelView;
 		}
-
+		return modelView;
 	}
 
 	/*2. Perform the Off boarding operations*/
@@ -101,9 +114,15 @@ public class ProcessController extends AbstractController {
 	public ModelAndView getAllEmployeestobeOffboarded(ModelMap model) {
 		String processorId;
 		ModelAndView modelView;
-		modelView = bindViewwithUserInfo("process/offboardProcessList");
-		processorId = APPINFO.getLoggedInUserId();
-		modelView.addObject("employees", processorService.getRecordsPerProcessortoOffboard(processorId));
+		try {
+			processorId = APPINFO.getLoggedInUserId();
+			modelView = bindViewwithUserInfo("process/offboardProcessList");
+			modelView.addObject("employees", processorService.getRecordsPerProcessortoOffboard(processorId));
+		} catch (CustomException e) {
+			modelView = new ModelAndView("errors/errorPage");
+			modelView.addObject("errMessage", e.getMessage());
+			log.error(e.getMessage());
+		}
 		return modelView;
 	}
 	
@@ -117,8 +136,14 @@ public class ProcessController extends AbstractController {
 	@RequestMapping(value = "/process/offboard/{empProjHistId}", method = RequestMethod.GET)
 	public ModelAndView showOffboardForm(@PathVariable("empProjHistId") String empProjHistId) {
 		ModelAndView modelView;
-		modelView = bindViewwithUserInfo("process/offboardProcessingForm");
-		modelView.addObject("employee", processorService.getEmployeeDetails(empProjHistId));
+		try {
+			modelView = bindViewwithUserInfo("process/offboardProcessingForm");
+			modelView.addObject("employee", processorService.getEmployeeDetails(empProjHistId));
+		} catch (CustomException e) {
+			modelView = new ModelAndView("errors/errorPage");
+			modelView.addObject("errMessage", e.getMessage());
+			log.error(e.getMessage());
+		}
 		return modelView;
 	}
 	
@@ -136,14 +161,12 @@ public class ProcessController extends AbstractController {
 			processorService.offboardAnEmployee(employee);
 			modelView = bindViewwithUserInfo("commons/detailsSaved");
 			modelView.addObject("employee", employee);
-			return modelView;
 		} catch (CustomException e) {
 			modelView = new ModelAndView("errors/errorPage");
 			modelView.addObject("errMessage", e.getMessage());
 			log.error(e.getMessage());
-			e.printStackTrace();
-			return modelView;
 		}
+		return modelView;
 		
 	}
 	
@@ -160,8 +183,14 @@ public class ProcessController extends AbstractController {
 	@RequestMapping(value = "/process/show/{empProjHistId}", method = RequestMethod.GET)
 	public ModelAndView showResource(@PathVariable("empProjHistId") String empProjHistId) {
 		ModelAndView modelView;
-		modelView = bindViewwithUserInfo("commons/showResource");
-		modelView.addObject("employee", processorService.getEmployeeDetails(empProjHistId));
+		try {
+			modelView = bindViewwithUserInfo("commons/showResource");
+			modelView.addObject("employee", processorService.getEmployeeDetails(empProjHistId));
+		} catch (CustomException e) {
+			modelView = new ModelAndView("errors/errorPage");
+			modelView.addObject("errMessage", e.getMessage());
+			log.error(e.getMessage());
+		}
 		return modelView;
 	}
 }

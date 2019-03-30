@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.cts.nw.onboarding.bo.EmployeeProjHist;
 import com.cts.nw.onboarding.exception.CustomException;
+import com.cts.nw.onboarding.exception.ValidatorException;
 
 /**
  * @author 656579
@@ -15,14 +16,14 @@ import com.cts.nw.onboarding.exception.CustomException;
 public interface ProcessorService {
 
 
-	List<EmployeeProjHist> getRecordsPerProcessortoOnboard(String processorid);
+	List<EmployeeProjHist> getRecordsPerProcessortoOnboard(String processorid) throws CustomException;
 	
-	EmployeeProjHist onboardAnEmployee(EmployeeProjHist employeeProjHist) throws CustomException;
+	EmployeeProjHist onboardAnEmployee(EmployeeProjHist employeeProjHist) throws CustomException, ValidatorException;
 	
-	List<EmployeeProjHist> getRecordsPerProcessortoOffboard(String processorid);
+	List<EmployeeProjHist> getRecordsPerProcessortoOffboard(String processorid) throws CustomException;
 
 	EmployeeProjHist offboardAnEmployee(EmployeeProjHist employeeProjHist) throws CustomException;
 	
-	EmployeeProjHist getEmployeeDetails(String empProjHistId);
+	EmployeeProjHist getEmployeeDetails(String empProjHistId) throws CustomException;
 
 }

@@ -8,6 +8,7 @@ import java.util.Map;
 
 import com.cts.nw.onboarding.bo.RoleMapping;
 import com.cts.nw.onboarding.bo.Roles;
+import com.cts.nw.onboarding.exception.CustomException;
 
 /**
  * @author 656579
@@ -15,6 +16,6 @@ import com.cts.nw.onboarding.bo.Roles;
  */
 public interface RoleService {
 
-	List<RoleMapping> getAllRoleMappings();
-	Map<String, List<Roles>> getRoleDetails();
+	List<RoleMapping> getAllRoleMappings() throws CustomException;
+	Map<String, List<Roles>> getRoleDetails() throws CustomException;
 }

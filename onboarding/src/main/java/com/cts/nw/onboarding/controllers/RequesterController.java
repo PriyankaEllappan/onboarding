@@ -44,7 +44,11 @@ public class RequesterController extends AbstractController {
 		String requesterId = APPINFO.getLoggedInUserId();
 		ModelAndView modelView;
 		modelView = bindViewwithUserInfo("request/requestList");
-		modelView.addObject("employees", requesterService.getEmployeesPerRequester(requesterId));
+		try {
+			modelView.addObject("employees", requesterService.getEmployeesPerRequester(requesterId));
+		} catch (CustomException e) {
+			log.error(e.getMessage());
+		}
 		return modelView;
 	}
 
@@ -131,7 +135,11 @@ public class RequesterController extends AbstractController {
 			modelView = bindViewwithUserInfo("errors/assignmentsExceeded");
 		} else {
 			modelView = bindViewwithUserInfo("request/mapNewProject");
-			modelView.addObject("employee", requesterService.getResourceByID(empid));
+			try {
+				modelView.addObject("employee", requesterService.getResourceByID(empid));
+			} catch (CustomException e) {
+				log.error(e.getMessage());
+			}
 		}
 		
 		return modelView;
@@ -143,13 +151,13 @@ public class RequesterController extends AbstractController {
 	 */
 	@GetMapping(value = "/request/checkactiveassignments/{employeeid}", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public @ResponseBody List<EmployeeProjHist> checkActiveAssignment(@PathVariable String employeeid) {
-		List<EmployeeProjHist> activeAssignment;
-		activeAssignment = requesterService.checkActiveAssignments(employeeid);
-		if (activeAssignment != null && !activeAssignment.isEmpty()) {
-			return activeAssignment;
-		} else {
-			return null;
+		List<EmployeeProjHist> activeAssignment = null;
+		try {
+			activeAssignment = requesterService.checkActiveAssignments(employeeid);
+		} catch (CustomException e) {
+			log.error(e.getMessage());
 		}
+		return activeAssignment;
 	}
 	
 	/**
@@ -198,7 +206,12 @@ public class RequesterController extends AbstractController {
 	public ModelAndView showResource(@PathVariable("empProjHistId") String empProjHistId) {
 		ModelAndView modelView;
 		modelView = bindViewwithUserInfo("commons/showResource");
-		modelView.addObject("employee", requesterService.getEmployeeProjById(empProjHistId));
+		try {
+			modelView.addObject("employee", requesterService.getEmployeeProjById(empProjHistId));
+		} catch (CustomException e) {
+			modelView = new ModelAndView("errors/errorPage");
+			modelView.addObject("errMessage", e.getMessage());
+		}
 		return modelView;
 	}
 	

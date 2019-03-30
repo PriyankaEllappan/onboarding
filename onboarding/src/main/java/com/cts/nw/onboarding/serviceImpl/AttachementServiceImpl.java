@@ -3,7 +3,6 @@
  */
 package com.cts.nw.onboarding.serviceImpl;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +17,6 @@ import com.cts.nw.onboarding.service.AttachmentService;
  */
 @Service
 public class AttachementServiceImpl implements AttachmentService {
-
-	Logger log = Logger.getLogger(AttachementServiceImpl.class) ;
 	
 	@Autowired
 	MailAttachmentDAO mailAttachmentDAO;
@@ -28,10 +25,8 @@ public class AttachementServiceImpl implements AttachmentService {
 	public MailAttachment downloadAttachment(String id) throws CustomException {
 		try {
 			return mailAttachmentDAO.downloadAttachment(id);
-		} catch(Exception e) {
-			log.error(e.getCause());
-			e.printStackTrace();
-			throw new CustomException("Error in Inserting",e);
+		} catch(Exception e){
+			throw new CustomException(e.getMessage());
 		}
 		
 	}

@@ -41,7 +41,12 @@ public class ReleaseController extends AbstractController {
 	public ModelAndView releaseAllList() {
 		ModelAndView modelView;
 		modelView = bindViewwithUserInfo("terminate/releaseList");
-		modelView.addObject("employees", releaseService.getEmployeestobeReleased());
+		try {
+			modelView.addObject("employees", releaseService.getEmployeestobeReleased());
+		} catch (CustomException e) {
+			modelView = bindViewwithUserInfo("errors/errorPage");
+			modelView.addObject("errMessage", e.getMessage());
+		}
 		return modelView;
 	}
 
@@ -55,7 +60,12 @@ public class ReleaseController extends AbstractController {
 	public ModelAndView generateReleaseProcessForm(@PathVariable("empProjHistId") String empProjHistId) {
 		ModelAndView modelView;
 		modelView = bindViewwithUserInfo("terminate/requestTerminationForm");
-		modelView.addObject("employee", releaseService.getEmployeetoRelease(empProjHistId));
+		try {
+			modelView.addObject("employee", releaseService.getEmployeetoRelease(empProjHistId));
+		} catch (CustomException e) {
+			modelView = bindViewwithUserInfo("errors/errorPage");
+			modelView.addObject("errMessage", e.getMessage());
+		}
 		return modelView;
 	}
 
@@ -104,7 +114,11 @@ public class ReleaseController extends AbstractController {
 	 */
 	@PostMapping(value = "/processreleasebyteam")
 	public String releaseResourcebyTeam(@RequestBody EmployeeProjHist employeeJson) {
-		releaseService.releaseEmployeesByTeam(employeeJson);
+		try {
+			releaseService.releaseEmployeesByTeam(employeeJson);
+		} catch (CustomException e) {
+			log.error(e.getMessage());
+		}
 		return "redirect:releaselist";
 	}
 
@@ -130,7 +144,11 @@ public class ReleaseController extends AbstractController {
 	 */
 	@PostMapping(value = "/processreleasebyproject")
 	public String releaseResourcebyProject(@RequestBody EmployeeProjHist employeeJson) {
-		releaseService.releaseEmployeesByProject(employeeJson);
+		try {
+			releaseService.releaseEmployeesByProject(employeeJson);
+		} catch (CustomException e) {
+			log.error(e.getMessage());
+		}
 		return "redirect:releaselist";
 	}
 
@@ -217,7 +235,11 @@ public class ReleaseController extends AbstractController {
 	public ModelAndView showResource(@PathVariable("empProjHistId") String empProjHistId) {
 		ModelAndView modelView;
 		modelView = bindViewwithUserInfo("commons/showResource");
-		modelView.addObject("employee", releaseService.getEmployeetoRelease(empProjHistId));
+		try {
+			modelView.addObject("employee", releaseService.getEmployeetoRelease(empProjHistId));
+		} catch (CustomException e) {
+			log.error(e.getMessage());
+		}
 		return modelView;
 	}
 }

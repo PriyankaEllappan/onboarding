@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cts.nw.onboarding.bo.Bands;
 import com.cts.nw.onboarding.constants.QueryConstants;
 import com.cts.nw.onboarding.dao.BandsDAO;
+import com.cts.nw.onboarding.exception.CustomException;
 import com.cts.nw.onboarding.mappers.BandsRowMapper;
 
 /**
@@ -31,12 +32,14 @@ public class BandDAOImpl implements BandsDAO{
     private JdbcTemplate jdbcTemplate;
 	
 	@Override
-	public List<Bands> getAllBandDetails() {
+	public List<Bands> getAllBandDetails() throws CustomException {
 		try {
 			RowMapper<Bands> rowMapper = new BandsRowMapper();
 			return this.jdbcTemplate.query(QueryConstants.BANDS_SELECT,rowMapper);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
+		}catch(Exception e){
+			throw new CustomException(e.getMessage());
 		}
 	}
 }
