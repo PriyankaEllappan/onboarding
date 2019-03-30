@@ -27,7 +27,7 @@ import com.cts.nw.onboarding.service.StatusService;
 @RequestMapping("/status")
 public class StatusController extends AbstractController {
 
-	Logger log = Logger.getLogger(StatusController.class) ;
+	Logger log = Logger.getLogger(StatusController.class);
 	@Autowired
 	StatusService statusService;
 
@@ -47,10 +47,12 @@ public class StatusController extends AbstractController {
 				ajaxResponse.setResponseList(objectList);
 			} else {
 				ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
+				log.error("Approval Status List is empty");
 			}
 		} catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
 			ajaxResponse.setStatusMessage("Exception Occurred.");
+			log.error(e.getMessage());
 		}
 		return ajaxResponse;
 	}
@@ -71,11 +73,13 @@ public class StatusController extends AbstractController {
 				ajaxResponse.setResponseList(objectList);
 			} else {
 				ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
+				log.error("Release Status List is empty");
 			}
 		} catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
 			ajaxResponse.setStatusMessage("Exception Occurred.");
+			log.error(e.getMessage());
 		}
-		return ajaxResponse;		
+		return ajaxResponse;
 	}
 }

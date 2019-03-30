@@ -49,10 +49,12 @@ public class RoleController extends AbstractController {
 				ajaxResponse.setResponseList(objectList);
 			} else {
 				ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
+				log.error("Role Mapping List is empty");
 			}
 		} catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
 			ajaxResponse.setStatusMessage("Exception Occurred.");
+			log.error(e.getMessage());
 		}
 		return ajaxResponse;
 
@@ -64,18 +66,16 @@ public class RoleController extends AbstractController {
 	 */
 	@RequestMapping(value = "/getroles", method = RequestMethod.GET)
 	public @ResponseBody Map<String, List<Roles>> getAllRoles() {
-		Map<String, List<Roles>> roleList;
+		Map<String, List<Roles>> roleList = null;
 		try {
 			roleList = roleService.getRoleDetails();
-			if (roleList.size() > 0) {
-				return roleList;
-			} else {
-				return null;
-			}
-
+			if (roleList.size() == 0) {
+				log.error("Role Mapping List is empty");
+			} 
 		} catch (Exception e) {
-			log.error(e.getCause());
+			log.error(e.getMessage());
 			return null;
 		}
+		return roleList;
 	}
 }

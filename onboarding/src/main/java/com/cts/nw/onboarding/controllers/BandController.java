@@ -6,6 +6,7 @@ package com.cts.nw.onboarding.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +26,8 @@ import com.cts.nw.onboarding.service.BandService;
 @RequestMapping("/band")
 public class BandController extends AbstractController {
 
+	Logger log = Logger.getLogger(BandController.class) ;
+	
 	@Autowired
 	BandService bandService;
 
@@ -44,10 +47,12 @@ public class BandController extends AbstractController {
 				ajaxResponse.setResponseList(objectList);
 			} else {
 				ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
+				log.error("Bands list is empty");
 			}
 		} catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
 			ajaxResponse.setStatusMessage("Exception Occurred.");
+			log.error(e.getMessage());
 		}
 		return ajaxResponse;
 	}

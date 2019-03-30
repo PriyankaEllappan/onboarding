@@ -3,6 +3,7 @@
  */
 package com.cts.nw.onboarding.controllers;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,8 @@ import com.cts.nw.onboarding.service.LDAPService;
 @RequestMapping("/resource")
 public class ResourceController extends AbstractController {
 
+	Logger log = Logger.getLogger(ResourceController.class) ;
+	
 	@Autowired
 	LDAPService lDAPService;
 
@@ -38,10 +41,12 @@ public class ResourceController extends AbstractController {
 
 			} else {
 				ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
+				log.error(empId + " Not found in Cognizant Directory");
 			}
 		} catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
 			ajaxResponse.setStatusMessage("Exception Occurred.");
+			log.error(e.getMessage());
 		}
 		return ajaxResponse;
 	}
