@@ -33,7 +33,7 @@
 						<th>Project Id</th>
 						<th>Project Name</th>
 						<th>Team Name</th>
-						<th> Release Status</th>
+						<th>Release Status</th>
 						<th></th>
 					</tr>
 					<c:forEach var="employee" items="${employees}">
@@ -54,6 +54,10 @@
 									<td><span class="customized-span-warning">Release
 											Initiated</span></td>
 								</c:when>
+								<c:otherwise>
+									<td><span class="customized-span-requested"></span></td>
+								</c:otherwise>
+
 							</c:choose>
 							<td><img class="icon-image to-click"
 								src="/onboarding/resources/icons/show"
