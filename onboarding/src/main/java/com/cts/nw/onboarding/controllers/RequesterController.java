@@ -23,6 +23,7 @@ import com.cts.nw.onboarding.bean.AjaxResponse;
 import com.cts.nw.onboarding.bo.EmployeeMaster;
 import com.cts.nw.onboarding.bo.EmployeeProjHist;
 import com.cts.nw.onboarding.constants.AppConstants;
+import com.cts.nw.onboarding.constants.ErrorConstants;
 import com.cts.nw.onboarding.exception.CustomException;
 import com.cts.nw.onboarding.exception.ValidatorException;
 import com.cts.nw.onboarding.service.RequesterService;
@@ -86,11 +87,11 @@ public class RequesterController extends AbstractController {
 
 			} else {
 				ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
-				log.info(empid + "Employee Not available in nationwide. ");
+				log.info(empid + ErrorConstants.EMPLOYEENOTINNATIONWIDEERROR);
 			}
 		} catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
-			ajaxResponse.setStatusMessage("Exception Occurred.");
+			ajaxResponse.setStatusMessage(ErrorConstants.COMMONERROR);
 			log.error(e.getMessage());
 		}
 		return ajaxResponse;
@@ -119,7 +120,7 @@ public class RequesterController extends AbstractController {
 			ajaxResponse.setStatusMessage(e.getMessage());
 		} catch (CustomException e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
-			ajaxResponse.setStatusMessage("Exception Occurred.");
+			ajaxResponse.setStatusMessage(ErrorConstants.COMMONERROR);
 			log.error(e.getMessage());
 		}
 		return ajaxResponse;
@@ -194,7 +195,7 @@ public class RequesterController extends AbstractController {
 		}
 		catch (CustomException e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
-			ajaxResponse.setStatusMessage("Exception Occurred.");
+			ajaxResponse.setStatusMessage(ErrorConstants.COMMONERROR);
 		}
 		return ajaxResponse;
 	}

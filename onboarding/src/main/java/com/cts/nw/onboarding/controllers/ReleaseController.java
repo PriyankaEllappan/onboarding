@@ -187,7 +187,7 @@ public class ReleaseController extends AbstractController {
 				ajaxResponse.setResponseList(objectList);
 			} else {
 				ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
-				ajaxResponse.setStatusMessage("No Resource available in this Team");
+				ajaxResponse.setStatusMessage(ErrorConstants.RELEASEBYTEAMERROR);
 			}
 		} catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
@@ -213,7 +213,7 @@ public class ReleaseController extends AbstractController {
 				ajaxResponse.setResponseList(objectList);
 			} else {
 				ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
-				ajaxResponse.setStatusMessage("No Resource available in this Project");
+				ajaxResponse.setStatusMessage(ErrorConstants.RELEASEBYPROJECTERROR);
 			}
 		} catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
@@ -239,7 +239,7 @@ public class ReleaseController extends AbstractController {
 				ajaxResponse.setResponseList(objectList);
 			} else {
 				ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
-				ajaxResponse.setStatusMessage("No Release Summary available");
+				ajaxResponse.setStatusMessage(ErrorConstants.RELEASESUMMARYLISTERROR);
 			}
 		} catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
