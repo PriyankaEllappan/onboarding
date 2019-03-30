@@ -26,7 +26,7 @@
 		<div class="row">
 			<div class="col-md-2" align="center"></div>
 			<div class="col-md-8" align="center">
-				<table class="table table-striped">
+				<table class="table table-striped bordered">
 					<c:if test="${not empty employee.getEmployeeId()}">
 						<tr>
 							<td class="bold-font">EMPLOYEE ID</td>

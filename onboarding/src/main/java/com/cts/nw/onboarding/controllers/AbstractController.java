@@ -71,7 +71,7 @@ public class AbstractController {
 	public void setApplicationInfo(HttpServletRequest request,HttpServletResponse response) {
 		 response.addHeader("Cache-Control","no-cache, no-store, must-revalidate, pre-check=0, post-check=0, max-age=0, s-maxage=0");
          response.addHeader("Pragma","no-cache");
-         response.addHeader("X-XSS-Protection","1; mode = block");
+         response.addHeader("X-XSS-Protection ,1","mode = block");
          response.addHeader("X-Frame-Options","DENY or SAME ORIGIN");
          response.addHeader("Strict-Transport-Security","max-age=31536000; includeSubDomains");
          response.addHeader("X-Content-Type-Options","no-sniff");
