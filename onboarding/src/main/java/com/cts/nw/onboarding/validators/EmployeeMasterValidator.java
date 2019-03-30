@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.cts.nw.onboarding.bo.EmployeeMaster;
 import com.cts.nw.onboarding.constants.ValidationConstants;
-import com.cts.nw.onboarding.exception.CustomException;
 import com.cts.nw.onboarding.exception.ValidatorException;
 
 /**
@@ -19,8 +18,8 @@ import com.cts.nw.onboarding.exception.ValidatorException;
 @Service
 public class EmployeeMasterValidator {
 
-	public boolean validate(EmployeeMaster employee) throws ValidatorException, CustomException {
-		try {
+	public boolean validate(EmployeeMaster employee) throws ValidatorException  {
+		
 			if (employee.getEmployeeId() == null || employee.getEmployeeId() <= 0) {
 				throw new ValidatorException(ValidationConstants.EMPLOYEEIDVALIDATION);
 			}
@@ -43,9 +42,6 @@ public class EmployeeMasterValidator {
 					.matches("^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$", employee.getEmail())) {
 				throw new ValidatorException(ValidationConstants.EMAILIDVALIDATION);
 			}
-		} catch (Exception e) {
-			throw new CustomException(e.getMessage());
-		}
 		return true;
 	}
 }

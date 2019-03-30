@@ -23,7 +23,7 @@ $(document).ready(function() {
 	$("#releaseSummary").change(function() {
 		
 		var selectedVal = $("#releaseSummary").val();
-		$.each(releaseReason, function(key,value) { 
+		$.each(releaseReason.responseList, function(key,value) { 
 			if(selectedVal == value.id ){
 				 $("#reasonForOffboarding").val(value.id);
 			}

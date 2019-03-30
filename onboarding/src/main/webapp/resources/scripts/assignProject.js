@@ -296,23 +296,27 @@ $(function() {
 						dataType : 'json',
 						data : JSON.stringify(jsonRequest),
 						contentType : 'application/json; charset=utf-8',
-						success : function(resultData) {
-							if (!$.trim(resultData)) {
-								$('#errMessage').text("Unable to add the project details. Please verify the entered details");
-								$('#projTab').click(openSpecificTabNext(event, 'projInfo'));
-								$('#projectRegisterFormSubmit').prop('disabled', false);
-								$('#projectRegisterFormSubmit').css('cursor', 'pointer');
-							} else {
-								$('#formDiv').hide();
-								$('#statusSucessMessage').text("Project details added successfully");
-							}
-						},
-						error : function() {
-							$('#errMessage').text("Unable to add the project details. Please verify the entered details");
-							$('#projTab').click(openSpecificTabNext(event, 'projInfo'));
-							$('#projectRegisterFormSubmit').prop('disabled', false);
-							$('#projectRegisterFormSubmit').css('cursor', 'pointer');
-						}
+								success : function(resultData) {
+									console.log(resultData);
+									if (resultData.status == "SUCCESS") {
+										$('#formDiv').hide();
+										$('#statusSucessMessage').text(resultData.statusMessage);
+										
+									}
+									else {
+										$('#errMessage').text(resultData.statusMessage);
+										$('#projTab').click(openSpecificTabNext(event, 'projInfo'));
+										$('#projectRegisterFormSubmit').prop('disabled', false);
+										$('#projectRegisterFormSubmit').css('cursor', 'pointer');
+									}
+								},
+								error : function() {
+									$('#errMessage').text(resultData.statusMessage);
+									$('#projTab').click(openSpecificTabNext(event, 'projInfo'));
+									$('#projectRegisterFormSubmit').prop('disabled', false);
+									$('#projectRegisterFormSubmit').css('cursor', 'pointer');
+								}
+								
 					})
 				}
 			});

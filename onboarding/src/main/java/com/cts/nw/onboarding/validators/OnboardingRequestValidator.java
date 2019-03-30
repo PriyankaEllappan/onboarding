@@ -25,8 +25,7 @@ public class OnboardingRequestValidator {
 	 * @throws ValidatorException
 	 * @throws CustomException
 	 */
-	public boolean validateRequesterForm(EmployeeProjHist employeeProjHist) throws ValidatorException, CustomException {
-		try {
+	public boolean validateRequesterForm(EmployeeProjHist employeeProjHist) throws ValidatorException  {
 			if (employeeProjHist.getTeamName() == null
 					|| !Pattern.matches("[a-zA-Z\\s]*", employeeProjHist.getTeamName())) {
 				throw new ValidatorException(ValidationConstants.TEAMNAMEVALIDATION);
@@ -49,9 +48,7 @@ public class OnboardingRequestValidator {
 					&& !Pattern.matches("[a-zA-Z\\s]*", employeeProjHist.getPplManager())) {
 				throw new ValidatorException(ValidationConstants.PPLVALIDATION);
 			}
-		} catch (Exception e) {
-			throw new CustomException(e.getMessage());
-		}
+		
 		return true;
 	}
 
@@ -61,40 +58,38 @@ public class OnboardingRequestValidator {
 	 * @throws ValidatorException
 	 * @throws CustomException
 	 */
-	public boolean validateProcessorForm(EmployeeProjHist employeeProjHist) throws ValidatorException, CustomException {
-		try {
-			if (employeeProjHist.getPplManager() == null
+	public boolean validateProcessorForm(EmployeeProjHist employeeProjHist) throws ValidatorException {
+		
+			if (employeeProjHist.getPplManager() != null
 					&& !Pattern.matches("[a-zA-Z\\s]*", employeeProjHist.getPplManager())) {
 				throw new ValidatorException(ValidationConstants.PPLVALIDATION);
 			}
-			if (employeeProjHist.getApm() == null && !Pattern.matches("[a-zA-Z\\s]*", employeeProjHist.getApm())) {
+			if (employeeProjHist.getApm() != null && !Pattern.matches("[a-zA-Z\\s]*", employeeProjHist.getApm())) {
 				throw new ValidatorException(ValidationConstants.APMVALIDATION);
 			}
 			if (employeeProjHist.getNationwideId() != null
 					&& !Pattern.matches("[a-zA-Z0-9]*", employeeProjHist.getNationwideId())) {
 				throw new ValidatorException(ValidationConstants.NATIONWIDEIDVALIDATION);
 			}
-			if (employeeProjHist.getNationwideIdCreatedDate() == null) {
+			/*if (employeeProjHist.getNationwideIdCreatedDate() != null) {
 				throw new ValidatorException(ValidationConstants.NATIONWIDEIDCREATEDDATEVALIDATION);
-			}
-			if (employeeProjHist.getWorkForceId() == null
+			}*/
+			if (employeeProjHist.getWorkForceId() != null
 					&& !Pattern.matches("[a-zA-Z0-9]*", employeeProjHist.getWorkForceId())) {
 				throw new ValidatorException(ValidationConstants.WORKFORCEIDVALIDATION);
 			}
-			if (employeeProjHist.getScrumMaster() == null
+			if (employeeProjHist.getScrumMaster() != null
 					&& !Pattern.matches("[a-zA-Z\\s]*", employeeProjHist.getScrumMaster())) {
 				throw new ValidatorException(ValidationConstants.SCRUMMASTERVALIDATION);
 			}
-			if (employeeProjHist.getFgOnBoardingDate() == null) {
+			/*if (employeeProjHist.getFgOnBoardingDate() != null) {
 				throw new ValidatorException(ValidationConstants.FGONBOARDINGDATEVALIDATION);
-			}
+			}*/
 			if (employeeProjHist.getComments() != null
 					&& !Pattern.matches("[a-zA-Z0-9\\s]*", employeeProjHist.getComments())) {
 				throw new ValidatorException(ValidationConstants.COMMENTSVALIDATION);
 			}
-		} catch (Exception e) {
-			throw new CustomException(e.getMessage());
-		}
+		
 		return true;
 	}
 
@@ -104,20 +99,18 @@ public class OnboardingRequestValidator {
 	 * @throws ValidatorException
 	 * @throws CustomException
 	 */
-	public boolean validateReleaseForm(EmployeeProjHist employeeProjHist) throws ValidatorException, CustomException {
-		try {
+	public boolean validateReleaseForm(EmployeeProjHist employeeProjHist) throws ValidatorException{
+		
 			if (employeeProjHist.getReleaseStatusId() == null) {
 				throw new ValidatorException(ValidationConstants.RELEASESTATUSVALIDATION);
 			}
-			if (employeeProjHist.getReleaseSummary() == null) {
+			if (employeeProjHist.getReasonForOffboarding() == null) {
 				throw new ValidatorException(ValidationConstants.RELEASESUMMARYVALIDATION);
 			}
 			if (employeeProjHist.getReleaseDate() == null) {
 				throw new ValidatorException(ValidationConstants.RELEASEDATEVALIDATION);
 			}
-		} catch (Exception e) {
-			throw new CustomException(e.getMessage());
-		}
+		
 		return true;
 	}
 

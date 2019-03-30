@@ -188,6 +188,7 @@ public class RequesterController extends AbstractController {
 			if (employee != null) {
 				ajaxResponse.setStatus(AppConstants.AJAXSUCCESS);
 				ajaxResponse.setResponseObj(employee);
+				ajaxResponse.setStatusMessage(AppConstants.PROJECTDETAILSADDED);
 			}
 		} catch (ValidatorException e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
