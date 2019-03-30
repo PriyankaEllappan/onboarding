@@ -3,6 +3,7 @@
  */
 package com.cts.nw.onboarding.controllers;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -25,6 +26,8 @@ import com.cts.nw.onboarding.service.AttachmentService;
 @RequestMapping("/attachment")
 public class MailAttachmentController extends AbstractController {
 
+	Logger log = Logger.getLogger(ProcessController.class);
+	
 	@Autowired
 	AttachmentService attachmentService;
 
@@ -38,7 +41,7 @@ public class MailAttachmentController extends AbstractController {
 	        header.set("Content-Disposition", "inline; filename=" + filedetail.getFileName());
 	        return new HttpEntity<byte[]>(filedetail.getData(), header);
 		} catch (CustomException e) {
-			e.printStackTrace();
+			log.error("Requested attachment is not available.");
 			return null;
 		}
 		

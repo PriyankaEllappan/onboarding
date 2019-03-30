@@ -55,14 +55,12 @@ public class GlobalExceptionHandler {
 	
 	@ExceptionHandler(NoHandlerFoundException.class)
 	public ModelAndView handleNotFoundException(HttpServletRequest req, NoHandlerFoundException ex) {
-		ex.printStackTrace();
 		ModelAndView model = getModelView("errors/handlerNotFound");
 		return model;
 	}
 	
 	@ExceptionHandler(Exception.class)
 	public ModelAndView otherException(HttpServletRequest req, Exception ex) {
-		ex.printStackTrace();
 		ModelAndView modelView = getModelView("errors/errorPage");
 		modelView.addObject("errMessage" , "Exception Occurred : " + ex.getLocalizedMessage());
 		return modelView;

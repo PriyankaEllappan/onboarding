@@ -87,7 +87,6 @@ public class ReleaseController extends AbstractController {
 			modelView = new ModelAndView("errors/errorPage");
 			modelView.addObject("errMessage", e.getMessage());
 			log.error(e.getMessage());
-			e.printStackTrace();
 			return modelView;
 		}
 	}

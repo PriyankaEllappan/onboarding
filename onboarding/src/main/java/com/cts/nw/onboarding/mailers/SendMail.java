@@ -70,7 +70,6 @@ public class SendMail {
 			System.out.println("Sent message successfully....");
 		} catch (Exception e) {
 			log.error(e.getCause());
-			e.printStackTrace();
 		}
 	}
 

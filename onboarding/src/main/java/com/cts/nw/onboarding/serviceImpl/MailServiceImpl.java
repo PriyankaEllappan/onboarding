@@ -3,6 +3,7 @@ package com.cts.nw.onboarding.serviceImpl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -12,6 +13,7 @@ import com.cts.nw.onboarding.bean.EmployeeDetails;
 import com.cts.nw.onboarding.bo.EmployeeProjHist;
 import com.cts.nw.onboarding.bo.MailDetail;
 import com.cts.nw.onboarding.controllers.AbstractController;
+import com.cts.nw.onboarding.controllers.ProcessController;
 import com.cts.nw.onboarding.mailers.SendMail;
 import com.cts.nw.onboarding.service.MailService;
 
@@ -20,6 +22,8 @@ import com.cts.nw.onboarding.service.MailService;
 @Service
 public class MailServiceImpl implements MailService {
 
+	Logger log = Logger.getLogger(ProcessController.class);
+	
 	@Autowired
 	SendMail sendMail;
 
@@ -58,7 +62,7 @@ public class MailServiceImpl implements MailService {
 			mailDetail.setSubject("Request Mail.. !!!");
 			sendMail.send(mailDetail);
 		} catch(Exception e) {
-			e.printStackTrace();
+			log.error(e.getCause());
 		}
 	}
 
@@ -87,7 +91,7 @@ public class MailServiceImpl implements MailService {
 			mailDetail.setSubject("Process Mail.. !!!");
 			sendMail.send(mailDetail);
 		} catch(Exception e) {
-			e.printStackTrace();
+			log.error(e.getCause());
 		}
 	}
 
@@ -115,7 +119,7 @@ public class MailServiceImpl implements MailService {
 			mailDetail.setSubject("Complete Mail.. !!!");
 			sendMail.send(mailDetail);
 		} catch(Exception e) {
-			e.printStackTrace();
+			log.error(e.getCause());
 		}
 	}
 	
@@ -143,7 +147,7 @@ public class MailServiceImpl implements MailService {
 			mailDetail.setSubject(" Resource Release Initiated Mail.. !!!");
 			sendMail.send(mailDetail);
 		} catch(Exception e) {
-			e.printStackTrace();
+			log.error(e.getCause());
 		}
 
 	}
@@ -172,7 +176,7 @@ public class MailServiceImpl implements MailService {
 			mailDetail.setSubject(" Resource OffBoarded Mail.. !!!");
 			sendMail.send(mailDetail);
 		} catch(Exception e) {
-			e.printStackTrace();
+			log.error(e.getCause());
 		}
 
 	}

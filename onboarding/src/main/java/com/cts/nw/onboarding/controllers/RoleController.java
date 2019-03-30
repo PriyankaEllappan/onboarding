@@ -75,7 +75,6 @@ public class RoleController extends AbstractController {
 
 		} catch (Exception e) {
 			log.error(e.getCause());
-			e.printStackTrace();
 			return null;
 		}
 	}
