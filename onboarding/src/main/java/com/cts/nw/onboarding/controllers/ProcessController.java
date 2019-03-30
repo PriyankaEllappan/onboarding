@@ -51,6 +51,7 @@ public class ProcessController extends AbstractController {
 		} catch (CustomException e) {
 			modelView = bindViewwithUserInfo("errors/errorPage");
 			modelView.addObject("errMessage", e.getMessage());
+			log.error(e.getMessage());
 		}
 		return modelView;
 	}
@@ -71,6 +72,7 @@ public class ProcessController extends AbstractController {
 		} catch (CustomException e) {
 			modelView = bindViewwithUserInfo("errors/errorPage");
 			modelView.addObject("errMessage", e.getMessage());
+			log.error(e.getMessage());
 		}
 		return modelView;
 	}
@@ -161,7 +163,12 @@ public class ProcessController extends AbstractController {
 			processorService.offboardAnEmployee(employee);
 			modelView = bindViewwithUserInfo("commons/detailsSaved");
 			modelView.addObject("employee", employee);
-		} catch (CustomException e) {
+		}  catch (ValidatorException e) {
+			modelView = bindViewwithUserInfo("process/offboardProcessingForm");
+			modelView.addObject("errMessage", e.getMessage());
+			log.error(e.getMessage());
+		}
+		catch (CustomException e) {
 			modelView = new ModelAndView("errors/errorPage");
 			modelView.addObject("errMessage", e.getMessage());
 			log.error(e.getMessage());

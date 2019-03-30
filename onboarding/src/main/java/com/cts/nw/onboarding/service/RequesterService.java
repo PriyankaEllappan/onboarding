@@ -20,7 +20,7 @@ public interface RequesterService {
 	
 	EmployeeMaster getResourceByID(String employeeid) throws CustomException;
 	EmployeeMaster addNewResource(EmployeeMaster employee) throws CustomException, ValidatorException;
-	EmployeeProjHist addNewProject(EmployeeProjHist employeeProjHist) throws CustomException;
+	EmployeeProjHist addNewProject(EmployeeProjHist employeeProjHist) throws CustomException, ValidatorException;
 	List<EmployeeProjHist> checkActiveAssignments(String employeeid) throws CustomException;
 	EmployeeProjHist getEmployeeProjById(String empProjHistId) throws CustomException;
 	

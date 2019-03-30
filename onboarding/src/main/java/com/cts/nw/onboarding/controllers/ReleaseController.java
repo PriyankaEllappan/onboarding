@@ -22,6 +22,7 @@ import com.cts.nw.onboarding.bo.ReleaseSummary;
 import com.cts.nw.onboarding.constants.AppConstants;
 import com.cts.nw.onboarding.constants.ErrorConstants;
 import com.cts.nw.onboarding.exception.CustomException;
+import com.cts.nw.onboarding.exception.ValidatorException;
 import com.cts.nw.onboarding.service.ReleaseService;
 
 @Controller
@@ -41,8 +42,8 @@ public class ReleaseController extends AbstractController {
 	@RequestMapping(value = "/releaselist", method = RequestMethod.GET)
 	public ModelAndView releaseAllList() {
 		ModelAndView modelView;
-		modelView = bindViewwithUserInfo("terminate/releaseList");
 		try {
+			modelView = bindViewwithUserInfo("terminate/releaseList");
 			modelView.addObject("employees", releaseService.getEmployeestobeReleased());
 		} catch (CustomException e) {
 			modelView = bindViewwithUserInfo("errors/errorPage");
@@ -80,16 +81,19 @@ public class ReleaseController extends AbstractController {
 	@RequestMapping(value = "/processrelease", method = RequestMethod.POST)
 	public ModelAndView releaseResource(@ModelAttribute("employee") EmployeeProjHist employeeJson,
 			BindingResult result) {
+		ModelAndView modelView;
 		try {
 			releaseService.releaseAnEmployee(employeeJson);
 			return releaseAllList();
+		} catch (ValidatorException e) {
+			modelView = bindViewwithUserInfo("terminate/requestTerminationForm");
+			modelView.addObject("errMessage", e.getMessage());
 		} catch (CustomException e) {
-			ModelAndView modelView;
 			modelView = new ModelAndView("errors/errorPage");
 			modelView.addObject("errMessage", e.getMessage());
 			log.error(e.getMessage());
-			return modelView;
 		}
+		return modelView;
 	}
 
 	/**
@@ -111,15 +115,23 @@ public class ReleaseController extends AbstractController {
 	 * @param model
 	 * @return
 	 * @return
+	 * @throws ValidatorException 
 	 */
 	@PostMapping(value = "/processreleasebyteam")
-	public String releaseResourcebyTeam(@RequestBody EmployeeProjHist employeeJson) {
+	public ModelAndView releaseResourcebyTeam(@RequestBody EmployeeProjHist employeeJson) {
+		ModelAndView modelView;
 		try {
 			releaseService.releaseEmployeesByTeam(employeeJson);
-		} catch (CustomException e) {
+			return releaseAllList();
+		} catch (ValidatorException e) {
+			modelView = bindViewwithUserInfo("terminate/releaseListbyTeam");
+			modelView.addObject("errMessage", e.getMessage());
+		}  catch (CustomException e) {
+			modelView = new ModelAndView("errors/errorPage");
+			modelView.addObject("errMessage", e.getMessage());
 			log.error(e.getMessage());
 		}
-		return "redirect:releaselist";
+		return modelView;
 	}
 
 	/**
@@ -143,13 +155,20 @@ public class ReleaseController extends AbstractController {
 	 * @return
 	 */
 	@PostMapping(value = "/processreleasebyproject")
-	public String releaseResourcebyProject(@RequestBody EmployeeProjHist employeeJson) {
+	public ModelAndView releaseResourcebyProject(@RequestBody EmployeeProjHist employeeJson) {
+		ModelAndView modelView;
 		try {
 			releaseService.releaseEmployeesByProject(employeeJson);
+			return releaseAllList();
+		} catch (ValidatorException e) {
+			modelView = bindViewwithUserInfo("terminate/releaseListbyProj");
+			modelView.addObject("errMessage", e.getMessage());
 		} catch (CustomException e) {
+			modelView = new ModelAndView("errors/errorPage");
+			modelView.addObject("errMessage", e.getMessage());
 			log.error(e.getMessage());
 		}
-		return "redirect:releaselist";
+		return modelView;
 	}
 
 	/**
@@ -168,10 +187,12 @@ public class ReleaseController extends AbstractController {
 				ajaxResponse.setResponseList(objectList);
 			} else {
 				ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
+				ajaxResponse.setStatusMessage("No Resource available in this Team");
 			}
 		} catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
 			ajaxResponse.setStatusMessage(ErrorConstants.COMMONERROR);
+			log.error(e.getMessage());
 		}
 		return ajaxResponse;
 	}
@@ -192,10 +213,12 @@ public class ReleaseController extends AbstractController {
 				ajaxResponse.setResponseList(objectList);
 			} else {
 				ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
+				ajaxResponse.setStatusMessage("No Resource available in this Project");
 			}
 		} catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
 			ajaxResponse.setStatusMessage(ErrorConstants.COMMONERROR);
+			log.error(e.getMessage());
 		}
 		return ajaxResponse;
 	}
@@ -216,10 +239,12 @@ public class ReleaseController extends AbstractController {
 				ajaxResponse.setResponseList(objectList);
 			} else {
 				ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
+				ajaxResponse.setStatusMessage("No Release Summary available");
 			}
 		} catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
 			ajaxResponse.setStatusMessage(ErrorConstants.COMMONERROR);
+			log.error(e.getMessage());
 		}
 		return ajaxResponse;
 	}
@@ -238,6 +263,8 @@ public class ReleaseController extends AbstractController {
 		try {
 			modelView.addObject("employee", releaseService.getEmployeetoRelease(empProjHistId));
 		} catch (CustomException e) {
+			modelView = new ModelAndView("errors/errorPage");
+			modelView.addObject("errMessage", e.getMessage());
 			log.error(e.getMessage());
 		}
 		return modelView;

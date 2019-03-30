@@ -114,14 +114,19 @@ public class ProcessorServiceImpl implements ProcessorService {
 	}
 	
 	@Override
-	public EmployeeProjHist offboardAnEmployee(EmployeeProjHist employeeProjHist) throws CustomException {
+	public EmployeeProjHist offboardAnEmployee(EmployeeProjHist employeeProjHist)
+			throws CustomException, ValidatorException {
+		Integer rowsAffected = 0;
 		try {
-			Integer rowsAffected = 0;
-			rowsAffected = employeeProjHistDAO.processOffboardEmployee(employeeProjHist, employeeProjHist.getId());
-			if(rowsAffected > 0){
-				return employeeProjHist;
+			if (onboardingRequestValidator.validate(employeeProjHist)) {
+				rowsAffected = employeeProjHistDAO.processOffboardEmployee(employeeProjHist, employeeProjHist.getId());
+				if (rowsAffected > 0) {
+					return employeeProjHist;
+				}
 			}
-			return null;	
+			return null;
+		} catch (ValidatorException e) {
+			throw new ValidatorException(e.getMessage());
 		} catch (Exception e) {
 			throw new CustomException(e.getMessage());
 		}

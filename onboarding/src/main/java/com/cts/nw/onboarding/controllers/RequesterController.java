@@ -131,19 +131,20 @@ public class RequesterController extends AbstractController {
 	 */
 	@RequestMapping(value = "/request/mapproject/{empid}", method = RequestMethod.GET)
 	public ModelAndView generateAddProjForm(@PathVariable("empid") String empid) {
-		ModelAndView modelView;
-		List<EmployeeProjHist> activeAssignment = checkActiveAssignment(empid);
-		if (activeAssignment != null && activeAssignment.size() >= 2) {
-			modelView = bindViewwithUserInfo("errors/assignmentsExceeded");
-		} else {
-			modelView = bindViewwithUserInfo("request/mapNewProject");
-			try {
+		ModelAndView modelView = null;
+		try {
+			List<EmployeeProjHist> activeAssignment = checkActiveAssignment(empid);
+			if (activeAssignment != null && activeAssignment.size() >= 2) {
+				modelView = bindViewwithUserInfo("errors/assignmentsExceeded");
+			} else {
+				modelView = bindViewwithUserInfo("request/mapNewProject");
 				modelView.addObject("employee", requesterService.getResourceByID(empid));
-			} catch (CustomException e) {
-				log.error(e.getMessage());
 			}
+		} catch (CustomException e) {
+			modelView = bindViewwithUserInfo("errors/errorPage");
+			modelView.addObject("errMessage", e.getMessage());
+			log.error(e.getMessage());
 		}
-		
 		return modelView;
 	}
 
@@ -179,20 +180,21 @@ public class RequesterController extends AbstractController {
 	 * @return
 	 */
 	@PostMapping(value = "/request/mapproject", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public @ResponseBody AjaxResponse assignProject(@RequestBody EmployeeProjHist employeeProjJson,ModelMap model) {
+	public @ResponseBody AjaxResponse assignProject(@RequestBody EmployeeProjHist employeeProjJson, ModelMap model) {
 		AjaxResponse ajaxResponse = new AjaxResponse();
 		try {
 			EmployeeProjHist employee = requesterService.addNewProject(employeeProjJson);
-            if(employee != null){
-                ajaxResponse.setStatus("success");
-                ajaxResponse.setResponseObj(employee);
-          }else{
-                ajaxResponse.setStatus("success");
-                ajaxResponse.setResponseObj(null);
-          }
-		} catch (CustomException e) {
-            ajaxResponse.setStatus("failure");
-            ajaxResponse.setStatusMessage("Exception Occurred.");
+			if (employee != null) {
+				ajaxResponse.setStatus(AppConstants.AJAXSUCCESS);
+				ajaxResponse.setResponseObj(employee);
+			}
+		} catch (ValidatorException e) {
+			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
+			ajaxResponse.setStatusMessage(e.getMessage());
+		}
+		catch (CustomException e) {
+			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
+			ajaxResponse.setStatusMessage("Exception Occurred.");
 		}
 		return ajaxResponse;
 	}

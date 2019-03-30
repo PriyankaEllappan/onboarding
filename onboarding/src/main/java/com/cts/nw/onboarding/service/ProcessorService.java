@@ -22,7 +22,7 @@ public interface ProcessorService {
 	
 	List<EmployeeProjHist> getRecordsPerProcessortoOffboard(String processorid) throws CustomException;
 
-	EmployeeProjHist offboardAnEmployee(EmployeeProjHist employeeProjHist) throws CustomException;
+	EmployeeProjHist offboardAnEmployee(EmployeeProjHist employeeProjHist) throws CustomException, ValidatorException;
 	
 	EmployeeProjHist getEmployeeDetails(String empProjHistId) throws CustomException;
 

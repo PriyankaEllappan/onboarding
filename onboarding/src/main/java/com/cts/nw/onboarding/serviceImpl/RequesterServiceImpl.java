@@ -99,7 +99,7 @@ public class RequesterServiceImpl implements RequesterService {
 	}
 	
 	@Override
-	public EmployeeProjHist addNewProject(EmployeeProjHist employeeProjHist) throws CustomException {
+	public EmployeeProjHist addNewProject(EmployeeProjHist employeeProjHist) throws CustomException,ValidatorException {
 		try {
 			Integer rowsAffected = 0;
 			if (onboardingRequestValidator.validate(employeeProjHist)) {
@@ -121,15 +121,14 @@ public class RequesterServiceImpl implements RequesterService {
 				if (rowsAffected > 0) {
 					mailService.onBoardingInitiated(employeeProjHist);
 					return employeeProjHist;
-				} else {
-					return null;
-				}
-			} else {
-				return null;
+				} 
 			}
-		} catch (Exception e) {
+		} catch (ValidatorException e) {
+			throw new ValidatorException(e.getMessage());
+		} catch (CustomException e) {
 			throw new CustomException(e.getMessage());
 		}
+		return null;
 	}
 
 	/*3. Requester list*/
