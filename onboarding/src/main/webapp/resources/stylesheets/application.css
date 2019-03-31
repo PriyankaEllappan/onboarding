@@ -179,15 +179,16 @@
 /* Carousel Properties */
 
 .carousel {
-	 height: 450px;
+		top: 25%;
+	 height: 250px;
 }
 .carousel .item {
-  height: 450px;
+  height: 250px;
 }
 
 .carousel-inner > .item > img {
-  width:640px;
-  height:450px;
+  width:500px;
+  height:250px;
 }
 
 

@@ -33,11 +33,11 @@ a {
 					</div>
 
 					<div class="item">
-						<img src="/onboarding/resources/images/Image2.jpg" alt="carousel2" style="width: 100%;">
+						<img src="/onboarding/resources/images/carouselCognizant.png" alt="carousel2" style="width: 100%;">
 					</div>
 
 					<div class="item">
-						<img src="/onboarding/resources/images/Image3.jpg" alt="carousel3" style="width: 100%;">
+						<img src="/onboarding/resources/images/carouselNW.png" alt="carousel3" style="width: 100%;">
 					</div>
 				</div>
 				<a class="left carousel-control" href="#myCarousel"
