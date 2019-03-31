@@ -54,9 +54,8 @@
 									<td><span class="customized-span-danger">Released</span></td>
 								</c:when>
 								<c:otherwise>
-									<td><span class="customized-span-requested"></span></td>
+									<td><span class="customized-span-requested">NA</span></td>
 								</c:otherwise>
-
 							</c:choose>
 							<td><img class="icon-image to-click"
 								src="/onboarding/resources/icons/show"

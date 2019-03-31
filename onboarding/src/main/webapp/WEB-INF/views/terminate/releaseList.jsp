@@ -55,7 +55,7 @@
 											Initiated</span></td>
 								</c:when>
 								<c:otherwise>
-									<td><span class="customized-span-requested"></span></td>
+									<td><span class="customized-span-requested">NA</span></td>
 								</c:otherwise>
 
 							</c:choose>

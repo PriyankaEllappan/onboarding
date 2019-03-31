@@ -58,7 +58,7 @@
 									<td><span class="customized-span-danger">Rejected</span></td>
 								</c:when>
 								<c:otherwise>
-								<td><span class="customized-span-requested"></span></td>
+								<td><span class="customized-span-requested">NA</span></td>
 								</c:otherwise>
 							</c:choose>
 							<c:choose>
@@ -74,7 +74,7 @@
 									<td><span class="customized-span-danger">Released</span></td>
 								</c:when>
 								<c:otherwise>
-								<td><span class="customized-span-requested">Not Applicable</span></td>
+								<td><span class="customized-span-requested">NA</span></td>
 								</c:otherwise>
 							</c:choose>
 							<td><img class="icon-image to-click"
