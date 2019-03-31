@@ -87,11 +87,11 @@ public class RequesterController extends AbstractController {
 
 			} else {
 				ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
-				log.info(empid + ErrorConstants.EMPLOYEENOTINNATIONWIDEERROR);
+				log.info(empid + ErrorConstants.EMPNONAVAILABLE);
 			}
 		} catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
-			ajaxResponse.setStatusMessage(ErrorConstants.COMMONERROR);
+			ajaxResponse.setStatusMessage(ErrorConstants.ERROR_MSG);
 			log.error(e.getMessage());
 		}
 		return ajaxResponse;
@@ -120,7 +120,7 @@ public class RequesterController extends AbstractController {
 			ajaxResponse.setStatusMessage(e.getMessage());
 		} catch (CustomException e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
-			ajaxResponse.setStatusMessage(ErrorConstants.COMMONERROR);
+			ajaxResponse.setStatusMessage(ErrorConstants.ERROR_MSG);
 			log.error(e.getMessage());
 		}
 		return ajaxResponse;
@@ -188,7 +188,7 @@ public class RequesterController extends AbstractController {
 			if (employee != null) {
 				ajaxResponse.setStatus(AppConstants.AJAXSUCCESS);
 				ajaxResponse.setResponseObj(employee);
-				ajaxResponse.setStatusMessage(AppConstants.PROJECTDETAILSADDED);
+				ajaxResponse.setStatusMessage(AppConstants.DETAILS_SAVED);
 			}
 		} catch (ValidatorException e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
@@ -196,7 +196,7 @@ public class RequesterController extends AbstractController {
 		}
 		catch (CustomException e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
-			ajaxResponse.setStatusMessage(ErrorConstants.COMMONERROR);
+			ajaxResponse.setStatusMessage(ErrorConstants.ERROR_MSG);
 		}
 		return ajaxResponse;
 	}

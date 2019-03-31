@@ -27,26 +27,26 @@ public class OnboardingRequestValidator {
 	 */
 	public boolean validateRequesterForm(EmployeeProjHist employeeProjHist) throws ValidatorException  {
 			if (employeeProjHist.getTeamName() == null
-					|| !Pattern.matches("[a-zA-Z\\s]*", employeeProjHist.getTeamName())) {
-				throw new ValidatorException(ValidationConstants.TEAMNAMEVALIDATION);
+					|| !Pattern.matches("[a-zA-Z,\\s]*", employeeProjHist.getTeamName())) {
+				throw new ValidatorException(ValidationConstants.TEAMNAME_ERR);
 			}
 			if (employeeProjHist.getStartDate() == null) {
-				throw new ValidatorException(ValidationConstants.STARTDATEDATEVALIDATION);
+				throw new ValidatorException(ValidationConstants.STRDATE_ERR);
 			}
 			if (employeeProjHist.getSkillSet() == null
-					|| !Pattern.matches("[a-zA-Z\\s]*", employeeProjHist.getSkillSet())) {
-				throw new ValidatorException(ValidationConstants.SKILLSETVALIDATION);
+					|| !Pattern.matches("[a-zA-Z0-9,.\\s]*", employeeProjHist.getSkillSet())) {
+				throw new ValidatorException(ValidationConstants.SKILL_ERR);
 			}
 			if (employeeProjHist.getSkillSummary() == null
-					|| !Pattern.matches("[a-zA-Z\\s]*", employeeProjHist.getSkillSummary())) {
-				throw new ValidatorException(ValidationConstants.SKILLSUMMARYVALIDATION);
+					|| !Pattern.matches("[a-zA-Z0-9,.\\s]*", employeeProjHist.getSkillSummary())) {
+				throw new ValidatorException(ValidationConstants.SUMMARY_ERR);
 			}
 			if (employeeProjHist.getExperience() == null || employeeProjHist.getExperience() < 0) {
-				throw new ValidatorException(ValidationConstants.EXPERIENCEVALIDATION);
+				throw new ValidatorException(ValidationConstants.EXP_ERR);
 			}
 			if (employeeProjHist.getPplManager() == null
 					&& !Pattern.matches("[a-zA-Z\\s]*", employeeProjHist.getPplManager())) {
-				throw new ValidatorException(ValidationConstants.PPLVALIDATION);
+				throw new ValidatorException(ValidationConstants.PPL_ERR);
 			}
 		
 		return true;
@@ -62,32 +62,26 @@ public class OnboardingRequestValidator {
 		
 			if (employeeProjHist.getPplManager() != null
 					&& !Pattern.matches("[a-zA-Z\\s]*", employeeProjHist.getPplManager())) {
-				throw new ValidatorException(ValidationConstants.PPLVALIDATION);
+				throw new ValidatorException(ValidationConstants.PPL_ERR);
 			}
 			if (employeeProjHist.getApm() != null && !Pattern.matches("[a-zA-Z\\s]*", employeeProjHist.getApm())) {
-				throw new ValidatorException(ValidationConstants.APMVALIDATION);
+				throw new ValidatorException(ValidationConstants.APM_ERR);
 			}
 			if (employeeProjHist.getNationwideId() != null
 					&& !Pattern.matches("[a-zA-Z0-9]*", employeeProjHist.getNationwideId())) {
-				throw new ValidatorException(ValidationConstants.NATIONWIDEIDVALIDATION);
+				throw new ValidatorException(ValidationConstants.NWID_ERR);
 			}
-			/*if (employeeProjHist.getNationwideIdCreatedDate() != null) {
-				throw new ValidatorException(ValidationConstants.NATIONWIDEIDCREATEDDATEVALIDATION);
-			}*/
 			if (employeeProjHist.getWorkForceId() != null
 					&& !Pattern.matches("[a-zA-Z0-9]*", employeeProjHist.getWorkForceId())) {
-				throw new ValidatorException(ValidationConstants.WORKFORCEIDVALIDATION);
+				throw new ValidatorException(ValidationConstants.WORKFORCE_ERR);
 			}
 			if (employeeProjHist.getScrumMaster() != null
 					&& !Pattern.matches("[a-zA-Z\\s]*", employeeProjHist.getScrumMaster())) {
-				throw new ValidatorException(ValidationConstants.SCRUMMASTERVALIDATION);
+				throw new ValidatorException(ValidationConstants.SCRUMMASTER_ERR);
 			}
-			/*if (employeeProjHist.getFgOnBoardingDate() != null) {
-				throw new ValidatorException(ValidationConstants.FGONBOARDINGDATEVALIDATION);
-			}*/
 			if (employeeProjHist.getComments() != null
-					&& !Pattern.matches("[a-zA-Z0-9\\s]*", employeeProjHist.getComments())) {
-				throw new ValidatorException(ValidationConstants.COMMENTSVALIDATION);
+					&& !Pattern.matches("[a-zA-Z0-9,.\\s]*", employeeProjHist.getComments())) {
+				throw new ValidatorException(ValidationConstants.COMMENTS_ERR);
 			}
 		
 		return true;

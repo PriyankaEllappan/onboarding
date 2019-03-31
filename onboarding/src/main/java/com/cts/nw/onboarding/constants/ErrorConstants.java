@@ -9,28 +9,13 @@ package com.cts.nw.onboarding.constants;
  */
 public class ErrorConstants {
 
-	public static final String COMMONERROR = "Exception Occurred";
-	public static final String BANDLISTERROR = "Band list is empty";
-	public static final String COUNTRYLISTERROR = "Country list is empty";
-	public static final String ATTACHMENTERROR = "Requested attachment is not available.";
-	public static final String MOVEMENTERROR = "Movement list is empty.";
-	public static final String ACTIVEPROJECTERROR = "Active Project list is empty.";
-
-	public static final String RELEASEBYTEAMERROR = "Resource is not available for this Team";
-	public static final String RELEASEBYPROJECTERROR = "Resource is not available for this Project";
+	public static final String ERROR_MSG = "Exception occurred while procesing the request";
 	
-	public static final String RELEASESUMMARYLISTERROR = "Resource is not available for this Project";
+	public static final String EMPTY_LIST = "Select query returned zero records";
+	
+	public static final String RESOURCENONAVAILABLE = "Requested attachment is not available";
+
 	public static final String LDAPERROR = " : Employee not found in Cognizant Directory";
 	
-	public static final String EMPLOYEENOTINNATIONWIDEERROR = " : Employee Not available in nationwide. ";
-
-	public static final String ROLEMAPPINGLISTERROR = "Role Mapping list is empty";
-	
-	public static final String ROLELISTERROR="Role list is empty" ;
-	public static final String APPROVALSTATUSLISTERROR = "Approval Status list is empty";
-
-	public static final String RELEASESTATUSLISTERROR = "Release Status list is empty";
-	public static final String TEAMLISTERROR = "Teams list is empty";
-	public static final String BSALISTERROR = "BSA list is empty";
-
+	public static final String EMPNONAVAILABLE = " : Employee Not available in Nationwide";
 }

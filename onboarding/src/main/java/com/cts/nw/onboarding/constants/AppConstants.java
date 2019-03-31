@@ -11,6 +11,7 @@ public class AppConstants {
 
 	 public static final String AJAXSUCCESS = "SUCCESS";
 	 public static final String AJAXFAILURE = "FAILURE";
-	 public static final String PROJECTDETAILSADDED = "Project Details added successfully";
+	 
+	 public static final String DETAILS_SAVED = "Details added successfully";
 	
 }

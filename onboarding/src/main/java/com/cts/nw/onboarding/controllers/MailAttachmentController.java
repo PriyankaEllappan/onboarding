@@ -42,7 +42,7 @@ public class MailAttachmentController extends AbstractController {
 	        header.set("Content-Disposition", "inline; filename=" + filedetail.getFileName());
 	        return new HttpEntity<byte[]>(filedetail.getData(), header);
 		} catch (CustomException e) {
-			log.error(ErrorConstants.ATTACHMENTERROR);
+			log.error(ErrorConstants.RESOURCENONAVAILABLE);
 			return null;
 		}
 		

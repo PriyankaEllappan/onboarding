@@ -50,11 +50,11 @@ public class RoleController extends AbstractController {
 				ajaxResponse.setResponseList(objectList);
 			} else {
 				ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
-				log.error(ErrorConstants.ROLEMAPPINGLISTERROR);
+				log.error(ErrorConstants.EMPTY_LIST);
 			}
 		} catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
-			ajaxResponse.setStatusMessage(ErrorConstants.COMMONERROR);
+			ajaxResponse.setStatusMessage(ErrorConstants.ERROR_MSG);
 			log.error(e.getMessage());
 		}
 		return ajaxResponse;
@@ -71,7 +71,7 @@ public class RoleController extends AbstractController {
 		try {
 			roleList = roleService.getRoleDetails();
 			if (roleList.size() == 0) {
-				log.error(ErrorConstants.ROLELISTERROR);
+				log.error(ErrorConstants.EMPTY_LIST);
 			} 
 		} catch (Exception e) {
 			log.error(e.getMessage());

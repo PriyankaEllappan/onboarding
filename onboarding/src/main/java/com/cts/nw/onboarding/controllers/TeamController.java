@@ -53,11 +53,11 @@ public class TeamController extends AbstractController {
 				ajaxResponse.setResponseList(objectList);
 			} else {
 				ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
-				log.error(ErrorConstants.TEAMLISTERROR);
+				log.error(ErrorConstants.EMPTY_LIST);
 			}
 		} catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
-			ajaxResponse.setStatusMessage(ErrorConstants.COMMONERROR);
+			ajaxResponse.setStatusMessage(ErrorConstants.ERROR_MSG);
 			log.error(e.getMessage());
 		}
 		return ajaxResponse;
@@ -79,11 +79,11 @@ public class TeamController extends AbstractController {
 				ajaxResponse.setResponseList(objectList);
 			} else {
 				ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
-				log.error(ErrorConstants.BSALISTERROR);
+				log.error(ErrorConstants.EMPTY_LIST);
 			}
 		} catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
-			ajaxResponse.setStatusMessage(ErrorConstants.COMMONERROR);
+			ajaxResponse.setStatusMessage(ErrorConstants.ERROR_MSG);
 			log.error(e.getMessage());
 		}
 		return ajaxResponse;

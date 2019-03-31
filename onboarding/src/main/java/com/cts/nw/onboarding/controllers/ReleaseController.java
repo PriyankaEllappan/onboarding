@@ -89,7 +89,7 @@ public class ReleaseController extends AbstractController {
 			}
 		} catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
-			ajaxResponse.setStatusMessage(ErrorConstants.COMMONERROR);
+			ajaxResponse.setStatusMessage(ErrorConstants.ERROR_MSG);
 			log.error(e.getMessage());
 		}
 		return ajaxResponse;
@@ -234,7 +234,7 @@ public class ReleaseController extends AbstractController {
 			}
 		} catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
-			ajaxResponse.setStatusMessage(ErrorConstants.COMMONERROR);
+			ajaxResponse.setStatusMessage(ErrorConstants.ERROR_MSG);
 			log.error(e.getMessage());
 		}
 		return ajaxResponse;
@@ -260,7 +260,7 @@ public class ReleaseController extends AbstractController {
 			}
 		} catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
-			ajaxResponse.setStatusMessage(ErrorConstants.COMMONERROR);
+			ajaxResponse.setStatusMessage(ErrorConstants.ERROR_MSG);
 			log.error(e.getMessage());
 		}
 		return ajaxResponse;
@@ -286,7 +286,7 @@ public class ReleaseController extends AbstractController {
 			}
 		} catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
-			ajaxResponse.setStatusMessage(ErrorConstants.COMMONERROR);
+			ajaxResponse.setStatusMessage(ErrorConstants.ERROR_MSG);
 			log.error(e.getMessage());
 		}
 		return ajaxResponse;
