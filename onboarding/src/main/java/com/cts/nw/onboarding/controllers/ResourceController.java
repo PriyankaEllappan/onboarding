@@ -36,7 +36,9 @@ public class ResourceController extends AbstractController {
 		AjaxResponse ajaxResponse = new AjaxResponse();
 		try {
 			EmployeeDetails employee = lDAPService.getEmployee(empId);
+			
 			if (employee != null) {
+				System.out.println(employee.toString());
 				ajaxResponse.setStatus(AppConstants.AJAXSUCCESS);
 				ajaxResponse.setResponseObj(employee);
 

@@ -13,13 +13,13 @@ public class ValidationConstants {
 
 	public static final String EMPID_ERR = "Employee ID can't be null or negative";
 
-	public static final String FNAME_ERR = "First Name can't be null and can only contain alphabets";
+	public static final String FNAME_ERR = "First Name can't be null and can only contain alphanumeric";
 
-	public static final String LNAME_ERR = "Last Name can't be null and can only contain alphabets";
+	public static final String LNAME_ERR = "Last Name can't be null and can only contain alphanumeric";
 
-	public static final String NAME_ERR = "Employee Name can't be null and can only contain alphabets";
+	public static final String NAME_ERR = "Employee Name can't be null and can only contain alphanumeric";
 
-	public static final String PASSPORT_ERR = "Passport or SSN Number should be numeric and 4 digits long";
+	public static final String PASSPORT_ERR = "Passport or SSN Number should be alphanumeric and 4 digits long";
 
 	public static final String DOB_ERR = "Date of Birth can't be empty and can be past date";
 

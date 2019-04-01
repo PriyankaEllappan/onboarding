@@ -116,9 +116,11 @@ public class RequesterController extends AbstractController {
 				ajaxResponse.setStatusMessage("Resource Not Registered.");
 			}
 		} catch (ValidatorException e) {
+			e.printStackTrace();
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
 			ajaxResponse.setStatusMessage(e.getMessage());
 		} catch (CustomException e) {
+			e.printStackTrace();
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
 			ajaxResponse.setStatusMessage(ErrorConstants.ERROR_MSG);
 			log.error(e.getMessage());

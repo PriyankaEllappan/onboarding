@@ -24,16 +24,16 @@ public class EmployeeMasterValidator {
 			if (employee.getEmployeeId() == null || employee.getEmployeeId() <= 0) {
 				throw new ValidatorException(ValidationConstants.EMPID_ERR);
 			}
-			if (employee.getFirstName() == null || !Pattern.matches("[a-zA-Z.\\s]*", employee.getFirstName())) {
+			if (employee.getFirstName() == null || !Pattern.matches("[a-zA-Z0-9.\\s]*", employee.getFirstName())) {
 				throw new ValidatorException(ValidationConstants.FNAME_ERR);
 			}
-			if (employee.getLastName() == null || !Pattern.matches("[a-zA-Z.\\s]*", employee.getLastName())) {
+			if (employee.getLastName() == null || !Pattern.matches("[a-zA-Z0-9.\\s]*", employee.getLastName())) {
 				throw new ValidatorException(ValidationConstants.LNAME_ERR);
 			}
-			if (employee.getName() == null || !Pattern.matches("[a-zA-Z.\\s]*", employee.getName())) {
+			if (employee.getName() == null || !Pattern.matches("[a-zA-Z0-9.\\s]*", employee.getName())) {
 				throw new ValidatorException(ValidationConstants.NAME_ERR);
 			}
-			if (employee.getPassportNumber() == null || employee.getPassportNumber().length() != 4) {
+			if (employee.getPassportNumber() == null || employee.getPassportNumber().length() != 4 || !Pattern.matches("[a-zA-Z0-9]*", employee.getPassportNumber())) {
 				throw new ValidatorException(ValidationConstants.PASSPORT_ERR);
 			}
 			if (employee.getDateOfBirth() == null || employee.getDateOfBirth().after(new Date())) {
