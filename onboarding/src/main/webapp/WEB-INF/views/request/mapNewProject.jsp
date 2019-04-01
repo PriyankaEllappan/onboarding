@@ -256,7 +256,7 @@
 										class="is-required"> *</span></label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" type="number" name="experience"
+									<input class="form-control" type="number" min="1" max="40" name="experience"
 										id="experience" placeholder="Enter Experience in years"
 										autocomplete="off" />
 								</div>

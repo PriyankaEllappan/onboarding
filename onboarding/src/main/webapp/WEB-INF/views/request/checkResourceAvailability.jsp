@@ -80,7 +80,7 @@
 							<label for="newEmpPPNo">Passport ID / SSN No</label>
 						</div>
 						<div class="col-md-3">
-							<input class="form-control" name="newEmpPPNo" id="newEmpPPNo"
+							<input class="form-control" name="newEmpPPNo" maxlength="4" id="newEmpPPNo"
 								placeholder="Enter last 4 digits of Passport/SSN No" />
 						</div>
 					</div>

@@ -53,7 +53,7 @@
 											onclick="location.href='onboard/${employee.getId()}'">Processing</button></td>
 								</c:when>
 								<c:when test="${employee.getApprovalStatus() == 'Completed'}">
-									<td><span class="customized-span-success">PROCESSED</span></td>
+									<td><span class="customized-span-success">Processed</span></td>
 								</c:when>
 								<c:otherwise>
 									<td><span class="customized-span-requested">NA</span></td>
