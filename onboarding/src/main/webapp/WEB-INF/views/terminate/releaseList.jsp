@@ -26,7 +26,7 @@
 						<br>
 					</div>
 				</div>
-				<table class="table table-striped">
+				<table class="table table-striped bordered">
 					<tr class="bold-font">
 						<th>Employee Id</th>
 						<th>Employee Name</th>
