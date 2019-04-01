@@ -3,6 +3,7 @@
  */
 package com.cts.nw.onboarding.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -136,7 +137,7 @@ public class RequesterController extends AbstractController {
 	public ModelAndView generateAddProjForm(@PathVariable("empid") String empid) {
 		ModelAndView modelView = null;
 		try {
-			List<EmployeeProjHist> activeAssignment = checkActiveAssignment(empid);
+			List<EmployeeProjHist> activeAssignment = requesterService.checkActiveAssignments(empid);
 			if (activeAssignment != null && activeAssignment.size() >= 2) {
 				modelView = bindViewwithUserInfo("errors/assignmentsExceeded");
 			} else {
@@ -156,14 +157,25 @@ public class RequesterController extends AbstractController {
 	 * @return
 	 */
 	@GetMapping(value = "/request/checkactiveassignments/{employeeid}", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public @ResponseBody List<EmployeeProjHist> checkActiveAssignment(@PathVariable String employeeid) {
+	public @ResponseBody AjaxResponse checkActiveAssignment(@PathVariable String employeeid) {
 		List<EmployeeProjHist> activeAssignment = null;
+		AjaxResponse ajaxResponse = new AjaxResponse();
 		try {
 			activeAssignment = requesterService.checkActiveAssignments(employeeid);
-		} catch (CustomException e) {
+			if (activeAssignment.size() > 0) {
+				ajaxResponse.setStatus(AppConstants.AJAXSUCCESS);
+				List<Object> objectList = new ArrayList<Object>(activeAssignment);
+				ajaxResponse.setResponseList(objectList);
+			} else {
+				ajaxResponse.setStatus(AppConstants.AJAXNONAVAILABLE);
+				log.error(ErrorConstants.EMPTY_LIST);
+			}
+		} catch (Exception e) {
+			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
+			ajaxResponse.setStatusMessage(ErrorConstants.ERROR_MSG);
 			log.error(e.getMessage());
 		}
-		return activeAssignment;
+		return ajaxResponse;
 	}
 	
 	/**

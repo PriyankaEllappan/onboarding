@@ -111,34 +111,39 @@ function checkForanEmployee(empID) {
 
 function checkForanActiveAssignment(empID) {
 	var counter = 0;
-	$.ajax({
-		type : 'GET',
-		url : "/onboarding/request/checkactiveassignments/" + empID,
-		dataType : "text",
-		success : function(resultData) {
-			if (!$.trim(resultData)) {
-				window.location = "/onboarding/request/mapproject/" + $("#availEmpID").text();
-			} else {
-				var returnedData = JSON.parse(resultData);
-				console.log("Response has data");
-				console.log(returnedData);
-				$('#availableProjects').append("<thead><tr><th>Name</th><th>Project Name</th><th>Team Name</th></tr></thead>");  
-				$.each(returnedData, function(key, value) {
-					counter = counter + 1;
-					$('#availableProjects').append(
-							'<tr><td>&nbsp;&nbsp;' + value.name +
-							'</td><td>&nbsp;&nbsp;'
-									+ value.projectName + '</td><td>&nbsp;&nbsp;'
-									+ value.teamName + '</td></tr>');
-				});
-				if(counter >= 2){
-					$('#errMessage').text("Resource is already tagged under two projects");
-				}else{
-					$('#ActiveAssignment').modal('show');
+	$
+			.ajax({
+				type : 'GET',
+				url : "/onboarding/request/checkactiveassignments/" + empID,
+				dataType : "json",
+				success : function(resultData) {
+					console.log(resultData);
+					if (resultData.status == "SUCCESS") {
+						$('#availableProjects')
+								.append(
+										"<thead><tr><th>Name</th><th>Project Name</th><th>Team Name</th></tr></thead>");
+						$.each(resultData.responseList, function(key, value) {
+							counter = counter + 1;
+							$('#availableProjects').append(
+									'<tr><td>&nbsp;&nbsp;' + value.name
+											+ '</td><td>&nbsp;&nbsp;'
+											+ value.projectName
+											+ '</td><td>&nbsp;&nbsp;'
+											+ value.teamName + '</td></tr>');
+						});
+						if (counter >= 2) {
+							$('#errMessage')
+									.text(
+											"Resource is already tagged under two projects");
+						} else {
+							$('#ActiveAssignment').modal('show');
+						}
+					} else if (resultData.status == "AJAXNONAVAILABLE") {
+						window.location = "/onboarding/request/mapproject/"
+								+ $("#availEmpID").text();
+					}
 				}
-			}
-		}
-	});
+			});
 }
 
 function validateForm() {

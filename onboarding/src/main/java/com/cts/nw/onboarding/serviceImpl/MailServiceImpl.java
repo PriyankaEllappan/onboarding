@@ -180,4 +180,34 @@ public class MailServiceImpl implements MailService {
 		}
 
 	}
+
+	@Override
+	public void onBoardingRejected(EmployeeProjHist resource) {
+		try {
+			String emailContent = environment.getRequiredProperty("mail.onboardingreject");
+
+			employeeDetail = new EmployeeDetails();
+			mailDetail = new MailDetail();
+			toList = new ArrayList<>();
+			ccList = new ArrayList<>();
+
+			toList.add(String.valueOf(resource.getRequesterId()));
+			toList.add(String.valueOf(resource.getOnboardRequester()));
+			mailDetail.setReceiver(toList);
+			ccList.add(String.valueOf(resource.getProcessorId()));
+			mailDetail.setCc(ccList);
+
+			emailContent = emailContent.replaceAll("<<EMPID>>", String.valueOf(resource.getEmployeeId()));
+			emailContent = emailContent.replace("<<EMPNAME>>", resource.getName());
+			emailContent = emailContent.replace("<<PROJID>>", String.valueOf(resource.getProjectId()));
+			emailContent = emailContent.replace("<<PROJNAME>>", resource.getProjectName());
+			emailContent = emailContent.replace("<<REJECTCOMMENTS>>", resource.getComments());
+			emailContent = emailContent.replace("<<URL>>", AbstractController.APPINFO.getAppUrl());
+			mailDetail.setContent(emailContent);
+			mailDetail.setSubject("Rejection Mail.. !!!");
+			sendMail.send(mailDetail);
+		} catch(Exception e) {
+			log.error(e.getCause());
+		}
+	}
 }

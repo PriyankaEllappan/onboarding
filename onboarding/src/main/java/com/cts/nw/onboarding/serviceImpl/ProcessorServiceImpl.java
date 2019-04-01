@@ -75,6 +75,8 @@ public class ProcessorServiceImpl implements ProcessorService {
 					} else if (employeeProjHist.getApprovalStatusId() == 3) {
 						mailService.onBoardingCompleted(employeeProjHist);
 						checkForAnyPrevAssignmentandRelease(employeeProjHist);
+					} else if (employeeProjHist.getApprovalStatusId() == 5) {
+						mailService.onBoardingRejected(employeeProjHist);
 					}
 				}
 				return null;

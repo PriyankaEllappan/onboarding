@@ -8,4 +8,5 @@ public interface MailService {
     public void onBoardingCompleted(EmployeeProjHist mailInfo);
     public void offBoardingInitiated(EmployeeProjHist mailInfo);
     public void offBoardingCompleted(EmployeeProjHist mailInfo);
+	public void onBoardingRejected(EmployeeProjHist employeeProjHist);
 }
