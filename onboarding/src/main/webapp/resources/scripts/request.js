@@ -92,7 +92,6 @@ function checkForanEmployee(empID) {
               url : "/onboarding/request/check/" + empID,
               dataType : "json",
               success : function(resultData) {
-            	  alert(resultData.status);
             	  console.log(resultData);
             	  	if (resultData.status == "SUCCESS") {
                     	 
@@ -164,10 +163,8 @@ function loadEmployeeDetails(empId){
 		url : "/onboarding/resource/getemployee?empId=" + empId,
 		dataType : "json",
 		success : function(resultData) {
-			alert(resultData.status);
 			console.log(resultData);
 			if (resultData.status == "SUCCESS") {
-				alert("ldap call success");
 				$('#newEmpID').val(empId);
 				$('#newEmpName').val(resultData.responseObj.name);
 				$('#newEmpEmail').val(resultData.responseObj.emailId);
@@ -175,7 +172,6 @@ function loadEmployeeDetails(empId){
 				$('#newEmpLName').val(resultData.responseObj.name.split(" ")[1]);
 				$("#resourceNonAvailable").show();
 			 } else {
-				 alert("ldap call failure");
 				 	$("#checkEmpId").val("");
 				 	$("#checkEmpId").prop('disabled', false);
 					$('#checkEmpIdSubmit').prop('disabled', false);

@@ -161,20 +161,28 @@ public class ReleaseController extends AbstractController {
 	 * @throws ValidatorException 
 	 */
 	@PostMapping(value = "/processreleasebyteam")
-	public ModelAndView releaseResourcebyTeam(@RequestBody EmployeeProjHist employeeJson) {
-		ModelAndView modelView;
+	public @ResponseBody AjaxResponse releaseResourcebyTeam(@RequestBody EmployeeProjHist employeeJson) {
+		AjaxResponse ajaxResponse = new AjaxResponse();
+		Integer rowCount;
 		try {
-			releaseService.releaseEmployeesByTeam(employeeJson);
-			return releaseAllList();
+			rowCount = releaseService.releaseEmployeesByTeam(employeeJson);
+			ajaxResponse.setStatusMessage(AppConstants.DETAILS_SAVED);
+			if (rowCount > 0) {
+				ajaxResponse.setStatus(AppConstants.AJAXSUCCESS);
+				ajaxResponse.setStatusMessage(AppConstants.DETAILS_SAVED);
+			} else {
+				ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
+				ajaxResponse.setStatusMessage(ErrorConstants.DETAILS_NOTSAVED);
+			}
 		} catch (ValidatorException e) {
-			modelView = bindViewwithUserInfo("terminate/releaseListbyTeam");
-			modelView.addObject("errMessage", e.getMessage());
-		}  catch (CustomException e) {
-			modelView = new ModelAndView("errors/errorPage");
-			modelView.addObject("errMessage", e.getMessage());
+			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
+			ajaxResponse.setStatusMessage(e.getMessage());
+		}  catch (Exception e) {
+			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
+			ajaxResponse.setStatusMessage(ErrorConstants.ERROR_MSG);
 			log.error(e.getMessage());
 		}
-		return modelView;
+		return ajaxResponse;
 	}
 
 	/**
@@ -198,20 +206,28 @@ public class ReleaseController extends AbstractController {
 	 * @return
 	 */
 	@PostMapping(value = "/processreleasebyproject")
-	public ModelAndView releaseResourcebyProject(@RequestBody EmployeeProjHist employeeJson) {
-		ModelAndView modelView;
+	public @ResponseBody AjaxResponse releaseResourcebyProject(@RequestBody EmployeeProjHist employeeJson) {
+		AjaxResponse ajaxResponse = new AjaxResponse();
+		Integer rowCount;
 		try {
-			releaseService.releaseEmployeesByProject(employeeJson);
-			return releaseAllList();
+			rowCount = releaseService.releaseEmployeesByProject(employeeJson);
+			ajaxResponse.setStatusMessage(AppConstants.DETAILS_SAVED);
+			if (rowCount > 0) {
+				ajaxResponse.setStatus(AppConstants.AJAXSUCCESS);
+				ajaxResponse.setStatusMessage(AppConstants.DETAILS_SAVED);
+			} else {
+				ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
+				ajaxResponse.setStatusMessage(ErrorConstants.DETAILS_NOTSAVED);
+			}
 		} catch (ValidatorException e) {
-			modelView = bindViewwithUserInfo("terminate/releaseListbyProj");
-			modelView.addObject("errMessage", e.getMessage());
-		} catch (CustomException e) {
-			modelView = new ModelAndView("errors/errorPage");
-			modelView.addObject("errMessage", e.getMessage());
+			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
+			ajaxResponse.setStatusMessage(e.getMessage());
+		} catch (Exception e) {
+			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
+			ajaxResponse.setStatusMessage(ErrorConstants.ERROR_MSG);
 			log.error(e.getMessage());
 		}
-		return modelView;
+		return ajaxResponse;
 	}
 
 	/**

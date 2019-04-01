@@ -215,7 +215,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	@Override
 	public List<EmployeeProjHist> getEmployeestobeReleasedbyTeam(String teamId) throws CustomException {
 		try {
-			String whereClause = " WHERE EPH.RELEASESTATUS IN (1,2) AND EPH.APPROVALSTATUS IN (3,4) AND EPH.TEAM = ?";
+			String whereClause = " WHERE EPH.RELEASESTATUS IN (1) AND EPH.APPROVALSTATUS IN (3,4) AND EPH.TEAM = ?";
 			String query = QueryConstants.EMPPROJHIST_SELECT + whereClause;
 			RowMapper<EmployeeProjHist> rowMapper = new EmployeeProjHistRowMapper();
 			return this.jdbcTemplate.query(query, rowMapper, teamId);
@@ -235,7 +235,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	@Override
 	public List<EmployeeProjHist> getEmployeestobeReleasedbyProj(String projectId) throws CustomException {
 		try {
-			String whereClause = " WHERE EPH.RELEASESTATUS IN (1,2) AND EPH.APPROVALSTATUS IN (3,4) AND PM.PROJECTID = ?";
+			String whereClause = " WHERE EPH.RELEASESTATUS IN (1) AND EPH.APPROVALSTATUS IN (3,4) AND PM.PROJECTID = ?";
 			String query = QueryConstants.EMPPROJHIST_SELECT + whereClause;
 			RowMapper<EmployeeProjHist> rowMapper = new EmployeeProjHistRowMapper();
 			return this.jdbcTemplate.query(query, rowMapper, projectId);

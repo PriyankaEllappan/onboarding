@@ -40,7 +40,6 @@ function loadApprovalStatus(){
 			console.log(resultData);
 			console.log(resultData.responseList);
 			if (approvalStat.status == "SUCCESS") {
-				alert("getallapprovalstatus success Call");
 				$.each(approvalStat.responseList, function(key,value) {  
 					if(value.id == 1 || value.id == 4){
 						$('#approvalStatus')
@@ -56,7 +55,6 @@ function loadApprovalStatus(){
 					}
 				});
 			} else {
-				alert("getallapprovalstatus failure Call");
 				console.log("getallapprovalstatus failure Call");
 			}
 			$('select[name="approvalStatus"]').find('option[value='+ $('#approvalStatusId').val() +']').attr("selected",true);
@@ -76,14 +74,12 @@ function loadReleaseStatus(){
 			console.log(resultData);
 			console.log(resultData.responseList);
 			if (releaseStat.status == "SUCCESS") {
-				alert("getallreleasestatus success Call");
 				$.each(releaseStat.responseList, function(key,value) {  
 					if (value.status == "Yet to Release") {
 						$('#releaseStatus').val(value.id);
 					}
 				});
 			} else {
-				alert("getallreleasestatus failure Call");
 				console.log("getallreleasestatus failure Call");
 			}
 		}
@@ -96,26 +92,16 @@ function loadBands(){
 		url : "/onboarding/band/getbands" ,
 		dataType : "json",
 		success : function(resultData) {
-		//	bandDetails = JSON.parse(resultData);
-/*			$.each(bandDetails, function(key,value) {   
-			     $('#band')
-			         .append($("<option></option>")
-			                    .attr("value",value.id)
-			                    .text(value.bandName)); 
-			});*/
-			
 			bandDetails = resultData; //setting the value for the global JS object "bandDetails"
 			console.log(resultData);
 			console.log(resultData.responseList);
 			if (bandDetails.status == "SUCCESS") {
-				alert("bands success Call");
 				$.each(bandDetails.responseList, function(key, value) {
 					$('#band').append(
 							$("<option></option>").attr("value", value.id)
 									.text(value.bandName));
 				});
 			} else {
-				alert("bands failure Call");
 				console.log("bands failure Call");
 			}
 		}
@@ -131,15 +117,12 @@ function loadMovementDetails(){
 			console.log(resultData);
 			console.log(resultData.responseList);
 			if (resultData.status == "SUCCESS") {
-				alert("getmovements success Call");
-				//movementList = JSON.parse(resultData);
 				$.each(resultData.responseList, function(key,value) {  
 					if($("#movementId").val() == value.id ){
 						 $('#movement').val(value.movement)
 					}
 				});
 			} else {
-				alert("getmovements failure Call");
 				console.log("getmovements failure Call");
 			}
 		}

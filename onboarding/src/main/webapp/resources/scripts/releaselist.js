@@ -63,15 +63,11 @@ function submitProj() {
 				data : JSON.stringify(jsonStr),
 				contentType : 'application/json; charset=utf-8',
 				success : function(resultData) {
-					console.log(resultData);
-					if (!$.trim(resultData)) {
+					if (resultData.status == "SUCCESS") {
 						$('#"offboardByProj"').hide();
-						$('#errMessage').text("Unable to process the request");
+						$('#statusSucessMessage').text(resultData.statusMessage);
 					} else {
-						$('#"offboardByProj"').hide();
-						$('#statusSucessMessage')
-								.text(
-										"Requested project resources release has been initiated");
+						$('#statusSucessMessage').text(resultData.errMessage);
 					}
 				},
 				error : function() {
@@ -94,14 +90,11 @@ function submitTeam() {
 		data : JSON.stringify(jsonStr),
 		contentType : 'application/json; charset=utf-8',
 		success : function(resultData) {
-			console.log(resultData);
-			if (!$.trim(resultData)) {
+			if (resultData.status == "SUCCESS") {
 				$('#offboardByTeam').hide();
-				$('#errMessage').text("Unable to process the request");
+				$('#statusSucessMessage').text(resultData.statusMessage);
 			} else {
-				$('#offboardByTeam').hide();
-				$('#statusSucessMessage').text(
-						"Requested team resources release has been initiated");
+				$('#statusSucessMessage').text(resultData.errMessage);
 			}
 		},
 		error : function() {
@@ -118,13 +111,11 @@ function loadTeamDetails() {
 		url : "/onboarding/team/getactiveteams",
 		dataType : "json",
 		success : function(resultData) {
-			//teamHierarchy = JSON.parse(resultData);
 			teamHierarchy = resultData;
 			console.log(resultData);
 			console.log(resultData.responseList);
 			if(teamHierarchy.status == "SUCCESS")
 				{
-				alert("teamHierarchy success Call");
 				$.each(teamHierarchy.responseList, function(key, value) {
 					$('#releaseTeamTable').append("<thead><tr><th>Employee Id</th><th>Employee Name</th><th>Project Id</th><th>Project Name</th><th>Team Name</th></tr></thead>");
 					$('#teamName').append(
@@ -132,7 +123,6 @@ function loadTeamDetails() {
 									value.teamName));
 				});
 				} else {
-					alert("teamHierarchy failure Call");
 					console.log("teamHierarchy failure Call");
 				}
 			
@@ -146,24 +136,16 @@ function loadProjectHierarchy() {
 		url : "/onboarding/projects/getactiveprojects" ,
 		dataType : "json",
 		success : function(resultData) {
-			/*projectHierarchy = JSON.parse(resultData);
-			$.each(projectHierarchy, function(key, value) {
-				$('#projectName').append(
-						$("<option></option>").attr("value", value.projectId)
-								.text(value.projectName));
-			});*/
 			projectHierarchy = resultData; //setting the value for the global JS object "bandDetails"
 			console.log(resultData);
 			console.log(resultData.responseList);
 			if (projectHierarchy.status == "SUCCESS") {
-				alert("projectHierarchy success Call");
 				$.each(projectHierarchy.responseList, function(key, value) {
 					$('#projectName').append(
 							$("<option></option>").attr("value", value.projectId)
 									.text(value.projectName));
 				});
 			} else {
-				alert("projectHierarchy failure Call");
 				console.log("projectHierarchy failure Call");
 			}
 		}
@@ -198,7 +180,7 @@ function loadTeamTable() {
 						{
 						console.log("Empty Response");
 						$("#statusMessage").text(
-								"No Resources Available in this Team");
+								"Release for the resources in this team has already been initiated or no resources available");
 						}
 					}
 			});
@@ -231,7 +213,7 @@ function loadProjTable() {
 				{		
 				console.log("Empty Response");
 				$("#statusMessage").text(
-						"No Resources Available in this Project");
+						"Release for the resources in this project has already been initiated or no resources available");
 			} 
 		}
 	});
@@ -246,8 +228,6 @@ function loadReleaseStatus() {
 			console.log(resultData);
 			console.log(resultData.responseList);
 			if (resultData.status == "SUCCESS") {
-				alert("getallreleasestatus success Call");
-				//releaseStat = JSON.parse(resultData);
 				$.each(resultData.responseList, function(key, value) {
 					$('#releaseStatus').append(
 							$("<option></option>").attr("value", value.id).text(
@@ -257,7 +237,6 @@ function loadReleaseStatus() {
 						'option[value=' + $('#releaseStatusId').val() + ']').attr(
 						"selected", true);
 			} else {
-						alert("getallreleasestatus failure Call");
 						console.log("getallreleasestatus failure Call");
 					}
 		}
@@ -274,7 +253,6 @@ function loadReleaseReason() {
 			console.log(resultData.responseList);
 			if(resultData.status == "SUCCESS")
 				{
-			//releaseReason = JSON.parse(resultData);
 			releaseReason = resultData;
 			$.each(resultData.responseList, function(key,value) {   
 				$('#releaseSummary')
@@ -283,7 +261,6 @@ function loadReleaseReason() {
 		                    .text(value.summary)); 
 			});
 		} else {
-			alert("releaseSummary failure Call");
 			console.log("releaseSummary failure Call");
 		}
 		}

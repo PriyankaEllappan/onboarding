@@ -59,14 +59,12 @@ function loadProjectHierarchy(){
 			console.log(resultData);
 			console.log(resultData.responseList);
 			if (projectHierarchy.status == "SUCCESS") {
-				alert("projectHierarchy success Call");
 				$.each(projectHierarchy.responseList, function(key, value) {
 					$('#projectName').append(
 							$("<option></option>").attr("value", value.projectName)
 									.text(value.projectName));
 				});
 			} else {
-				alert("projectHierarchy failure Call");
 				console.log("projectHierarchy failure Call");
 			}
 		}
@@ -99,14 +97,12 @@ function loadCountryHierarchy(){
 			console.log(resultData);
 			console.log(resultData.responseList);
 			if (countryHierarchy.status == "SUCCESS") {
-				alert("Country success Call");
 				$.each(countryHierarchy.responseList, function(key, value) {
 					$('#country').append(
 							$("<option></option>").attr("value", value.countryName)
 									.text(value.countryName));
 				});
 			} else {
-				alert("CountryHierarchy failure Call");
 				console.log("CountryHierarchy failure Call");
 			}
 		}
@@ -186,14 +182,12 @@ function loadApprovalStatus(){
 			console.log(resultData);
 			console.log(resultData.responseList);
 			if (resultData.status == "SUCCESS") {
-				alert("getallapprovalstatus success Call");
 				$.each(resultData.responseList, function(key,value) {   
 					if (value.status == "New") {
 						$('#approvalStatus').val(value.id);
 					}
 				});
 			} else {
-				alert("getallapprovalstatus failure Call");
 				console.log("getallapprovalstatus failure Call");
 			}
 		}
@@ -209,14 +203,12 @@ function loadReleaseStatus(){
 			console.log(resultData);
 			console.log(resultData.responseList);
 			if (resultData.status == "SUCCESS") {
-				alert("getallreleasestatus success Call");
 				$.each(resultData.responseList, function(key,value) {  
 					if (value.status == "Yet to Release") {
 						$('#releaseStatusId').val(value.id);
 					}
 				});
 			} else {
-						alert("getallreleasestatus failure Call");
 						console.log("getallreleasestatus failure Call");
 					}
 
@@ -233,7 +225,6 @@ function loadMovementDetails(){
 			console.log(resultData);
 			console.log(resultData.responseList);
 			if (resultData.status == "SUCCESS") {
-				alert("getmovements success Call");
 				$.each(resultData.responseList, function(key,value) {   
 				     $('#movementID')
 				         .append($("<option></option>")
@@ -241,7 +232,6 @@ function loadMovementDetails(){
 				                    .text(value.movement)); 
 				});
 			} else {
-				alert("getmovements failure Call");
 				console.log("getmovements failure Call");
 			}	
 				
@@ -260,14 +250,12 @@ function loadBsaDetails(){
 			console.log(resultData);
 			console.log(resultData.responseList);
 			if (bsaList.status == "SUCCESS") {
-				alert("bsaList success Call");
 				$.each(bsaList.responseList, function(key, value) {
 					$('#bsaInfo').append(
 							$("<option></option>").attr("value", value.bsaId)
 									.text(value.bsaName));
 				});
 			} else {
-				alert("bsaList failure Call");
 				console.log("bsaList failure Call");
 			}
 		}

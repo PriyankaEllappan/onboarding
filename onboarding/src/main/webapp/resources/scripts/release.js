@@ -40,7 +40,6 @@ function loadApprovalStatus(){
 			console.log(resultData);
 			console.log(resultData.responseList);
 			if (resultData.status == "SUCCESS") {
-				//$.each(approvalStat, function(key,value) { 
 				$.each(resultData.responseList, function(key,value) {   
 					$('#approvalStatus')
 			         .append($("<option></option>")
@@ -48,7 +47,6 @@ function loadApprovalStatus(){
 			                    .text(value.status)); 
 				});
 			} else {
-				alert("getallapprovalstatus failure Call");
 				console.log("getallapprovalstatus failure Call");
 			}
 
@@ -65,15 +63,12 @@ function loadBands(){
 			console.log(resultData);
 			console.log(resultData.responseList);
 			if (resultData.status == "SUCCESS") {
-				alert("bands success Call");
-				//bandDetails = JSON.parse(resultData);
 				$.each(resultData.responseList, function(key,value) {   
 					if($("#bandId").val() == value.id ){
 						$('#band').val(value.bandName);
 					}
 				});
 			} else {
-				alert("bands failure Call");
 				console.log("bands failure Call");
 			}
 
@@ -90,15 +85,12 @@ function loadMovementDetails(){
 			console.log(resultData);
 			console.log(resultData.responseList);
 			if (resultData.status == "SUCCESS") {
-				alert("getmovements success Call");
-				//movementList = JSON.parse(resultData);
 				$.each(resultData.responseList, function(key,value) {  
 					if($("#movementId").val() == value.id ){
 						 $('#movement').val(value.movement)
 					}
 				});
 			} else {
-				alert("getmovements failure Call");
 				console.log("getmovements failure Call");
 			}
 		}
@@ -136,7 +128,6 @@ function loadReleaseStatus(){
 
 			});
 			} else {
-				alert("getallreleasestatus failure Call");
 				console.log("getallreleasestatus failure Call");
 			}
 
@@ -155,7 +146,6 @@ function loadReleaseReason(){
 			console.log(resultData.responseList);
 			if(resultData.status == "SUCCESS")
 				{
-			//releaseReason = JSON.parse(resultData);
 			releaseReason = resultData;
 			$.each(resultData.responseList, function(key,value) {   
 				$('#releaseSummary')
@@ -164,7 +154,6 @@ function loadReleaseReason(){
 		                    .text(value.summary)); 
 			});
 		} else {
-			alert("releaseSummary failure Call");
 			console.log("releaseSummary failure Call");
 		}
 			$('select[name="releaseSummary"]').find('option[value='+ $('#reasonForOffboarding').val() +']').attr("selected",true);
