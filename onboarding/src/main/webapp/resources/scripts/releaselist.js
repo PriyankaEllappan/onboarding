@@ -122,7 +122,7 @@ function loadTeamDetails() {
 			if(teamHierarchy.status == "SUCCESS")
 				{
 				$.each(teamHierarchy.responseList, function(key, value) {
-					$('#releaseTeamTable').append("<thead><tr><th>Employee Id</th><th>Employee Name</th><th>Project Id</th><th>Project Name</th><th>Team Name</th></tr></thead>");
+					/*$('#releaseTeamTable').append("<thead><tr><th>Employee Id</th><th>Employee Name</th><th>Project Id</th><th>Project Name</th><th>Team Name</th></tr></thead>");*/
 					$('#teamName').append(
 							$("<option></option>").attr("value", value.id).text(
 									value.teamName));

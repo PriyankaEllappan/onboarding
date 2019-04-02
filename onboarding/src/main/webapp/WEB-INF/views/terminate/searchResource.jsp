@@ -27,7 +27,8 @@
 		<img class="icon-image to-click" id="checkEmpIdSubmit" style="cursor: pointer;" src="/onboarding/resources/icons/search.png">
 		<div id="resourceAvailable">
 			<br> <br>
-			<table id="releaseTable" class="resizeTabCont table table-striped bordered">
+			<table id="releaseTable" class="table table-striped bordered">
+			</tbody>
 			</table>
 			<br> <br>
 		</div>
