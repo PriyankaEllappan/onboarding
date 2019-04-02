@@ -102,8 +102,6 @@ public class ReleaseServiceImpl implements ReleaseService {
 				if (rowsAffected > 0) {
 					if (employeeProjHist.getReleaseStatusId() == 2) {
 						mailService.offBoardingInitiated(employeeProjHist);
-					} else if (employeeProjHist.getReleaseStatusId() == 3) {
-						mailService.offBoardingCompleted(employeeProjHist);
 					}
 				}
 			}

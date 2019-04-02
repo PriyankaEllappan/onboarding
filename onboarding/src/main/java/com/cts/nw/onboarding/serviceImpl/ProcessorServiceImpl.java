@@ -123,6 +123,9 @@ public class ProcessorServiceImpl implements ProcessorService {
 			if (onboardingRequestValidator.validateReleaseForm(employeeProjHist)) {
 				rowsAffected = employeeProjHistDAO.processOffboardEmployee(employeeProjHist, employeeProjHist.getId());
 				if (rowsAffected > 0) {
+					if (employeeProjHist.getReleaseStatusId() == 3) {
+						mailService.offBoardingCompleted(employeeProjHist);
+					}
 					return employeeProjHist;
 				}
 			}

@@ -2,6 +2,7 @@ $(document).ready(function() {
 	/* Employee Search function */
 	$("#checkEmpIdSubmit").click(function(e) {
 		e.preventDefault();
+		$("#releaseTable").empty();
 		$("#checkEmpId").attr("disabled", "disabled");
 		$('#checkEmpIdSubmit').prop('disabled', true);
 		$('#checkEmpIdSubmit').css('cursor', 'not-allowed');

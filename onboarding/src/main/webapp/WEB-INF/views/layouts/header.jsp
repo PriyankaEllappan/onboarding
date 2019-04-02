@@ -24,20 +24,20 @@
 					</p>
 				</c:if>
 			</div>
-			<div class="col-md-1">
-				<div class="homepage-icon-div">
+			<div class="col-md-2">
+				<div class="homepage-homeicon-div" style="text-align: right;float:left;">
 					<img class="to-click header-homeicon"
 						onclick="location.href='/onboarding'"
 						src="/onboarding/resources/icons/home.png">
 				</div>
-			</div>
-			<div class="col-md-1">
-				<div class="homepage-icon-div">
-					<img class="to-click header-signouticon"
+				<div class="homepage-logouticon-div" style="text-align: left;">
+					<img class="to-click header-logouticon"
 						onclick="location.href='/onboarding/j_spring_security_logout'"
 						src="/onboarding/resources/icons/logout.png">
 				</div>
 			</div>
+			<!-- <div class="col-md-1">
+			</div> -->
 		</div>
 	</div>
 	<div class="navigbar">
