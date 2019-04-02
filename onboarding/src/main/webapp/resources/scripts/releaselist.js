@@ -234,9 +234,15 @@ function loadReleaseStatus() {
 			console.log(resultData.responseList);
 			if (resultData.status == "SUCCESS") {
 				$.each(resultData.responseList, function(key, value) {
-					$('#releaseStatus').append(
-							$("<option></option>").attr("value", value.id).text(
-									value.status));
+					if (value.id == 3) {
+						$('#releaseStatus').append(
+								$("<option></option>").attr("value", value.id).attr("disabled", true).text(
+										value.status));
+					} else {
+						$('#releaseStatus').append(
+								$("<option></option>").attr("value", value.id).text(
+										value.status));
+					}
 				});
 				$('select[name="releaseStatus"]').find(
 						'option[value=' + $('#releaseStatusId').val() + ']').attr(
