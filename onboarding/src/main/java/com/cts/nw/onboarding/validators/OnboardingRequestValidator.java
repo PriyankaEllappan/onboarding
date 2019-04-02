@@ -34,11 +34,11 @@ public class OnboardingRequestValidator {
 				throw new ValidatorException(ValidationConstants.STRDATE_ERR);
 			}
 			if (employeeProjHist.getSkillSet() == null
-					|| !Pattern.matches("[a-zA-Z0-9,.\\s]*", employeeProjHist.getSkillSet())) {
+					|| !Pattern.matches("[a-zA-Z0-9,.+\\s]*", employeeProjHist.getSkillSet())) {
 				throw new ValidatorException(ValidationConstants.SKILL_ERR);
 			}
 			if (employeeProjHist.getSkillSummary() == null
-					|| !Pattern.matches("[a-zA-Z0-9,.\\s]*", employeeProjHist.getSkillSummary())) {
+					|| !Pattern.matches("[a-zA-Z0-9,.+\\s]*", employeeProjHist.getSkillSummary())) {
 				throw new ValidatorException(ValidationConstants.SUMMARY_ERR);
 			}
 			if (employeeProjHist.getExperience() == null || employeeProjHist.getExperience() < 0) {

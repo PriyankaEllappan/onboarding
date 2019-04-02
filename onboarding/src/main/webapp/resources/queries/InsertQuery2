@@ -214,6 +214,7 @@ INSERT INTO BSA(NAME) VALUES('Claim');
 INSERT INTO BSA(NAME) VALUES('E&S');							
 INSERT INTO BSA(NAME) VALUES('IPS');							
 INSERT INTO BSA(NAME) VALUES('NBS');							
+INSERT INTO BSA(NAME) VALUES('Pet');
 						
 #-----------------------------------------------Roles, Rates & Mappings-----------------------------------------------#
 #ROLES
