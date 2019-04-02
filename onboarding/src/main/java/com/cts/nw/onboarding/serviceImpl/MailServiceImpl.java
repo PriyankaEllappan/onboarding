@@ -59,7 +59,7 @@ public class MailServiceImpl implements MailService {
 			emailContent = emailContent.replace("<<URL>>", AbstractController.APPINFO.getAppUrl());
 
 			mailDetail.setContent(emailContent);
-			mailDetail.setSubject("Request Mail.. !!!");
+			mailDetail.setSubject("New Nationwide ID Creation Request");
 			sendMail.send(mailDetail);
 		} catch(Exception e) {
 			log.error(e.getCause());
@@ -88,7 +88,7 @@ public class MailServiceImpl implements MailService {
 			emailContent = emailContent.replace("<<PROJNAME>>", resource.getProjectName());
 			emailContent = emailContent.replace("<<URL>>", AbstractController.APPINFO.getAppUrl());
 			mailDetail.setContent(emailContent);
-			mailDetail.setSubject("Process Mail.. !!!");
+			mailDetail.setSubject("NationWide Onboarding - In Progress");
 			sendMail.send(mailDetail);
 		} catch(Exception e) {
 			log.error(e.getCause());
@@ -116,7 +116,7 @@ public class MailServiceImpl implements MailService {
 			emailContent = emailContent.replace("<<URL>>", AbstractController.APPINFO.getAppUrl());
 
 			mailDetail.setContent(emailContent);
-			mailDetail.setSubject("Complete Mail.. !!!");
+			mailDetail.setSubject("Welcome Aboard !!");
 			sendMail.send(mailDetail);
 		} catch(Exception e) {
 			log.error(e.getCause());
@@ -144,7 +144,7 @@ public class MailServiceImpl implements MailService {
 			emailContent = emailContent.replace("<<PROJNAME>>", resource.getProjectName());
 			emailContent = emailContent.replace("<<URL>>", AbstractController.APPINFO.getAppUrl());
 			mailDetail.setContent(emailContent);
-			mailDetail.setSubject(" Resource Release Initiated Mail.. !!!");
+			mailDetail.setSubject("NationWide Offboarding - Initiated");
 			sendMail.send(mailDetail);
 		} catch(Exception e) {
 			log.error(e.getCause());
@@ -173,7 +173,7 @@ public class MailServiceImpl implements MailService {
 			emailContent = emailContent.replace("<<PROJNAME>>", resource.getProjectName());
 			emailContent = emailContent.replace("<<URL>>", AbstractController.APPINFO.getAppUrl());
 			mailDetail.setContent(emailContent);
-			mailDetail.setSubject(" Resource OffBoarded Mail.. !!!");
+			mailDetail.setSubject("NationWide Offboarding - Completed");
 			sendMail.send(mailDetail);
 		} catch(Exception e) {
 			log.error(e.getCause());
@@ -204,7 +204,7 @@ public class MailServiceImpl implements MailService {
 			emailContent = emailContent.replace("<<REJECTCOMMENTS>>", resource.getComments());
 			emailContent = emailContent.replace("<<URL>>", AbstractController.APPINFO.getAppUrl());
 			mailDetail.setContent(emailContent);
-			mailDetail.setSubject("Rejection Mail.. !!!");
+			mailDetail.setSubject("NationWide Onboarding - Rejected");
 			sendMail.send(mailDetail);
 		} catch(Exception e) {
 			log.error(e.getCause());
