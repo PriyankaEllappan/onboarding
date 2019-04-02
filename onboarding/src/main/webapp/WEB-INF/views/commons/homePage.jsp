@@ -25,19 +25,17 @@ a {
 				<ol class="carousel-indicators">
 					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 					<li data-target="#myCarousel" data-slide-to="1"></li>
-					<li data-target="#myCarousel" data-slide-to="2"></li>
+					<!-- <li data-target="#myCarousel" data-slide-to="2"></li> -->
 				</ol>
 				<div class="carousel-inner">
 					<div class="item active">
 						<img src="/onboarding/resources/images/Image1.jpg" alt="carousel1" style="width: 100%;">
 					</div>
-
-					<div class="item">
+					<!-- <div class="item">
 						<img src="/onboarding/resources/images/carouselCognizant.png" alt="carousel2" style="width: 100%;">
-					</div>
-
+					</div> -->
 					<div class="item">
-						<img src="/onboarding/resources/images/carouselNW.png" alt="carousel3" style="width: 100%;">
+						<img src="/onboarding/resources/images/carouselCogNat.png" alt="carousel3" style="width: 100%;">
 					</div>
 				</div>
 				<a class="left carousel-control" href="#myCarousel"
