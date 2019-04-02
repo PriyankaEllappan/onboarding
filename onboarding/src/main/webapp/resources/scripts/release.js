@@ -97,7 +97,9 @@ function loadMovementDetails(){
 	});
 }
 
-function loadReleaseStatus(){
+function loadReleaseStatus() {
+	var initVal = $('#releaseinit').val();
+	alert(initVal);
 	$.ajax({
 		type : 'GET',
 		url : "/onboarding/status/getallreleasestatus",
@@ -106,32 +108,32 @@ function loadReleaseStatus(){
 			console.log(resultData);
 			console.log(resultData.responseList);
 			if (resultData.status == "SUCCESS") {
-				//releaseStat = JSON.parse(resultData);
 				releaseStat = resultData;
-				$.each(resultData.responseList, function(key,value) {   
-					/*$('#releaseStatus')
-			         .append($("<option></option>")
-			                    .attr("value",value.id)
-			                    .text(value.status)); */
-	                if(value.id == 1){
-	                    $('#releaseStatus')
-	                .append($("<option></option>")
-	                           .attr("value",value.id)
-	                           .attr("disabled", true)
-	                           .text(value.status));
-	                } else {
-	                    $('#releaseStatus')
-	                .append($("<option></option>")
-	                           .attr("value",value.id)
-	                           .text(value.status));
-	             }
+				$.each(resultData.responseList, function(key, value) {
+					if (value.id == 1) {
+						$('#releaseStatus').append(
+								$("<option></option>").attr("value", value.id)
+										.attr("disabled", true).text(
+												value.status));
+					} else if (value.id == 3 && initVal == 1) {
+						$('#releaseStatus').append(
+								$("<option></option>").attr("value", value.id)
+										.attr("disabled", true).text(
+												value.status));
+					} else {
+						$('#releaseStatus').append(
+								$("<option></option>").attr("value", value.id)
+										.text(value.status));
+					}
 
-			});
+				});
 			} else {
-				console.log("getallreleasestatus failure Call");
+				console.log("Get all releasestatus failure Call");
 			}
 
-			$('select[name="releaseStatus"]').find('option[value='+ $('#releaseStatusId').val() +']').attr("selected",true);
+			$('select[name="releaseStatus"]').find(
+					'option[value=' + $('#releaseStatusId').val() + ']').attr(
+					"selected", true);
 		}
 	});
 }

@@ -27,7 +27,7 @@ public class OnboardingRequestValidator {
 	 */
 	public boolean validateRequesterForm(EmployeeProjHist employeeProjHist) throws ValidatorException  {
 			if (employeeProjHist.getTeamName() == null
-					|| !Pattern.matches("[a-zA-Z,\\s]*", employeeProjHist.getTeamName())) {
+					|| !Pattern.matches("[a-zA-Z,\\-&\\s]*", employeeProjHist.getTeamName())) {
 				throw new ValidatorException(ValidationConstants.TEAMNAME_ERR);
 			}
 			if (employeeProjHist.getStartDate() == null) {

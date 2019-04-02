@@ -452,6 +452,7 @@
 							<form:input type="hidden" path="offboardProcessor" />
 						</div>
 					</div>
+					<input type="hidden" id="releaseinit" value="2">
 				</div>
 			</form:form>
 		</div>

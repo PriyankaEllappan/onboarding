@@ -310,8 +310,10 @@ select option[disabled]:first-child {
 
 .btn-submit {
     color: #fff;
+    font-family:Georgia;
     background-color: #228B22;
     border-color: #228B22;
+    font-weight: 700;
 }
 
 

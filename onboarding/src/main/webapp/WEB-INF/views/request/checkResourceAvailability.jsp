@@ -103,7 +103,7 @@
 							<button class="btn btn-submit" id="resourceRegisterFormSubmit">
 								Submit</button>
 							<input class="btn btn-submit" id="resourceRegisterFormReset"
-								type="reset" value="Cancel" />
+								type="reset" value="Clear" />
 						</div>
 					</div>
 				</div>
@@ -130,7 +130,7 @@
 				</tr>
 			</table>
 			<br> <br>
-			<button type="button" class="btn btn-primary"
+			<button type="button" class="btn btn-submit"
 				id="nonAvailableAssignProj" style="align: right">Assign
 				Project</button>
 		</div>
@@ -155,7 +155,7 @@
 				</tr>
 			</table>
 			<br> <br>
-			<button type="button" class="btn btn-primary"
+			<button type="button" class="btn btn-submit"
 				id="availableAssignProj" style="align: right">Assign
 				Project</button>
 		</div>
@@ -177,8 +177,8 @@
 					</table>
 					<div id="projTagConf">
 						<div align="right">
-							<button type="button" class="btn btn-primary" id="confirmTagging">YES</button>
-							<button type="button" class="btn btn-secondary"
+							<button type="button" class="btn btn-submit" id="confirmTagging">YES</button>
+							<button type="button" class="btn btn-submit"
 								data-dismiss="modal">No</button>
 						</div>
 					</div>

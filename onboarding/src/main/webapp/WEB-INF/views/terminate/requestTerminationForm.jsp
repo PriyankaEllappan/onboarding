@@ -451,6 +451,7 @@
 							<form:input type="hidden" path="projectMappingId" />
 							<form:input type="hidden" path="reasonForOffboarding" />
 						</div>
+						<input type="hidden" id="releaseinit" value="1">
 					</div>
 				</div>
 			</form:form>

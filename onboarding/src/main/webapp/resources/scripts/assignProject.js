@@ -285,11 +285,9 @@ $(function() {
 						data : JSON.stringify(jsonRequest),
 						contentType : 'application/json; charset=utf-8',
 								success : function(resultData) {
-									console.log(resultData);
 									if (resultData.status == "SUCCESS") {
 										$('#formDiv').hide();
 										$('#statusSucessMessage').text(resultData.statusMessage);
-										
 									}
 									else {
 										$('#errMessage').text(resultData.statusMessage);
@@ -299,7 +297,7 @@ $(function() {
 									}
 								},
 								error : function() {
-									$('#errMessage').text(resultData.statusMessage);
+									$('#errMessage').text("Unable to Add Project Details.");
 									$('#projTab').click(openSpecificTabNext(event, 'projInfo'));
 									$('#projectRegisterFormSubmit').prop('disabled', false);
 									$('#projectRegisterFormSubmit').css('cursor', 'pointer');

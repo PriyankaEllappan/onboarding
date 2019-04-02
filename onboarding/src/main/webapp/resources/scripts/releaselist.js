@@ -3,14 +3,19 @@ $(document).ready(function() {
 	loadProjectHierarchy();
 	loadReleaseStatus();
 	loadReleaseReason();
+	
 	$("#teamName").change(function() {
 		$("#releaseTeamTable").empty();
+		$("#statusMessage").text("");
 		loadTeamTable();
 	})
+	
 	$("#projectName").change(function() {
 		$("#releaseProjTable").empty();
+		$("#statusMessage").text("");
 		loadProjTable();
 	})
+	
 	$("#releaseTeamDropDown").hide();
 	$("#releaseProjDropDown").hide();
 

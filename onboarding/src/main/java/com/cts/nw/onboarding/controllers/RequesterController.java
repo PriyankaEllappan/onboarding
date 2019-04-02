@@ -168,7 +168,7 @@ public class RequesterController extends AbstractController {
 				ajaxResponse.setResponseList(objectList);
 			} else {
 				ajaxResponse.setStatus(AppConstants.AJAXNONAVAILABLE);
-				log.error(ErrorConstants.EMPTY_LIST);
+				log.info(ErrorConstants.EMPTY_LIST);
 			}
 		} catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
