@@ -25,9 +25,16 @@
 	height :65%;
 }
 
+.homepage-icon-div{
+	height: 100%;
+    border: solid red;
+    width: 100%;
+    display: inline-block;
+}
+
 .header-homeicon {
-	width: 33px;
-	padding-top: 25px;
+	width: 70%;
+	height: 70%;
 	opacity: 0.6;
 }
 
@@ -35,14 +42,13 @@
 	opacity: 1.0;
 }
 
-.header-backicon{
-	width: 100%;
-    padding-top: 24px;
-    margin-left: 15px;
-    opacity: 0.6;
+.header-signouticon{
+	width: 80%;
+	height: 80%;
+	opacity: 0.6;
 }
 
-.header-backicon:hover {
+.header-signouticon:hover {
 	opacity: 1.0;
 }
 

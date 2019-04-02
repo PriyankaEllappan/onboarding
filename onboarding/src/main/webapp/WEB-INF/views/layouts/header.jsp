@@ -1,13 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<head>
-<script>
-	function goBack() {
-		window.history.back();
-	}
-</script>
-</head>
 <div class="header-section">
 	<div class="header-banner">
 		<div class="row">
@@ -32,13 +25,18 @@
 				</c:if>
 			</div>
 			<div class="col-md-1">
-				<img class="to-click header-backicon" onclick="goBack()"
-					src="/onboarding/resources/icons/backicon1.png">
+				<div class="homepage-icon-div">
+					<img class="to-click header-homeicon"
+						onclick="location.href='/onboarding'"
+						src="/onboarding/resources/icons/home.png">
+				</div>
 			</div>
 			<div class="col-md-1">
-				<img class="to-click header-homeicon"
-					onclick="location.href='/onboarding'"
-					src="/onboarding/resources/icons/home.png">
+				<div class="homepage-icon-div">
+					<img class="to-click header-signouticon"
+						onclick="location.href='/onboarding/j_spring_security_logout'"
+						src="/onboarding/resources/icons/logout.png">
+				</div>
 			</div>
 		</div>
 	</div>

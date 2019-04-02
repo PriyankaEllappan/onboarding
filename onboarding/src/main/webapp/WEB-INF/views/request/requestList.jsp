@@ -21,10 +21,6 @@
 				<div class="col-md-4" align="center"><h4>Request List</h4><br></div>
 				<div class="col-md-2" align="center"></div>
 				<div class="col-md-2" align="center"><br><button class="btn-success to-click" onclick="location.href='/onboarding'">Back to Home</button></div>
-				<!-- 	<div class="col-md-12" align="center">
-						
-						
-					</div> -->
 				</div>
 				<table class="table table-striped bordered">
 					<tr class="bold-font">

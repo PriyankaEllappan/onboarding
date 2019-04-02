@@ -6,7 +6,7 @@ $(document).ready(function() {
 	$("#resourceAddedSubmit").hide();
 	
 	/* Employee Search function */
-	$("#checkEmpIdSubmit").click(function() {
+	$("#checkEmpIdSubmit").click(function(e) {
 		e.preventDefault();
 		$("#checkEmpId").attr("disabled", "disabled");
 		$('#checkEmpIdSubmit').prop('disabled', true);

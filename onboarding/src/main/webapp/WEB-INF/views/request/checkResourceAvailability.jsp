@@ -111,16 +111,14 @@
 		</div>
 		<div id="resourceAddedSubmit">
 			<br> <br>
-			<table class="resizeTabCont table table-striped">
-				<thead>
-					<tr>
-						<th>Employee ID</th>
-						<th>Employee Name</th>
-						<th>Date of Birth</th>
-						<th>Email</th>
-						<th>Passport Number</th>
-					</tr>
-				</thead>
+			<table class="resizeTabCont table table-striped bordered">
+				<tr>
+					<th>Employee ID</th>
+					<th>Employee Name</th>
+					<th>Date of Birth</th>
+					<th>Email</th>
+					<th>Passport Number</th>
+				</tr>
 				<tr>
 					<td><span id="addedResEmpID"></span></td>
 					<td><span id="addedResEmpName"></span></td>
@@ -136,16 +134,14 @@
 		</div>
 		<div id="resourceAvailable">
 			<br> <br>
-			<table class="resizeTabCont table table-striped">
-				<thead>
-					<tr>
-						<th>Employee ID</th>
-						<th>Employee Name</th>
-						<th>Date of Birth</th>
-						<th>Email</th>
-						<th>Passport Number</th>
-					</tr>
-				</thead>
+			<table class="resizeTabCont table table-striped bordered">
+				<tr>
+					<th>Employee ID</th>
+					<th>Employee Name</th>
+					<th>Date of Birth</th>
+					<th>Email</th>
+					<th>Passport Number</th>
+				</tr>
 				<tr>
 					<td><span id="availEmpID"></span></td>
 					<td><span id="availEmpName"></span></td>

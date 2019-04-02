@@ -19,8 +19,15 @@
 	<jsp:include page="../layouts/header.jsp" />
 	<div class="content-style">
 		<div class="row">
-			<div class="col-md-12" align="center">
-				<h4>Resource Details</h4><br>
+			<div class="col-md-4" align="center"></div>
+			<div class="col-md-4" align="center">
+				<h4>Resource Details</h4>
+				<br>
+			</div>
+			<div class="col-md-4" align="left">
+				<br>
+				<button class="btn-success to-click" onclick="location.href='../'">Back
+					to List</button>
 			</div>
 		</div>
 		<div class="row">
