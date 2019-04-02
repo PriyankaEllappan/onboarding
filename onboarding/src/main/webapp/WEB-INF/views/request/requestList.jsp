@@ -3,24 +3,33 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Resource OnBoarding</title>
-<link rel="stylesheet"
-	href="/onboarding/resources/stylesheets/bootstrap.min.css">
-<link rel="stylesheet"
-	href="/onboarding/resources/stylesheets/application.css">
+<title>Resource Onboarding</title>
+<!-- Load Sytle Sheets -->
+<link rel="stylesheet" href="/onboarding/resources/stylesheets/bootstrap.min.css">
+<link rel="stylesheet" href="/onboarding/resources/stylesheets/application.css">
+
+<!-- Load Scripts -->
 <script src="/onboarding/resources/scripts/jquery.min.js"></script>
 <script src="/onboarding/resources/scripts/bootstrap.min.js"></script>
 </head>
+
 <body>
 	<jsp:include page="../layouts/header.jsp" />
 	<div class="content-style">
 		<c:choose>
 			<c:when test="${not empty employees}">
 				<div class="row">
-				<div class="col-md-4" align="center"></div>
-				<div class="col-md-4" align="center"><h4>Request List</h4><br></div>
-				<div class="col-md-2" align="center"></div>
-				<div class="col-md-2" align="center"><br><button class="btn-success to-click" onclick="location.href='/onboarding'">Back to Home</button></div>
+					<div class="col-md-4" align="center"></div>
+					<div class="col-md-4" align="center">
+						<h4>Request List</h4>
+						<br>
+					</div>
+					<div class="col-md-2" align="center"></div>
+					<div class="col-md-2" align="center">
+						<br>
+						<button class="btn-success to-click"
+							onclick="location.href='/onboarding'">Back to Home</button>
+					</div>
 				</div>
 				<table class="table table-striped bordered">
 					<tr class="bold-font">
@@ -54,7 +63,7 @@
 									<td><span class="customized-span-danger">Rejected</span></td>
 								</c:when>
 								<c:otherwise>
-								<td><span class="customized-span-requested">NA</span></td>
+									<td><span class="customized-span-requested">NA</span></td>
 								</c:otherwise>
 							</c:choose>
 							<c:choose>
@@ -64,13 +73,15 @@
 								</c:when>
 								<c:when
 									test="${employee.getReleaseStatus() == 'Release Initiated' && employee.getApprovalStatus() == 'Completed'}">
-									<td><span class="customized-span-warning">Release Initiated</span></td>
+									<td><span class="customized-span-warning">Release
+											Initiated</span></td>
 								</c:when>
-								<c:when test="${employee.getReleaseStatus() == 'Released' && employee.getApprovalStatus() == 'Completed'}">
+								<c:when
+									test="${employee.getReleaseStatus() == 'Released' && employee.getApprovalStatus() == 'Completed'}">
 									<td><span class="customized-span-danger">Released</span></td>
 								</c:when>
 								<c:otherwise>
-								<td><span class="customized-span-requested">NA</span></td>
+									<td><span class="customized-span-requested">NA</span></td>
 								</c:otherwise>
 							</c:choose>
 							<td><img class="icon-image to-click"

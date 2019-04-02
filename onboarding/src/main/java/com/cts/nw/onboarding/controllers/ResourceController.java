@@ -32,7 +32,7 @@ public class ResourceController extends AbstractController {
 	LDAPService lDAPService;
 
 	@RequestMapping(value = "/getemployee", method = RequestMethod.GET)
-	public @ResponseBody AjaxResponse index(@RequestParam("empId") String empId) {
+	public @ResponseBody AjaxResponse getEmployeeFromLDAP(@RequestParam("empId") String empId) {
 		AjaxResponse ajaxResponse = new AjaxResponse();
 		try {
 			EmployeeDetails employee = lDAPService.getEmployee(empId);

@@ -4,12 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Login Page</title>
+<title>Resource OnBoarding</title>
 <!-- Load Sytle Sheets -->
-<link rel="stylesheet"
-	href="/onboarding/resources/stylesheets/bootstrap.min.css">
-<link rel="stylesheet"
-	href="/onboarding/resources/stylesheets/application.css">
+<link rel="stylesheet" href="/onboarding/resources/stylesheets/bootstrap.min.css">
+<link rel="stylesheet" href="/onboarding/resources/stylesheets/application.css">
+
+<!-- Load Scripts -->
 <script src="/onboarding/resources/scripts/jquery.min.js"></script>
 <script src="/onboarding/resources/scripts/bootstrap.min.js"></script>
 </head>
@@ -24,7 +24,7 @@
 				</div>
 				<div class="col-md-8" align="center">
 					<img class="header-title"
-					src="/onboarding/resources/images/headerText.png">
+						src="/onboarding/resources/images/headerText.png">
 				</div>
 				<div class="col-md-1"></div>
 				<div class="col-md-1"></div>
@@ -47,8 +47,7 @@
 					</c:if>
 				</div>
 				<div class="col-md-4">
-					<br>
-					<br>
+					<br> <br>
 				</div>
 			</div>
 			<div class="row">

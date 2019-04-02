@@ -34,7 +34,7 @@ public class SendMail {
 	public void send(MailDetail mailDetail) {
 		System.out.println(mailDetail.toString());
 		
-		Properties props = new Properties();
+	/*	Properties props = new Properties();
 		props.put("mail.smtp.auth", environment.getRequiredProperty("mail.auth") );
 		props.put("mail.smtp.starttls.enable",environment.getRequiredProperty("mail.starttls") );
 		props.put("mail.smtp.host", environment.getRequiredProperty("mail.host") );
@@ -65,13 +65,13 @@ public class SendMail {
 			Transport transport = session.getTransport(environment.getRequiredProperty("mail.server"));
 			transport.connect(environment.getRequiredProperty("mail.host"), environment.getRequiredProperty("mail.from"), environment.getRequiredProperty("mail.password"));
 			
-			/*transport.sendMessage(message, message.getAllRecipients());*/
+			transport.sendMessage(message, message.getAllRecipients());
 			transport.close();
 			System.out.println("Sent message successfully....");
 		} catch (Exception e) {
 			log.error(e.getCause());
 		}
-	}
+*/	}
 
 	/**
 	 * @param empId

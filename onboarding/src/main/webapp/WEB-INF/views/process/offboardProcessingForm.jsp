@@ -3,18 +3,17 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Resource Availability</title>
+<title>Resource Onboarding</title>
 <!-- Load Sytle Sheets -->
-<link rel="stylesheet"
-	href="/onboarding/resources/stylesheets/bootstrap.min.css">
-<link rel="stylesheet"
-	href="/onboarding/resources/stylesheets/bootstrap-datepicker.min.css">
-<link rel="stylesheet"
-	href="/onboarding/resources/stylesheets/application.css">
+<link rel="stylesheet" href="/onboarding/resources/stylesheets/bootstrap.min.css">
+<link rel="stylesheet" href="/onboarding/resources/stylesheets/bootstrap-datepicker.min.css">
+<link rel="stylesheet" href="/onboarding/resources/stylesheets/application.css">
+
+<!-- Load Scripts -->
 <script src="/onboarding/resources/scripts/jquery.min.js"></script>
 <script src="/onboarding/resources/scripts/bootstrap-datepicker.min.js"></script>
 <script src="/onboarding/resources/scripts/bootstrap.min.js"></script>

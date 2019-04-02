@@ -1,30 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <html>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Resource Availability</title>
+<title>Resource Onboarding</title>
 <!-- Load Sytle Sheets -->
-<link rel="stylesheet"
-	href="/onboarding/resources/stylesheets/bootstrap.min.css">
-<link rel="stylesheet"
-	href="/onboarding/resources/stylesheets/bootstrap-datepicker.min.css">
-<link rel="stylesheet"
-	href="/onboarding/resources/stylesheets/application.css">
+<link rel="stylesheet" href="/onboarding/resources/stylesheets/bootstrap.min.css">
+<link rel="stylesheet" href="/onboarding/resources/stylesheets/bootstrap-datepicker.min.css">
+<link rel="stylesheet" href="/onboarding/resources/stylesheets/application.css">
+
+<!-- Load Scripts -->
 <script src="/onboarding/resources/scripts/jquery.min.js"></script>
 <script src="/onboarding/resources/scripts/bootstrap-datepicker.min.js"></script>
 <script src="/onboarding/resources/scripts/bootstrap.min.js"></script>
 <script src="/onboarding/resources/scripts/request.js"></script>
 <script src="/onboarding/resources/scripts/application.js"></script>
 </head>
+
 <body>
 	<jsp:include page="../layouts/header.jsp" />
 	<div class="container-fluid content-style">
 		<br> <span class="has-error" id="errMessage"></span> <span
 			class="is-success" id="statusSucessMessage"></span> <br> <br>
 		<label for="checkEmpId"> Enter Employee ID: </label> <input
-			type="text" id="checkEmpId" name="checkEmpId"></input>
-		<img class="icon-image to-click" id="checkEmpIdSubmit" style="cursor: pointer;" src="/onboarding/resources/icons/search.png">
+			type="text" id="checkEmpId" name="checkEmpId"></input> <img
+			class="icon-image to-click" id="checkEmpIdSubmit"
+			style="cursor: pointer;" src="/onboarding/resources/icons/search.png">
 		<div class="resizeTabCont" id="resourceNonAvailable">
 			<br> <br>
 			<form name="resourceRegisterForm" method="post">
@@ -72,15 +74,17 @@
 							<label for="newEmpDOB">Date Of Birth</label>
 						</div>
 						<div class="col-md-3">
-							<input autocomplete="off" class="form-control load-dob-picker" name="newEmpDOB"
-								id="newEmpDOB" placeholder="Enter Date of Birth (YYYY-MM-DD)" />
+							<input autocomplete="off" class="form-control load-dob-picker"
+								name="newEmpDOB" id="newEmpDOB"
+								placeholder="Enter Date of Birth (YYYY-MM-DD)" />
 						</div>
 						<div class="col-md-1"></div>
 						<div class="col-md-2">
 							<label for="newEmpPPNo">Passport ID / SSN No</label>
 						</div>
 						<div class="col-md-3">
-							<input class="form-control" name="newEmpPPNo" maxlength="4" id="newEmpPPNo"
+							<input class="form-control" name="newEmpPPNo" maxlength="4"
+								id="newEmpPPNo"
 								placeholder="Enter last 4 digits of Passport/SSN No" />
 						</div>
 					</div>
@@ -151,9 +155,8 @@
 				</tr>
 			</table>
 			<br> <br>
-			<button type="button" class="btn btn-submit"
-				id="availableAssignProj" style="align: right">Assign
-				Project</button>
+			<button type="button" class="btn btn-submit" id="availableAssignProj"
+				style="align: right">Assign Project</button>
 		</div>
 	</div>
 
@@ -174,8 +177,7 @@
 					<div id="projTagConf">
 						<div align="right">
 							<button type="button" class="btn btn-submit" id="confirmTagging">YES</button>
-							<button type="button" class="btn btn-submit"
-								data-dismiss="modal">No</button>
+							<button type="button" class="btn btn-submit" data-dismiss="modal">No</button>
 						</div>
 					</div>
 				</div>

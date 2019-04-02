@@ -225,9 +225,10 @@ public class RequesterController extends AbstractController {
 	@RequestMapping(value = "/request/show/{empProjHistId}", method = RequestMethod.GET)
 	public ModelAndView showResource(@PathVariable("empProjHistId") String empProjHistId) {
 		ModelAndView modelView;
-		modelView = bindViewwithUserInfo("commons/showResource");
 		try {
+			modelView = bindViewwithUserInfo("commons/showResource");
 			modelView.addObject("employee", requesterService.getEmployeeProjById(empProjHistId));
+			modelView.addObject("list", "requestlist");
 		} catch (CustomException e) {
 			modelView = new ModelAndView("errors/errorPage");
 			modelView.addObject("errMessage", e.getMessage());

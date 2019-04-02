@@ -1,31 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Resource OnBoarding</title>
 <!-- Load Sytle Sheets -->
-<link rel="stylesheet"
-	href="/onboarding/resources/stylesheets/bootstrap.min.css">
-<link rel="stylesheet"
-	href="/onboarding/resources/stylesheets/application.css">
+<link rel="stylesheet" href="/onboarding/resources/stylesheets/bootstrap.min.css">
+<link rel="stylesheet" href="/onboarding/resources/stylesheets/application.css">
+<link rel="stylesheet" href="/onboarding/resources/stylesheets/bootstrap-datepicker.min.css">
+
 <!-- Load Script Files -->
 <script src="/onboarding/resources/scripts/jquery.min.js"></script>
 <script src="/onboarding/resources/scripts/bootstrap.min.js"></script>
 <script src="/onboarding/resources/scripts/releaselist.js"></script>
 <script src="/onboarding/resources/scripts/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet"
-	href="/onboarding/resources/stylesheets/bootstrap-datepicker.min.css">
+<script src="/onboarding/resources/scripts/application.js"></script>
+
 </head>
+
 <body>
 	<jsp:include page="../layouts/header.jsp" />
 	<div class="content-style">
-		<span class="has-error" id="errMessage"></span> 
-		<span class="is-success" id="statusSucessMessage"></span><br><br>
+		<span class="has-error" id="errMessage"></span> <span
+			class="is-success" id="statusSucessMessage"></span><br>
+		<br>
 		<div id="offboardByTeam">
 			<div class="form-group">
 				<div class="row">
@@ -67,8 +67,8 @@
 							<label for="releaseDate">Release Date</label>
 						</div>
 						<div class="col-md-2">
-							<input autocomplete="off" class="form-control load-date-picker" name="releaseDate"
-								id="releaseDate" />
+							<input autocomplete="off" class="form-control load-date-picker"
+								name="releaseDate" id="releaseDate" />
 						</div>
 						<div class="col-md-1" style="text-align: right">
 							<button class="btn btn-submit" id="teamSubmit">Submit</button>
@@ -80,7 +80,7 @@
 				</table>
 			</div>
 		</div>
-	<div  id="statusMessage" ></div>
+		<div id="statusMessage"></div>
 	</div>
 	<jsp:include page="../layouts/footer.jsp" />
 </body>

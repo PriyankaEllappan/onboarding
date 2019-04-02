@@ -321,6 +321,7 @@ public class ReleaseController extends AbstractController {
 		modelView = bindViewwithUserInfo("commons/showResource");
 		try {
 			modelView.addObject("employee", releaseService.getEmployeetoRelease(empProjHistId));
+			modelView.addObject("list", "releaselist");
 		} catch (CustomException e) {
 			modelView = new ModelAndView("errors/errorPage");
 			modelView.addObject("errMessage", e.getMessage());

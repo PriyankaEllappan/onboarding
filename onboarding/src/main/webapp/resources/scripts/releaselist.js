@@ -19,17 +19,6 @@ $(document).ready(function() {
 	$("#releaseTeamDropDown").hide();
 	$("#releaseProjDropDown").hide();
 
-	/* DatePicker Options */
-	var container = $('.content-style');
-	var releaseDate = $('#releaseDate');
-	var options = {
-		format : 'yyyy-mm-dd',
-		container : container,
-		todayHighlight : true,
-		autoclose : true,
-	};
-	releaseDate.datepicker(options);
-
 	$(function() {
 		$('#projectSubmit').click(function(e) {
 			e.preventDefault();

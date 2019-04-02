@@ -2,15 +2,16 @@
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Resource OnBoarding</title>
 <!-- Load Sytle Sheets -->
-<link rel="stylesheet"
-	href="/onboarding/resources/stylesheets/bootstrap.min.css">
-<link rel="stylesheet"
-	href="/onboarding/resources/stylesheets/application.css">
+<link rel="stylesheet" href="/onboarding/resources/stylesheets/bootstrap.min.css">
+<link rel="stylesheet" href="/onboarding/resources/stylesheets/application.css">
+
+<!-- Load Scripts -->
 <script src="/onboarding/resources/scripts/jquery.min.js"></script>
 <script src="/onboarding/resources/scripts/bootstrap.min.js"></script>
 
@@ -26,7 +27,7 @@
 			</div>
 			<div class="col-md-4" align="left">
 				<br>
-				<button class="btn-success to-click" onclick="location.href='../'">Back
+				<button class="btn-success to-click" onclick="location.href='../${list}'">Back
 					to List</button>
 			</div>
 		</div>
@@ -67,7 +68,8 @@
 					<c:if test="${not empty employee.getDateOfBirth()}">
 						<tr>
 							<td class="bold-font">DATE OF BIRTH</td>
-							<td><fmt:formatDate type="date" value="${employee.getDateOfBirth()}"/></td>
+							<td><fmt:formatDate type="date"
+									value="${employee.getDateOfBirth()}" /></td>
 						</tr>
 					</c:if>
 					<c:if test="${not empty employee.getPassportNumber()}">
@@ -115,7 +117,8 @@
 					<c:if test="${not empty employee.getStartDate()}">
 						<tr>
 							<td class="bold-font">START DATE</td>
-							<td><fmt:formatDate type="date" value="${employee.getStartDate()}"/></td>
+							<td><fmt:formatDate type="date"
+									value="${employee.getStartDate()}" /></td>
 						</tr>
 					</c:if>
 					<c:if test="${not empty employee.getNationwideId()}">
@@ -127,7 +130,8 @@
 					<c:if test="${not empty employee.getNationwideIdCreatedDate()}">
 						<tr>
 							<td class="bold-font">NATIONWIDE ID CREATED DATE</td>
-							<td><fmt:formatDate type="date" value="${employee.getNationwideIdCreatedDate()}"/></td>
+							<td><fmt:formatDate type="date"
+									value="${employee.getNationwideIdCreatedDate()}" /></td>
 						</tr>
 					</c:if>
 					<c:if test="${not empty employee.getSkillSet()}">
@@ -175,7 +179,8 @@
 					<c:if test="${not empty employee.getFgOnBoardingDate()}">
 						<tr>
 							<td class="bold-font">FG ONBOARDING DATE</td>
-							<td><fmt:formatDate type="date" value="${employee.getFgOnBoardingDate()}"/></td>
+							<td><fmt:formatDate type="date"
+									value="${employee.getFgOnBoardingDate()}" /></td>
 						</tr>
 					</c:if>
 					<c:if test="${not empty employee.getComments()}">
@@ -184,7 +189,8 @@
 							<td>${employee.getComments()}</td>
 						</tr>
 					</c:if>
-					<c:if test="${not empty employee.getAttachmentId() && employee.getAttachmentId() != 0}">
+					<c:if
+						test="${not empty employee.getAttachmentId() && employee.getAttachmentId() != 0}">
 						<tr>
 							<td class="bold-font">ATTACHMENT</td>
 							<td><img class="icon-image to-click"

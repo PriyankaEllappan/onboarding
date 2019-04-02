@@ -27,7 +27,8 @@ import com.cts.nw.onboarding.service.ProcessorService;
 @Controller
 public class ProcessController extends AbstractController {
 
-
+	String listPage;
+	
 	Logger log = Logger.getLogger(ProcessController.class);
 	
 	@Autowired
@@ -48,6 +49,7 @@ public class ProcessController extends AbstractController {
 			modelView = bindViewwithUserInfo("process/onboardProcessList");
 			processorId = APPINFO.getLoggedInUserId();
 			modelView.addObject("employees", processorService.getRecordsPerProcessortoOnboard(processorId));
+			listPage = "onboardlist";
 		} catch (CustomException e) {
 			modelView = bindViewwithUserInfo("errors/errorPage");
 			modelView.addObject("errMessage", e.getMessage());
@@ -120,6 +122,7 @@ public class ProcessController extends AbstractController {
 			processorId = APPINFO.getLoggedInUserId();
 			modelView = bindViewwithUserInfo("process/offboardProcessList");
 			modelView.addObject("employees", processorService.getRecordsPerProcessortoOffboard(processorId));
+			listPage = "offboardlist";
 		} catch (CustomException e) {
 			modelView = new ModelAndView("errors/errorPage");
 			modelView.addObject("errMessage", e.getMessage());
@@ -193,6 +196,7 @@ public class ProcessController extends AbstractController {
 		try {
 			modelView = bindViewwithUserInfo("commons/showResource");
 			modelView.addObject("employee", processorService.getEmployeeDetails(empProjHistId));
+			modelView.addObject("list", listPage);
 		} catch (CustomException e) {
 			modelView = new ModelAndView("errors/errorPage");
 			modelView.addObject("errMessage", e.getMessage());

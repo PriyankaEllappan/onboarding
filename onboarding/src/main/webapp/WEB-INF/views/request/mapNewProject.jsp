@@ -1,24 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Resource Availability</title>
+<title>Resource Onboarding</title>
+
 <!-- Load Sytle Sheets -->
-<link rel="stylesheet"
-	href="/onboarding/resources/stylesheets/bootstrap.min.css">
-<link rel="stylesheet"
-	href="/onboarding/resources/stylesheets/bootstrap-datepicker.min.css">
-<link rel="stylesheet"
-	href="/onboarding/resources/stylesheets/application.css">
+<link rel="stylesheet" href="/onboarding/resources/stylesheets/bootstrap.min.css">
+<link rel="stylesheet" href="/onboarding/resources/stylesheets/bootstrap-datepicker.min.css">
+<link rel="stylesheet" href="/onboarding/resources/stylesheets/application.css">
+
+<!-- Load Scripts -->
 <script src="/onboarding/resources/scripts/jquery.min.js"></script>
 <script src="/onboarding/resources/scripts/bootstrap-datepicker.min.js"></script>
 <script src="/onboarding/resources/scripts/bootstrap.min.js"></script>
 <script src="/onboarding/resources/scripts/assignProject.js"></script>
 <script src="/onboarding/resources/scripts/application.js"></script>
 </head>
+
 <body>
 	<jsp:include page="../layouts/header.jsp" />
 	<div class="container-fluid content-style">
@@ -109,7 +109,9 @@
 						<div class="col-md-11"></div>
 						<div class="col-md-1">
 							<ul class="nav nav-pills">
-								<li class="active" onclick="openSpecificTabNext(event, 'projInfo')"><a href="#">Next >></a></li>
+								<li class="active"
+									onclick="openSpecificTabNext(event, 'projInfo')"><a
+									href="#">Next >></a></li>
 							</ul>
 						</div>
 					</div>
@@ -179,8 +181,9 @@
 										class="is-required"> *</span></label>
 								</div>
 								<div class="col-md-3">
-									<input autocomplete="off" class="form-control load-date-picker" name="startDate"
-										id="startDate" placeholder="Enter Start Date (YYYY-MM-DD)" />
+									<input autocomplete="off" class="form-control load-date-picker"
+										name="startDate" id="startDate"
+										placeholder="Enter Start Date (YYYY-MM-DD)" />
 								</div>
 							</div>
 						</div>
@@ -230,8 +233,8 @@
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-2">
-									<label for="skill">Skill<span
-										class="is-required"> *</span></label>
+									<label for="skill">Skill<span class="is-required">
+											*</span></label>
 								</div>
 								<div class="col-md-3">
 									<input class="form-control" name="skill" id="skill"
@@ -256,9 +259,9 @@
 										class="is-required"> *</span></label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control" type="number" min="1" max="40" name="experience"
-										id="experience" placeholder="Enter Experience in years"
-										autocomplete="off" />
+									<input class="form-control" type="number" min="1" max="40"
+										name="experience" id="experience"
+										placeholder="Enter Experience in years" autocomplete="off" />
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
@@ -277,7 +280,9 @@
 						<div class="col-md-11"></div>
 						<div class="col-md-1">
 							<ul class="nav nav-pills">
-								<li class="active" onclick="openSpecificTabNext(event, 'customerInfo')"><a href="#">Next >></a></li>
+								<li class="active"
+									onclick="openSpecificTabNext(event, 'customerInfo')"><a
+									href="#">Next >></a></li>
 							</ul>
 						</div>
 					</div>
@@ -288,13 +293,13 @@
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-2">
-									<label for="bsaInfo">BSA<span
-										class="is-required"> *</span></label>
+									<label for="bsaInfo">BSA<span class="is-required">
+											*</span></label>
 								</div>
 								<div class="col-md-3">
 									<select class="form-control" id="bsaInfo" name="bsaInfo">
 										<option value="" selected disabled>Select</option>
-									</select>										
+									</select>
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
@@ -321,13 +326,13 @@
 						</div>
 					</div>
 				</div>
-					<input type="hidden" value="0" id="teamMappingID" /> <input
-						type="hidden" id="roleMappingID" /> <input type="hidden"
-						id="roleID" /> <input type="hidden" id="countryMappingID" /> <input
-						type="hidden" id="processorID" /> <input type="hidden"
-						id="requesterID" /> <input type="hidden" id="approvalStatus" />
-					<input type="hidden" id="releaseStatusId" /> <input type="hidden"
-						id="name" value="${employee.name}" />
+				<input type="hidden" value="0" id="teamMappingID" /> <input
+					type="hidden" id="roleMappingID" /> <input type="hidden"
+					id="roleID" /> <input type="hidden" id="countryMappingID" /> <input
+					type="hidden" id="processorID" /> <input type="hidden"
+					id="requesterID" /> <input type="hidden" id="approvalStatus" /> <input
+					type="hidden" id="releaseStatusId" /> <input type="hidden"
+					id="name" value="${employee.name}" />
 
 			</form>
 		</div>

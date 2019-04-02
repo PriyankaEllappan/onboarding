@@ -10,6 +10,7 @@
 <!-- Load Sytle Sheets -->
 <link rel="stylesheet" href="/onboarding/resources/stylesheets/bootstrap.min.css">
 <link rel="stylesheet" href="/onboarding/resources/stylesheets/application.css">
+
 <!-- Load Script Files -->
 <script src="/onboarding/resources/scripts/jquery.min.js"></script>
 <script src="/onboarding/resources/scripts/bootstrap.min.js"></script>	
@@ -26,8 +27,8 @@
 			</div>
 			<div class="col-md-4" align="left">
 				<br>
-				<button class="btn-success to-click" onclick="location.href='../'">Back
-					to List</button>
+				<button class="btn-success to-click" onclick="location.href='/onboarding'">Back
+					to Home</button>
 			</div>
 		</div>
 		<div class="row">
@@ -72,7 +73,8 @@
 					<c:if test="${not empty employee.getDateOfBirth()}">
 						<tr>
 							<td class="bold-font">DATE OF BIRTH</td>
-							<td><fmt:formatDate type="date" value="${employee.getDateOfBirth()}"/></td>
+							<td><fmt:formatDate type="date"
+									value="${employee.getDateOfBirth()}" /></td>
 						</tr>
 					</c:if>
 					<c:if test="${not empty employee.getPassportNumber()}">
@@ -120,7 +122,8 @@
 					<c:if test="${not empty employee.getStartDate()}">
 						<tr>
 							<td class="bold-font">START DATE</td>
-							<td><fmt:formatDate type="date" value="${employee.getStartDate()}"/></td>
+							<td><fmt:formatDate type="date"
+									value="${employee.getStartDate()}" /></td>
 						</tr>
 					</c:if>
 					<c:if test="${not empty employee.getNationwideId()}">
@@ -132,7 +135,8 @@
 					<c:if test="${not empty employee.getNationwideIdCreatedDate()}">
 						<tr>
 							<td class="bold-font">NATIONWIDE ID CREATED DATE</td>
-							<td><fmt:formatDate type="date" value="${employee.getNationwideIdCreatedDate()}"/></td>
+							<td><fmt:formatDate type="date"
+									value="${employee.getNationwideIdCreatedDate()}" /></td>
 						</tr>
 					</c:if>
 					<c:if test="${not empty employee.getSkillSet()}">
@@ -180,7 +184,8 @@
 					<c:if test="${not empty employee.getFgOnBoardingDate()}">
 						<tr>
 							<td class="bold-font">FG ONBOARDING DATE</td>
-							<td><fmt:formatDate type="date" value="${employee.getFgOnBoardingDate()}"/></td>
+							<td><fmt:formatDate type="date"
+									value="${employee.getFgOnBoardingDate()}" /></td>
 						</tr>
 					</c:if>
 					<c:if test="${not empty employee.getComments()}">
