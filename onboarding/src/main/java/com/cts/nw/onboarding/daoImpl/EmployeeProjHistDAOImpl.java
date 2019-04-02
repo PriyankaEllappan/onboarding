@@ -90,7 +90,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 					employeeProjectHist.getMovementId(), employeeProjectHist.getExperience(),
 					employeeProjectHist.getSkillSet(), employeeProjectHist.getSkillSummary(),
 					employeeProjectHist.getApprovalStatusId(), employeeProjectHist.getReleaseStatusId(),
-					employeeProjectHist.getOnboardRequester());
+					employeeProjectHist.getOnboardRequester(),employeeProjectHist.getPplManager());
 		} catch(Exception e){
 			throw new CustomException(e.getMessage());
 		}
