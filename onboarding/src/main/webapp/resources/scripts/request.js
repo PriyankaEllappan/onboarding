@@ -12,7 +12,11 @@ $(document).ready(function() {
 		$('#checkEmpIdSubmit').prop('disabled', true);
 		$('#checkEmpIdSubmit').css('cursor', 'not-allowed');
 		var empId = $("#checkEmpId").val();
-		checkForanEmployee(empId);
+		if(empId != null && empId != ""){
+			checkForanEmployee(empId);
+		}else{
+			$('#errMessage').text("Employee ID Can't be null or Empty");
+		}
 	})
 
 	$("#availableAssignProj").click(function() {

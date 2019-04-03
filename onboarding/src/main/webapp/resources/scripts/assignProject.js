@@ -325,7 +325,7 @@ function setRequestParams(){
 	jsonRequest["name"] = $('#name').val();
 	jsonRequest["projectName"] = $('#projectName').val();
 	jsonRequest["projectMappingId"] = $('#projectMapID').val();
-	jsonRequest["movementId"] = $('#movementId').val();
+	jsonRequest["movementId"] = $('#movementID').val();
 	jsonRequest["pplManager"] = $('#pplInfo').val();
 	jsonRequest["experience"] = $('#experience').val();
 	jsonRequest["bsaId"] = $('#bsaInfo').val();

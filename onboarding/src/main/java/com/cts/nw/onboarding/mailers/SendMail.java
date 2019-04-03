@@ -34,7 +34,7 @@ public class SendMail {
 	public void send(MailDetail mailDetail) {
 		System.out.println(mailDetail.toString());
 		
-	/*	Properties props = new Properties();
+		Properties props = new Properties();
 		props.put("mail.smtp.auth", environment.getRequiredProperty("mail.auth") );
 		props.put("mail.smtp.starttls.enable",environment.getRequiredProperty("mail.starttls") );
 		props.put("mail.smtp.host", environment.getRequiredProperty("mail.host") );
@@ -71,7 +71,7 @@ public class SendMail {
 		} catch (Exception e) {
 			log.error(e.getCause());
 		}
-*/	}
+	}
 
 	/**
 	 * @param empId
