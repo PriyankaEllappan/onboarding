@@ -310,7 +310,7 @@ select option[disabled]:first-child {
 }
 
 .navicon-image {
-	height: 40px;
+	height: inherit;
 	opacity: 0.6;
 }
 
