@@ -9,13 +9,12 @@
 					src="/onboarding/resources/images/cognizantLogo.png"
 					alt="Cognizant Logo">
 			</div>
-			<div class="col-md-7" align="center">
-				<!-- <br>
-				<p>Nationwide Resource Onboarding</p> -->
+			<div class="col-md-8 header-content" align="center">
 				<img class="header-title"
 					src="/onboarding/resources/images/headerText.png">
 			</div>
-			<div class="col-md-2 welcome-text" style="color: white;">
+			<div class="col-md-3 header-content welcome-text"
+				style="color: white;">
 				<c:if test="${not empty appInfo.loggedInUserName}">
 					<br>
 					<p style="font-size: 13px;">
@@ -24,20 +23,6 @@
 					</p>
 				</c:if>
 			</div>
-			<div class="col-md-2">
-				<div class="homepage-homeicon-div" style="text-align: right;float:left;">
-					<img class="to-click header-homeicon"
-						onclick="location.href='/onboarding'"
-						src="/onboarding/resources/icons/home.png">
-				</div>
-				<div class="homepage-logouticon-div" style="text-align: left;">
-					<img class="to-click header-logouticon"
-						onclick="location.href='/onboarding/j_spring_security_logout'"
-						src="/onboarding/resources/icons/logout.png">
-				</div>
-			</div>
-			<!-- <div class="col-md-1">
-			</div> -->
 		</div>
 	</div>
 	<div class="navigbar">
@@ -49,17 +34,6 @@
 					Request List</a>
 			</div>
 		</div>
-		<c:if
-			test="${appInfo.loggedInUserRole == 'ADMIN' || appInfo.loggedInUserRole == 'PROCESSOR'}">
-			<div class="dropitdown">
-				<button class="dropbtn">Processing Requests</button>
-				<div class="dropitdown-content">
-					<a href="/onboarding/process/onboardlist">Process On-Boarding
-						Requests</a> <a href="/onboarding/process/offboardlist">Process
-						Off-Boarding Requests</a>
-				</div>
-			</div>
-		</c:if>
 		<div class="dropitdown">
 			<button class="dropbtn">Offboarding Resources</button>
 			<div class="dropitdown-content">
@@ -70,6 +44,55 @@
 					href="/onboarding/release/releaselistbyproject">Bulk Release -
 					Raise a Request to Off-Board a Resources(By Project)</a>
 			</div>
+		</div>
+		<div class="dropitdown">
+			<button class="dropbtn">Resources Details</button>
+			<div class="dropitdown-content">
+				<a href="/onboarding/resource/list">View the Details of all
+					Resources</a> <a href="/onboarding/resource/find">View Details of a
+					Single Resource</a>
+			</div>
+		</div>
+		<c:choose>
+			<c:when
+				test="${appInfo.loggedInUserRole == 'ADMIN' || appInfo.loggedInUserRole == 'PROCESSOR'}">
+				<div class="dropitdown">
+					<button class="dropbtn">Processing Requests</button>
+					<div class="dropitdown-content">
+						<a href="/onboarding/process/onboardlist">Process On-Boarding
+							Requests</a> <a href="/onboarding/process/offboardlist">Process
+							Off-Boarding Requests</a>
+					</div>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div class="dropitdown">
+					<button class="dropbtn-none"></button>
+				</div>
+			</c:otherwise>
+		</c:choose>
+		<c:choose>
+			<c:when test="${appInfo.loggedInUserRole == 'ADMIN'}">
+				<div class="dropitdown">
+					<button class="dropbtn">Administrator Operations</button>
+					<div class="dropitdown-content">
+						<a href="/onboarding/admin/register">User - Sign Up</a>
+					</div>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div class="dropitdown">
+					<button class="dropbtn-none"></button>
+				</div>
+			</c:otherwise>
+		</c:choose>
+		<div class="dropitdown">
+			<img class="navicon-image to-click"
+				src="/onboarding/resources/icons/home.png"
+				onclick="location.href='/onboarding'"> <img
+				class="navicon-image to-click"
+				src="/onboarding/resources/icons/logout.png"
+				onclick="location.href='/onboarding/j_spring_security_logout'">
 		</div>
 	</div>
 </div>
