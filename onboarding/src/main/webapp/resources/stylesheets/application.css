@@ -34,6 +34,7 @@
 	border-right: #0039a6;
 	border-left: #0039a6;
 	background-color: #0039a6;
+	height: 100%;
 }
 
 .welcome-text {
@@ -66,13 +67,18 @@
 	color: #32CD32;
 }
 
+.icon-section{
+	border: 2px solid;
+}
 
 /* Navigation Bar Properties */
 
 .navigbar {
   overflow: hidden;
+  float:left;
   background-color: rgba(0, 151, 19, 1);
   height:35%;
+  width:95%;
 }
 
 .navigbar a {

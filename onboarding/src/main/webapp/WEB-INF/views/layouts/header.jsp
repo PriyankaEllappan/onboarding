@@ -25,74 +25,77 @@
 			</div>
 		</div>
 	</div>
-	<div class="navigbar">
-		<div class="dropitdown">
-			<button class="dropbtn">Onboarding Resources</button>
-			<div class="dropitdown-content">
-				<a href="/onboarding/request/check">Raise a Request to On-Board
-					a Resource</a> <a href="/onboarding/request/requestlist">View
-					Request List</a>
+	<div class="menu-bar">
+		<div class="navigbar">
+			<div class="dropitdown">
+				<button class="dropbtn">Onboarding Resources</button>
+				<div class="dropitdown-content">
+					<a href="/onboarding/request/check">Raise a Request to On-Board
+						a Resource</a> <a href="/onboarding/request/requestlist">View
+						Request List</a>
+				</div>
 			</div>
-		</div>
-		<div class="dropitdown">
-			<button class="dropbtn">Offboarding Resources</button>
-			<div class="dropitdown-content">
-				<a href="/onboarding/release/releasebyid">Raise a Request to
-					Off-Board a Single Resource</a> <a
-					href="/onboarding/release/releaselistbyteam">Bulk Release -
-					Raise a Request to Off-Board Resources(By Team)</a> <a
-					href="/onboarding/release/releaselistbyproject">Bulk Release -
-					Raise a Request to Off-Board a Resources(By Project)</a>
+			<div class="dropitdown">
+				<button class="dropbtn">Offboarding Resources</button>
+				<div class="dropitdown-content">
+					<a href="/onboarding/release/releasebyid">Raise a Request to
+						Off-Board a Single Resource</a> <a
+						href="/onboarding/release/releaselistbyteam">Bulk Release -
+						Raise a Request to Off-Board Resources(By Team)</a> <a
+						href="/onboarding/release/releaselistbyproject">Bulk Release -
+						Raise a Request to Off-Board a Resources(By Project)</a>
+				</div>
 			</div>
-		</div>
-		<div class="dropitdown">
-			<button class="dropbtn">Resources Details</button>
-			<div class="dropitdown-content">
-				<a href="/onboarding/resource/list">View the Details of all
-					Resources</a> <a href="/onboarding/resource/find">View Details of a
-					Single Resource</a>
+			<div class="dropitdown">
+				<button class="dropbtn">Resources Details</button>
+				<div class="dropitdown-content">
+					<a href="/onboarding/resource/list">View the Details of all
+						Resources</a> <a href="/onboarding/resource/find">View Details of
+						a Single Resource</a>
+				</div>
 			</div>
-		</div>
-		<c:choose>
-			<c:when
-				test="${appInfo.loggedInUserRole == 'ADMIN' || appInfo.loggedInUserRole == 'PROCESSOR'}">
-				<div class="dropitdown">
-					<button class="dropbtn">Processing Requests</button>
-					<div class="dropitdown-content">
-						<a href="/onboarding/process/onboardlist">Process On-Boarding
-							Requests</a> <a href="/onboarding/process/offboardlist">Process
-							Off-Boarding Requests</a>
+			<c:choose>
+				<c:when
+					test="${appInfo.loggedInUserRole == 'ADMIN' || appInfo.loggedInUserRole == 'PROCESSOR'}">
+					<div class="dropitdown">
+						<button class="dropbtn">Processing Requests</button>
+						<div class="dropitdown-content">
+							<a href="/onboarding/process/onboardlist">Process On-Boarding
+								Requests</a> <a href="/onboarding/process/offboardlist">Process
+								Off-Boarding Requests</a>
+						</div>
 					</div>
-				</div>
-			</c:when>
-			<c:otherwise>
-				<div class="dropitdown">
-					<button class="dropbtn-none"></button>
-				</div>
-			</c:otherwise>
-		</c:choose>
-		<c:choose>
-			<c:when test="${appInfo.loggedInUserRole == 'ADMIN'}">
-				<div class="dropitdown">
-					<button class="dropbtn">Administrator Operations</button>
-					<div class="dropitdown-content">
-						<a href="/onboarding/admin/register">User - Sign Up</a>
+				</c:when>
+				<c:otherwise>
+					<div class="dropitdown">
+						<button class="dropbtn-none"></button>
 					</div>
-				</div>
-			</c:when>
-			<c:otherwise>
-				<div class="dropitdown">
-					<button class="dropbtn-none"></button>
-				</div>
-			</c:otherwise>
-		</c:choose>
-		<div class="dropitdown">
+				</c:otherwise>
+			</c:choose>
+			<c:choose>
+				<c:when test="${appInfo.loggedInUserRole == 'ADMIN'}">
+					<div class="dropitdown">
+						<button class="dropbtn">Administrator Operations</button>
+						<div class="dropitdown-content">
+							<a href="/onboarding/admin/register">User - Sign Up</a>
+						</div>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div class="dropitdown">
+						<button class="dropbtn-none"></button>
+					</div>
+				</c:otherwise>
+			</c:choose>
+			<!-- <div class="dropitdown">
 			<img class="navicon-image to-click"
 				src="/onboarding/resources/icons/home.png"
 				onclick="location.href='/onboarding'"> <img
 				class="navicon-image to-click"
 				src="/onboarding/resources/icons/logout.png"
 				onclick="location.href='/onboarding/j_spring_security_logout'">
+		</div> -->
 		</div>
+		<div class="icon-section">sasd</div>
 	</div>
 </div>
