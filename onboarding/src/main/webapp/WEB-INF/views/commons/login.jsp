@@ -15,20 +15,17 @@
 </head>
 <body>
 	<div class="header-section">
-		<div class="header-banner">
-			<div class="row">
-				<div class="col-md-1">
-					<img class="logo-style"
-						src="/onboarding/resources/images/cognizantLogo.png"
-						alt="Cognizant Logo">
-				</div>
-				<div class="col-md-8" align="center">
-					<img class="header-title"
-						src="/onboarding/resources/images/headerText.png">
-				</div>
-				<div class="col-md-1"></div>
-				<div class="col-md-1"></div>
-				<div class="col-md-1"></div>
+		<div class="row">
+			<div class="col-md-1">
+				<img class="logo-style"
+					src="/onboarding/resources/images/cognizantLogo.png"
+					alt="Cognizant Logo">
+			</div>
+			<div class="col-md-8 header-content" align="center">
+				<img class="header-title"
+					src="/onboarding/resources/images/headerText.png">
+			</div>
+			<div class="col-md-3 header-content">
 			</div>
 		</div>
 	</div>
