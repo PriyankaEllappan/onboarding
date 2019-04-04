@@ -87,15 +87,12 @@
 					</div>
 				</c:otherwise>
 			</c:choose>
-			<!-- <div class="dropitdown">
-			<img class="navicon-image to-click"
+		</div>
+		<div class="icon-section"><img class="navicon-image to-click"
 				src="/onboarding/resources/icons/home.png"
 				onclick="location.href='/onboarding'"> <img
 				class="navicon-image to-click"
 				src="/onboarding/resources/icons/logout.png"
-				onclick="location.href='/onboarding/j_spring_security_logout'">
-		</div> -->
-		</div>
-		<div class="icon-section">sasd</div>
+				onclick="location.href='/onboarding/j_spring_security_logout'"></div>
 	</div>
 </div>

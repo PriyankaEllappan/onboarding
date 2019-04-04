@@ -68,7 +68,14 @@
 }
 
 .icon-section{
-	border: 2px solid;
+	width : 10% ;
+	height :100%;
+	float: right;
+	background-color: rgba(0, 151, 19, 1);
+}
+.menu-bar{
+	height :35%;
+	width : 100%;
 }
 
 /* Navigation Bar Properties */
@@ -77,8 +84,8 @@
   overflow: hidden;
   float:left;
   background-color: rgba(0, 151, 19, 1);
-  height:35%;
-  width:95%;
+  height:100%;
+  width:90%;
 }
 
 .navigbar a {
@@ -303,7 +310,7 @@ select option[disabled]:first-child {
 }
 
 .navicon-image {
-	height: 35px;
+	height: 40px;
 	opacity: 0.6;
 }
 
