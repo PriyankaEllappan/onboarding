@@ -99,7 +99,6 @@ function loadMovementDetails(){
 
 function loadReleaseStatus() {
 	var initVal = $('#releaseinit').val();
-	alert(initVal);
 	$.ajax({
 		type : 'GET',
 		url : "/onboarding/status/getallreleasestatus",

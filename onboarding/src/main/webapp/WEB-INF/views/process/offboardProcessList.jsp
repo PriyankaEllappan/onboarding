@@ -24,7 +24,7 @@
 				<div class="row">
 					<div class="col-md-4" align="center"></div>
 					<div class="col-md-4" align="center">
-						<h4>Process List</h4>
+						<h4>Offboard Requests - Processing List</h4>
 						<br>
 					</div>
 					<div class="col-md-2" align="center"></div>
@@ -74,7 +74,7 @@
 			<c:otherwise>
 				<br>
 				<br>
-				<h4>No requests Available</h4>
+				<h4>No Requests Available</h4>
 			</c:otherwise>
 		</c:choose>
 	</div>

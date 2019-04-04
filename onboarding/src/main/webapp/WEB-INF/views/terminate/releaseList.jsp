@@ -77,7 +77,7 @@
 			<c:otherwise>
 				<br>
 				<br>
-				<h4>No requests Available</h4>
+				<h4>No Requests Available</h4>
 			</c:otherwise>
 		</c:choose>
 	</div>

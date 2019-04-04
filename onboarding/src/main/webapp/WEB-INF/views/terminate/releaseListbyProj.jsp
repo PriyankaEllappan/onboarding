@@ -22,6 +22,14 @@
 <body>
 	<jsp:include page="../layouts/header.jsp" />
 	<div class="content-style">
+		<div class="row">
+			<div class="col-md-4" align="center"></div>
+			<div class="col-md-4" align="center">
+				<h4> Offboarding Resources - By Project</h4>
+			</div>
+			<div class="col-md-2" align="center"></div>
+			<div class="col-md-2" align="center"></div>
+		</div>
 		<span class="has-error" id="errMessage"></span> <span
 			class="is-success" id="statusSucessMessage"></span><br>
 		<br>

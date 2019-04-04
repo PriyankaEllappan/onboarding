@@ -21,6 +21,15 @@
 <body>
 	<jsp:include page="../layouts/header.jsp" />
 	<div class="container-fluid content-style">
+		<div class="row">
+			<div class="col-md-4" align="center"></div>
+			<div class="col-md-4" align="center">
+				<h4>Search and Add Resource</h4>
+			</div>
+			<div class="col-md-2" align="center"></div>
+			<div class="col-md-2" align="center">
+			</div>
+		</div>
 		<br> <span class="has-error" id="errMessage"></span> <span
 			class="is-success" id="statusSucessMessage"></span> <br> <br>
 		<label for="checkEmpId"> Enter Employee ID: </label> <input
