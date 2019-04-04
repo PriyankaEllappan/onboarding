@@ -14,22 +14,12 @@
 <script src="/onboarding/resources/scripts/bootstrap.min.js"></script>
 </head>
 <body>
-	<div class="header-section">
-		<div class="row">
-			<div class="col-md-1">
-				<img class="logo-style"
-					src="/onboarding/resources/images/cognizantLogo.png"
-					alt="Cognizant Logo">
-			</div>
-			<div class="col-md-8 header-content" align="center">
-				<img class="header-title"
-					src="/onboarding/resources/images/headerText.png">
-			</div>
-			<div class="col-md-3 header-content">
-			</div>
-		</div>
-	</div>
 	<div class="content-style">
+	<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4 customized-span-login "> Nationwide Resource Onboarding</div>
+				<div class="col-md-4"></div>
+				</div>
 		<form name='loginForm' id="loginFormID"
 			action="<c:url value='login' />" method='POST'>
 			<br> <br> <br>

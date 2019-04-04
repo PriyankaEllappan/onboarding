@@ -358,3 +358,10 @@ select option[disabled]:first-child {
 	color: #0ba9f4;
 	text-align: center;
 }
+.customized-span-login  {
+	font-family: Georgia;
+	font-size: 30px;
+	font-weight: bold;
+	color: #0037a7;
+	text-align: center;
+}
