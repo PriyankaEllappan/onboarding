@@ -1,4 +1,17 @@
 /* Header Content Footer Alignments */
+.login-display{
+	border: 1px solid #0039a6;
+	background-color: #0039a6;
+	border-radius: 4px;
+}
+
+.customized-span-login  {
+	font-family: Georgia;
+	font-size: 30px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-align: center;
+}
 
 .header-section{
 	height: 15%;
@@ -356,12 +369,5 @@ select option[disabled]:first-child {
 	font-size: 12px;
 	font-weight: bold;
 	color: #0ba9f4;
-	text-align: center;
-}
-.customized-span-login  {
-	font-family: Georgia;
-	font-size: 30px;
-	font-weight: bold;
-	color: #0037a7;
 	text-align: center;
 }
