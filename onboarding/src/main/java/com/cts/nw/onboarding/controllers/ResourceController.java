@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -71,4 +72,30 @@ public class ResourceController extends AbstractController {
 		return modelView;
 	}
 
+	@GetMapping(value = "/find")
+    public ModelAndView generateSearchForm(String empId) {
+           ModelAndView modelView = null;
+           try {
+                  modelView = bindViewwithUserInfo("resources/findResource");
+           } catch (Exception e) {
+                  modelView = bindViewwithUserInfo("errors/errorPage");
+                  modelView.addObject("errMessage", e.getMessage());
+                  log.error(e.getMessage());
+           }
+           return modelView;
+    }
+
+	@GetMapping(value = "/getresourcedetails/{empId}")
+    public ModelAndView findById(@PathVariable String empId) {
+           ModelAndView modelView = null;
+           try {
+                  modelView = bindViewwithUserInfo("resources/resourceProjectDetails");
+                  modelView.addObject("employees", resourceService.getEmployeeProjDetails(empId));
+           } catch (CustomException e) {
+                  modelView = bindViewwithUserInfo("errors/errorPage");
+                  modelView.addObject("errMessage", e.getMessage());
+                  log.error(e.getMessage());
+           }
+           return modelView;
+    }
 }

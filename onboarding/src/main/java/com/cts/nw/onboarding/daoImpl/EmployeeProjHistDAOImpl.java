@@ -298,5 +298,19 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 			throw new CustomException(e.getMessage());
 		}
 	}
+
+	@Override
+	public List<EmployeeProjHist> getEmployeeProjectInfobyEmpId(String empId) throws CustomException {
+		try {
+			String whereClause = " WHERE EPH.EMPLOYEEID = ? ORDER BY ID DESC";
+			String query = QueryConstants.EMPPROJHIST_SELECT + whereClause;
+			RowMapper<EmployeeProjHist> rowMapper = new EmployeeProjHistRowMapper();
+			return this.jdbcTemplate.query(query, rowMapper, empId);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		} catch(Exception e){
+			throw new CustomException(e.getMessage());
+		}
+	}
 	
 }

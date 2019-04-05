@@ -35,6 +35,7 @@ public interface EmployeeProjHistDAO {
 	/*Common Operations*/
 	EmployeeProjHist getSpecificEmployeeProjectHist(String empProjHistId) throws CustomException;
 	List<EmployeeProjHist> getAllEmployeeProjectInfo() throws CustomException;
+	List<EmployeeProjHist> getEmployeeProjectInfobyEmpId(String empId) throws CustomException;
 	
 	
 }

@@ -2,17 +2,31 @@ $(document).ready(function() {
 	/* Employee Search function */
 	$("#checkEmpIdSubmit").click(function(e) {
 		e.preventDefault();
-		$("#releaseTable").empty();
-		$("#checkEmpId").attr("disabled", "disabled");
-		$('#checkEmpIdSubmit').prop('disabled', true);
-		$('#checkEmpIdSubmit').css('cursor', 'not-allowed');
 		var empId = $("#checkEmpId").val();
 		if(empId != null && empId != ""){
+			$("#releaseTable").empty();
+			$("#checkEmpId").attr("disabled", "disabled");
+			$('#checkEmpIdSubmit').prop('disabled', true);
+			$('#checkEmpIdSubmit').css('cursor', 'not-allowed');
 			checkForanEmployee(empId);
 		}else{
 			$('#errMessage').text("Employee ID Can't be null or Empty");
 		}
 	})
+	
+	$("#findEmpIdSubmit").click(function(e) {
+		e.preventDefault();
+		var empId = $("#findEmpId").val();
+		if(empId != null && empId != ""){
+			$("#findEmpId").attr("disabled", "disabled");
+			$('#findEmpIdSubmit').prop('disabled', true);
+			$('#findEmpIdSubmit').css('cursor', 'not-allowed');
+			window.location = "/onboarding/resource/getresourcedetails/" + empId;
+		}else{
+			$('#errMessage').text("Employee ID Can't be null or Empty");
+		}
+	})
+	
 });
 
 

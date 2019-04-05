@@ -29,9 +29,6 @@
 					</div>
 					<div class="col-md-2" align="center"></div>
 					<div class="col-md-2" align="center">
-						<br>
-						<button class="btn-success to-click"
-							onclick="location.href='/onboarding'">Back to Home</button>
 					</div>
 				</div>
 				<table class="table table-striped bordered">
