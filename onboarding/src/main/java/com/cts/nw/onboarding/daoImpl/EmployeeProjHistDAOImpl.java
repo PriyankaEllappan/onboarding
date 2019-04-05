@@ -302,7 +302,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 	@Override
 	public List<EmployeeProjHist> getEmployeeProjectInfobyEmpId(String empId) throws CustomException {
 		try {
-			String whereClause = " WHERE EPH.EMPLOYEEID = ? ORDER BY ID DESC";
+			String whereClause = " WHERE EPH.EMPLOYEEID = ? ORDER BY EPH.RELEASESTATUS DESC";
 			String query = QueryConstants.EMPPROJHIST_SELECT + whereClause;
 			RowMapper<EmployeeProjHist> rowMapper = new EmployeeProjHistRowMapper();
 			return this.jdbcTemplate.query(query, rowMapper, empId);

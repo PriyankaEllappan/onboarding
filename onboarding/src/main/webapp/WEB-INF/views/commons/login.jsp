@@ -24,7 +24,7 @@
 				<div class="col-md-4"></div>
 				<div class="col-md-4 login-display">
 					<div class="row">
-						<div class="col-md-12 customized-span-login ">Nationwide
+						<div class="col-md-12 customized-span-login "><br>Nationwide
 							Resource Onboarding</div>
 					</div>
 					<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
@@ -59,13 +59,12 @@
 					</div>
 					<br>
 					<div class="row form-group">
-						<div class="col-md-2"></div>
-						<div class="col-md-8" style="text-align: center;">
+						<div class="col-md-3"></div>
+						<div class="col-md-9" style="text-align: center;">
 							<input type="submit" class="btn btn-submit" name="login"
 								value="Login" /> <input type="reset" class="btn btn-submit"
-								name="reset" value="Reset" />
+								name="reset" value="Reset" /><br><br><br>
 						</div>
-						<div class="col-md-2"></div>
 					</div>
 				</div>
 				<div class="col-md-4">

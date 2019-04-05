@@ -21,6 +21,7 @@
 <body>
 	<jsp:include page="../layouts/header.jsp" />
 	<div class="content-style">
+		<c:set var="count" value="0" scope="page" />
 		<div class="row">
 			<div class="col-md-4" align="center"></div>
 			<div class="col-md-4" align="center">
@@ -31,30 +32,137 @@
 			<div class="col-md-2" align="center"></div>
 			<div class="col-md-2" align="center"></div>
 		</div>
-		<table class="table table-striped bordered">
-			<tr class="bold-font">
-				<th>Employee Id</th>
-				<th>Employee Name</th>
-				<th>First Name</th>
-				<th>Last Name</th>
-				<th>Date of Birth</th>
-				<th>Passport No/SSN No</th>
-				<th>Email</th>
-				<th>Status</th>
-			</tr>
-			<c:forEach var="employee" items="${employees}">
-				<tr>
-					<td>${employee.getEmployeeId()}</td>
-				<td>${employee.getName()}</td>
-				<td>${employee.getFirstName()}</td>
-				<td>${employee.getLastName()}</td>
-				<td>${employee.getDateOfBirth()}</td>
-				<td>${employee.getPassportNumber()}</td>
-				<td>${employee.getEmail()}</td>
-				<td>${employee.getReleaseStatus()}</td>
-				</tr>
-			</c:forEach>
-		</table>
+		<c:forEach var="employee" items="${employees}">
+			<c:choose>
+				<c:when test="${count == 0}">
+					<div class="row">
+						<div class="col-md-2">
+							<span>Employee ID:</span>
+						</div>
+						<div class="col-md-4">
+							<span>${employee.getEmployeeId()}</span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-2">
+							<span>Employee Name:</span>
+						</div>
+						<div class="col-md-4">
+							<span>${employee.getName()}</span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-2">
+							<span>Email ID:</span>
+						</div>
+						<div class="col-md-4">
+							<span>${employee.getEmail()}</span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-2">
+							<span>Date of Birth:</span>
+						</div>
+						<div class="col-md-4">
+							<span>${employee.getDateOfBirth()}</span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-2">
+							<span>Passport/SSN Number:</span>
+						</div>
+						<div class="col-md-4">
+							<span>${employee.getPassportNumber()}<br><br></span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-2">
+							<span>Project Id:</span>
+						</div>
+						<div class="col-md-2">
+							<span>${employee.getProjectId()}</span>
+						</div>
+						<div class="col-md-1"></div>
+						<div class="col-md-2">
+							<span>Project Name:</span>
+						</div>
+						<div class="col-md-4">
+							<span>${employee.getProjectName()}</span>
+						</div>
+						<div class="col-md-1"></div>
+					</div>
+					<div class="row">
+						<div class="col-md-2">
+							<span>Requester:</span>
+						</div>
+						<div class="col-md-2">
+							<span>${employee.getRequesterId()}</span>
+						</div>
+						<div class="col-md-1"></div>
+						<div class="col-md-2">
+							<span>Processor:</span>
+						</div>
+						<div class="col-md-2">
+							<span>${employee.getProcessorId()}</span>
+						</div>
+						<div class="col-md-1"></div>
+					</div>
+					<div class="row">
+						<div class="col-md-2">
+							<span>Status:</span>
+						</div>
+						<div class="col-md-2">
+							<span>${employee.getReleaseStatus()}<br><br></span>
+						</div>
+						<div class="col-md-1"></div>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div class="row">
+						<div class="col-md-2">
+							<span>Project Id:</span>
+						</div>
+						<div class="col-md-2">
+							<span>${employee.getProjectId()}</span>
+						</div>
+						<div class="col-md-1"></div>
+						<div class="col-md-2">
+							<span>Project Name:</span>
+						</div>
+						<div class="col-md-4">
+							<span>${employee.getProjectName()}</span>
+						</div>
+						<div class="col-md-1"></div>
+					</div>
+					<div class="row">
+						<div class="col-md-2">
+							<span>Requester:</span>
+						</div>
+						<div class="col-md-2">
+							<span>${employee.getRequesterId()}</span>
+						</div>
+						<div class="col-md-1"></div>
+						<div class="col-md-2">
+							<span>Processor:</span>
+						</div>
+						<div class="col-md-2">
+							<span>${employee.getProcessorId()}</span>
+						</div>
+						<div class="col-md-1"></div>
+					</div>
+					<div class="row">
+						<div class="col-md-2">
+							<span>Status:</span>
+						</div>
+						<div class="col-md-2">
+							<span>${employee.getReleaseStatus()}<br><br></span>
+						</div>
+						<div class="col-md-1"></div>
+					</div>
+				</c:otherwise>
+			</c:choose>
+			<c:set var="count" value="${count + 1}" scope="page" />
+		</c:forEach>
 	</div>
 	<jsp:include page="../layouts/footer.jsp" />
 </body>
