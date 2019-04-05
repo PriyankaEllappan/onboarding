@@ -75,7 +75,7 @@
 			<c:choose>
 				<c:when test="${appInfo.loggedInUserRole == 'ADMIN'}">
 					<div class="dropitdown">
-						<button class="dropbtn">Administrator Operations</button>
+						<button class="dropbtn">Admin Operations</button>
 						<div class="dropitdown-content">
 							<a href="/onboarding/admin/register">User - Sign Up</a>
 						</div>
