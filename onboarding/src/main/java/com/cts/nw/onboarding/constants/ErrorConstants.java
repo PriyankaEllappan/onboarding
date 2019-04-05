@@ -20,4 +20,6 @@ public class ErrorConstants {
 	public static final String EMPNONAVAILABLE = " : Employee Not available in Nationwide";
 	
 	public static final String DETAILS_NOTSAVED = "Unable to update the details";
+	
+	public static final String USERALREADYEXISTS = "User already exists!";
 }

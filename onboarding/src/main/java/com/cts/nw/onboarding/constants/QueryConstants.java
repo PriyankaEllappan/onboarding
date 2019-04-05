@@ -41,6 +41,9 @@ public class QueryConstants {
 	 /*Procedure Calls*/
 	 public static final String TEAMPROCEDURE_INSERT = "{call insertTeam(?,?,?,?)}";
 	 public static final String MAILPROCEDURE_INSERT = "{call insertMailObj(?,?,?)}";
+	 public static final String ADMINPROCEDURE_REGISTERUSER_INSERT = "{call registerUser(?,?)}";
+
+
 	
 	
 }
