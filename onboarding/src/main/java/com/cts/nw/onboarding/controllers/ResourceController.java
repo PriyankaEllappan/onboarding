@@ -61,7 +61,7 @@ public class ResourceController extends AbstractController {
 	public ModelAndView getAllEmployees(ModelMap model) {
 		ModelAndView modelView = null;
 		try {
-			modelView = bindViewwithUserInfo("resource/resourceList");
+			modelView = bindViewwithUserInfo("resources/resourceList");
 			modelView.addObject("employees", resourceService.getAllResources());
 		} catch (CustomException e) {
 			modelView = bindViewwithUserInfo("errors/errorPage");

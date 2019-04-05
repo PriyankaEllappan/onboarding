@@ -26,7 +26,7 @@
 		<div class="row">
 			<div class="col-md-4" align="center"></div>
 			<div class="col-md-4" align="center">
-				<h4>Offboarding Resources - By Team</h4>
+				<h4><b>Offboarding Resources - By Team</b></h4>
 			</div>
 			<div class="col-md-2" align="center"></div>
 			<div class="col-md-2" align="center"></div>

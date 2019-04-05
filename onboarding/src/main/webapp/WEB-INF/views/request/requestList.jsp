@@ -21,7 +21,7 @@
 				<div class="row">
 					<div class="col-md-4" align="center"></div>
 					<div class="col-md-4" align="center">
-						<h4>Request List</h4>
+						<h4><b>Request List</b></h4>
 						<br>
 					</div>
 					<div class="col-md-2" align="center"></div>

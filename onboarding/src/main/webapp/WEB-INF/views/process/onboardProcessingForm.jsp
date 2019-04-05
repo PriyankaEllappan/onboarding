@@ -26,7 +26,7 @@
 		<div class="row">
 			<div class="col-md-4" align="center"></div>
 			<div class="col-md-4" align="center">
-				<h4>Onboard Processing Form</h4>
+				<h4><b>Onboard Processing Form</b></h4>
 			</div>
 			<div class="col-md-2" align="center"></div>
 			<div class="col-md-2" align="center"></div>

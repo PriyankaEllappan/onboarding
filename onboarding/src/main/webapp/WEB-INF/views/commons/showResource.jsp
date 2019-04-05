@@ -22,7 +22,7 @@
 		<div class="row">
 			<div class="col-md-4" align="center"></div>
 			<div class="col-md-4" align="center">
-				<h4>Resource Details</h4>
+				<h4><b>Resource Details</b></h4>
 				<br>
 			</div>
 			<div class="col-md-4" align="left">

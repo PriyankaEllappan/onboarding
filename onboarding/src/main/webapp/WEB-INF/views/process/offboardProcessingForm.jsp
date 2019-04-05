@@ -23,6 +23,15 @@
 <body>
 	<jsp:include page="../layouts/header.jsp" />
 	<div class="container-fluid content-style">
+	<div class="row">
+			<div class="col-md-4" align="center"></div>
+			<div class="col-md-4" align="center">
+				<h4><b>Offboard Processing Form</b></h4>
+			</div>
+			<div class="col-md-2" align="center"></div>
+			<div class="col-md-2" align="center"></div>
+		</div>
+	
 		<div id="formDiv">
 			<div class="tab">
 				<button class="tablinks"
