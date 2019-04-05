@@ -7,16 +7,20 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.cts.nw.onboarding.bean.AjaxResponse;
 import com.cts.nw.onboarding.bean.EmployeeDetails;
 import com.cts.nw.onboarding.constants.AppConstants;
 import com.cts.nw.onboarding.constants.ErrorConstants;
-import com.cts.nw.onboarding.service.LDAPService;
+import com.cts.nw.onboarding.exception.CustomException;
+import com.cts.nw.onboarding.service.ResourceService;
 
 /**
  * @author 616550
@@ -29,14 +33,13 @@ public class ResourceController extends AbstractController {
 	Logger log = Logger.getLogger(ResourceController.class) ;
 	
 	@Autowired
-	LDAPService lDAPService;
+	ResourceService resourceService;
 
 	@RequestMapping(value = "/getemployee", method = RequestMethod.GET)
 	public @ResponseBody AjaxResponse getEmployeeFromLDAP(@RequestParam("empId") String empId) {
 		AjaxResponse ajaxResponse = new AjaxResponse();
 		try {
-			EmployeeDetails employee = lDAPService.getEmployee(empId);
-			
+			EmployeeDetails employee = resourceService.getEmployee(empId);
 			if (employee != null) {
 				System.out.println(employee.toString());
 				ajaxResponse.setStatus(AppConstants.AJAXSUCCESS);
@@ -52,6 +55,20 @@ public class ResourceController extends AbstractController {
 			log.error(e.getMessage());
 		}
 		return ajaxResponse;
+	}
+
+	@GetMapping(value = "/list")
+	public ModelAndView getAllEmployees(ModelMap model) {
+		ModelAndView modelView = null;
+		try {
+			modelView = bindViewwithUserInfo("resource/resourceList");
+			modelView.addObject("employees", resourceService.getAllResources());
+		} catch (CustomException e) {
+			modelView = bindViewwithUserInfo("errors/errorPage");
+			modelView.addObject("errMessage", e.getMessage());
+			log.error(e.getMessage());
+		}
+		return modelView;
 	}
 
 }
