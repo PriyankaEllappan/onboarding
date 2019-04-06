@@ -371,3 +371,12 @@ select option[disabled]:first-child {
 	color: #0ba9f4;
 	text-align: center;
 }
+
+/* Customized Alignment */
+.right-align {
+	text-align: right;
+}
+
+.left-align {
+	text-align: left;
+}

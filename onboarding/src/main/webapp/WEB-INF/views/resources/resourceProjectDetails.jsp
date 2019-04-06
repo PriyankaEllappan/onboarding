@@ -22,147 +22,103 @@
 	<jsp:include page="../layouts/header.jsp" />
 	<div class="content-style">
 		<c:set var="count" value="0" scope="page" />
+		<c:set var="headcount" value="0" scope="page" />
 		<div class="row">
 			<div class="col-md-4" align="center"></div>
 			<div class="col-md-4" align="center">
 				<h4>
-					<b> Resource - Project Details</b>
+					<b> Resource - Project Details</b><br><br>
 				</h4>
 			</div>
 			<div class="col-md-2" align="center"></div>
 			<div class="col-md-2" align="center"></div>
 		</div>
 		<c:forEach var="employee" items="${employees}">
-			<c:choose>
-				<c:when test="${count == 0}">
-					<div class="row">
-						<div class="col-md-2">
-							<span>Employee ID:</span>
-						</div>
-						<div class="col-md-4">
-							<span>${employee.getEmployeeId()}</span>
-						</div>
+			<c:if test="${headcount == 0}">
+				<div class="row">
+					<div class="col-md-12">
+						<table class="table bordered">
+							<tr>
+								<th class="right-align">Employee ID:</th>
+								<td class="left-align">${employee.getEmployeeId()}</td>
+								<td></td>
+								<th class="right-align">Employee Name:</th>
+								<td class="left-align">${employee.getName()}</td>
+								<td></td>
+								<th class="right-align">Email ID:</th>
+								<td class="left-align">${employee.getEmail()}</td>
+								<td></td>
+								<th class="right-align">Date of Birth:</th>
+								<td class="left-align">${employee.getDateOfBirth()}</td>
+								<td></td>
+								<th class="right-align">Passport/SSN Number:</th>
+								<td class="left-align">${employee.getPassportNumber()}</td>
+							</tr>
+						</table>
 					</div>
-					<div class="row">
-						<div class="col-md-2">
-							<span>Employee Name:</span>
-						</div>
-						<div class="col-md-4">
-							<span>${employee.getName()}</span>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-2">
-							<span>Email ID:</span>
-						</div>
-						<div class="col-md-4">
-							<span>${employee.getEmail()}</span>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-2">
-							<span>Date of Birth:</span>
-						</div>
-						<div class="col-md-4">
-							<span>${employee.getDateOfBirth()}</span>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-2">
-							<span>Passport/SSN Number:</span>
-						</div>
-						<div class="col-md-4">
-							<span>${employee.getPassportNumber()}<br><br></span>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-2">
-							<span>Project Id:</span>
-						</div>
-						<div class="col-md-2">
-							<span>${employee.getProjectId()}</span>
-						</div>
-						<div class="col-md-1"></div>
-						<div class="col-md-2">
-							<span>Project Name:</span>
-						</div>
-						<div class="col-md-4">
-							<span>${employee.getProjectName()}</span>
-						</div>
-						<div class="col-md-1"></div>
-					</div>
-					<div class="row">
-						<div class="col-md-2">
-							<span>Requester:</span>
-						</div>
-						<div class="col-md-2">
-							<span>${employee.getRequesterId()}</span>
-						</div>
-						<div class="col-md-1"></div>
-						<div class="col-md-2">
-							<span>Processor:</span>
-						</div>
-						<div class="col-md-2">
-							<span>${employee.getProcessorId()}</span>
-						</div>
-						<div class="col-md-1"></div>
-					</div>
-					<div class="row">
-						<div class="col-md-2">
-							<span>Status:</span>
-						</div>
-						<div class="col-md-2">
-							<span>${employee.getReleaseStatus()}<br><br></span>
-						</div>
-						<div class="col-md-1"></div>
-					</div>
-				</c:when>
-				<c:otherwise>
-					<div class="row">
-						<div class="col-md-2">
-							<span>Project Id:</span>
-						</div>
-						<div class="col-md-2">
-							<span>${employee.getProjectId()}</span>
-						</div>
-						<div class="col-md-1"></div>
-						<div class="col-md-2">
-							<span>Project Name:</span>
-						</div>
-						<div class="col-md-4">
-							<span>${employee.getProjectName()}</span>
-						</div>
-						<div class="col-md-1"></div>
-					</div>
-					<div class="row">
-						<div class="col-md-2">
-							<span>Requester:</span>
-						</div>
-						<div class="col-md-2">
-							<span>${employee.getRequesterId()}</span>
-						</div>
-						<div class="col-md-1"></div>
-						<div class="col-md-2">
-							<span>Processor:</span>
-						</div>
-						<div class="col-md-2">
-							<span>${employee.getProcessorId()}</span>
-						</div>
-						<div class="col-md-1"></div>
-					</div>
-					<div class="row">
-						<div class="col-md-2">
-							<span>Status:</span>
-						</div>
-						<div class="col-md-2">
-							<span>${employee.getReleaseStatus()}<br><br></span>
-						</div>
-						<div class="col-md-1"></div>
-					</div>
-				</c:otherwise>
-			</c:choose>
-			<c:set var="count" value="${count + 1}" scope="page" />
+				</div>
+			</c:if>
+			<c:set var="headcount" value="${headcount + 1}" scope="page" />
 		</c:forEach>
+		<div class="panel-group" id="accordion">
+			<c:forEach var="employee" items="${employees}">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion"
+								href="#collapse${count}"><b>${employee.getProjectName()}</b></a>
+						</h4>
+					</div>
+					<div id="collapse${count}" class="panel-collapse collapse">
+						<div class="panel-body">
+							<table class="table table-striped bordered">
+								<tr>
+									<th>Project Name:</th>
+									<td>${employee.getProjectName()}</td>
+								</tr>
+								<tr>
+									<th>Project ID:</th>
+									<td>${employee.getProjectId()}</td>
+								</tr>
+								<tr>
+									<th>Team Name:</th>
+									<td>${employee.getTeamName()}</td>
+								</tr>
+								<tr>
+									<th>Location:</th>
+									<td>${employee.getLocation()}</td>
+								</tr>
+								<tr>
+									<th>Requester:</th>
+									<td>${employee.getRequesterName()}</td>
+								</tr>
+								<tr>
+									<th>Processor:</th>
+									<td>${employee.getProcessorName()}</td>
+								</tr>
+								<tr>
+									<th>Start Date:</th>
+									<td>${employee.getStartDate()}</td>
+								</tr>
+								<tr>
+									<th>End Date:</th>
+									<td>${employee.getReleaseDate()}</td>
+								</tr>
+								<tr>
+									<th>Status:</th>
+									<td>${employee.getReleaseStatus()}</td>
+								</tr>
+								<tr>
+									<th></th>
+									<td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+				<c:set var="count" value="${count + 1}" scope="page" />
+			</c:forEach>
+		</div>
 	</div>
 	<jsp:include page="../layouts/footer.jsp" />
 </body>
