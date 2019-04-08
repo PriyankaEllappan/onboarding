@@ -38,6 +38,7 @@
 			class="is-success" id="statusSucessMessage"></span> <br> <br>
 		<div class="resizeTabCont" id="resourceNonAvailable">
 			<br> <br>
+			<div id="userRegisterFormDiv">
 			<form name="resourceRegisterForm" method="post">
 				<div class=" row form-group">
 					<div class="col-md-2"></div>
@@ -82,6 +83,7 @@
 					<br> <br>
 				</div>
 			</form>
+			</div>
 		</div>
 	</div>
 	<jsp:include page="../layouts/footer.jsp" />

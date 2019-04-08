@@ -101,8 +101,7 @@ public class AbstractController {
 					APPINFO.setLoggedInUserId(currentUserName);
 					EmployeeDetails currUserLdap = lDAPService.getEmployee(currentUserName);
 					if(currUserLdap != null && currUserLdap.getName() != null){
-						String[] name = currUserLdap.getName().trim().split("\\s+");
-						APPINFO.setLoggedInUserName(name[0]);
+						APPINFO.setLoggedInUserName(currUserLdap.getName());
 					}else{
 						APPINFO.setLoggedInUserName("User");
 					}

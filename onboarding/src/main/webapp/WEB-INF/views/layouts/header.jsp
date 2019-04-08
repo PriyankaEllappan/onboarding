@@ -49,8 +49,8 @@
 			<div class="dropitdown">
 				<button class="dropbtn">Resources Details</button>
 				<div class="dropitdown-content">
-					<a href="/onboarding/resource/list">View the Details of all
-						Resources</a> <a href="/onboarding/resource/find">View Details of
+					<a href="/onboarding/resource/list">List of all
+						Resources</a> <a href="/onboarding/resource/find">View Project Details of
 						a Single Resource</a>
 				</div>
 			</div>

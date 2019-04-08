@@ -19,7 +19,18 @@
 	<div class="content-style">
 		<form name='loginForm' id="loginFormID"
 			action="<c:url value='login' />" method='POST'>
-			<br>
+			<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
+						<strong><span class="has-error">Your login attempt was not
+							successful due to <c:out
+								value="${SPRING_SECURITY_LAST_EXCEPTION.message}" /><br><br>
+						</span></strong>
+					</c:if>
+				</div>
+				<div class="col-md-4"></div>
+			</div>
 			<div class="row">
 				<div class="col-md-4"></div>
 				<div class="col-md-4 login-display">
@@ -27,12 +38,6 @@
 						<div class="col-md-12 customized-span-login "><br>Nationwide
 							Resource Onboarding</div>
 					</div>
-					<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
-						<span class="has-error">Your login attempt was not
-							successful due to <c:out
-								value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />
-						</span>
-					</c:if>
 					<br>
 					<div class="row form-group">
 						<div class="col-md-2"></div>

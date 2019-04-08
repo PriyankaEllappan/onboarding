@@ -33,7 +33,9 @@
 			<div class="col-md-2" align="center"></div>
 			<div class="col-md-2" align="center"></div>
 		</div>
-		<c:forEach var="employee" items="${employees}">
+		<c:choose>
+			<c:when test="${not empty employees}">
+			<c:forEach var="employee" items="${employees}">
 			<c:if test="${headcount == 0}">
 				<div class="row">
 					<div class="col-md-12">
@@ -119,6 +121,12 @@
 				<c:set var="count" value="${count + 1}" scope="page" />
 			</c:forEach>
 		</div>
+			</c:when>
+			<c:otherwise><br>
+				<br>
+				<h4>No Details Available for the Selected Resource.</h4></c:otherwise>
+		</c:choose>
+		
 	</div>
 	<jsp:include page="../layouts/footer.jsp" />
 </body>

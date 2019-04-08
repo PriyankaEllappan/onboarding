@@ -21,6 +21,7 @@ $(function() {
 						contentType : 'application/json; charset=utf-8',
 						success : function(resultData) {
 							if (resultData.status == "SUCCESS") {
+								$('#userRegisterFormDiv').hide();
 								$('#statusSucessMessage').text(resultData.statusMessage);
 								$('#userRegisterFormSubmit').prop('disabled', false);
 								$('#userRegisterFormSubmit').css('cursor','pointer');
