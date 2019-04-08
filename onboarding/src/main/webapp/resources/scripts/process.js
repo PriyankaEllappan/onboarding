@@ -10,6 +10,19 @@ $(document).ready(function() {
 	loadBands();
 	loadMovementDetails();
 	
+	$(".is-required").hide();
+	$(".is-required-msg").hide();
+	
+	$("#approvalStatus").change(function() {
+		if($("#approvalStatus").val() == 3){
+			$(".is-required").show();
+			$(".is-required-msg").show();
+		}else{
+			$(".is-required").hide();
+			$(".is-required-msg").hide();
+		}
+	});
+	
 	$("#band").change(function() {
 		var selectedVal = $("#band").val();
 		$.each(bandDetails.responseList, function(key,value) {
@@ -35,7 +48,6 @@ function loadApprovalStatus(){
 		url : "/onboarding/status/getallapprovalstatus",
 		dataType : "json",
 		success : function(resultData) {
-			
 			approvalStat = resultData; //setting the value for the global JS object "approvalStat"
 			console.log(resultData);
 			console.log(resultData.responseList);
@@ -47,7 +59,13 @@ function loadApprovalStatus(){
 				                    .attr("value",value.id)
 				                    .attr("disabled", true)
 				                    .text(value.status));
-					}else{
+					}else if(value.id == 3 && $('#approvalStatusId').val() == 1){
+						$('#approvalStatus')
+				         .append($("<option></option>")
+				        		 .attr("value",value.id)
+				                    .attr("disabled", true)
+				                    .text(value.status));
+					} else{
 						$('#approvalStatus')
 				         .append($("<option></option>")
 				                    .attr("value",value.id)

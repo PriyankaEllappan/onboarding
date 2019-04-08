@@ -314,7 +314,8 @@
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-2">
-									<form:label path="nationwideId">Nationwide ID</form:label>
+									<form:label path="nationwideId">Nationwide ID</form:label><span
+										class="is-required"> *</span>
 								</div>
 								<div class="col-md-3">
 									<form:input class="form-control" path="nationwideId"
@@ -322,7 +323,8 @@
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
-									<form:label path="nationwideIdCreatedDate">Nationwide ID Created Date</form:label>
+									<form:label path="nationwideIdCreatedDate">Nationwide ID Created Date</form:label><span
+										class="is-required"> *</span>
 								</div>
 								<div class="col-md-3">
 									<form:input autocomplete="off"
@@ -395,7 +397,8 @@
 						<div class="form-group">
 							<div class="row">
 								<br />
-								<div class="col-md-6" style="text-align: right">
+								<div class="col-md-2" ><span class="is-required"> * </span><span class="is-required-msg">&nbsp;Fields are mandatory </span></div>
+								<div class="col-md-4" style="text-align: right">
 									<input class="btn btn-submit" type="submit"
 										onclick="return validateForm()" id="processorFormSubmit"
 										value="Submit">
