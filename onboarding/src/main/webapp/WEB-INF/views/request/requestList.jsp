@@ -91,7 +91,7 @@
 			<c:otherwise>
 				<br>
 				<br>
-				<h4>No Requests Available</h4>
+				<h4>No request has been created by you yet.</h4>
 			</c:otherwise>
 		</c:choose>
 	</div>

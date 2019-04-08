@@ -5,9 +5,9 @@ $(document).ready(function() {
 		var empId = $("#checkEmpId").val();
 		if(empId != null && empId != ""){
 			$("#releaseTable").empty();
-			$("#checkEmpId").attr("disabled", "disabled");
+			/*$("#checkEmpId").attr("disabled", "disabled");
 			$('#checkEmpIdSubmit').prop('disabled', true);
-			$('#checkEmpIdSubmit').css('cursor', 'not-allowed');
+			$('#checkEmpIdSubmit').css('cursor', 'not-allowed');*/
 			checkForanEmployee(empId);
 		}else{
 			$('#errMessage').text("Employee ID Can't be null or Empty");

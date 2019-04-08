@@ -8,17 +8,25 @@ $(document).ready(function() {
 	/* Employee Search function */
 	$("#checkEmpIdSubmit").click(function(e) {
 		e.preventDefault();
-		$("#checkEmpId").attr("disabled", "disabled");
-		$('#checkEmpIdSubmit').prop('disabled', true);
-		$('#checkEmpIdSubmit').css('cursor', 'not-allowed');
 		var empId = $("#checkEmpId").val();
 		if(empId != null && empId != ""){
+			$("#checkEmpId").attr("disabled", "disabled");
+			$('#checkEmpIdSubmit').prop('disabled', true);
+			$('#checkEmpIdSubmit').css('cursor', 'not-allowed');
 			checkForanEmployee(empId);
 		}else{
 			$('#errMessage').text("Employee ID Can't be null or Empty");
 		}
 	})
 
+	$("#resourceRegisterFormReset").click(function(e) {
+		$("#checkEmpId").val("");
+	 	$("#checkEmpId").prop('disabled', false);
+		$('#checkEmpIdSubmit').prop('disabled', false);
+		$('#checkEmpIdSubmit').css('cursor', 'pointer');
+	});
+	
+	
 	$("#availableAssignProj").click(function() {
 		$("#availableProjects").empty();
 		$('#availableAssignProj').css('cursor', 'not-allowed');

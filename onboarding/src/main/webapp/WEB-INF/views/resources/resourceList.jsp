@@ -39,7 +39,7 @@
 						<th>First Name</th>
 						<th>Last Name</th>
 						<th>Date of Birth</th>
-						<th>Passport No/SSN No</th>
+						<!-- <th>Passport No/SSN No</th> -->
 						<th>Email</th>
 					</tr>
 					<c:forEach var="employee" items="${employees}">
@@ -49,7 +49,7 @@
 							<td>${employee.getFirstName()}</td>
 							<td>${employee.getLastName()}</td>
 							<td>${employee.getDateOfBirth()}</td>
-							<td>${employee.getPassportNumber()}</td>
+							<%-- <td>${employee.getPassportNumber()}</td> --%>
 							<td>${employee.getEmail()}</td>
 
 						</tr>

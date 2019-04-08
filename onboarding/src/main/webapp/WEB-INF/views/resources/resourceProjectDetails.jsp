@@ -98,14 +98,22 @@
 									<th>Processor:</th>
 									<td>${employee.getProcessorName()}</td>
 								</tr>
+								<c:if test="${not empty employee.getNationwideId()}">
+								<tr>
+									<th>Nationwide ID:</th>
+									<td>${employee.getNationwideId()}</td>
+								</tr>
+								</c:if>
 								<tr>
 									<th>Start Date:</th>
 									<td>${employee.getStartDate()}</td>
 								</tr>
+								<c:if test="${not empty employee.getReleaseDate()}">
 								<tr>
 									<th>End Date:</th>
 									<td>${employee.getReleaseDate()}</td>
 								</tr>
+								</c:if>
 								<tr>
 									<th>Status:</th>
 									<td>${employee.getReleaseStatus()}</td>
