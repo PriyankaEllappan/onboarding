@@ -46,6 +46,20 @@ $(document).ready(function() {
 		loadLocDetails();
 		loadRateDetails();
 	})
+
+	$('#editRateCheckBox').click(function() {
+		if ($(this).prop("checked") == true) {
+			$('#editRateModal').modal('show');
+			$('#isRateOverride').val("1");
+		} else if ($(this).prop("checked") == false) {
+			$('#isRateOverride').val("0");
+		}
+	});
+	
+	$("#confirmEditRateSubmit").click(function() {
+		var newRate = $('#newRate').val();
+		$('#rate').val(newRate);
+	});
 	
 });
 
@@ -329,6 +343,8 @@ function setRequestParams(){
 	jsonRequest["pplManager"] = $('#pplInfo').val();
 	jsonRequest["experience"] = $('#experience').val();
 	jsonRequest["bsaId"] = $('#bsaInfo').val();
+	jsonRequest["overriddenRate"] = $('#newRate').val();
+	jsonRequest["isRateOverride"] = $('#isRateOverride').val();
 }
 
 function validateForm() {

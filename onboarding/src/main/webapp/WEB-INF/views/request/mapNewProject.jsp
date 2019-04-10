@@ -236,6 +236,12 @@
 									<input class="form-control" name="rate" id="rate"
 										placeholder="Enter Rate value" readonly autocomplete="off" />
 								</div>
+								<div class="col-md-1">
+								    <label class="checkbox-inline">
+								      <input type="checkbox" id="editRateCheckBox" value="">Edit Rate
+								      <input type="hidden" id="isRateOverride" value="0">
+								    </label>
+								</div>
 							</div>
 						</div>
 						<div class="form-group">
@@ -345,6 +351,34 @@
 			</form>
 		</div>
 	</div>
+	
+	<div class="modal fade" id="editRateModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<br>
+					<p>Please enter the new Rate.</p>
+					<br>
+					<div class="row">
+						<div class="col-md-4">
+							<input class="form-control" name="newRate" id="newRate"
+								placeholder="Enter New Rate" autocomplete="off" />
+						</div>
+					</div>
+					<br />
+					<div id="editRateConfirm">
+						<div align="right">
+							<button type="button" class="btn btn-submit"
+								id="confirmEditRateSubmit">Update</button>
+							<button type="button" class="btn btn-submit" data-dismiss="modal">Cancel</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<jsp:include page="../layouts/footer.jsp" />
 </body>
 </html>

@@ -86,6 +86,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 			return jdbcTemplate.update(QueryConstants.EMPPROJECTHIST_INSERT, employeeProjectHist.getId(),
 					employeeProjectHist.getEmployeeId(), employeeProjectHist.getProjectMappingId(),
 					employeeProjectHist.getTeamId(), employeeProjectHist.getBsaId(), employeeProjectHist.getRoleId(),
+					employeeProjectHist.isRateOverride(),employeeProjectHist.getOverriddenRate(),
 					employeeProjectHist.getCountryId(), employeeProjectHist.getStartDate(),
 					employeeProjectHist.getMovementId(), employeeProjectHist.getExperience(),
 					employeeProjectHist.getSkillSet(), employeeProjectHist.getSkillSummary(),

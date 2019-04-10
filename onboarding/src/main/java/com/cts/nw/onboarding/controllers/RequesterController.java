@@ -198,6 +198,7 @@ public class RequesterController extends AbstractController {
 	public @ResponseBody AjaxResponse assignProject(@RequestBody EmployeeProjHist employeeProjJson, ModelMap model) {
 		AjaxResponse ajaxResponse = new AjaxResponse();
 		try {
+			System.out.println(employeeProjJson.toString());
 			EmployeeProjHist employee = requesterService.addNewProject(employeeProjJson);
 			if (employee != null) {
 				ajaxResponse.setStatus(AppConstants.AJAXSUCCESS);
