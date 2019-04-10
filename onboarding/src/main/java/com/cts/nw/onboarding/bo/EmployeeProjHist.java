@@ -95,9 +95,9 @@ public class EmployeeProjHist {
 	private String offboardRequester;
 	private String offboardProcessor;
 	
-	private boolean isRateOverride;
+	private int isRateOverride;
 	private String overriddenRate;
-	private boolean isMCAProject;
+	private int isMCAProject;
 	
 	/**
 	 * @return the bsaId
@@ -778,15 +778,7 @@ public class EmployeeProjHist {
 	/**
 	 * @return the isRateOverride
 	 */
-	public boolean isRateOverride() {
-		return isRateOverride;
-	}
-	/**
-	 * @param isRateOverride the isRateOverride to set
-	 */
-	public void setRateOverride(boolean isRateOverride) {
-		this.isRateOverride = isRateOverride;
-	}
+	
 	/**
 	 * @return the overriddenRate
 	 */
@@ -794,21 +786,34 @@ public class EmployeeProjHist {
 		return overriddenRate;
 	}
 	/**
+	 * @return the isRateOverride
+	 */
+	public int getIsRateOverride() {
+		return isRateOverride;
+	}
+	/**
+	 * @param isRateOverride the isRateOverride to set
+	 */
+	public void setIsRateOverride(int isRateOverride) {
+		this.isRateOverride = isRateOverride;
+	}
+	/**
 	 * @param overriddenRate the overriddenRate to set
 	 */
 	public void setOverriddenRate(String overriddenRate) {
 		this.overriddenRate = overriddenRate;
 	}
+	
 	/**
 	 * @return the isMCAProject
 	 */
-	public boolean isMCAProject() {
+	public int getIsMCAProject() {
 		return isMCAProject;
 	}
 	/**
 	 * @param isMCAProject the isMCAProject to set
 	 */
-	public void setMCAProject(boolean isMCAProject) {
+	public void setIsMCAProject(int isMCAProject) {
 		this.isMCAProject = isMCAProject;
 	}
 	/* (non-Javadoc)

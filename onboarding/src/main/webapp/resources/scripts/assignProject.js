@@ -51,11 +51,11 @@ $(document).ready(function() {
 
 	$('#editRateCheckBox').click(function() {
 		if ($(this).prop("checked") == true) {
-			$('#isRateOverride').val("1");
+			$('#isRateOverride').val(1);
 			$('#newRateGroup').show();
 		} else if ($(this).prop("checked") == false) {
 			$('#newRateGroup').hide();
-			$('#isRateOverride').val("0");
+			$('#isRateOverride').val(0);
 		}
 	});
 	

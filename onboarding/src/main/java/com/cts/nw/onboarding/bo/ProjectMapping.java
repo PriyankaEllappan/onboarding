@@ -17,7 +17,7 @@ public class ProjectMapping {
 	private String processorName;
 	private String projStatus;
 	private Integer projMapId;
-	private boolean isMcaProject;
+	private int isMcaProject;
 
 	/**
 	 * @return the projMapId
@@ -144,10 +144,13 @@ public class ProjectMapping {
 		this.projStatus = projStatus;
 	}
 
+	
+
+
 	/**
 	 * @return the isMcaProject
 	 */
-	public boolean isMcaProject() {
+	public int getIsMcaProject() {
 		return isMcaProject;
 	}
 
@@ -155,7 +158,7 @@ public class ProjectMapping {
 	/**
 	 * @param isMcaProject the isMcaProject to set
 	 */
-	public void setMcaProject(boolean isMcaProject) {
+	public void setIsMcaProject(int isMcaProject) {
 		this.isMcaProject = isMcaProject;
 	}
 

@@ -25,7 +25,7 @@ public class ProjectMappingRowMapper implements RowMapper<ProjectMapping> {
 		projMapping.setProcessorName(rs.getString("PROCESSORNAME"));
 		projMapping.setProjStatus(rs.getString("PROJSTATUS"));
 		projMapping.setProjMapId(rs.getInt("PROJMAPID"));
-		projMapping.setMcaProject(rs.getBoolean("MCAFLAG"));
+		projMapping.setIsMcaProject(rs.getInt("MCAFLAG"));
 		return projMapping;
 	}
 
