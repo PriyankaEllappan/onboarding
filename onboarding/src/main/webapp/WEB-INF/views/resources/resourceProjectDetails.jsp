@@ -16,6 +16,7 @@
 <!-- Load Scripts -->
 <script src="/onboarding/resources/scripts/jquery.min.js"></script>
 <script src="/onboarding/resources/scripts/bootstrap.min.js"></script>
+<script src="/onboarding/resources/scripts/resourceList.js"></script>
 </head>
 
 <body>
