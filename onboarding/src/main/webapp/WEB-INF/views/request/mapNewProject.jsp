@@ -244,6 +244,25 @@
 								</div>
 							</div>
 						</div>
+						<div id="newRateGroup" class="form-group">
+							<div class="row">
+								<div class="col-md-2">
+								</div>
+								<div class="col-md-3">
+								</div>
+								<div class="col-md-1"></div>
+								<div class="col-md-2">
+									<label for="newRate">New Rate</label><span class="is-required">
+											*</span>
+								</div>
+								<div class="col-md-3">
+									<input class="form-control" name="newRate" id="newRate"
+										placeholder="Enter New Rate value" autocomplete="off" />
+								</div>
+								<div class="col-md-1">
+								</div>
+							</div>
+						</div>
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-2">
@@ -351,34 +370,6 @@
 			</form>
 		</div>
 	</div>
-	
-	<div class="modal fade" id="editRateModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-body">
-					<br>
-					<p>Please enter the new Rate.</p>
-					<br>
-					<div class="row">
-						<div class="col-md-4">
-							<input class="form-control" name="newRate" id="newRate"
-								placeholder="Enter New Rate" autocomplete="off" />
-						</div>
-					</div>
-					<br />
-					<div id="editRateConfirm">
-						<div align="right">
-							<button type="button" class="btn btn-submit"
-								id="confirmEditRateSubmit">Update</button>
-							<button type="button" class="btn btn-submit" data-dismiss="modal">Cancel</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
 	<jsp:include page="../layouts/footer.jsp" />
 </body>
 </html>

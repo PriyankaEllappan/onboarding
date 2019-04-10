@@ -19,6 +19,8 @@ $(document).ready(function() {
 	loadMovementDetails();
 	loadBsaDetails();
 	
+	$('#newRateGroup').hide();
+	
 	document.getElementById("projTab").click();
 	$("#teamList").prop('disabled', true);
 	
@@ -49,16 +51,12 @@ $(document).ready(function() {
 
 	$('#editRateCheckBox').click(function() {
 		if ($(this).prop("checked") == true) {
-			$('#editRateModal').modal('show');
 			$('#isRateOverride').val("1");
+			$('#newRateGroup').show();
 		} else if ($(this).prop("checked") == false) {
+			$('#newRateGroup').hide();
 			$('#isRateOverride').val("0");
 		}
-	});
-	
-	$("#confirmEditRateSubmit").click(function() {
-		var newRate = $('#newRate').val();
-		$('#rate').val(newRate);
 	});
 	
 });
@@ -393,5 +391,12 @@ function validateForm() {
         $('#projTab').click(openSpecificTabNext(event, 'customerInfo'));
         return false;
 	}
+	if ($('#isRateOverride').val() == 1
+			&& ($('#newRate').val() == null || $('#newRate').val() == "")) {
+		$('#errMessage').text("New rate needs to be entered");
+		$('#projTab').click(openSpecificTabNext(event, 'customerInfo'));
+		return false;
+	}
+	
 	return true;
 }
