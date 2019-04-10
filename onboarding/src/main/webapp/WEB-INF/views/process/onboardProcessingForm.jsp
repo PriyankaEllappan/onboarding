@@ -323,8 +323,7 @@
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
-									<form:label path="nationwideIdCreatedDate">Nationwide ID Created Date</form:label><span
-										class="is-required"> *</span>
+									<form:label path="nationwideIdCreatedDate">Nationwide ID Created Date<span class="is-required">*</span></form:label>
 								</div>
 								<div class="col-md-3">
 									<form:input autocomplete="off"
@@ -386,7 +385,7 @@
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
-									<form:label path="onboardAttachment">Attachment</form:label>
+									<form:label path="onboardAttachment">Onboard Mail Attachment<span class="is-required">*</span></form:label>
 								</div>
 								<div class="col-md-3">
 									<form:input path="onboardAttachment" type="file" name="onboardAttachment"

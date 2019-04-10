@@ -139,6 +139,7 @@ public class ProcessorServiceImpl implements ProcessorService {
 		} catch (ValidatorException e) {
 			throw new ValidatorException(e.getMessage());
 		} catch (Exception e) {
+			 e.printStackTrace();
 			throw new CustomException(e.getMessage());
 		}
 	}

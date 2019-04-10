@@ -53,10 +53,25 @@ public class MailAttachmentController extends AbstractController {
 		MailAttachment filedetail;
 		try {
 			filedetail = attachmentService.downloadAttachment(attachmentID);
+			byte[] dateFile = filedetail.getOffboardData();
+			String dataFileName = filedetail.getOffboardFileName();
+			
 			HttpHeaders header = new HttpHeaders();
 	        header.setContentType(new MediaType("application", "txt"));
-	        header.set("Content-Disposition", "inline; filename=" + filedetail.getOffboardFileName());
-	        return new HttpEntity<byte[]>(filedetail.getOffboardData(), header);
+	        
+	        if(dataFileName != null){
+	        	 header.set("Content-Disposition", "inline; filename=" + dataFileName);
+	        }else{
+	        	 header.set("Content-Disposition", "inline; filename=" + "NoResource");
+	        }
+	        
+	        if(dateFile != null){
+	        	return new HttpEntity<byte[]>(dateFile, header);
+	        }else{
+	        	String resourceVal = "Requested resource is not available";
+	        	return new HttpEntity<byte[]>(resourceVal.getBytes(), header);
+	        }
+	        
 		} catch (CustomException e) {
 			log.error(ErrorConstants.RESOURCENONAVAILABLE);
 			return null;

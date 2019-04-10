@@ -192,10 +192,19 @@
 					<c:if
 						test="${not empty employee.getAttachmentId() && employee.getAttachmentId() != 0}">
 						<tr>
-							<td class="bold-font">ATTACHMENT</td>
+							<td class="bold-font">ONBOARD ATTACHMENT</td>
 							<td><img class="icon-image to-click"
 								src="/onboarding/resources/icons/download.png"
 								onclick="location.href='/onboarding/attachment/getonboardfile/${employee.getAttachmentId()}'"></td>
+						</tr>
+					</c:if>
+					<c:if
+						test="${not empty employee.getAttachmentId() && employee.getAttachmentId() != 0}">
+						<tr>
+							<td class="bold-font">OFFBOARD ATTACHMENT</td>
+							<td><img class="icon-image to-click"
+								src="/onboarding/resources/icons/download.png"
+								onclick="location.href='/onboarding/attachment/getoffboardfile/${employee.getAttachmentId()}'"></td>
 						</tr>
 					</c:if>
 				</table>

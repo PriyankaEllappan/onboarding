@@ -162,16 +162,24 @@ function validateForm() {
 	}
 
 	if ($('#approvalStatus').val() == 3) {
-		
+
 		if ($('#nationwideId').val() == null || $('#nationwideId').val() == "") {
 			$('#errMessage').text("Nationwide ID cannot be null or empty");
 			return false;
 		}
-		
-		if ($('#nationwideIdCreatedDate').val() == null || $('#nationwideIdCreatedDate').val() == "") {
-			$('#errMessage').text("Nationwide ID Created Date cannot be null or empty");
+
+		if ($('#nationwideIdCreatedDate').val() == null
+				|| $('#nationwideIdCreatedDate').val() == "") {
+			$('#errMessage').text(
+					"Nationwide ID Created Date cannot be null or empty");
 			return false;
 		}
+
+		if ($('#onboardAttachment').val() == null || $('#onboardAttachment').val() == "") {
+			$('#errMessage').text("Confimation mail attachment is necessary to process the request");
+			return false;
+		}
+
 	}
 
 	if ($('#approvalStatus').val() == 5) {

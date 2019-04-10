@@ -167,11 +167,13 @@ public class ProcessController extends AbstractController {
 			modelView = bindViewwithUserInfo("commons/detailsSaved");
 			modelView.addObject("employee", employee);
 		}  catch (ValidatorException e) {
+			e.printStackTrace();
 			modelView = bindViewwithUserInfo("process/offboardProcessingForm");
 			modelView.addObject("errMessage", e.getMessage());
 			log.error(e.getMessage());
 		}
 		catch (CustomException e) {
+			e.printStackTrace();
 			modelView = new ModelAndView("errors/errorPage");
 			modelView.addObject("errMessage", e.getMessage());
 			log.error(e.getMessage());

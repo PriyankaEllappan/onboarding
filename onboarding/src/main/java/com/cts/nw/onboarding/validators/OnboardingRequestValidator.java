@@ -83,9 +83,6 @@ public class OnboardingRequestValidator {
 					&& !Pattern.matches("[a-zA-Z0-9,.\\s]*", employeeProjHist.getComments())) {
 				throw new ValidatorException(ValidationConstants.COMMENTS_ERR);
 			}
-			if (employeeProjHist.getApprovalStatusId() == 3 && employeeProjHist.getOnboardAttachment() == null ) {
-				throw new ValidatorException(ValidationConstants.ATTACHMENTVALIDATION);
-			}
 		return true;
 	}
 
@@ -105,9 +102,6 @@ public class OnboardingRequestValidator {
 			}
 			if (employeeProjHist.getReleaseDate() == null) {
 				throw new ValidatorException(ValidationConstants.RELEASEDATEVALIDATION);
-			}
-			if (employeeProjHist.getReleaseStatusId() != null && employeeProjHist.getReleaseStatusId() == 3 && employeeProjHist.getOffboardAttachment() == null ) {
-				throw new ValidatorException(ValidationConstants.ATTACHMENTVALIDATION);
 			}
 		return true;
 	}

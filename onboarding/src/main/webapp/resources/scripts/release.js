@@ -178,6 +178,12 @@ function validateForm() {
            $('#errMessage').text("Release Date cannot be null or empty");
            return false;
     } 
+    
+    if($('#releaseStatus').val() == 3 && ($('#offboardAttachment').val() == null || $('#offboardAttachment').val() == "")){
+    	$('#errMessage').text("Confimation mail attachment is necessary to process the request");
+        return false;
+    }
+    
     return true;
 }
 

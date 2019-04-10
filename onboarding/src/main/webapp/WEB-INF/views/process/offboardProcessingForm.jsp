@@ -31,7 +31,8 @@
 			<div class="col-md-2" align="center"></div>
 			<div class="col-md-2" align="center"></div>
 		</div>
-	
+	<span class="has-error" id="errMessage">${errMessage}</span> <span
+			class="is-success" id="statusSucessMessage"></span>
 		<div id="formDiv">
 			<div class="tab">
 				<button class="tablinks"
@@ -423,15 +424,15 @@
 									<form:input autocomplete="off" class="form-control"
 										name="releaseDate" readonly="true" path="releaseDate" />
 								</div>
-							</div>
-							<div class="col-md-1"></div>
+								<div class="col-md-1"></div>
 								<div class="col-md-2">
-									<form:label path="offboardAttachment">Attachment</form:label>
+									<form:label path="offboardAttachment">Release Mail Attachment<span class="is-required"> *</span></form:label>
 								</div>
 								<div class="col-md-3">
 									<form:input path="offboardAttachment" type="file" name="offboardAttachment"
 										size="60" />
 								</div>
+							</div>
 						</div>
 						<div class="form-group">
 							<div class="row">
