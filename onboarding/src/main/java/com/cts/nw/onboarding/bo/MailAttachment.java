@@ -10,8 +10,10 @@ package com.cts.nw.onboarding.bo;
 public class MailAttachment {
 
 	private Integer id;
-	private byte[] data;
-	private String fileName;
+	private byte[] onboardData;
+	private byte[] offboardData;
+	private String onboardFileName;
+	private String offboardFileName;
 	/**
 	 * @return the id
 	 */
@@ -25,28 +27,60 @@ public class MailAttachment {
 		this.id = id;
 	}
 	/**
-	 * @return the data
+	 * @return the onboardData
 	 */
-	public byte[] getData() {
-		return data;
+	public byte[] getOnboardData() {
+		return onboardData;
 	}
 	/**
-	 * @param data the data to set
+	 * @param onboardData the onboardData to set
 	 */
-	public void setData(byte[] data) {
-		this.data = data;
+	public void setOnboardData(byte[] onboardData) {
+		this.onboardData = onboardData;
 	}
 	/**
-	 * @return the fileName
+	 * @return the offboardData
 	 */
-	public String getFileName() {
-		return fileName;
+	public byte[] getOffboardData() {
+		return offboardData;
 	}
 	/**
-	 * @param fileName the fileName to set
+	 * @param offboardData the offboardData to set
 	 */
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
+	public void setOffboardData(byte[] offboardData) {
+		this.offboardData = offboardData;
+	}
+	/**
+	 * @return the onboardFileName
+	 */
+	public String getOnboardFileName() {
+		return onboardFileName;
+	}
+	/**
+	 * @param onboardFileName the onboardFileName to set
+	 */
+	public void setOnboardFileName(String onboardFileName) {
+		this.onboardFileName = onboardFileName;
+	}
+	/**
+	 * @return the offboardFileName
+	 */
+	public String getOffboardFileName() {
+		return offboardFileName;
+	}
+	/**
+	 * @param offboardFileName the offboardFileName to set
+	 */
+	public void setOffboardFileName(String offboardFileName) {
+		this.offboardFileName = offboardFileName;
+	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "MailAttachment [id=" + id + ", onboardFileName=" + onboardFileName + ", offboardFileName="
+				+ offboardFileName + "]";
 	}
 	
 }

@@ -48,7 +48,7 @@
 					Details</button>
 			</div>
 			<form:form name="projectRegisterForm" method="post"
-				action="/onboarding/process/offboard" modelAttribute="employee">
+				action="/onboarding/process/offboard" modelAttribute="employee" enctype="multipart/form-data">
 				<div id="basicInfo" class="tabcontent">
 					<div class="resizeTabCont">
 						<br>
@@ -424,6 +424,14 @@
 										name="releaseDate" readonly="true" path="releaseDate" />
 								</div>
 							</div>
+							<div class="col-md-1"></div>
+								<div class="col-md-2">
+									<form:label path="offboardAttachment">Attachment</form:label>
+								</div>
+								<div class="col-md-3">
+									<form:input path="offboardAttachment" type="file" name="offboardAttachment"
+										size="60" />
+								</div>
 						</div>
 						<div class="form-group">
 							<div class="row">

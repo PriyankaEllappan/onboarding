@@ -16,16 +16,17 @@ public class ProjectMappingRowMapper implements RowMapper<ProjectMapping> {
 
 	@Override
 	public ProjectMapping mapRow(ResultSet rs, int rowNum) throws SQLException {
-		ProjectMapping teamMapping = new ProjectMapping();
-		teamMapping.setProjectId(rs.getLong("PROJECTID"));
-		teamMapping.setProjectName(rs.getString("PROJECTNAME"));
-		teamMapping.setRequesterId(rs.getInt("REQUESTERID"));
-		teamMapping.setRequesterName(rs.getString("REQUESTERNAME"));
-		teamMapping.setProcessorId(rs.getInt("PROCESSORID"));
-		teamMapping.setProcessorName(rs.getString("PROCESSORNAME"));
-		teamMapping.setProjStatus(rs.getString("PROJSTATUS"));
-		teamMapping.setProjMapId(rs.getInt("PROJMAPID"));
-		return teamMapping;
+		ProjectMapping projMapping = new ProjectMapping();
+		projMapping.setProjectId(rs.getLong("PROJECTID"));
+		projMapping.setProjectName(rs.getString("PROJECTNAME"));
+		projMapping.setRequesterId(rs.getInt("REQUESTERID"));
+		projMapping.setRequesterName(rs.getString("REQUESTERNAME"));
+		projMapping.setProcessorId(rs.getInt("PROCESSORID"));
+		projMapping.setProcessorName(rs.getString("PROCESSORNAME"));
+		projMapping.setProjStatus(rs.getString("PROJSTATUS"));
+		projMapping.setProjMapId(rs.getInt("PROJMAPID"));
+		projMapping.setMcaProject(rs.getBoolean("MCAFLAG"));
+		return projMapping;
 	}
 
 }

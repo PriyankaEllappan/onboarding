@@ -20,10 +20,11 @@ public class FileUploadRowMapper implements RowMapper<MailAttachment> {
 	public MailAttachment mapRow(ResultSet rs, int rowNum) throws SQLException {
 		MailAttachment file = new MailAttachment();
 		file.setId(rs.getInt("ID"));
-		file.setFileName(rs.getString("FILENAME"));
-		file.setData(rs.getBytes("FILEDATA"));
+		file.setOnboardFileName(rs.getString("ONBOARDFILENAME"));
+		file.setOnboardData(rs.getBytes("ONBOARDFILEDATA"));
+		file.setOffboardFileName(rs.getString("OFFBOARDFILENAME"));
+		file.setOffboardData(rs.getBytes("OFFBOARDFILEDATA"));
 		return file;
-		
 	}
 
 }

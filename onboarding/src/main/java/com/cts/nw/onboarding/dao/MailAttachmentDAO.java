@@ -14,4 +14,5 @@ public interface MailAttachmentDAO {
 
 	MailAttachment downloadAttachment(String id) throws CustomException;
 	Integer uploadAttachmentViaCallable(MailAttachment mailAttachment) throws CustomException;
+	Integer uploadReleaseMail(MailAttachment releaseAttachment) throws CustomException;
 }

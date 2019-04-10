@@ -195,7 +195,7 @@
 							<td class="bold-font">ATTACHMENT</td>
 							<td><img class="icon-image to-click"
 								src="/onboarding/resources/icons/download.png"
-								onclick="location.href='/onboarding/attachment/getfile/${employee.getAttachmentId()}'"></td>
+								onclick="location.href='/onboarding/attachment/getonboardfile/${employee.getAttachmentId()}'"></td>
 						</tr>
 					</c:if>
 				</table>

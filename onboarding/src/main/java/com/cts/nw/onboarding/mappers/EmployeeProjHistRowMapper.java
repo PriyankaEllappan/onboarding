@@ -68,6 +68,9 @@ import com.cts.nw.onboarding.bo.EmployeeProjHist;
 			employeeProjHist.setOnboardRequester(rs.getString("ONBOARDREQUESTER"));
 			employeeProjHist.setOffboardRequester(rs.getString("OFFBOARDREQUESTER"));
 			employeeProjHist.setOffboardProcessor(rs.getString("OFFBOARDPROCESSOR"));
+			employeeProjHist.setOverriddenRate(rs.getString("OVERRIDDENRATE"));
+			employeeProjHist.setRateOverride(rs.getBoolean("ISRATEOVERRIDE"));
+			employeeProjHist.setMCAProject(rs.getBoolean("MCAFLAG"));
 			return employeeProjHist;
 		}
 

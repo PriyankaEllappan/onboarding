@@ -17,7 +17,8 @@ public class ProjectMapping {
 	private String processorName;
 	private String projStatus;
 	private Integer projMapId;
-	
+	private boolean isMcaProject;
+
 	/**
 	 * @return the projMapId
 	 */
@@ -143,6 +144,21 @@ public class ProjectMapping {
 		this.projStatus = projStatus;
 	}
 
+	/**
+	 * @return the isMcaProject
+	 */
+	public boolean isMcaProject() {
+		return isMcaProject;
+	}
+
+
+	/**
+	 * @param isMcaProject the isMcaProject to set
+	 */
+	public void setMcaProject(boolean isMcaProject) {
+		this.isMcaProject = isMcaProject;
+	}
+
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
@@ -151,8 +167,8 @@ public class ProjectMapping {
 	public String toString() {
 		return "ProjectMapping [projectId=" + projectId + ", projectName=" + projectName + ", requesterId="
 				+ requesterId + ", requesterName=" + requesterName + ", processorId=" + processorId + ", processorName="
-				+ processorName + ", projStatus=" + projStatus + ", projMapId=" + projMapId + "]";
+				+ processorName + ", projStatus=" + projStatus + ", projMapId=" + projMapId + ", isMcaProject="
+				+ isMcaProject + "]";
 	}
 
-	
 }

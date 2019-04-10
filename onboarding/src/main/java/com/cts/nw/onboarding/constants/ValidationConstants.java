@@ -54,5 +54,7 @@ public class ValidationConstants {
 	public static final String RELEASESUMMARYVALIDATION = "Release Summary can't be null";
 
 	public static final String RELEASEDATEVALIDATION = "Release Date can't be null";
+	
+	public static final String ATTACHMENTVALIDATION = "Confimation mail attachment is necessary to process the request";
 
 }

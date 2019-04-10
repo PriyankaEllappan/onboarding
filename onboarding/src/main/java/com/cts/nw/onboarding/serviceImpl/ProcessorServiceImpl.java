@@ -62,7 +62,7 @@ public class ProcessorServiceImpl implements ProcessorService {
 		Integer mailId = null;
 		try {
 			if (onboardingRequestValidator.validateProcessorForm(employeeProjHist)) {
-				fileUploadObj = getFileUploadObject(employeeProjHist.getOnboardAttachment());
+				fileUploadObj = getonBoardFileUploadObject(employeeProjHist.getOnboardAttachment());
 				if (fileUploadObj != null) {
 					mailId = mailAttachmentDAO.uploadAttachmentViaCallable(fileUploadObj);
 					employeeProjHist.setAttachmentId(mailId);
@@ -119,14 +119,20 @@ public class ProcessorServiceImpl implements ProcessorService {
 	public EmployeeProjHist offboardAnEmployee(EmployeeProjHist employeeProjHist)
 			throws CustomException, ValidatorException {
 		Integer rowsAffected = 0;
+		Integer attachmentRowsAffected = 0;
 		try {
 			if (onboardingRequestValidator.validateReleaseForm(employeeProjHist)) {
-				rowsAffected = employeeProjHistDAO.processOffboardEmployee(employeeProjHist, employeeProjHist.getId());
-				if (rowsAffected > 0) {
-					if (employeeProjHist.getReleaseStatusId() == 3) {
-						mailService.offBoardingCompleted(employeeProjHist);
+				MailAttachment releaseAttachment = getoffBoardFileUploadObject(employeeProjHist.getOffboardAttachment());
+				releaseAttachment.setId(employeeProjHist.getAttachmentId());
+				attachmentRowsAffected = mailAttachmentDAO.uploadReleaseMail(releaseAttachment);
+				if(attachmentRowsAffected > 0){
+					rowsAffected = employeeProjHistDAO.processOffboardEmployee(employeeProjHist, employeeProjHist.getId());
+					if (rowsAffected > 0) {
+						if (employeeProjHist.getReleaseStatusId() == 3) {
+							mailService.offBoardingCompleted(employeeProjHist);
+						}
+						return employeeProjHist;
 					}
-					return employeeProjHist;
 				}
 			}
 			return null;
@@ -148,7 +154,7 @@ public class ProcessorServiceImpl implements ProcessorService {
 	}
 	
 	
-	public MailAttachment getFileUploadObject(CommonsMultipartFile[] attachFileObj) throws CustomException {
+	public MailAttachment getonBoardFileUploadObject(CommonsMultipartFile[] attachFileObj) throws CustomException {
 		try {
 			MailAttachment fileUploadObj = null;
 			if ((attachFileObj != null) && (attachFileObj.length > 0) && (!attachFileObj.equals(""))) {
@@ -158,8 +164,30 @@ public class ProcessorServiceImpl implements ProcessorService {
 					} else {
 						if (!aFile.getOriginalFilename().equals("")) {
 							fileUploadObj = new MailAttachment();
-							fileUploadObj.setFileName(aFile.getOriginalFilename());
-							fileUploadObj.setData(aFile.getBytes());
+							fileUploadObj.setOnboardFileName(aFile.getOriginalFilename());
+							fileUploadObj.setOnboardData(aFile.getBytes());
+						}
+					}
+				}
+			}
+			return fileUploadObj;	
+		} catch (Exception e) {
+			throw new CustomException(e.getMessage());
+		}
+	}
+	
+	public MailAttachment getoffBoardFileUploadObject(CommonsMultipartFile[] attachFileObj) throws CustomException {
+		try {
+			MailAttachment fileUploadObj = null;
+			if ((attachFileObj != null) && (attachFileObj.length > 0) && (!attachFileObj.equals(""))) {
+				for (CommonsMultipartFile aFile : attachFileObj) {
+					if(aFile.isEmpty()) {
+						continue;
+					} else {
+						if (!aFile.getOriginalFilename().equals("")) {
+							fileUploadObj = new MailAttachment();
+							fileUploadObj.setOffboardFileName(aFile.getOriginalFilename());
+							fileUploadObj.setOffboardData(aFile.getBytes());
 						}
 					}
 				}

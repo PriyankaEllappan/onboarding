@@ -32,15 +32,15 @@ public class MailAttachmentController extends AbstractController {
 	@Autowired
 	AttachmentService attachmentService;
 
-	@GetMapping(value = "/getfile/{attachmentID}")
-	public @ResponseBody HttpEntity<byte[]> downloadFileFromDatabase(@PathVariable("attachmentID") String attachmentID) {
+	@GetMapping(value = "/getonboardfile/{attachmentID}")
+	public @ResponseBody HttpEntity<byte[]> downloadOnboardFileFromDatabase(@PathVariable("attachmentID") String attachmentID) {
 		MailAttachment filedetail;
 		try {
 			filedetail = attachmentService.downloadAttachment(attachmentID);
 			HttpHeaders header = new HttpHeaders();
 	        header.setContentType(new MediaType("application", "txt"));
-	        header.set("Content-Disposition", "inline; filename=" + filedetail.getFileName());
-	        return new HttpEntity<byte[]>(filedetail.getData(), header);
+	        header.set("Content-Disposition", "inline; filename=" + filedetail.getOnboardFileName());
+	        return new HttpEntity<byte[]>(filedetail.getOnboardData(), header);
 		} catch (CustomException e) {
 			log.error(ErrorConstants.RESOURCENONAVAILABLE);
 			return null;
@@ -48,4 +48,19 @@ public class MailAttachmentController extends AbstractController {
 		
 	}
 	
+	@GetMapping(value = "/getoffboardfile/{attachmentID}")
+	public @ResponseBody HttpEntity<byte[]> downloadOffboardFileFromDatabase(@PathVariable("attachmentID") String attachmentID) {
+		MailAttachment filedetail;
+		try {
+			filedetail = attachmentService.downloadAttachment(attachmentID);
+			HttpHeaders header = new HttpHeaders();
+	        header.setContentType(new MediaType("application", "txt"));
+	        header.set("Content-Disposition", "inline; filename=" + filedetail.getOffboardFileName());
+	        return new HttpEntity<byte[]>(filedetail.getOffboardData(), header);
+		} catch (CustomException e) {
+			log.error(ErrorConstants.RESOURCENONAVAILABLE);
+			return null;
+		}
+		
+	}
 }

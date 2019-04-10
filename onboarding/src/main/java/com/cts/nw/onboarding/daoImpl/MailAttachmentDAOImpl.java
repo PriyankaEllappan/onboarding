@@ -51,8 +51,8 @@ public class MailAttachmentDAOImpl implements MailAttachmentDAO {
 		try {
 			CallableStatement cstmt = jdbcTemplate.getDataSource().getConnection()
 					.prepareCall(QueryConstants.MAILPROCEDURE_INSERT);
-			cstmt.setString(2, mailAttachment.getFileName());
-			cstmt.setBytes(3, mailAttachment.getData());
+			cstmt.setString(2, mailAttachment.getOnboardFileName());
+			cstmt.setBytes(3, mailAttachment.getOnboardData());
 			cstmt.registerOutParameter(1, Types.INTEGER);
 			cstmt.execute();
 			returnValue = cstmt.getInt(1);
@@ -60,6 +60,15 @@ public class MailAttachmentDAOImpl implements MailAttachmentDAO {
 			throw new CustomException(e.getMessage());
 		}
 		return returnValue;
+	}
+
+	@Override
+	public Integer uploadReleaseMail(MailAttachment releaseAttachment) throws CustomException {
+		try {
+			return jdbcTemplate.update(QueryConstants.RELEASE_ATTACHMENT_UPDATE, releaseAttachment.getOffboardFileName(),releaseAttachment.getOffboardData(),releaseAttachment.getId());
+		} catch(Exception e){
+			throw new CustomException(e.getMessage());
+		}
 	}
 
 }
