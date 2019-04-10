@@ -10,10 +10,14 @@
 	href="/onboarding/resources/stylesheets/bootstrap.min.css">
 <link rel="stylesheet"
 	href="/onboarding/resources/stylesheets/application.css">
-
+<link rel="stylesheet"
+	href="/onboarding/resources/stylesheets/jquery.dataTables.min.css">
+	
 <!-- Load Scripts -->
 <script src="/onboarding/resources/scripts/jquery.min.js"></script>
 <script src="/onboarding/resources/scripts/bootstrap.min.js"></script>
+<script src="/onboarding/resources/scripts/jquery.dataTables.min.js"></script>
+<script src="/onboarding/resources/scripts/resourceList.js"></script>
 </head>
 
 <body>
@@ -30,8 +34,22 @@
 			<div class="col-md-2" align="center"></div>
 			<div class="col-md-2" align="center"></div>
 		</div>
-		<table class="table table-striped bordered">
-		</table>
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-10" align="center">
+				<table class="table table-striped bordered" id="resourceTable">
+					<thead>
+						<tr>
+							<th>Employee ID</th>
+							<th>Name</th>
+							<th>Date of Birth</th>
+							<th>Email</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
 	</div>
 	<jsp:include page="../layouts/footer.jsp" />
 </body>
