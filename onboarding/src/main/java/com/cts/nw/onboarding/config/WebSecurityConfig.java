@@ -40,6 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		 */
 		http.authorizeRequests()
 		.antMatchers("/resources/**").permitAll()
+		.antMatchers("/changepassword/**").permitAll()
 		.antMatchers("/admin/**").hasAnyRole("ADMIN")
 		.antMatchers("/process/**").hasAnyRole("ADMIN", "PROCESSOR")
 		.antMatchers("/").hasAnyRole("ADMIN", "REQUESTER", "PROCESSOR")
@@ -54,6 +55,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/attachment/**").hasAnyRole("ADMIN", "REQUESTER", "PROCESSOR")
 		.antMatchers("/resource/**").hasAnyRole("ADMIN", "REQUESTER", "PROCESSOR")
 		.and().formLogin().loginPage("/login").permitAll()
+		.failureHandler(new CustomFailureHandler())
 		.and().logout().logoutUrl("/j_spring_security_logout").logoutSuccessUrl("/")
 		.and().exceptionHandling().accessDeniedPage("/accessDenied");
 		
