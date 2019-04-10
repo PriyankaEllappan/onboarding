@@ -386,10 +386,10 @@
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
-									<form:label path="attachment">Attachment</form:label>
+									<form:label path="onboardAttachment">Attachment</form:label>
 								</div>
 								<div class="col-md-3">
-									<form:input path="attachment" type="file" name="attachment"
+									<form:input path="onboardAttachment" type="file" name="attachment"
 										size="60" />
 								</div>
 							</div>

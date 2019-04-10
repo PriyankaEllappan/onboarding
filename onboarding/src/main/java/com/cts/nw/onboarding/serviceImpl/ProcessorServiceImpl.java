@@ -62,7 +62,7 @@ public class ProcessorServiceImpl implements ProcessorService {
 		Integer mailId = null;
 		try {
 			if (onboardingRequestValidator.validateProcessorForm(employeeProjHist)) {
-				fileUploadObj = getFileUploadObject(employeeProjHist.getAttachment());
+				fileUploadObj = getFileUploadObject(employeeProjHist.getOnboardAttachment());
 				if (fileUploadObj != null) {
 					mailId = mailAttachmentDAO.uploadAttachmentViaCallable(fileUploadObj);
 					employeeProjHist.setAttachmentId(mailId);

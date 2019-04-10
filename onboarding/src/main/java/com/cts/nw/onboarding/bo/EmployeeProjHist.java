@@ -50,8 +50,10 @@ public class EmployeeProjHist {
 	private Integer reasonForOffboarding;
 	private String releaseSummary;
 	
-	private CommonsMultipartFile[] attachment;
 	private Integer attachmentId;
+	private CommonsMultipartFile[] onboardAttachment;
+	private CommonsMultipartFile[] offboardAttachment;
+	
 	private Integer employeeId;
 	private String name;
 	private String firstName;
@@ -93,7 +95,9 @@ public class EmployeeProjHist {
 	private String offboardRequester;
 	private String offboardProcessor;
 	
-	
+	private boolean isRateOverride;
+	private String overriddenRate;
+	private boolean isMCAProject;
 	
 	/**
 	 * @return the bsaId
@@ -747,18 +751,65 @@ public class EmployeeProjHist {
 	public void setReleaseSummary(String releaseSummary) {
 		this.releaseSummary = releaseSummary;
 	}
-	
 	/**
-	 * @return the attachment
+	 * @return the onboardAttachment
 	 */
-	public CommonsMultipartFile[] getAttachment() {
-		return attachment;
+	public CommonsMultipartFile[] getOnboardAttachment() {
+		return onboardAttachment;
 	}
 	/**
-	 * @param attachment the attachment to set
+	 * @param onboardAttachment the onboardAttachment to set
 	 */
-	public void setAttachment(CommonsMultipartFile[] attachment) {
-		this.attachment = attachment;
+	public void setOnboardAttachment(CommonsMultipartFile[] onboardAttachment) {
+		this.onboardAttachment = onboardAttachment;
+	}
+	/**
+	 * @return the offboardAttachment
+	 */
+	public CommonsMultipartFile[] getOffboardAttachment() {
+		return offboardAttachment;
+	}
+	/**
+	 * @param offboardAttachment the offboardAttachment to set
+	 */
+	public void setOffboardAttachment(CommonsMultipartFile[] offboardAttachment) {
+		this.offboardAttachment = offboardAttachment;
+	}
+	/**
+	 * @return the isRateOverride
+	 */
+	public boolean isRateOverride() {
+		return isRateOverride;
+	}
+	/**
+	 * @param isRateOverride the isRateOverride to set
+	 */
+	public void setRateOverride(boolean isRateOverride) {
+		this.isRateOverride = isRateOverride;
+	}
+	/**
+	 * @return the overriddenRate
+	 */
+	public String getOverriddenRate() {
+		return overriddenRate;
+	}
+	/**
+	 * @param overriddenRate the overriddenRate to set
+	 */
+	public void setOverriddenRate(String overriddenRate) {
+		this.overriddenRate = overriddenRate;
+	}
+	/**
+	 * @return the isMCAProject
+	 */
+	public boolean isMCAProject() {
+		return isMCAProject;
+	}
+	/**
+	 * @param isMCAProject the isMCAProject to set
+	 */
+	public void setMCAProject(boolean isMCAProject) {
+		this.isMCAProject = isMCAProject;
 	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
@@ -783,7 +834,8 @@ public class EmployeeProjHist {
 				+ ", processorName=" + processorName + ", movement=" + movement + ", fileName=" + fileName
 				+ ", fileData=" + fileData + ", bandId=" + bandId + ", band=" + band + ", onboardRequester="
 				+ onboardRequester + ", offboardRequester=" + offboardRequester + ", offboardProcessor="
-				+ offboardProcessor + "]";
+				+ offboardProcessor + ", isRateOverride=" + isRateOverride + ", overriddenRate=" + overriddenRate
+				+ ", isMCAProject=" + isMCAProject + "]";
 	}
 	
 }

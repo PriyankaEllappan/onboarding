@@ -28,7 +28,7 @@ public class QueryConstants {
 	 
 	 /*Insert Statements*/
 	 public static final String EMPLOYEEMASTER_INSERT = "INSERT INTO EMPLOYEEMASTER (ID, NAME, FIRSTNAME, LASTNAME, DOB, PASSPORTNUMBER,EMAIL) VALUES (?, ?, ?, ?, ?, ?, ?)";
-	 public static final String EMPPROJECTHIST_INSERT = "INSERT INTO EMPLOYEEPROJECTHISTORY(ID,EMPLOYEEID,PROJECT,TEAM,BSA,ROLE,COUNTRY,STARTDATE,MOVEMENTID,EXPERIENCE,SKILLSET,SKILLSUMMARY,APPROVALSTATUS,RELEASESTATUS,ONBOARDREQUESTER,PPLMANAGER) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	 public static final String EMPPROJECTHIST_INSERT = "INSERT INTO EMPLOYEEPROJECTHISTORY(ID,EMPLOYEEID,PROJECT,TEAM,BSA,ROLE,ISRATEOVERRIDE,OVERRIDDENRATE,COUNTRY,STARTDATE,MOVEMENTID,EXPERIENCE,SKILLSET,SKILLSUMMARY,APPROVALSTATUS,RELEASESTATUS,ONBOARDREQUESTER,PPLMANAGER) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	 public static final String TEAMS_INSERT = "INSERT INTO TEAMS(ID,TEAMNAME,PROJECTMAPID,STATUS) VALUES(?,?,?,?)";
 	 
 	 /*Update Statements*/
@@ -40,7 +40,7 @@ public class QueryConstants {
 	 
 	 /*Procedure Calls*/
 	 public static final String TEAMPROCEDURE_INSERT = "{call insertTeam(?,?,?,?)}";
-	 public static final String MAILPROCEDURE_INSERT = "{call insertMailObj(?,?,?)}";
+	 public static final String MAILPROCEDURE_INSERT = "{call insertOnboardMailObj(?,?,?)}";
 	 public static final String ADMINPROCEDURE_REGISTERUSER_INSERT = "{call registerUser(?,?)}";
 
 
