@@ -22,11 +22,9 @@
 			<div class="row">
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
-					<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
-						<strong><span class="has-error">Your login attempt was not
-							successful due to <c:out
-								value="${SPRING_SECURITY_LAST_EXCEPTION.message}" /><br><br>
-						</span></strong>
+					<c:if test="${not empty message}">
+						<strong><span class="has-error">Your login attempt
+								was not successful due to ${message}</span></strong>
 					</c:if>
 				</div>
 				<div class="col-md-4"></div>
