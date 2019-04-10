@@ -30,38 +30,8 @@
 			<div class="col-md-2" align="center"></div>
 			<div class="col-md-2" align="center"></div>
 		</div>
-		<c:choose>
-			<c:when test="${not empty employees}">
-				<table class="table table-striped bordered">
-					<tr class="bold-font">
-						<th>Employee Id</th>
-						<th>Employee Name</th>
-						<th>First Name</th>
-						<th>Last Name</th>
-						<th>Date of Birth</th>
-						<!-- <th>Passport No/SSN No</th> -->
-						<th>Email</th>
-					</tr>
-					<c:forEach var="employee" items="${employees}">
-						<tr>
-							<td>${employee.getEmployeeId()}</td>
-							<td>${employee.getName()}</td>
-							<td>${employee.getFirstName()}</td>
-							<td>${employee.getLastName()}</td>
-							<td>${employee.getDateOfBirth()}</td>
-							<%-- <td>${employee.getPassportNumber()}</td> --%>
-							<td>${employee.getEmail()}</td>
-
-						</tr>
-					</c:forEach>
-				</table>
-			</c:when>
-			<c:otherwise>
-				<br>
-				<br>
-				<h4>No Resource Available</h4>
-			</c:otherwise>
-		</c:choose>
+		<table class="table table-striped bordered">
+		</table>
 	</div>
 	<jsp:include page="../layouts/footer.jsp" />
 </body>

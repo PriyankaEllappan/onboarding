@@ -3,6 +3,11 @@
  */
 package com.cts.nw.onboarding.controllers;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.apache.log4j.Logger;
@@ -18,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cts.nw.onboarding.bean.AjaxResponse;
 import com.cts.nw.onboarding.bean.EmployeeDetails;
+import com.cts.nw.onboarding.bo.EmployeeMaster;
 import com.cts.nw.onboarding.constants.AppConstants;
 import com.cts.nw.onboarding.constants.ErrorConstants;
 import com.cts.nw.onboarding.exception.CustomException;
@@ -63,8 +69,7 @@ public class ResourceController extends AbstractController {
 		ModelAndView modelView = null;
 		try {
 			modelView = bindViewwithUserInfo("resources/resourceList");
-			modelView.addObject("employees", resourceService.getAllResources());
-		} catch (CustomException e) {
+		} catch (Exception e) {
 			modelView = bindViewwithUserInfo("errors/errorPage");
 			modelView.addObject("errMessage", e.getMessage());
 			log.error(e.getMessage());
@@ -72,6 +77,20 @@ public class ResourceController extends AbstractController {
 		return modelView;
 	}
 
+	@RequestMapping(value = "/getemployeelist")
+	public @ResponseBody Map<String, List<EmployeeMaster>> getListOfResource() {
+		Map<String, List<EmployeeMaster>> employeeMap = new HashMap<>();
+		List<EmployeeMaster> employeeList = new ArrayList<>();
+		try {
+			employeeList = resourceService.getAllResources();
+			employeeMap.put("data", employeeList);
+		} catch (Exception e) {
+			employeeMap.put("data", employeeList);
+			log.error(e.getMessage());
+		}
+		return employeeMap;
+	}
+	
 	@GetMapping(value = "/find")
     public ModelAndView generateSearchForm(String empId) {
            ModelAndView modelView = null;
