@@ -54,7 +54,7 @@
 						</div>
 						<div class="col-md-6">
 							<form:password class="form-control" name="currPassword"
-								path="currPassword" value='<%= session.getAttribute("disabledExceptionPassword") %>' readonly="true" style="background-color:#E1DBDC;cursor: not-allowed;"  />
+								path="currPassword"  />
 						</div>
 						<div class="col-md-3"></div>
 					</div>
