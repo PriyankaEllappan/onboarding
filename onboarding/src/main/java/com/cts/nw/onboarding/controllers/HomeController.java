@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cts.nw.onboarding.bean.AjaxResponse;
 import com.cts.nw.onboarding.bean.AuthenticationInfo;
-import com.cts.nw.onboarding.bo.EmployeeMaster;
 import com.cts.nw.onboarding.constants.AppConstants;
 import com.cts.nw.onboarding.constants.ErrorConstants;
 import com.cts.nw.onboarding.exception.CustomException;
@@ -101,12 +102,14 @@ public class HomeController extends AbstractController {
 	public @ResponseBody AjaxResponse generateMailPin(@PathVariable String empid) {
 		AjaxResponse ajaxResponse = new AjaxResponse();
 		try {
-			authenticationService.generateMailPin(empid);
+			String generatedMailPin = authenticationService.generateMailPin(empid);
+			/*ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+			attr.getRequest().getSession().setAttribute("tempMailPIN", generatedMailPin);*/
 			ajaxResponse.setStatus(AppConstants.AJAXSUCCESS);
+			ajaxResponse.setResponseObj(generatedMailPin);
 		} catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
 			ajaxResponse.setStatusMessage(ErrorConstants.ERROR_MSG);
-			/*log.error(e.getMessage());*/
 		}
 		return ajaxResponse;
 	}

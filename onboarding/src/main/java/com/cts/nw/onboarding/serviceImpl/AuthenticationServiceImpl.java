@@ -3,6 +3,8 @@
  */
 package com.cts.nw.onboarding.serviceImpl;
 
+import java.util.UUID;
+
 import javax.xml.bind.ValidationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import com.cts.nw.onboarding.bean.AuthenticationInfo;
 import com.cts.nw.onboarding.dao.AuthenticationDAO;
 import com.cts.nw.onboarding.exception.CustomException;
 import com.cts.nw.onboarding.service.AuthenticationService;
+import com.cts.nw.onboarding.service.MailService;
 
 /**
  * @author 656579
@@ -23,6 +26,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
 	@Autowired
 	AuthenticationDAO authenticationDAO;
+	
+	@Autowired
+	MailService mailService;
 	
 	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	
@@ -67,8 +73,21 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 	}
 
 	@Override
-	public void generateMailPin(String empid) {
-		
+	public String generateMailPin(String empid) throws CustomException {
+		try {
+			String uuid = UUID.randomUUID().toString().replace("-", "");
+			String generatedMailPIN;
+			AuthenticationInfo authenticationInfo = new AuthenticationInfo();
+			generatedMailPIN = uuid.substring(0, 6);
+			authenticationInfo.setUserName(empid);
+			authenticationInfo.setMailPin(generatedMailPIN);
+			System.out.println("Generated Pin: " + generatedMailPIN);
+			mailService.sendMailPin(authenticationInfo);
+			return generatedMailPIN;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new CustomException(e);
+		}
 	}
 	
 }

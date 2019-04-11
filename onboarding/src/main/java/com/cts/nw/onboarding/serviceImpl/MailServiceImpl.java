@@ -9,6 +9,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
+import com.cts.nw.onboarding.bean.AuthenticationInfo;
 import com.cts.nw.onboarding.bean.EmployeeDetails;
 import com.cts.nw.onboarding.bo.EmployeeProjHist;
 import com.cts.nw.onboarding.bo.MailDetail;
@@ -209,5 +210,23 @@ public class MailServiceImpl implements MailService {
 		} catch(Exception e) {
 			log.error(e.getCause());
 		}
+	}
+
+	@Override
+	public void sendMailPin(AuthenticationInfo authenticationInfo) {
+		try {
+			String emailContent = environment.getRequiredProperty("mail.passwordreset");
+			mailDetail = new MailDetail();
+			toList = new ArrayList<>();
+			toList.add(String.valueOf(authenticationInfo.getUserName()));
+			mailDetail.setReceiver(toList);
+			emailContent = emailContent.replaceAll("<<MAILPIN>>", authenticationInfo.getMailPin());
+			mailDetail.setContent(emailContent);
+			mailDetail.setSubject("NationWide Onboarding - One Time Password");
+			sendMail.send(mailDetail);
+		} catch(Exception e) {
+			log.error(e.getCause());
+		}
+		
 	}
 }

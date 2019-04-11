@@ -14,7 +14,20 @@ public class AuthenticationInfo {
 	private String newPassword;
 	private int isEnabled;
 	private String mailPin;
+	private String hiddenPin;
 	
+	/**
+	 * @return the hiddenPin
+	 */
+	public String getHiddenPin() {
+		return hiddenPin;
+	}
+	/**
+	 * @param hiddenPin the hiddenPin to set
+	 */
+	public void setHiddenPin(String hiddenPin) {
+		this.hiddenPin = hiddenPin;
+	}
 	/**
 	 * @return the mailPin
 	 */
@@ -81,7 +94,7 @@ public class AuthenticationInfo {
 	@Override
 	public String toString() {
 		return "AuthenticationInfo [userName=" + userName + ", currPassword=" + currPassword + ", newPassword="
-				+ newPassword + ", isEnabled=" + isEnabled + ", mailPin=" + mailPin + "]";
+				+ newPassword + ", isEnabled=" + isEnabled + ", mailPin=" + mailPin + ", hiddenPin=" + hiddenPin + "]";
 	}
 	
 }

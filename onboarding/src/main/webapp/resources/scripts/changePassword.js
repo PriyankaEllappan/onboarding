@@ -2,7 +2,7 @@ $(document).ready(function() {
 	
 	$('#mailPinLink').click(function() {
 		var empId = $('#userName').val();
-		if (empId == null || empId == " ") {
+		if (empId == null || empId == "") {
 			$('#errMessage').text("User Name can't be empty");
 		} else {
 			$.ajax({
@@ -12,6 +12,7 @@ $(document).ready(function() {
 				success : function(resultData) {
 					if (resultData.status == "SUCCESS") {
 						$('#successMessage').text("Pin number sent successfully.");
+						$('#hiddenPin').val(resultData.responseObj);
 					} else {
 						$('#errMessage').text("Unable to send the Mail Pin. Please try again.");
 					}

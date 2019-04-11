@@ -75,6 +75,7 @@
 						<div class="col-md-6">
 							<form:password class="form-control" name="mailPin"
 								path="mailPin" />
+							<form:hidden path = "hiddenPin" value = "" />
 						</div>
 						<div class="col-md-2"><span style="color: #FFFFFF;cursor:pointer;"><strong id="mailPinLink">Generate Pin</strong></span></div>
 					</div>
