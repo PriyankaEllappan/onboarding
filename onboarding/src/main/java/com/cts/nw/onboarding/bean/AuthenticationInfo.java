@@ -13,6 +13,20 @@ public class AuthenticationInfo {
 	private String currPassword;
 	private String newPassword;
 	private int isEnabled;
+	private String mailPin;
+	
+	/**
+	 * @return the mailPin
+	 */
+	public String getMailPin() {
+		return mailPin;
+	}
+	/**
+	 * @param mailPin the mailPin to set
+	 */
+	public void setMailPin(String mailPin) {
+		this.mailPin = mailPin;
+	}
 	/**
 	 * @return the userName
 	 */
@@ -67,7 +81,7 @@ public class AuthenticationInfo {
 	@Override
 	public String toString() {
 		return "AuthenticationInfo [userName=" + userName + ", currPassword=" + currPassword + ", newPassword="
-				+ newPassword + ", isEnabled=" + isEnabled + "]";
+				+ newPassword + ", isEnabled=" + isEnabled + ", mailPin=" + mailPin + "]";
 	}
 	
 }

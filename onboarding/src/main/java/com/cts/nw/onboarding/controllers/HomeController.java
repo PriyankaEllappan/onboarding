@@ -8,11 +8,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cts.nw.onboarding.bean.AjaxResponse;
 import com.cts.nw.onboarding.bean.AuthenticationInfo;
+import com.cts.nw.onboarding.bo.EmployeeMaster;
+import com.cts.nw.onboarding.constants.AppConstants;
+import com.cts.nw.onboarding.constants.ErrorConstants;
 import com.cts.nw.onboarding.exception.CustomException;
 import com.cts.nw.onboarding.service.AuthenticationService;
 
@@ -85,6 +91,24 @@ public class HomeController extends AbstractController {
 			e.printStackTrace();
 		}
 		return modelView;
+	}
+	
+	/**
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/generatepin/{empid}", method = RequestMethod.GET)
+	public @ResponseBody AjaxResponse generateMailPin(@PathVariable String empid) {
+		AjaxResponse ajaxResponse = new AjaxResponse();
+		try {
+			authenticationService.generateMailPin(empid);
+			ajaxResponse.setStatus(AppConstants.AJAXSUCCESS);
+		} catch (Exception e) {
+			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
+			ajaxResponse.setStatusMessage(ErrorConstants.ERROR_MSG);
+			/*log.error(e.getMessage());*/
+		}
+		return ajaxResponse;
 	}
 	
 	/**

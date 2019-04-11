@@ -16,5 +16,6 @@ public interface AuthenticationService {
 
 	AuthenticationInfo getUserDetailsByID(String id) throws CustomException;
 	Integer updateUserDetails(AuthenticationInfo authenticationInfo) throws CustomException, ValidationException;
+	void generateMailPin(String empid);
 	
 }

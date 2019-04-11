@@ -65,5 +65,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 			throw new CustomException(e);
 		}
 	}
+
+	@Override
+	public void generateMailPin(String empid) {
+		
+	}
 	
 }

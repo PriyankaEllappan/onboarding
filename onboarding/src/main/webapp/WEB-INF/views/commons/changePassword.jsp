@@ -24,6 +24,7 @@
 			<div class="col-md-4"></div>
 			<div class="col-md-4">
 				<span class="has-error" id="errMessage"></span>
+				<span class="is-success" id="successMessage"></span>
 			</div>
 			<div class="col-md-4"></div>
 		</div>
@@ -66,6 +67,16 @@
 								path="newPassword" />
 						</div>
 						<div class="col-md-2"></div>
+					</div>
+					<div class="row form-group">
+						<div class="col-md-4" align="right">
+							<form:label path="mailPin" style="color: #FFFFFF;">Mail Pin</form:label>
+						</div>
+						<div class="col-md-6">
+							<form:password class="form-control" name="mailPin"
+								path="mailPin" />
+						</div>
+						<div class="col-md-2"><span style="color: #FFFFFF;cursor:pointer;"><strong id="mailPinLink">Generate Pin</strong></span></div>
 					</div>
 					<br>
 					<div class="form-group">
