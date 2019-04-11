@@ -26,6 +26,7 @@
 						<strong><span class="has-error">Your login attempt
 								was not successful due to ${message}</span></strong>
 					</c:if>
+					<strong><span class="is-success">${successMessage}</span></strong>
 				</div>
 				<div class="col-md-4"></div>
 			</div>

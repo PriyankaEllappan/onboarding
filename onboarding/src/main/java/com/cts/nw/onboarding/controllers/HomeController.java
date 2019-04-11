@@ -80,7 +80,9 @@ public class HomeController extends AbstractController {
 		ModelAndView modelView = null;
 		try {
 			authenticationService.updateUserDetails(authInfo);
-			modelView = new ModelAndView("commons/passwordSuccess");
+			modelView = new ModelAndView("commons/login");
+			modelView.addObject("successMessage","Password Updated Successfully. Please login with new credentials.");
+			modelView.addObject("message", "");
 		} catch (ValidationException e) {
 			modelView = new ModelAndView("commons/changePassword");
 			modelView.addObject("errMessage", e.getMessage());
