@@ -4,6 +4,7 @@ package com.cts.nw.onboarding.controllers;
 import javax.xml.bind.ValidationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -12,8 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cts.nw.onboarding.bean.AjaxResponse;
@@ -33,6 +32,8 @@ public class HomeController extends AbstractController {
 
 	@Autowired
 	AuthenticationService authenticationService;
+	
+	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	
 	/**
 	 * @param model
@@ -101,12 +102,13 @@ public class HomeController extends AbstractController {
 	@RequestMapping(value = "/generatepin/{empid}", method = RequestMethod.GET)
 	public @ResponseBody AjaxResponse generateMailPin(@PathVariable String empid) {
 		AjaxResponse ajaxResponse = new AjaxResponse();
+		String generatedMailPin;
+		String encodedPin;
 		try {
-			String generatedMailPin = authenticationService.generateMailPin(empid);
-			/*ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-			attr.getRequest().getSession().setAttribute("tempMailPIN", generatedMailPin);*/
+			generatedMailPin = authenticationService.generateMailPin(empid);
+			encodedPin = passwordEncoder.encode(generatedMailPin);
 			ajaxResponse.setStatus(AppConstants.AJAXSUCCESS);
-			ajaxResponse.setResponseObj(generatedMailPin);
+			ajaxResponse.setResponseObj(encodedPin);
 		} catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
 			ajaxResponse.setStatusMessage(ErrorConstants.ERROR_MSG);

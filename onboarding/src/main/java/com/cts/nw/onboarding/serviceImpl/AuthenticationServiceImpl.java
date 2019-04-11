@@ -48,19 +48,25 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 			Integer rowsAffected = 0;
 			AuthenticationInfo currUserDetails = authenticationDAO.getUserDetailsByID(authenticationInfo.getUserName());
 			if (currUserDetails != null) {
-				String existingPassword = authenticationInfo.getCurrPassword();
-				String dbPassword = currUserDetails.getCurrPassword();
-				if (passwordEncoder.matches(existingPassword, dbPassword)) {
-					System.out.println("Matched");
-					rowsAffected = authenticationDAO.updateUserDetails(authenticationInfo);
-					if (rowsAffected > 0) {
-						return rowsAffected;
-					} else {
-						throw new ValidationException("Error while updating the password");
-					}
+				String mailPin = authenticationInfo.getMailPin();
+				String hiddenPin = authenticationInfo.getHiddenPin();
+				if (passwordEncoder.matches(mailPin, hiddenPin)) {
+					String existingPassword = authenticationInfo.getCurrPassword();
+					String dbPassword = currUserDetails.getCurrPassword();
+					if (passwordEncoder.matches(existingPassword, dbPassword)) {
+						System.out.println("Matched");
+						rowsAffected = authenticationDAO.updateUserDetails(authenticationInfo);
+						if (rowsAffected > 0) {
+							return rowsAffected;
+						} else {
+							throw new ValidationException("Error while updating the password");
+						}
 
+					} else {
+						throw new ValidationException("Current Password doesn't match. Please try again");
+					}
 				} else {
-					throw new ValidationException("Current Password doesn't match. Please try again");
+					throw new ValidationException("Mail Pin doesn't Match. Please try again");
 				}
 			} else {
 				throw new ValidationException("Specified User doesn't available in database");
