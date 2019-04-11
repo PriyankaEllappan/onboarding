@@ -273,7 +273,6 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 			String query = QueryConstants.EMPPROJHIST_SELECT + whereClause;
 			RowMapper<EmployeeProjHist> rowMapper = new EmployeeProjHistRowMapper();
 			EmployeeProjHist emp = this.jdbcTemplate.queryForObject(query, rowMapper, empProjHistId);
-			System.out.println(emp.toString());
 			return emp;
 		} catch (EmptyResultDataAccessException e) {
 			return null;

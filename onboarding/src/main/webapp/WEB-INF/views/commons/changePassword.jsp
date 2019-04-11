@@ -85,7 +85,7 @@
 							<div class="col-md-3"></div>
 							<div class="col-md-4" style="text-align: right">
 								<input class="btn btn-submit" type="submit"
-									id="changePasswordFormSubmit" value="Submit">
+									id="changePasswordFormSubmit" onclick="return validateForm()" value="Submit">
 							</div>
 							<div class="col-md-4">
 								<button class="btn btn-submit" id="changePasswordFormReset"

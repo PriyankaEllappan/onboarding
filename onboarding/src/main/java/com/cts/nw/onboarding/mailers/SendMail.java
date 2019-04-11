@@ -51,13 +51,15 @@ public class SendMail {
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(environment.getRequiredProperty("mail.from")));
 			for (String toId : mailDetail.getReceiver()) {
-				System.out.println(toId);
 				message.addRecipient(Message.RecipientType.TO, new InternetAddress(getEmailAddress(toId)));
 			}
-			for (String ccId : mailDetail.getCc()) {
-				System.out.println(ccId);
-				message.addRecipient(Message.RecipientType.CC, new InternetAddress(getEmailAddress(ccId)));
+			
+			if (mailDetail.getCc() != null) {
+				for (String ccId : mailDetail.getCc()) {
+					message.addRecipient(Message.RecipientType.CC, new InternetAddress(getEmailAddress(ccId)));
+				}
 			}
+			
 			message.setSubject(mailDetail.getSubject());
 			message.setText("Sent updated message successfully....  ");
 			message.setContent(mailDetail.getContent(), "text/html");
@@ -67,9 +69,9 @@ public class SendMail {
 			
 			transport.sendMessage(message, message.getAllRecipients());
 			transport.close();
-			System.out.println("Sent message successfully....");
+			log.info("Sent Mail Successfully....");
 		} catch (Exception e) {
-			log.error(e.getCause());
+			log.error(e.getMessage());
 		}*/
 	}
 
@@ -78,12 +80,10 @@ public class SendMail {
 	 * @return
 	 */
 	private String getEmailAddress(String empId) {
-		System.out.println(empId);
 		String emailId = null;
 		EmployeeDetails resource = lDAPService.getEmployee(empId);
 		if(resource != null){
 			emailId = resource.getEmailId();
-			System.out.println(emailId);
 		}
 		return emailId;
 	}

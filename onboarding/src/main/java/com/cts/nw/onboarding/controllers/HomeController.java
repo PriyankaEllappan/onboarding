@@ -84,13 +84,9 @@ public class HomeController extends AbstractController {
 		} catch (ValidationException e) {
 			modelView = new ModelAndView("commons/changePassword");
 			modelView.addObject("errMessage", e.getMessage());
-			e.printStackTrace();
-			System.out.println("Vali" + e.getMessage());
 		} catch (CustomException e) {
 			modelView = new ModelAndView("commons/changePassword");
 			modelView.addObject("errMessage", e.getMessage());
-			System.out.println("Cust" + e.getMessage());
-			e.printStackTrace();
 		}
 		return modelView;
 	}

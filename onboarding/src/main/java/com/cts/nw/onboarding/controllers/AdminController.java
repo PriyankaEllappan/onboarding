@@ -59,7 +59,6 @@ public class AdminController extends AbstractController{
                   ajaxResponse.setStatus(AppConstants.AJAXSUCCESS);
                   ajaxResponse.setStatusMessage(AppConstants.DETAILS_SAVED);
            } catch (CustomException e) {
-                  e.printStackTrace();
                   ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
                   ajaxResponse.setStatusMessage(ErrorConstants.USERALREADYEXISTS);
            }

@@ -48,7 +48,6 @@ public class ResourceController extends AbstractController {
 		try {
 			EmployeeDetails employee = resourceService.getEmployee(empId);
 			if (employee != null) {
-				System.out.println(employee.toString());
 				ajaxResponse.setStatus(AppConstants.AJAXSUCCESS);
 				ajaxResponse.setResponseObj(employee);
 

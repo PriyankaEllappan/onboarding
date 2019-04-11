@@ -1,6 +1,10 @@
 $(document).ready(function() {
 	
+	$('#mailPin').prop('disabled', true);
+	
 	$('#mailPinLink').click(function() {
+		$('#successMessage').text("");
+		$('#errMessage').text("");
 		var empId = $('#userName').val();
 		if (empId == null || empId == "") {
 			$('#errMessage').text("User Name can't be empty");
@@ -13,6 +17,7 @@ $(document).ready(function() {
 					if (resultData.status == "SUCCESS") {
 						$('#successMessage').text("Pin number sent successfully.");
 						$('#hiddenPin').val(resultData.responseObj);
+						$('#mailPin').prop('disabled', false);
 					} else {
 						$('#errMessage').text("Unable to send the Mail Pin. Please try again.");
 					}
@@ -22,13 +27,13 @@ $(document).ready(function() {
 	});
 });
 
-/*function validateForm() {
-
-	if ($('#userName').val() == null || $('#userName').val() == "" || isNaN($('#userName').val())) {
+function validateForm() {
+	if ($('#userName').val() == null || $('#userName').val() == ""
+			|| isNaN($('#userName').val())) {
 		$('#errMessage').text("Employee ID Should be Numeric Value ");
 		return false;
 	}
-	if ($('#currentPassword').val() == null || $('#currentPassword').val() == "") {
+	if ($('#currPassword').val() == null || $('#currPassword').val() == "") {
 		$('#errMessage').text("Current Password cannot be null or empty");
 		return false;
 	}
@@ -36,5 +41,9 @@ $(document).ready(function() {
 		$('#errMessage').text("New Password cannot be null or empty");
 		return false;
 	}
+	if ($('#mailPin').val() == null || $('#mailPin').val() == "") {
+		$('#errMessage').text("Mail Pin can't be null or empty");
+		return false;
+	}
 	return true;
-}*/
+}

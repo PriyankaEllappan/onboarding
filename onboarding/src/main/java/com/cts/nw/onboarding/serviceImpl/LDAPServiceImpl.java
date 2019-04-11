@@ -15,6 +15,7 @@ import javax.naming.directory.InitialDirContext;
 import javax.naming.directory.SearchControls;
 import javax.naming.directory.SearchResult;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -35,6 +36,8 @@ public class LDAPServiceImpl implements LDAPService {
 
 	@Autowired
 	private Environment environment;
+	
+	Logger log = Logger.getLogger(LDAPServiceImpl.class) ;
 	
 	/* (non-Javadoc)
 	 * @see com.cts.nw.onboarding.service.LDAPService#getEmployee(java.lang.String, java.lang.String)
@@ -82,7 +85,7 @@ public class LDAPServiceImpl implements LDAPService {
 					distinguishedname = attributes.get("distinguishedname");
 					title = attributes.get("title");
 				} else {
-					System.out.println("Null attributes returned.");
+					log.info("LDAP Response: Null attributes returned for employee" + empIdtoSearch);
 				}
 				profile = assignValuestoEmployeeObject(name, associateId, distinguishedname, title, email);
 			}

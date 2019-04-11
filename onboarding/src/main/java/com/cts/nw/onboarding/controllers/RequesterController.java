@@ -117,11 +117,9 @@ public class RequesterController extends AbstractController {
 				ajaxResponse.setStatusMessage("Resource Not Registered.");
 			}
 		} catch (ValidatorException e) {
-			e.printStackTrace();
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
 			ajaxResponse.setStatusMessage(e.getMessage());
 		} catch (CustomException e) {
-			e.printStackTrace();
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
 			ajaxResponse.setStatusMessage(ErrorConstants.ERROR_MSG);
 			log.error(e.getMessage());
@@ -198,7 +196,6 @@ public class RequesterController extends AbstractController {
 	public @ResponseBody AjaxResponse assignProject(@RequestBody EmployeeProjHist employeeProjJson, ModelMap model) {
 		AjaxResponse ajaxResponse = new AjaxResponse();
 		try {
-			System.out.println(employeeProjJson.toString());
 			EmployeeProjHist employee = requesterService.addNewProject(employeeProjJson);
 			if (employee != null) {
 				ajaxResponse.setStatus(AppConstants.AJAXSUCCESS);

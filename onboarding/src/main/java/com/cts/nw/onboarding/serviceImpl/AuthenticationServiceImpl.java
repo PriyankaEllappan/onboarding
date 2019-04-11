@@ -54,7 +54,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 					String existingPassword = authenticationInfo.getCurrPassword();
 					String dbPassword = currUserDetails.getCurrPassword();
 					if (passwordEncoder.matches(existingPassword, dbPassword)) {
-						System.out.println("Matched");
 						rowsAffected = authenticationDAO.updateUserDetails(authenticationInfo);
 						if (rowsAffected > 0) {
 							return rowsAffected;
@@ -87,11 +86,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 			generatedMailPIN = uuid.substring(0, 6);
 			authenticationInfo.setUserName(empid);
 			authenticationInfo.setMailPin(generatedMailPIN);
-			System.out.println("Generated Pin: " + generatedMailPIN);
 			mailService.sendMailPin(authenticationInfo);
 			return generatedMailPIN;
 		} catch (Exception e) {
-			e.printStackTrace();
 			throw new CustomException(e);
 		}
 	}

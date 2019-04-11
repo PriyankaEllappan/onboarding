@@ -89,7 +89,6 @@ public class ProcessController extends AbstractController {
 	@RequestMapping(value = "/process/onboard", method = RequestMethod.POST)
 	public ModelAndView onboardResource(@ModelAttribute("employee") EmployeeProjHist employee, BindingResult result) {
 		ModelAndView modelView;
-		System.out.println(employee.toString());
 		try {
 			processorService.onboardAnEmployee(employee);
 			modelView = bindViewwithUserInfo("commons/detailsSaved");
@@ -167,13 +166,11 @@ public class ProcessController extends AbstractController {
 			modelView = bindViewwithUserInfo("commons/detailsSaved");
 			modelView.addObject("employee", employee);
 		}  catch (ValidatorException e) {
-			e.printStackTrace();
 			modelView = bindViewwithUserInfo("process/offboardProcessingForm");
 			modelView.addObject("errMessage", e.getMessage());
 			log.error(e.getMessage());
 		}
 		catch (CustomException e) {
-			e.printStackTrace();
 			modelView = new ModelAndView("errors/errorPage");
 			modelView.addObject("errMessage", e.getMessage());
 			log.error(e.getMessage());
