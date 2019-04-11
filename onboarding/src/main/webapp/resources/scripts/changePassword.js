@@ -30,6 +30,8 @@ $(document).ready(function() {
 });
 
 function validateForm() {
+	$('#successMessage').text("");
+	$('#errMessage').text("");
 	if ($('#userName').val() == null || $('#userName').val() == ""
 			|| isNaN($('#userName').val())) {
 		$('#errMessage').text("Employee ID Should be Numeric Value ");
