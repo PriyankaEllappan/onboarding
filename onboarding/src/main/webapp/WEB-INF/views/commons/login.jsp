@@ -20,19 +20,19 @@
 		<form name='loginForm' id="loginFormID"
 			action="<c:url value='login' />" method='POST'>
 			<div class="row">
-				<div class="col-md-4"></div>
-				<div class="col-md-4">
+				<div class="col-md-3"></div>
+				<div class="col-md-6">
 					<c:if test="${not empty message}">
 						<strong><span class="has-error">Your login attempt
 								was not successful due to ${message}</span></strong>
 					</c:if>
 					<strong><span class="is-success">${successMessage}</span></strong>
 				</div>
-				<div class="col-md-4"></div>
+				<div class="col-md-3"></div>
 			</div>
 			<div class="row">
-				<div class="col-md-4"></div>
-				<div class="col-md-4 login-display">
+				<div class="col-md-3"></div>
+				<div class="col-md-6 login-display">
 					<div class="row">
 						<div class="col-md-12 customized-span-login "><br>Nationwide
 							Resource Onboarding</div>
@@ -71,7 +71,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-4">
+				<div class="col-md-3">
 					<br> <br>
 				</div>
 			</div>

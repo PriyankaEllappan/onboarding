@@ -16,7 +16,7 @@ $(document).ready(function() {
 				dataType : "json",
 				success : function(resultData) {
 					if (resultData.status == "SUCCESS") {
-						$('#successMessage').text("Pin number sent successfully.");
+						$('#successMessage').text("Pin number sent successfully to your Cognizant Mail.");
 						$('#hiddenPin').val(resultData.responseObj);
 						$('#mailPin').prop('disabled', false);
 						$('#changePasswordFormSubmit').prop('disabled', false);

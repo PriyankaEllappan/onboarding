@@ -21,12 +21,12 @@
 <body>
 	<div class="content-style">
 		<div class="row">
-			<div class="col-md-4"></div>
-			<div class="col-md-4">
-				<span class="has-error" id="errMessage">${errMessage}</span>
-				<span class="is-success" id="successMessage"></span>
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
+				<strong><span class="has-error" id="errMessage">${errMessage}</span></strong>
+				<strong><span class="is-success" id="successMessage"></span></strong>
 			</div>
-			<div class="col-md-4"></div>
+			<div class="col-md-3"></div>
 		</div>
 		<form:form name="changePasswordForm" method="post"
 			action="/onboarding/changepassword" modelAttribute="authInfo">
