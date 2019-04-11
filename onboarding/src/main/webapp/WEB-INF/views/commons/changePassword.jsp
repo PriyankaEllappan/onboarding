@@ -44,7 +44,7 @@
 							<form:label path="userName" style="color: #FFFFFF;">Employee Id</form:label>
 						</div>
 						<div class="col-md-6">
-							<form:input class="form-control" name="userName" path="userName" />
+							<form:input class="form-control" name="userName" path="userName" value='<%= session.getAttribute("disabledExceptionEmployeeID") %>' readonly="true"  style="background-color:#E1DBDC;cursor: not-allowed;" />
 						</div>
 						<div class="col-md-3"></div>
 					</div>
@@ -54,7 +54,7 @@
 						</div>
 						<div class="col-md-6">
 							<form:password class="form-control" name="currPassword"
-								path="currPassword" />
+								path="currPassword" value='<%= session.getAttribute("disabledExceptionPassword") %>' readonly="true" style="background-color:#E1DBDC;cursor: not-allowed;"  />
 						</div>
 						<div class="col-md-3"></div>
 					</div>

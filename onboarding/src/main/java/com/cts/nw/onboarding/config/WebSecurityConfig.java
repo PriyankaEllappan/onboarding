@@ -64,6 +64,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						req.getSession().setAttribute("message", errMsg);
 				        res.sendRedirect("/onboarding/login");
 					} else if(exp.getClass().isAssignableFrom(DisabledException.class)){
+						req.getSession().setAttribute("disabledExceptionEmployeeID", req.getParameter("username"));
+						req.getSession().setAttribute("disabledExceptionPassword", req.getParameter("password"));
 						res.sendRedirect("/onboarding/changepassword");
 					} else {
 						errMsg = "Unknown internal Error." + exp.getMessage();
