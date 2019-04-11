@@ -14,6 +14,26 @@
 <!-- Load Scripts -->
 <script src="/onboarding/resources/scripts/jquery.min.js"></script>
 <script src="/onboarding/resources/scripts/bootstrap.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	
+	$('#projectRegisterFormSubmit').click(function(e) {
+		e.preventDefault();
+		$('#errMessage').text("");
+		if($('#username').val() == null || $('#username').val() == ""){
+			$('#errMessage').text("User Name Can't be null or empty");
+			return false;
+		}
+		if($('#password').val() == null || $('#password').val() == ""){
+			$('#errMessage').text("Password Can't be null or empty");
+			return false;
+		}
+	});
+	
+});
+
+
+</script>
 </head>
 <body>
 	<div class="content-style">
