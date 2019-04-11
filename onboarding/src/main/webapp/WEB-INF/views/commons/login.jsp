@@ -16,9 +16,7 @@
 <script src="/onboarding/resources/scripts/bootstrap.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-	
-	$('#projectRegisterFormSubmit').click(function(e) {
-		e.preventDefault();
+	$('#loginSubmit').click(function(e) {
 		$('#errMessage').text("");
 		if($('#username').val() == null || $('#username').val() == ""){
 			$('#errMessage').text("User Name Can't be null or empty");
@@ -31,8 +29,6 @@ $(document).ready(function() {
 	});
 	
 });
-
-
 </script>
 </head>
 <body>
@@ -47,6 +43,7 @@ $(document).ready(function() {
 								was not successful due to ${message}</span></strong>
 					</c:if>
 					<strong><span class="is-success">${successMessage}</span></strong>
+					<strong><span class="has-error" id="errMessage"></span></strong>
 				</div>
 				<div class="col-md-3"></div>
 			</div>
@@ -85,7 +82,7 @@ $(document).ready(function() {
 					<div class="row form-group">
 						<div class="col-md-3"></div>
 						<div class="col-md-9" style="text-align: center;">
-							<input type="submit" class="btn btn-submit" name="login"
+							<input type="submit" class="btn btn-submit" name="login" id="loginSubmit"
 								value="Login" /> <input type="reset" class="btn btn-submit"
 								name="reset" value="Reset" /><br><br><br>
 						</div>
