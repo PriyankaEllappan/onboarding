@@ -221,6 +221,7 @@ public class MailServiceImpl implements MailService {
 			toList.add(String.valueOf(authenticationInfo.getUserName()));
 			mailDetail.setReceiver(toList);
 			emailContent = emailContent.replaceAll("<<MAILPIN>>", authenticationInfo.getMailPin());
+			emailContent = emailContent.replace("<<URL>>", AbstractController.APPINFO.getAppUrl());
 			mailDetail.setContent(emailContent);
 			mailDetail.setSubject("NationWide Onboarding - One Time Password");
 			sendMail.send(mailDetail);
