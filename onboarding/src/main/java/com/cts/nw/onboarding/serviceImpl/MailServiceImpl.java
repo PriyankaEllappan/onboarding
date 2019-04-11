@@ -13,7 +13,6 @@ import com.cts.nw.onboarding.bean.AuthenticationInfo;
 import com.cts.nw.onboarding.bean.EmployeeDetails;
 import com.cts.nw.onboarding.bo.EmployeeProjHist;
 import com.cts.nw.onboarding.bo.MailDetail;
-import com.cts.nw.onboarding.controllers.AbstractController;
 import com.cts.nw.onboarding.controllers.ProcessController;
 import com.cts.nw.onboarding.mailers.SendMail;
 import com.cts.nw.onboarding.service.MailService;
@@ -57,7 +56,7 @@ public class MailServiceImpl implements MailService {
 			emailContent = emailContent.replace("<<EMPNAME>>", resource.getName());
 			emailContent = emailContent.replace("<<PROJID>>", String.valueOf(resource.getProjectId()));
 			emailContent = emailContent.replace("<<PROJNAME>>", resource.getProjectName());
-			emailContent = emailContent.replace("<<URL>>", AbstractController.APPINFO.getAppUrl());
+			//emailContent = emailContent.replace("<<URL>>", AbstractController.APPINFO.getAppUrl());
 
 			mailDetail.setContent(emailContent);
 			mailDetail.setSubject("New Nationwide ID Creation Request");
@@ -87,7 +86,7 @@ public class MailServiceImpl implements MailService {
 			emailContent = emailContent.replace("<<EMPNAME>>", resource.getName());
 			emailContent = emailContent.replace("<<PROJID>>", String.valueOf(resource.getProjectId()));
 			emailContent = emailContent.replace("<<PROJNAME>>", resource.getProjectName());
-			emailContent = emailContent.replace("<<URL>>", AbstractController.APPINFO.getAppUrl());
+			//emailContent = emailContent.replace("<<URL>>", AbstractController.APPINFO.getAppUrl());
 			mailDetail.setContent(emailContent);
 			mailDetail.setSubject("NationWide Onboarding - In Progress");
 			sendMail.send(mailDetail);
@@ -114,7 +113,7 @@ public class MailServiceImpl implements MailService {
 			mailDetail.setCc(ccList);
 
 			emailContent = emailContent.replace("<<NWID>>", resource.getNationwideId());
-			emailContent = emailContent.replace("<<URL>>", AbstractController.APPINFO.getAppUrl());
+			//emailContent = emailContent.replace("<<URL>>", AbstractController.APPINFO.getAppUrl());
 
 			mailDetail.setContent(emailContent);
 			mailDetail.setSubject("Welcome Aboard !!");
@@ -143,7 +142,7 @@ public class MailServiceImpl implements MailService {
 			emailContent = emailContent.replace("<<EMPNAME>>", resource.getName());
 			emailContent = emailContent.replace("<<PROJID>>", String.valueOf(resource.getProjectId()));
 			emailContent = emailContent.replace("<<PROJNAME>>", resource.getProjectName());
-			emailContent = emailContent.replace("<<URL>>", AbstractController.APPINFO.getAppUrl());
+			//emailContent = emailContent.replace("<<URL>>", AbstractController.APPINFO.getAppUrl());
 			mailDetail.setContent(emailContent);
 			mailDetail.setSubject("NationWide Offboarding - Initiated");
 			sendMail.send(mailDetail);
@@ -172,7 +171,7 @@ public class MailServiceImpl implements MailService {
 			emailContent = emailContent.replace("<<EMPNAME>>", resource.getName());
 			emailContent = emailContent.replace("<<PROJID>>", String.valueOf(resource.getProjectId()));
 			emailContent = emailContent.replace("<<PROJNAME>>", resource.getProjectName());
-			emailContent = emailContent.replace("<<URL>>", AbstractController.APPINFO.getAppUrl());
+			//emailContent = emailContent.replace("<<URL>>", AbstractController.APPINFO.getAppUrl());
 			mailDetail.setContent(emailContent);
 			mailDetail.setSubject("NationWide Offboarding - Completed");
 			sendMail.send(mailDetail);
@@ -203,7 +202,7 @@ public class MailServiceImpl implements MailService {
 			emailContent = emailContent.replace("<<PROJID>>", String.valueOf(resource.getProjectId()));
 			emailContent = emailContent.replace("<<PROJNAME>>", resource.getProjectName());
 			emailContent = emailContent.replace("<<REJECTCOMMENTS>>", resource.getComments());
-			emailContent = emailContent.replace("<<URL>>", AbstractController.APPINFO.getAppUrl());
+			//emailContent = emailContent.replace("<<URL>>", AbstractController.APPINFO.getAppUrl());
 			mailDetail.setContent(emailContent);
 			mailDetail.setSubject("NationWide Onboarding - Rejected");
 			sendMail.send(mailDetail);
@@ -221,7 +220,7 @@ public class MailServiceImpl implements MailService {
 			toList.add(String.valueOf(authenticationInfo.getUserName()));
 			mailDetail.setReceiver(toList);
 			emailContent = emailContent.replaceAll("<<MAILPIN>>", authenticationInfo.getMailPin());
-			emailContent = emailContent.replace("<<URL>>", AbstractController.APPINFO.getAppUrl());
+			//emailContent = emailContent.replace("<<URL>>", AbstractController.APPINFO.getAppUrl());
 			mailDetail.setContent(emailContent);
 			mailDetail.setSubject("NationWide Onboarding - One Time Password");
 			sendMail.send(mailDetail);
