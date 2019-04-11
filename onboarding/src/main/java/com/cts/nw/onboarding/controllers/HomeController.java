@@ -12,15 +12,18 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cts.nw.onboarding.bean.AjaxResponse;
 import com.cts.nw.onboarding.bean.AuthenticationInfo;
+import com.cts.nw.onboarding.bean.EmployeeDetails;
 import com.cts.nw.onboarding.constants.AppConstants;
 import com.cts.nw.onboarding.constants.ErrorConstants;
 import com.cts.nw.onboarding.exception.CustomException;
 import com.cts.nw.onboarding.service.AuthenticationService;
+import com.cts.nw.onboarding.service.ResourceService;
 
 /**
  * @author 656579
@@ -32,6 +35,9 @@ public class HomeController extends AbstractController {
 
 	@Autowired
 	AuthenticationService authenticationService;
+	
+	@Autowired
+	ResourceService resourceService;
 	
 	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	
@@ -91,6 +97,27 @@ public class HomeController extends AbstractController {
 			modelView.addObject("errMessage", e.getMessage());
 		}
 		return modelView;
+	}
+	
+	@RequestMapping(value = "/getemployee", method = RequestMethod.GET)
+	public @ResponseBody AjaxResponse getEmployeeFromLDAP(@RequestParam("empId") String empId) {
+		AjaxResponse ajaxResponse = new AjaxResponse();
+		try {
+			EmployeeDetails employee = resourceService.getEmployee(empId);
+			if (employee != null) {
+				ajaxResponse.setStatus(AppConstants.AJAXSUCCESS);
+				ajaxResponse.setResponseObj(employee);
+
+			} else {
+				ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
+				//log.error(empId + ErrorConstants.LDAPERROR);
+			}
+		} catch (Exception e) {
+			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
+			ajaxResponse.setStatusMessage(ErrorConstants.ERROR_MSG);
+			//log.error(e.getMessage());
+		}
+		return ajaxResponse;
 	}
 	
 	/**

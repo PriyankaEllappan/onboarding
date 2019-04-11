@@ -16,8 +16,13 @@
 <script src="/onboarding/resources/scripts/bootstrap.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
+	 $('#loginSubmit').prop('disabled', true);
+	 $('#password').prop('disabled', true);
+	 
 	$('#loginSubmit').click(function(e) {
 		$('#errMessage').text("");
+		$('#loginErrorMsg').text("");
+		$('#passwordUpdateSuccessMsg').text("");
 		if($('#username').val() == null || $('#username').val() == ""){
 			$('#errMessage').text("User Name Can't be null or empty");
 			return false;
@@ -27,8 +32,31 @@ $(document).ready(function() {
 			return false;
 		}
 	});
-	
+
 });
+
+function loadEmployeeDetails(){
+	var empId = $('#username').val();
+	$.ajax({
+		type : 'GET',
+		url : "/onboarding/getemployee?empId=" + empId,
+		dataType : "json",
+		success : function(resultData) {
+			console.log(resultData);
+			if (resultData.status == "SUCCESS") {
+					$('#errMessage').text("");
+					console.log("Valid CTS Employee ID");
+					 $('#loginSubmit').prop('disabled', false);
+					 $('#password').prop('disabled', false);
+			 } else {
+				 $('#loginSubmit').prop('disabled', true);
+				 $('#password').prop('disabled', true);
+					$('#errMessage').text("Resource not available in Cognizant Directory. Please check the Employee ID");
+			 }
+		}
+	});
+}
+
 </script>
 </head>
 <body>
@@ -39,10 +67,10 @@ $(document).ready(function() {
 				<div class="col-md-3"></div>
 				<div class="col-md-6">
 					<c:if test="${not empty message}">
-						<strong><span class="has-error">Your login attempt
+						<strong><span class="has-error"  id="loginErrorMsg">Your login attempt
 								was not successful due to ${message}</span></strong>
 					</c:if>
-					<strong><span class="is-success">${successMessage}</span></strong>
+					<strong><span class="is-success" id="passwordUpdateSuccessMsg">${successMessage}</span></strong>
 					<strong><span class="has-error" id="errMessage"></span></strong>
 				</div>
 				<div class="col-md-3"></div>
@@ -62,7 +90,7 @@ $(document).ready(function() {
 						</div>
 						<div class="col-md-6">
 							<input type='text' class="form-control" id="username"
-								name='username' autocomplete="off">
+								name='username' autocomplete="off" onblur="loadEmployeeDetails()">
 						</div>
 						<div class="col-md-2"></div>
 					</div>
