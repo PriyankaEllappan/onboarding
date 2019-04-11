@@ -46,13 +46,16 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 			throws CustomException, ValidationException {
 		try {
 			Integer rowsAffected = 0;
-			AuthenticationInfo currUserDetails = authenticationDAO.getUserDetailsByID(authenticationInfo.getUserName());
-			if (currUserDetails != null) {
-				String mailPin = authenticationInfo.getMailPin();
-				String hiddenPin = authenticationInfo.getHiddenPin();
-				if (passwordEncoder.matches(mailPin, hiddenPin)) {
-					String existingPassword = authenticationInfo.getCurrPassword();
-					String dbPassword = currUserDetails.getCurrPassword();
+			AuthenticationInfo currUserDetails;
+			String existingPassword;
+			String dbPassword;
+			String mailPin = authenticationInfo.getMailPin();
+			String hiddenPin = authenticationInfo.getHiddenPin();
+			if (passwordEncoder.matches(mailPin, hiddenPin)) {
+				currUserDetails = authenticationDAO.getUserDetailsByID(authenticationInfo.getUserName());
+				if (currUserDetails != null) {
+					existingPassword = authenticationInfo.getCurrPassword();
+					dbPassword = currUserDetails.getCurrPassword();
 					if (passwordEncoder.matches(existingPassword, dbPassword)) {
 						rowsAffected = authenticationDAO.updateUserDetails(authenticationInfo);
 						if (rowsAffected > 0) {
@@ -60,15 +63,14 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 						} else {
 							throw new ValidationException("Error while updating the password");
 						}
-
 					} else {
 						throw new ValidationException("Current Password doesn't match. Please try again");
 					}
 				} else {
-					throw new ValidationException("Mail Pin doesn't Match. Please try again");
+					throw new ValidationException("Specified User doesn't available in database");
 				}
 			} else {
-				throw new ValidationException("Specified User doesn't available in database");
+				throw new ValidationException("Mail Pin doesn't Match. Please try again");
 			}
 		} catch (ValidationException e) {
 			throw new ValidationException(e.getMessage());

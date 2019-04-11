@@ -23,7 +23,7 @@
 		<div class="row">
 			<div class="col-md-4"></div>
 			<div class="col-md-4">
-				<span class="has-error" id="errMessage"></span>
+				<span class="has-error" id="errMessage">${errMessage}</span>
 				<span class="is-success" id="successMessage"></span>
 			</div>
 			<div class="col-md-4"></div>
@@ -31,8 +31,8 @@
 		<form:form name="changePasswordForm" method="post"
 			action="/onboarding/changepassword" modelAttribute="authInfo">
 			<div class="row">
-				<div class="col-md-4"></div>
-				<div class="col-md-4 login-display">
+				<div class="col-md-3"></div>
+				<div class="col-md-6 login-display">
 					<div class="row">
 						<div class="col-md-12 customized-span-login ">
 							<br>Reset Password
@@ -40,36 +40,36 @@
 					</div>
 					<br>
 					<div class="row form-group">
-						<div class="col-md-4" align="right">
+						<div class="col-md-3" align="right">
 							<form:label path="userName" style="color: #FFFFFF;">Employee Id</form:label>
 						</div>
 						<div class="col-md-6">
 							<form:input class="form-control" name="userName" path="userName" />
 						</div>
-						<div class="col-md-2"></div>
+						<div class="col-md-3"></div>
 					</div>
 					<div class="row form-group">
-						<div class="col-md-4" align="right">
+						<div class="col-md-3" align="right">
 							<form:label path="currPassword" style="color: #FFFFFF;">Old Password</form:label>
 						</div>
 						<div class="col-md-6">
 							<form:password class="form-control" name="currPassword"
 								path="currPassword" />
 						</div>
-						<div class="col-md-2"></div>
+						<div class="col-md-3"></div>
 					</div>
 					<div class="row form-group">
-						<div class="col-md-4" align="right">
+						<div class="col-md-3" align="right">
 							<form:label path="newPassword" style="color: #FFFFFF;">New Password</form:label>
 						</div>
 						<div class="col-md-6">
 							<form:password class="form-control" name="newPassword"
 								path="newPassword" />
 						</div>
-						<div class="col-md-2"></div>
+						<div class="col-md-3"></div>
 					</div>
 					<div class="row form-group">
-						<div class="col-md-4" align="right">
+						<div class="col-md-3" align="right">
 							<form:label path="mailPin" style="color: #FFFFFF;">Mail Pin</form:label>
 						</div>
 						<div class="col-md-6">
@@ -77,7 +77,7 @@
 								path="mailPin" />
 							<form:hidden path = "hiddenPin" value = "" />
 						</div>
-						<div class="col-md-2"><span style="color: #FFFFFF;cursor:pointer;"><strong id="mailPinLink">Generate Pin</strong></span></div>
+						<div class="col-md-3"><span style="color: #FFFFFF;cursor:pointer;"><strong id="mailPinLink">Generate Pin</strong></span></div>
 					</div>
 					<br>
 					<div class="form-group">
@@ -95,7 +95,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-4">
+				<div class="col-md-3">
 					<br> <br>
 				</div>
 			</div>

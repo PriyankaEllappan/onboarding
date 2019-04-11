@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	
 	$('#mailPin').prop('disabled', true);
+	$('#changePasswordFormSubmit').prop('disabled', true);
 	
 	$('#mailPinLink').click(function() {
 		$('#successMessage').text("");
@@ -18,6 +19,7 @@ $(document).ready(function() {
 						$('#successMessage').text("Pin number sent successfully.");
 						$('#hiddenPin').val(resultData.responseObj);
 						$('#mailPin').prop('disabled', false);
+						$('#changePasswordFormSubmit').prop('disabled', false);
 					} else {
 						$('#errMessage').text("Unable to send the Mail Pin. Please try again.");
 					}
