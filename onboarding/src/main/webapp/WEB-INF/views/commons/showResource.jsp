@@ -155,6 +155,23 @@
 							<td>${employee.getRole()}</td>
 						</tr>
 					</c:if>
+					<c:choose>
+						<c:when
+							test="${not empty employee.getIsRateOverride() && employee.getIsRateOverride() == 1}">
+							<tr>
+								<td class="bold-font">RATE</td>
+								<td>${employee.getOverriddenRate()}</td>
+							</tr>
+						</c:when>
+						<c:otherwise>
+							<c:if test="${not empty employee.getRate()}">
+								<tr>
+									<td class="bold-font">RATE</td>
+									<td>${employee.getRate()}</td>
+								</tr>
+							</c:if>
+						</c:otherwise>
+					</c:choose>
 					<c:if test="${not empty employee.getSkillSet()}">
 						<tr>
 							<td class="bold-font">SKILL SET</td>
