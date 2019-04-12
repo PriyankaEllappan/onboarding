@@ -51,7 +51,7 @@ public class RequesterController extends AbstractController {
 		} catch (CustomException e) {
 			modelView = bindViewwithUserInfo("errors/errorPage");
 			modelView.addObject("errMessage", e.getMessage());
-			log.error(e.getMessage());
+			log.error(e);
 		}
 		return modelView;
 	}
@@ -68,7 +68,7 @@ public class RequesterController extends AbstractController {
 		} catch (Exception e) {
 			modelView = bindViewwithUserInfo("errors/errorPage");
 			modelView.addObject("errMessage", e.getMessage());
-			log.error(e.getMessage());
+			log.error(e);
 		}
 		return modelView;
 	}
@@ -93,7 +93,7 @@ public class RequesterController extends AbstractController {
 		} catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
 			ajaxResponse.setStatusMessage(ErrorConstants.ERROR_MSG);
-			log.error(e.getMessage());
+			log.error(e);
 		}
 		return ajaxResponse;
 	}
@@ -122,7 +122,7 @@ public class RequesterController extends AbstractController {
 		} catch (CustomException e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
 			ajaxResponse.setStatusMessage(ErrorConstants.ERROR_MSG);
-			log.error(e.getMessage());
+			log.error(e);
 		}
 		return ajaxResponse;
 	}
@@ -145,7 +145,7 @@ public class RequesterController extends AbstractController {
 		} catch (CustomException e) {
 			modelView = bindViewwithUserInfo("errors/errorPage");
 			modelView.addObject("errMessage", e.getMessage());
-			log.error(e.getMessage());
+			log.error(e);
 		}
 		return modelView;
 	}
@@ -171,7 +171,7 @@ public class RequesterController extends AbstractController {
 		} catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
 			ajaxResponse.setStatusMessage(ErrorConstants.ERROR_MSG);
-			log.error(e.getMessage());
+			log.error(e);
 		}
 		return ajaxResponse;
 	}

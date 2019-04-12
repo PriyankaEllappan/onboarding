@@ -90,7 +90,7 @@ public class ReleaseController extends AbstractController {
 		} catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
 			ajaxResponse.setStatusMessage(ErrorConstants.ERROR_MSG);
-			log.error(e.getMessage());
+			log.error(e);
 		}
 		return ajaxResponse;
 	}
@@ -134,7 +134,7 @@ public class ReleaseController extends AbstractController {
 		} catch (CustomException e) {
 			modelView = new ModelAndView("errors/errorPage");
 			modelView.addObject("errMessage", e.getMessage());
-			log.error(e.getMessage());
+			log.error(e);
 		}
 		return modelView;
 	}
@@ -180,7 +180,7 @@ public class ReleaseController extends AbstractController {
 		}  catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
 			ajaxResponse.setStatusMessage(ErrorConstants.ERROR_MSG);
-			log.error(e.getMessage());
+			log.error(e);
 		}
 		return ajaxResponse;
 	}
@@ -225,7 +225,7 @@ public class ReleaseController extends AbstractController {
 		} catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
 			ajaxResponse.setStatusMessage(ErrorConstants.ERROR_MSG);
-			log.error(e.getMessage());
+			log.error(e);
 		}
 		return ajaxResponse;
 	}
@@ -251,7 +251,7 @@ public class ReleaseController extends AbstractController {
 		} catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
 			ajaxResponse.setStatusMessage(ErrorConstants.ERROR_MSG);
-			log.error(e.getMessage());
+			log.error(e);
 		}
 		return ajaxResponse;
 	}
@@ -277,7 +277,7 @@ public class ReleaseController extends AbstractController {
 		} catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
 			ajaxResponse.setStatusMessage(ErrorConstants.ERROR_MSG);
-			log.error(e.getMessage());
+			log.error(e);
 		}
 		return ajaxResponse;
 	}
@@ -303,7 +303,7 @@ public class ReleaseController extends AbstractController {
 		} catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
 			ajaxResponse.setStatusMessage(ErrorConstants.ERROR_MSG);
-			log.error(e.getMessage());
+			log.error(e);
 		}
 		return ajaxResponse;
 	}
@@ -325,7 +325,7 @@ public class ReleaseController extends AbstractController {
 		} catch (CustomException e) {
 			modelView = new ModelAndView("errors/errorPage");
 			modelView.addObject("errMessage", e.getMessage());
-			log.error(e.getMessage());
+			log.error(e);
 		}
 		return modelView;
 	}

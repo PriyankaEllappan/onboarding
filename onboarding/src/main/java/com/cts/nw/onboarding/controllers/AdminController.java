@@ -46,7 +46,7 @@ public class AdminController extends AbstractController{
 		} catch (Exception e) {
 			modelView = bindViewwithUserInfo("errors/errorPage");
 			modelView.addObject("errMessage", e.getMessage());
-			log.error(e.getMessage());
+			log.error(e);
 		}
 		return modelView;
 	}

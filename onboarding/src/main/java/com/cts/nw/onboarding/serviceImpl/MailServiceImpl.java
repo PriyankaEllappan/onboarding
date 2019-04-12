@@ -62,7 +62,7 @@ public class MailServiceImpl implements MailService {
 			mailDetail.setSubject("New Nationwide ID Creation Request");
 			sendMail.send(mailDetail);
 		} catch(Exception e) {
-			log.error(e.getCause());
+			log.error(e);
 		}
 	}
 
@@ -91,7 +91,7 @@ public class MailServiceImpl implements MailService {
 			mailDetail.setSubject("NationWide Onboarding - In Progress");
 			sendMail.send(mailDetail);
 		} catch(Exception e) {
-			log.error(e.getCause());
+			log.error(e);
 		}
 	}
 
@@ -119,7 +119,7 @@ public class MailServiceImpl implements MailService {
 			mailDetail.setSubject("Welcome Aboard !!");
 			sendMail.send(mailDetail);
 		} catch(Exception e) {
-			log.error(e.getCause());
+			log.error(e);
 		}
 	}
 	
@@ -147,7 +147,7 @@ public class MailServiceImpl implements MailService {
 			mailDetail.setSubject("NationWide Offboarding - Initiated");
 			sendMail.send(mailDetail);
 		} catch(Exception e) {
-			log.error(e.getCause());
+			log.error(e);
 		}
 
 	}
@@ -176,7 +176,7 @@ public class MailServiceImpl implements MailService {
 			mailDetail.setSubject("NationWide Offboarding - Completed");
 			sendMail.send(mailDetail);
 		} catch(Exception e) {
-			log.error(e.getCause());
+			log.error(e);
 		}
 
 	}
@@ -207,7 +207,7 @@ public class MailServiceImpl implements MailService {
 			mailDetail.setSubject("NationWide Onboarding - Rejected");
 			sendMail.send(mailDetail);
 		} catch(Exception e) {
-			log.error(e.getCause());
+			log.error(e);
 		}
 	}
 
@@ -225,7 +225,7 @@ public class MailServiceImpl implements MailService {
 			mailDetail.setSubject("NationWide Onboarding - One Time Password");
 			sendMail.send(mailDetail);
 		} catch(Exception e) {
-			log.error(e.getCause());
+			log.error(e);
 		}
 		
 	}

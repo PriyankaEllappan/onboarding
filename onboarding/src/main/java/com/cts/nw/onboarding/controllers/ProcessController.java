@@ -53,7 +53,7 @@ public class ProcessController extends AbstractController {
 		} catch (CustomException e) {
 			modelView = bindViewwithUserInfo("errors/errorPage");
 			modelView.addObject("errMessage", e.getMessage());
-			log.error(e.getMessage());
+			log.error(e);
 		}
 		return modelView;
 	}
@@ -74,7 +74,7 @@ public class ProcessController extends AbstractController {
 		} catch (CustomException e) {
 			modelView = bindViewwithUserInfo("errors/errorPage");
 			modelView.addObject("errMessage", e.getMessage());
-			log.error(e.getMessage());
+			log.error(e);
 		}
 		return modelView;
 	}
@@ -97,11 +97,11 @@ public class ProcessController extends AbstractController {
 		}  catch (ValidatorException e) {
 			modelView = bindViewwithUserInfo("process/onboardProcessingForm");
 			modelView.addObject("errMessage", e.getMessage());
-			log.error(e.getMessage());
+			log.error(e);
 		} catch (CustomException e) {
 			modelView = new ModelAndView("errors/errorPage");
 			modelView.addObject("errMessage", e.getMessage());
-			log.error(e.getMessage());
+			log.error(e);
 		}
 		return modelView;
 	}
@@ -125,7 +125,7 @@ public class ProcessController extends AbstractController {
 		} catch (CustomException e) {
 			modelView = new ModelAndView("errors/errorPage");
 			modelView.addObject("errMessage", e.getMessage());
-			log.error(e.getMessage());
+			log.error(e);
 		}
 		return modelView;
 	}
@@ -146,7 +146,7 @@ public class ProcessController extends AbstractController {
 		} catch (CustomException e) {
 			modelView = new ModelAndView("errors/errorPage");
 			modelView.addObject("errMessage", e.getMessage());
-			log.error(e.getMessage());
+			log.error(e);
 		}
 		return modelView;
 	}
@@ -168,12 +168,12 @@ public class ProcessController extends AbstractController {
 		}  catch (ValidatorException e) {
 			modelView = bindViewwithUserInfo("process/offboardProcessingForm");
 			modelView.addObject("errMessage", e.getMessage());
-			log.error(e.getMessage());
+			log.error(e);
 		}
 		catch (CustomException e) {
 			modelView = new ModelAndView("errors/errorPage");
 			modelView.addObject("errMessage", e.getMessage());
-			log.error(e.getMessage());
+			log.error(e);
 		}
 		return modelView;
 		
@@ -199,7 +199,7 @@ public class ProcessController extends AbstractController {
 		} catch (CustomException e) {
 			modelView = new ModelAndView("errors/errorPage");
 			modelView.addObject("errMessage", e.getMessage());
-			log.error(e.getMessage());
+			log.error(e);
 		}
 		return modelView;
 	}

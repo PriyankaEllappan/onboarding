@@ -55,7 +55,7 @@ public class RoleController extends AbstractController {
 		} catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
 			ajaxResponse.setStatusMessage(ErrorConstants.ERROR_MSG);
-			log.error(e.getMessage());
+			log.error(e);
 		}
 		return ajaxResponse;
 
@@ -74,7 +74,7 @@ public class RoleController extends AbstractController {
 				log.error(ErrorConstants.EMPTY_LIST);
 			} 
 		} catch (Exception e) {
-			log.error(e.getMessage());
+			log.error(e);
 			return null;
 		}
 		return roleList;

@@ -70,7 +70,7 @@ public class SendMail {
 			transport.close();
 			log.info("Sent Mail Successfully....");
 		} catch (Exception e) {
-			log.error(e.getMessage());
+			log.error(e);
 		}
 	}
 

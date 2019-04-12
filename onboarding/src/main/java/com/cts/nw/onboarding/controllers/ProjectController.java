@@ -53,7 +53,7 @@ public class ProjectController extends AbstractController {
 		}catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
 			ajaxResponse.setStatusMessage(ErrorConstants.ERROR_MSG);
-			log.error(e.getMessage());
+			log.error(e);
 		}
 		return ajaxResponse;
 	}
