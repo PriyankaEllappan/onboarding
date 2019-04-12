@@ -48,7 +48,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		} catch(Exception e){
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 
@@ -69,7 +69,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		} catch(Exception e){
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 
@@ -93,7 +93,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 					employeeProjectHist.getApprovalStatusId(), employeeProjectHist.getReleaseStatusId(),
 					employeeProjectHist.getOnboardRequester(),employeeProjectHist.getPplManager());
 		} catch(Exception e){
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 
@@ -115,7 +115,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		} catch(Exception e){
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 
@@ -136,7 +136,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 					employeeProjectHist.getAttachmentId(), employeeProjectHist.getComments(),
 					employeeProjectHist.getApprovalStatusId(), employeeProjectHist.getId());
 		} catch(Exception e){
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 
@@ -156,7 +156,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		} catch(Exception e){
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 
@@ -166,7 +166,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 			return jdbcTemplate.update(QueryConstants.PROCESS_OFFBOARD_UPDATE, employeeProjectHist.getReleaseStatusId(),
 					Id);
 		} catch(Exception e){
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 
@@ -188,7 +188,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}catch(Exception e){
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 
@@ -202,7 +202,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}catch(Exception e){
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 
@@ -223,7 +223,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}catch(Exception e){
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 
@@ -243,7 +243,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		} catch(Exception e){
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 
@@ -254,7 +254,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 					employeeProjectHist.getReleaseDate(), employeeProjectHist.getReasonForOffboarding(),
 					employeeProjectHist.getOffboardRequester(), employeeProjectHist.getOffboardProcessor(), Id);
 		} catch(Exception e){
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 
@@ -277,7 +277,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}catch(Exception e){
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 
@@ -295,7 +295,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		} catch(Exception e){
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 
@@ -309,7 +309,7 @@ public class EmployeeProjHistDAOImpl implements EmployeeProjHistDAO {
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		} catch(Exception e){
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 	

@@ -40,7 +40,7 @@ public class MailAttachmentDAOImpl implements MailAttachmentDAO {
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		} catch(Exception e){
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 
 	}
@@ -57,7 +57,7 @@ public class MailAttachmentDAOImpl implements MailAttachmentDAO {
 			cstmt.execute();
 			returnValue = cstmt.getInt(1);
 		} catch(Exception e){
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 		return returnValue;
 	}
@@ -67,7 +67,7 @@ public class MailAttachmentDAOImpl implements MailAttachmentDAO {
 		try {
 			return jdbcTemplate.update(QueryConstants.RELEASE_ATTACHMENT_UPDATE, releaseAttachment.getOffboardFileName(),releaseAttachment.getOffboardData(),releaseAttachment.getId());
 		} catch(Exception e){
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 

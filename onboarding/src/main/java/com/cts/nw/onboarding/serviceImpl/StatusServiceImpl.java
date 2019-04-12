@@ -33,7 +33,7 @@ public class StatusServiceImpl implements StatusService {
 		try {
 			return releaseStatusDAO.getAllReleaseStatus();
 		} catch (Exception e) {
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 
@@ -42,7 +42,7 @@ public class StatusServiceImpl implements StatusService {
 		try {
 			return approvalStatusDAO.getAllApprovalStatus();
 		} catch (Exception e) {
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 

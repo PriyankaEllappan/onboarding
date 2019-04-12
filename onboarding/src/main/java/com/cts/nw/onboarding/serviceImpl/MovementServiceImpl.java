@@ -28,7 +28,7 @@ public class MovementServiceImpl implements MovementService{
 		try {
 			return movementDAO.getMovementDetails();
 		} catch(Exception e){
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 }

@@ -38,7 +38,7 @@ public class ResoureServiceImpl implements ResourceService{
 		try{
 			return lDAPService.getEmployee(empId);
 		}catch(Exception e){
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 
@@ -47,7 +47,7 @@ public class ResoureServiceImpl implements ResourceService{
 		try{
 			return employeeMasterDAO.getAllEmployeeMasterDetails();
 		}catch(Exception e){
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 
@@ -56,7 +56,7 @@ public class ResoureServiceImpl implements ResourceService{
 		try {
 			return employeeProjHistDAO.getEmployeeProjectInfobyEmpId(empId);
 		} catch (Exception e) {
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 

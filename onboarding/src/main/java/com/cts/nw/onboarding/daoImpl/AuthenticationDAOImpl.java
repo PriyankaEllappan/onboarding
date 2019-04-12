@@ -40,7 +40,7 @@ public class AuthenticationDAOImpl implements AuthenticationDAO {
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		} catch(Exception e){
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 	
@@ -49,7 +49,7 @@ public class AuthenticationDAOImpl implements AuthenticationDAO {
 		try {
 			return jdbcTemplate.update(QueryConstants.USERS_UPDATE,passwordEncoder.encode(authenticationInfo.getNewPassword()),authenticationInfo.getUserName());
 		} catch(Exception e){
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 	

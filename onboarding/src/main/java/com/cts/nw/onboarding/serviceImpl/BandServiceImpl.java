@@ -28,7 +28,7 @@ public class BandServiceImpl implements BandService{
 		try {
 			return bandsDAO.getAllBandDetails();
 		} catch(Exception e){
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 }

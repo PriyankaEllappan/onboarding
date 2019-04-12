@@ -32,7 +32,7 @@ public class RoleServiceImpl implements RoleService{
 		try {
 			return roleMappingDAO.getAllRoleMappingDetails();
 		} catch (Exception e) {
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 
@@ -44,7 +44,7 @@ public class RoleServiceImpl implements RoleService{
 			roleCategory =  roleList.stream().collect(Collectors.groupingBy(Roles::getParentRole));
 			return roleCategory;
 		} catch (Exception e) {
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 

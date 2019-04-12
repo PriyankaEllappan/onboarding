@@ -53,7 +53,7 @@ public class RequesterServiceImpl implements RequesterService {
 		try {
 			return employeeMasterDAO.getEmployeeMasterDetailsByID(employeeid);
 		} catch (Exception e) {
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 
@@ -74,7 +74,7 @@ public class RequesterServiceImpl implements RequesterService {
 		} catch(ValidatorException e) {
 			throw new ValidatorException(e.getMessage());
 		} catch (Exception e) {
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 
@@ -85,7 +85,7 @@ public class RequesterServiceImpl implements RequesterService {
 		try {
 			return employeeProjHistDAO.getSpecificEmployeeProjectHist(empProjHistId);
 		}catch (Exception e) {
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 
@@ -94,7 +94,7 @@ public class RequesterServiceImpl implements RequesterService {
 		try {
 			return employeeProjHistDAO.checkActiveAssignments(employeeid);
 		} catch (Exception e) {
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 	
@@ -126,7 +126,7 @@ public class RequesterServiceImpl implements RequesterService {
 		} catch (ValidatorException e) {
 			throw new ValidatorException(e.getMessage());
 		} catch (CustomException e) {
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 		return null;
 	}
@@ -138,7 +138,7 @@ public class RequesterServiceImpl implements RequesterService {
 		try {
 			return employeeProjHistDAO.getEmployeesPerRequester(requesterId);
 		} catch (Exception e) {
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 	

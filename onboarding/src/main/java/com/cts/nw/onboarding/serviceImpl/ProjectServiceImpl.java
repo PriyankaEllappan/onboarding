@@ -28,7 +28,7 @@ public class ProjectServiceImpl implements ProjectService {
 		try {
 			return projectMappingDAO.getAllActiveProjectDetails();	
 		} catch (Exception e) {
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 

@@ -48,7 +48,7 @@ public class ReleaseServiceImpl implements ReleaseService {
 		try {
 			return employeeProjHistDAO.getEmployeestobeReleased();	
 		} catch (Exception e) {
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 
@@ -57,7 +57,7 @@ public class ReleaseServiceImpl implements ReleaseService {
 		try {
 			return employeeProjHistDAO.getEmployeestobeReleasedbyId(empID);
 		} catch (Exception e) {
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 	
@@ -66,7 +66,7 @@ public class ReleaseServiceImpl implements ReleaseService {
 		try {
 			return employeeProjHistDAO.getEmployeestobeReleasedbyTeam(teamId);
 		} catch (Exception e) {
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 
@@ -75,7 +75,7 @@ public class ReleaseServiceImpl implements ReleaseService {
 		try {
 			return employeeProjHistDAO.getEmployeestobeReleasedbyProj(projectId);
 		} catch (Exception e) {
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 
@@ -84,7 +84,7 @@ public class ReleaseServiceImpl implements ReleaseService {
 		try {
 			return employeeProjHistDAO.getSpecificEmployeeProjectHist(empProjHistId);
 		} catch (Exception e) {
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 
@@ -108,7 +108,7 @@ public class ReleaseServiceImpl implements ReleaseService {
 		} catch (ValidatorException e) {
 			throw new ValidatorException(e.getMessage());
 		} catch (Exception e) {
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 		return rowsAffected;
 	}
@@ -118,7 +118,7 @@ public class ReleaseServiceImpl implements ReleaseService {
 		try {
 			return releaseSummaryDAO.getAllReleaseSummary();	
 		} catch (Exception e) {
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 
@@ -136,7 +136,7 @@ public class ReleaseServiceImpl implements ReleaseService {
 		} catch (ValidatorException e) {
 			throw new ValidatorException(e.getMessage());
 		} catch (Exception e) {
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 
@@ -155,7 +155,7 @@ public class ReleaseServiceImpl implements ReleaseService {
 		} catch (ValidatorException e) {
 			throw new ValidatorException(e.getMessage());
 		} catch (Exception e) {
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 

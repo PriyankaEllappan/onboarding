@@ -28,7 +28,7 @@ public class CountryServiceImpl  implements CountryService {
 		try {
 			return countryMappingDAO.getAllCountryMapping();
 		}catch(Exception e){
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 	

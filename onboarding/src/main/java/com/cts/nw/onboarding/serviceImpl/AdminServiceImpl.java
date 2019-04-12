@@ -26,7 +26,7 @@ public class AdminServiceImpl implements AdminService {
            try {
                   adminDAO.registerUser(user);
            } catch (CustomException e) {
-                  throw new CustomException(e.getMessage());
+                  throw new CustomException(e);
            }
     }
 

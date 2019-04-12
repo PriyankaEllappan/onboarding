@@ -28,7 +28,7 @@ public class TeamServiceImpl implements TeamService{
 		try {
 			return teamsDAO.getAllActiveTeams();
 		} catch (Exception e) {
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 

@@ -38,7 +38,7 @@ public class RoleMappingDAOImpl implements RoleMappingDAO {
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		} catch(Exception e){
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 
@@ -50,7 +50,7 @@ public class RoleMappingDAOImpl implements RoleMappingDAO {
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		} catch(Exception e){
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 
 	}

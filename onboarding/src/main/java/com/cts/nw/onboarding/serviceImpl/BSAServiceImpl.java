@@ -29,7 +29,7 @@ public class BSAServiceImpl implements BSAService{
 		try {
 			return bsaDao.getActiveBsaDetails();
 		} catch(Exception e){
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 

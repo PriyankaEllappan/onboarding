@@ -50,7 +50,7 @@ public class ProcessorServiceImpl implements ProcessorService {
 		try {
 			return employeeProjHistDAO.getRecordsPerProcessortoOnboard(processorid);
 		} catch(Exception e){
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 	
@@ -84,7 +84,7 @@ public class ProcessorServiceImpl implements ProcessorService {
 		} catch (ValidatorException e) {
 			throw new ValidatorException(e.getMessage());
 		} catch (Exception e) {
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 		return employeeProjHist;
 	}
@@ -100,7 +100,7 @@ public class ProcessorServiceImpl implements ProcessorService {
 				releaseService.releaseAnEmployee(activeAssignment);
 			}
 		} catch (Exception e) {
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 
@@ -111,7 +111,7 @@ public class ProcessorServiceImpl implements ProcessorService {
 		try {
 			return employeeProjHistDAO.getRecordsPerProcessortoOffboard(processorid);	
 		} catch (Exception e) {
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 	
@@ -139,7 +139,7 @@ public class ProcessorServiceImpl implements ProcessorService {
 		} catch (ValidatorException e) {
 			throw new ValidatorException(e.getMessage());
 		} catch (Exception e) {
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 	
@@ -149,7 +149,7 @@ public class ProcessorServiceImpl implements ProcessorService {
 		try {
 			return employeeProjHistDAO.getSpecificEmployeeProjectHist(empProjHistId);	
 		} catch (Exception e) {
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 	
@@ -172,7 +172,7 @@ public class ProcessorServiceImpl implements ProcessorService {
 			}
 			return fileUploadObj;	
 		} catch (Exception e) {
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 	
@@ -194,7 +194,7 @@ public class ProcessorServiceImpl implements ProcessorService {
 			}
 			return fileUploadObj;	
 		} catch (Exception e) {
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 }

@@ -35,7 +35,7 @@ public class AdminDAOImpl implements AdminDAO {
 			cstmt.setString(2, user.getRole());
 			cstmt.execute();
 		} catch (Exception e) {
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 

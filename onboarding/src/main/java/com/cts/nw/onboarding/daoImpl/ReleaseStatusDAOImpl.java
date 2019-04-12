@@ -39,7 +39,7 @@ public class ReleaseStatusDAOImpl implements ReleaseStatusDAO {
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		} catch(Exception e){
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 	}
 

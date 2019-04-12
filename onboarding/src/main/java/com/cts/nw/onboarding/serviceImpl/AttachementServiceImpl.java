@@ -26,7 +26,7 @@ public class AttachementServiceImpl implements AttachmentService {
 		try {
 			return mailAttachmentDAO.downloadAttachment(id);
 		} catch(Exception e){
-			throw new CustomException(e.getMessage());
+			throw new CustomException(e);
 		}
 		
 	}
