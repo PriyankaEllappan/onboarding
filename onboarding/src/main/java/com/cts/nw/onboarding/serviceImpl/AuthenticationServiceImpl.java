@@ -12,9 +12,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.cts.nw.onboarding.bean.AuthenticationInfo;
+import com.cts.nw.onboarding.bean.EmployeeDetails;
 import com.cts.nw.onboarding.dao.AuthenticationDAO;
 import com.cts.nw.onboarding.exception.CustomException;
 import com.cts.nw.onboarding.service.AuthenticationService;
+import com.cts.nw.onboarding.service.LDAPService;
 import com.cts.nw.onboarding.service.MailService;
 
 /**
@@ -29,6 +31,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 	
 	@Autowired
 	MailService mailService;
+	
+	@Autowired
+	LDAPService lDAPService;
 	
 	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	
@@ -93,6 +98,11 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 		} catch (Exception e) {
 			throw new CustomException(e);
 		}
+	}
+
+	@Override
+	public EmployeeDetails getEmployee(String empId) {
+		return lDAPService.getEmployee(empId);
 	}
 	
 }

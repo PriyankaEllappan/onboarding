@@ -3,6 +3,7 @@ package com.cts.nw.onboarding.controllers;
 
 import javax.xml.bind.ValidationException;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -23,7 +24,6 @@ import com.cts.nw.onboarding.constants.AppConstants;
 import com.cts.nw.onboarding.constants.ErrorConstants;
 import com.cts.nw.onboarding.exception.CustomException;
 import com.cts.nw.onboarding.service.AuthenticationService;
-import com.cts.nw.onboarding.service.ResourceService;
 
 /**
  * @author 656579
@@ -33,11 +33,10 @@ import com.cts.nw.onboarding.service.ResourceService;
 @RequestMapping("/")
 public class HomeController extends AbstractController {
 
-	@Autowired
-	AuthenticationService authenticationService;
+	Logger log = Logger.getLogger(HomeController.class) ;
 	
 	@Autowired
-	ResourceService resourceService;
+	AuthenticationService authenticationService;
 	
 	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	
@@ -87,7 +86,7 @@ public class HomeController extends AbstractController {
 		try {
 			authenticationService.updateUserDetails(authInfo);
 			modelView = new ModelAndView("commons/login");
-			modelView.addObject("successMessage","Password Updated Successfully. Please login with new credentials.");
+			modelView.addObject("successMessage",AppConstants.PASSWORD_UPDATED);
 			modelView.addObject("message", "");
 		} catch (ValidationException e) {
 			modelView = new ModelAndView("commons/changePassword");
@@ -103,19 +102,19 @@ public class HomeController extends AbstractController {
 	public @ResponseBody AjaxResponse getEmployeeFromLDAP(@RequestParam("empId") String empId) {
 		AjaxResponse ajaxResponse = new AjaxResponse();
 		try {
-			EmployeeDetails employee = resourceService.getEmployee(empId);
+			EmployeeDetails employee = authenticationService.getEmployee(empId);
 			if (employee != null) {
 				ajaxResponse.setStatus(AppConstants.AJAXSUCCESS);
 				ajaxResponse.setResponseObj(employee);
 
 			} else {
 				ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
-				//log.error(empId + ErrorConstants.LDAPERROR);
+				log.error(empId + ErrorConstants.LDAPERROR);
 			}
 		} catch (Exception e) {
 			ajaxResponse.setStatus(AppConstants.AJAXFAILURE);
 			ajaxResponse.setStatusMessage(ErrorConstants.ERROR_MSG);
-			//log.error(e.getMessage());
+			log.error(e.getMessage());
 		}
 		return ajaxResponse;
 	}

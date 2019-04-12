@@ -14,5 +14,6 @@ public class AppConstants {
 	 public static final String AJAXNONAVAILABLE = "AJAXNONAVAILABLE";
 	 
 	 public static final String DETAILS_SAVED = "Details added successfully";
+	 public static final String PASSWORD_UPDATED = "Password Updated Successfully. Please login with new credentials";
 	
 }

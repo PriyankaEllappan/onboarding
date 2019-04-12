@@ -6,6 +6,7 @@ package com.cts.nw.onboarding.service;
 import javax.xml.bind.ValidationException;
 
 import com.cts.nw.onboarding.bean.AuthenticationInfo;
+import com.cts.nw.onboarding.bean.EmployeeDetails;
 import com.cts.nw.onboarding.exception.CustomException;
 
 /**
@@ -17,5 +18,6 @@ public interface AuthenticationService {
 	AuthenticationInfo getUserDetailsByID(String id) throws CustomException;
 	Integer updateUserDetails(AuthenticationInfo authenticationInfo) throws CustomException, ValidationException;
 	String generateMailPin(String empid) throws CustomException;
+	EmployeeDetails getEmployee(String empId);
 	
 }
