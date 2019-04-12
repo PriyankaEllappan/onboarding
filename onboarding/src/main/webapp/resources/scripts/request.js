@@ -67,7 +67,6 @@ $(document).ready(function() {
 					data : JSON.stringify(jsonStr),
 					contentType : 'application/json; charset=utf-8',
 					success : function(resultData) {
-						console.log(resultData);
 						if (resultData.status == "SUCCESS") {
 							$("#resourceNonAvailable").hide();
 							$('#statusSucessMessage').text(resultData.statusMessage);
@@ -97,16 +96,13 @@ $(document).ready(function() {
 })
 
 function checkForanEmployee(empID) {
-       console.log("checkForanEmployee");
        $('#errMessage').text("");
        $.ajax({
               type : 'GET',
               url : "/onboarding/request/check/" + empID,
               dataType : "json",
               success : function(resultData) {
-            	  console.log(resultData);
             	  	if (resultData.status == "SUCCESS") {
-                    	 
                     	 $('#availEmpID').text(resultData.responseObj.employeeId);
                          $('#availEmpName').text(resultData.responseObj.name);
                          $('#availEmpDOB').text(resultData.responseObj.dateOfBirth);
@@ -129,7 +125,6 @@ function checkForanActiveAssignment(empID) {
 				url : "/onboarding/request/checkactiveassignments/" + empID,
 				dataType : "json",
 				success : function(resultData) {
-					console.log(resultData);
 					if (resultData.status == "SUCCESS") {
 						$('#availableProjects')
 								.append(
@@ -180,7 +175,6 @@ function loadEmployeeDetails(empId){
 		url : "/onboarding/resource/getemployee?empId=" + empId,
 		dataType : "json",
 		success : function(resultData) {
-			console.log(resultData);
 			if (resultData.status == "SUCCESS") {
 				$('#newEmpID').val(empId);
 				$('#newEmpName').val(resultData.responseObj.name);

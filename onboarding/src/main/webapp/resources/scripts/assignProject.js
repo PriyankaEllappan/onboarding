@@ -68,17 +68,13 @@ function loadProjectHierarchy(){
 		dataType : "json",
 		success : function(resultData) {
 			projectHierarchy = resultData; //setting the value for the global JS object "bandDetails"
-			console.log(resultData);
-			console.log(resultData.responseList);
 			if (projectHierarchy.status == "SUCCESS") {
 				$.each(projectHierarchy.responseList, function(key, value) {
 					$('#projectName').append(
 							$("<option></option>").attr("value", value.projectName)
 									.text(value.projectName));
 				});
-			} else {
-				console.log("projectHierarchy failure Call");
-			}
+			} 
 		}
 	});
 }
@@ -106,17 +102,13 @@ function loadCountryHierarchy(){
 		dataType : "json",
 		success : function(resultData) {
 			countryHierarchy = resultData; //setting the value for the global JS object "bandDetails"
-			console.log(resultData);
-			console.log(resultData.responseList);
 			if (countryHierarchy.status == "SUCCESS") {
 				$.each(countryHierarchy.responseList, function(key, value) {
 					$('#country').append(
 							$("<option></option>").attr("value", value.countryName)
 									.text(value.countryName));
 				});
-			} else {
-				console.log("CountryHierarchy failure Call");
-			}
+			} 
 		}
 	});
 }
@@ -191,16 +183,12 @@ function loadApprovalStatus(){
 		url : "/onboarding/status/getallapprovalstatus",
 		dataType : "json",
 		success : function(resultData) {
-			console.log(resultData);
-			console.log(resultData.responseList);
 			if (resultData.status == "SUCCESS") {
 				$.each(resultData.responseList, function(key,value) {   
 					if (value.status == "New") {
 						$('#approvalStatus').val(value.id);
 					}
 				});
-			} else {
-				console.log("getallapprovalstatus failure Call");
 			}
 		}
 	});
@@ -212,17 +200,13 @@ function loadReleaseStatus(){
 		url : "/onboarding/status/getallreleasestatus" ,
 		dataType : "json",
 		success : function(resultData) {
-			console.log(resultData);
-			console.log(resultData.responseList);
 			if (resultData.status == "SUCCESS") {
 				$.each(resultData.responseList, function(key,value) {  
 					if (value.status == "Yet to Release") {
 						$('#releaseStatusId').val(value.id);
 					}
 				});
-			} else {
-						console.log("getallreleasestatus failure Call");
-					}
+			} 
 
 		}
 	});
@@ -234,8 +218,6 @@ function loadMovementDetails(){
 		url : "/onboarding/movement/getmovements" ,
 		dataType : "json",
 		success : function(resultData) {
-			console.log(resultData);
-			console.log(resultData.responseList);
 			if (resultData.status == "SUCCESS") {
 				$.each(resultData.responseList, function(key,value) {   
 				     $('#movementID')
@@ -243,11 +225,7 @@ function loadMovementDetails(){
 				                    .attr("value",value.id)
 				                    .text(value.movement)); 
 				});
-			} else {
-				console.log("getmovements failure Call");
-			}	
-				
-			
+			} 
 		}
 	});
 }
@@ -259,16 +237,12 @@ function loadBsaDetails(){
 		dataType : "json",
 		success : function(resultData) {
 			bsaList = resultData; //setting the value for the global JS object "bandDetails"
-			console.log(resultData);
-			console.log(resultData.responseList);
 			if (bsaList.status == "SUCCESS") {
 				$.each(bsaList.responseList, function(key, value) {
 					$('#bsaInfo').append(
 							$("<option></option>").attr("value", value.bsaId)
 									.text(value.bsaName));
 				});
-			} else {
-				console.log("bsaList failure Call");
 			}
 		}
 	});

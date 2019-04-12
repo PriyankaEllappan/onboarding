@@ -94,7 +94,6 @@ function submitTeam() {
 		error : function() {
 			$('#offboardByTeam').hide();
 			$('#errMessage').text("Unable to process the request");
-			console.log("Error Empty");
 		}
 	})
 }
@@ -106,8 +105,6 @@ function loadTeamDetails() {
 		dataType : "json",
 		success : function(resultData) {
 			teamHierarchy = resultData;
-			console.log(resultData);
-			console.log(resultData.responseList);
 			if(teamHierarchy.status == "SUCCESS")
 				{
 				$.each(teamHierarchy.responseList, function(key, value) {
@@ -116,10 +113,7 @@ function loadTeamDetails() {
 							$("<option></option>").attr("value", value.id).text(
 									value.teamName));
 				});
-				} else {
-					console.log("teamHierarchy failure Call");
 				}
-			
 		}
 	});
 }
@@ -131,23 +125,18 @@ function loadProjectHierarchy() {
 		dataType : "json",
 		success : function(resultData) {
 			projectHierarchy = resultData; //setting the value for the global JS object "bandDetails"
-			console.log(resultData);
-			console.log(resultData.responseList);
 			if (projectHierarchy.status == "SUCCESS") {
 				$.each(projectHierarchy.responseList, function(key, value) {
 					$('#projectName').append(
 							$("<option></option>").attr("value", value.projectId)
 									.text(value.projectName));
 				});
-			} else {
-				console.log("projectHierarchy failure Call");
 			}
 		}
 	});
 }
 
 function loadTeamTable() {
-	console.log("Load Team Table");
 	var teamId = $('#teamName').val()
 	$
 			.ajax({
@@ -155,8 +144,6 @@ function loadTeamTable() {
 				url : "/onboarding/release/getresourcesbyteam/" + teamId,
 				dataType : "json",
 				success : function(resultData) {
-					console.log(resultData);
-					console.log(resultData.responseList);
 					if (resultData.status == "SUCCESS") {
 						$("#releaseTeamDropDown").show();
 						$('#releaseTeamTable').append("<thead><tr><th>Employee Id</th><th>Employee Name</th><th>Project Id</th><th>Project Name</th><th>Team Name</th></tr></thead>");
@@ -172,7 +159,6 @@ function loadTeamTable() {
 					}
 					else
 						{
-						console.log("Empty Response");
 						$("#statusMessage").text(
 								"Release for the resources in this team has already been initiated or no resources available");
 						}
@@ -181,15 +167,12 @@ function loadTeamTable() {
 }
 
 function loadProjTable() {
-	console.log("Load Project Table");
 	var projId = $('#projectName').val()
 	$.ajax({
 		type : 'GET',
 		url : "/onboarding/release/getresourcesbyproject/" + projId,
 		dataType : "json",
 		success : function(resultData) {
-			console.log(resultData);
-			console.log(resultData.responseList);
 			if (resultData.status == "SUCCESS") {
 				$("#releaseProjDropDown").show();
                 $('#releaseProjTable').append("<thead><tr><th>Employee Id</th><th>Employee Name</th><th>Project Id</th><th>Project Name</th><th>Team Name</th></tr></thead>");
@@ -205,7 +188,6 @@ function loadProjTable() {
 			}
 			else
 				{		
-				console.log("Empty Response");
 				$("#statusMessage").text(
 						"Release for the resources in this project has already been initiated or no resources available");
 			} 
@@ -219,8 +201,6 @@ function loadReleaseStatus() {
 		url : "/onboarding/status/getallreleasestatus",
 		dataType : "json",
 		success : function(resultData) {
-			console.log(resultData);
-			console.log(resultData.responseList);
 			if (resultData.status == "SUCCESS") {
 				$.each(resultData.responseList, function(key, value) {
 					if (value.id == 3) {
@@ -236,9 +216,7 @@ function loadReleaseStatus() {
 				$('select[name="releaseStatus"]').find(
 						'option[value=' + $('#releaseStatusId').val() + ']').attr(
 						"selected", true);
-			} else {
-						console.log("getallreleasestatus failure Call");
-					}
+			} 
 		}
 	});
 }
@@ -249,8 +227,6 @@ function loadReleaseReason() {
 		url : "/onboarding/release/getreleasesummary",
 		dataType : "json",
 		success : function(resultData) {
-			console.log(resultData);
-			console.log(resultData.responseList);
 			if(resultData.status == "SUCCESS")
 				{
 			releaseReason = resultData;
@@ -260,9 +236,7 @@ function loadReleaseReason() {
 		                    .attr("value",value.id)
 		                    .text(value.summary)); 
 			});
-		} else {
-			console.log("releaseSummary failure Call");
-		}
+		} 
 		}
 	});
 }

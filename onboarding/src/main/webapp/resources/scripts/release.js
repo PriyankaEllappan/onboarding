@@ -37,8 +37,6 @@ function loadApprovalStatus(){
 		url : "/onboarding/status/getallapprovalstatus",
 		dataType : "json",
 		success : function(resultData) {
-			console.log(resultData);
-			console.log(resultData.responseList);
 			if (resultData.status == "SUCCESS") {
 				$.each(resultData.responseList, function(key,value) {   
 					$('#approvalStatus')
@@ -46,9 +44,7 @@ function loadApprovalStatus(){
 			                    .attr("value",value.id)
 			                    .text(value.status)); 
 				});
-			} else {
-				console.log("getallapprovalstatus failure Call");
-			}
+			} 
 
 		}
 	});
@@ -60,18 +56,13 @@ function loadBands(){
 		url : "/onboarding/band/getbands" ,
 		dataType : "json",
 		success : function(resultData) {
-			console.log(resultData);
-			console.log(resultData.responseList);
 			if (resultData.status == "SUCCESS") {
 				$.each(resultData.responseList, function(key,value) {   
 					if($("#bandId").val() == value.id ){
 						$('#band').val(value.bandName);
 					}
 				});
-			} else {
-				console.log("bands failure Call");
-			}
-
+			} 
 		}
 	});
 }
@@ -82,16 +73,12 @@ function loadMovementDetails(){
 		url : "/onboarding/movement/getmovements" ,
 		dataType : "json",
 		success : function(resultData) {
-			console.log(resultData);
-			console.log(resultData.responseList);
 			if (resultData.status == "SUCCESS") {
 				$.each(resultData.responseList, function(key,value) {  
 					if($("#movementId").val() == value.id ){
 						 $('#movement').val(value.movement)
 					}
 				});
-			} else {
-				console.log("getmovements failure Call");
 			}
 		}
 	});
@@ -104,8 +91,6 @@ function loadReleaseStatus() {
 		url : "/onboarding/status/getallreleasestatus",
 		dataType : "json",
 		success : function(resultData) {
-			console.log(resultData);
-			console.log(resultData.responseList);
 			if (resultData.status == "SUCCESS") {
 				releaseStat = resultData;
 				$.each(resultData.responseList, function(key, value) {
@@ -126,10 +111,7 @@ function loadReleaseStatus() {
 					}
 
 				});
-			} else {
-				console.log("Get all releasestatus failure Call");
 			}
-
 			$('select[name="releaseStatus"]').find(
 					'option[value=' + $('#releaseStatusId').val() + ']').attr(
 					"selected", true);
@@ -143,8 +125,6 @@ function loadReleaseReason(){
 		url : "/onboarding/release/getreleasesummary",
 		dataType : "json",
 		success : function(resultData) {
-			console.log(resultData);
-			console.log(resultData.responseList);
 			if(resultData.status == "SUCCESS")
 				{
 			releaseReason = resultData;
@@ -154,9 +134,7 @@ function loadReleaseReason(){
 		                    .attr("value",value.id)
 		                    .text(value.summary)); 
 			});
-		} else {
-			console.log("releaseSummary failure Call");
-		}
+		} 
 			$('select[name="releaseSummary"]').find('option[value='+ $('#reasonForOffboarding').val() +']').attr("selected",true);
 		}
 	});

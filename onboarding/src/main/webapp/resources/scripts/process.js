@@ -49,8 +49,6 @@ function loadApprovalStatus(){
 		dataType : "json",
 		success : function(resultData) {
 			approvalStat = resultData; //setting the value for the global JS object "approvalStat"
-			console.log(resultData);
-			console.log(resultData.responseList);
 			if (approvalStat.status == "SUCCESS") {
 				$.each(approvalStat.responseList, function(key,value) {  
 					if(value.id == 1 || value.id == 4){
@@ -72,9 +70,7 @@ function loadApprovalStatus(){
 				                    .text(value.status));
 					}
 				});
-			} else {
-				console.log("getallapprovalstatus failure Call");
-			}
+			} 
 			$('select[name="approvalStatus"]').find('option[value='+ $('#approvalStatusId').val() +']').attr("selected",true);
 		}
 	});
@@ -89,17 +85,13 @@ function loadReleaseStatus(){
 			//releaseStat = JSON.parse(resultData);
 
 			releaseStat = resultData; //setting the value for the global JS object "releaseStat"
-			console.log(resultData);
-			console.log(resultData.responseList);
 			if (releaseStat.status == "SUCCESS") {
 				$.each(releaseStat.responseList, function(key,value) {  
 					if (value.status == "Yet to Release") {
 						$('#releaseStatus').val(value.id);
 					}
 				});
-			} else {
-				console.log("getallreleasestatus failure Call");
-			}
+			} 
 		}
 	});
 }
@@ -111,16 +103,12 @@ function loadBands(){
 		dataType : "json",
 		success : function(resultData) {
 			bandDetails = resultData; //setting the value for the global JS object "bandDetails"
-			console.log(resultData);
-			console.log(resultData.responseList);
 			if (bandDetails.status == "SUCCESS") {
 				$.each(bandDetails.responseList, function(key, value) {
 					$('#band').append(
 							$("<option></option>").attr("value", value.id)
 									.text(value.bandName));
 				});
-			} else {
-				console.log("bands failure Call");
 			}
             $('select[name="band"]').find('option[value='+ $('#bandId').val() +']').attr("selected",true);
 		}
@@ -133,17 +121,13 @@ function loadMovementDetails(){
 		url : "/onboarding/movement/getmovements" ,
 		dataType : "json",
 		success : function(resultData) {
-			console.log(resultData);
-			console.log(resultData.responseList);
 			if (resultData.status == "SUCCESS") {
 				$.each(resultData.responseList, function(key,value) {  
 					if($("#movementId").val() == value.id ){
 						 $('#movement').val(value.movement);
 					}
 				});
-			} else {
-				console.log("getmovements failure Call");
-			}
+			} 
 		}
 	});
 }
