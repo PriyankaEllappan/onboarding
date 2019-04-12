@@ -96,6 +96,21 @@
 							<td>${employee.getProjectId()}</td>
 						</tr>
 					</c:if>
+					<c:choose>
+						<c:when
+							test="${not empty employee.getIsMCAProject() && employee.getIsMCAProject() == 1}">
+							<tr>
+								<td class="bold-font">IS MCA</td>
+								<td>YES</td>
+							</tr>
+						</c:when>
+						<c:otherwise>
+							<tr>
+								<td class="bold-font">IS MCA</td>
+								<td>NO</td>
+							</tr>
+						</c:otherwise>
+					</c:choose>
 					<c:if test="${not empty employee.getRequesterName()}">
 						<tr>
 							<td class="bold-font">REQUESTER</td>
@@ -132,6 +147,12 @@
 							<td class="bold-font">NATIONWIDE ID CREATED DATE</td>
 							<td><fmt:formatDate type="date"
 									value="${employee.getNationwideIdCreatedDate()}" /></td>
+						</tr>
+					</c:if>
+					<c:if test="${not empty employee.getRole()}">
+						<tr>
+							<td class="bold-font">ROLE</td>
+							<td>${employee.getRole()}</td>
 						</tr>
 					</c:if>
 					<c:if test="${not empty employee.getSkillSet()}">
