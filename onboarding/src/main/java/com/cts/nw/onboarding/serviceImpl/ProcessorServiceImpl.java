@@ -123,17 +123,20 @@ public class ProcessorServiceImpl implements ProcessorService {
 		try {
 			if (onboardingRequestValidator.validateReleaseForm(employeeProjHist)) {
 				MailAttachment releaseAttachment = getoffBoardFileUploadObject(employeeProjHist.getOffboardAttachment());
-				releaseAttachment.setId(employeeProjHist.getAttachmentId());
-				attachmentRowsAffected = mailAttachmentDAO.uploadReleaseMail(releaseAttachment);
-				if(attachmentRowsAffected > 0){
-					rowsAffected = employeeProjHistDAO.processOffboardEmployee(employeeProjHist, employeeProjHist.getId());
-					if (rowsAffected > 0) {
-						if (employeeProjHist.getReleaseStatusId() == 3) {
-							mailService.offBoardingCompleted(employeeProjHist);
+				
+				if(employeeProjHist.getReleaseStatusId() == 3) {
+					releaseAttachment.setId(employeeProjHist.getAttachmentId());
+					attachmentRowsAffected = mailAttachmentDAO.uploadReleaseMail(releaseAttachment);
+					if(attachmentRowsAffected > 0){
+						rowsAffected = employeeProjHistDAO.processOffboardEmployee(employeeProjHist, employeeProjHist.getId());
+						if (rowsAffected > 0) {
+							if (employeeProjHist.getReleaseStatusId() == 3) {
+								mailService.offBoardingCompleted(employeeProjHist);
+							}
+							return employeeProjHist;
 						}
-						return employeeProjHist;
 					}
-				}
+				} 
 			}
 			return null;
 		} catch (ValidatorException e) {

@@ -184,6 +184,13 @@ function validateForm() {
         return false;
     }
     
+    if($('#releaseinit').val() == 2 && $('#releaseStatus').val() != 3){
+    	$('#errMessage').text("Please change the Release Status to Released");
+        return false;
+    }
+    var initVal = $('#releaseinit').val();
+    
+    
     return true;
 }
 

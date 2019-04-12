@@ -45,7 +45,7 @@ public class ValidationConstants {
 	
 	public static final String NWID_ERR = "NationwideId can only contains alphanumeric";
 	
-	public static final String COMMENTS_ERR = "Comments can contain alphanemeric and special characters(, .)";
+	public static final String COMMENTS_ERR = "Comments can contain alphanumeric and special characters(, .)";
 		
 	public static final String WORKFORCE_ERR = "WorkForceId can only contains alphanumeric";
 

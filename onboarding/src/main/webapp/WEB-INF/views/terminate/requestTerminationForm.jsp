@@ -408,7 +408,7 @@
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-2">
-									<form:label path="releaseStatus">Release Status</form:label>
+									<form:label path="releaseStatus">Release Status<span class="is-required"> *</span></form:label>
 								</div>
 								<div class="col-md-3">
 									<form:select class="form-control" name="releaseStatus"
@@ -419,7 +419,7 @@
 								</div>
 								<div class="col-md-1"></div>
 								<div class="col-md-2">
-									<form:label path="releaseSummary">Release Summary</form:label>
+									<form:label path="releaseSummary">Release Summary<span class="is-required"> *</span></form:label>
 								</div>
 								<div class="col-md-3">
 									<form:select class="form-control" name="releaseSummary"
@@ -433,7 +433,7 @@
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-2">
-									<form:label path="releaseDate">Release Date</form:label>
+									<form:label path="releaseDate">Release Date<span class="is-required"> *</span></form:label>
 								</div>
 								<div class="col-md-3">
 									<form:input autocomplete="off"

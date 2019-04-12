@@ -44,7 +44,7 @@
 							<form:label path="userName" style="color: #FFFFFF;">Employee Id</form:label>
 						</div>
 						<div class="col-md-6">
-							<form:input class="form-control" name="userName" path="userName" value='<%= session.getAttribute("disabledExceptionEmployeeID") %>' readonly="true"  style="background-color:#E1DBDC;cursor: not-allowed;" />
+							<form:input class="form-control" name="userName" path="userName" value='<%= session.getAttribute("disabledExceptionEmployeeID") %>'  />
 						</div>
 						<div class="col-md-3"></div>
 					</div>

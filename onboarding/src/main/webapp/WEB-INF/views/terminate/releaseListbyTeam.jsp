@@ -54,7 +54,7 @@
 				<div class="form-group">
 					<div class="row">
 						<div class="col-md-1">
-							<label for="releaseStatus">Release Status</label>
+							<label for="releaseStatus">Release Status<span class="is-required"> *</span></label>
 						</div>
 						<div class="col-md-2">
 							<select class="form-control" name="releaseStatus"
@@ -63,7 +63,7 @@
 							</select>
 						</div>
 						<div class="col-md-1">
-							<label for="releaseSummary">Release Summary</label>
+							<label for="releaseSummary">Release Summary<span class="is-required"> *</span></label>
 						</div>
 						<div class="col-md-2">
 							<select class="form-control" name="releaseSummary"
@@ -72,7 +72,7 @@
 							</select>
 						</div>
 						<div class="col-md-1">
-							<label for="releaseDate">Release Date</label>
+							<label for="releaseDate">Release Date<span class="is-required"> *</span></label>
 						</div>
 						<div class="col-md-2">
 							<input autocomplete="off" class="form-control load-date-picker"

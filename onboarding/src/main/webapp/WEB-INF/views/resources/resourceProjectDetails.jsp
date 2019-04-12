@@ -114,11 +114,23 @@
 									<td>${employee.getReleaseDate()}</td>
 								</tr>
 								</c:if>
-								<tr>
+								<%-- <tr>
 									<th>Status:</th>
 									<td>${employee.getReleaseStatus()}</td>
-								</tr>
+								</tr> --%>
 								<tr>
+								<th>Status:</th>
+										<c:choose>
+											<c:when
+												test="${employee.getReleaseStatus() == 'Yet to Release' }">
+												<td><span class="customized-span-requested">NA</span></td>
+											</c:when>
+											<c:otherwise>
+												<td><span class="customized-span-success">Active</span></td>
+											</c:otherwise>
+										</c:choose>
+								</tr>
+										<tr>
 									<th></th>
 									<td>
 								</tr>

@@ -122,6 +122,7 @@ function loadBands(){
 			} else {
 				console.log("bands failure Call");
 			}
+            $('select[name="band"]').find('option[value='+ $('#bandId').val() +']').attr("selected",true);
 		}
 	});
 }
@@ -130,14 +131,14 @@ function loadMovementDetails(){
 	$.ajax({
 		type : 'GET',
 		url : "/onboarding/movement/getmovements" ,
-		dataType : "text",
+		dataType : "json",
 		success : function(resultData) {
 			console.log(resultData);
 			console.log(resultData.responseList);
 			if (resultData.status == "SUCCESS") {
 				$.each(resultData.responseList, function(key,value) {  
 					if($("#movementId").val() == value.id ){
-						 $('#movement').val(value.movement)
+						 $('#movement').val(value.movement);
 					}
 				});
 			} else {
@@ -184,7 +185,7 @@ function validateForm() {
 
 	if ($('#approvalStatus').val() == 5) {
 		if ($('#comments').val() == null || $('#comments').val() == "") {
-			$('#errMessage').text("Comments cannot be null or empty. Please fill in the reason for the rejection in comments field.");
+			$('#errMessage').text("Comments cannot be null or empty. Please fill the reason for the rejection in comments field.");
 			return false;
 		}
 

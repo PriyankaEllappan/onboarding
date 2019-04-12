@@ -58,14 +58,14 @@ function submitProj() {
 				contentType : 'application/json; charset=utf-8',
 				success : function(resultData) {
 					if (resultData.status == "SUCCESS") {
-						$('#"offboardByProj"').hide();
+						$('#offboardByProj').hide();
 						$('#statusSucessMessage').text(resultData.statusMessage);
 					} else {
 						$('#statusSucessMessage').text(resultData.errMessage);
 					}
 				},
 				error : function() {
-					$('#"offboardByProj"').hide();
+					$('#offboardByProj').hide();
 					$('#errMessage').text("Unable to process the request");
 				}
 			})

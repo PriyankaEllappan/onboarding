@@ -45,9 +45,10 @@ function loadEmployeeDetails(){
 			console.log(resultData);
 			if (resultData.status == "SUCCESS") {
 					$('#errMessage').text("");
+					$('#password').prop('disabled', false);
+					$("#password").focus();
 					console.log("Valid CTS Employee ID");
-					 $('#loginSubmit').prop('disabled', false);
-					 $('#password').prop('disabled', false);
+					$('#loginSubmit').prop('disabled', false);
 			 } else {
 				 $('#loginSubmit').prop('disabled', true);
 				 $('#password').prop('disabled', true);

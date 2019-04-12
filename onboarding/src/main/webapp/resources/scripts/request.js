@@ -29,7 +29,6 @@ $(document).ready(function() {
 	
 	$("#availableAssignProj").click(function() {
 		$("#availableProjects").empty();
-		$('#availableAssignProj').css('cursor', 'not-allowed');
 		var empId = $("#availEmpID").text();
 		checkForanActiveAssignment(empId);
 	})
